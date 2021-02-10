@@ -1,0 +1,225 @@
+<template>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                
+                <div class="card border-primary mb-3" >
+                    <div class="card-header">Registration</div>
+                    <div class="card-body">
+                        <form method="POST" @submit.prevent="handleSubmit">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Title *"
+                                            v-model="text_title"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Affiliation *"
+                                            name="affiliation"
+                                            v-model="text_affiliation"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="First Name *"
+                                            v-model="text_fname"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Last Name *"
+                                            v-model="text_lname"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            class="form-control" 
+                                            placeholder="Contact No. *"
+                                            v-model="text_contactno"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <input 
+                                            type="email" 
+                                            class="form-control" 
+                                            placeholder="Email Address *"
+                                            v-model="text_email"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label >Point of Interest</label>
+                                            <select 
+                                                class="custom-select" 
+                                                v-model="select_poi"
+                                                required
+                                                >
+                                                <option 
+                                                    v-for="(item, index) in $store.state.pois" 
+                                                    :key="index"
+                                                    :value="item.key"
+                                                >
+                                                    {{item.value}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <textarea 
+                                                placeholder="Message" 
+                                                class="form-control" 
+                                                rows="3"
+                                                v-model="textarea_message"
+                                                required
+                                            ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input 
+                                                type="password" 
+                                                class="form-control" 
+                                                placeholder="Password *"
+                                                v-model="text_password"
+                                                required
+                                            >
+                                        </div>
+                                        <div class="form-group">
+                                            <input 
+                                                type="password" 
+                                                class="form-control" 
+                                                placeholder="Confirm password *"
+                                                v-model="text_cpassword"
+                                                required
+                                            >
+                                            <small class="text-danger" v-if="errors != ''">Those password didn't match. Try again.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <p>
+                                            <small class="text-muted">
+                                                By clicking Register you agree to our Terms and that you have read out <a href="#">Data Use Policy</a>, including our <a href="#">Cookie Use</a>.                                        
+                                            </small>
+                                        </p>
+                                        <button class="btn btn-primary">Register</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{errors}}
+    </div>
+</template>
+
+<script>
+    export default {
+        mounted() {
+            // console.log(this.$store.getters.pois)
+        },
+        data(){
+            
+            return{
+                text_title: "",
+                text_affiliation: "",
+                text_fname: "",
+                text_lname: "",
+                text_email: "",
+                text_contactno: "",
+                textarea_message: "",
+                text_password: "",
+                text_cpassword: "",
+                select_poi: 1,
+                errors: []
+            }
+        } ,
+        watch:{
+            text_cpassword(e){
+                
+                if(this.text_password != e){
+                    if(!this.errors.includes('cpassword')){
+                        this.errors.push('cpassword')
+                    }
+                    
+                }else{
+                    const index = this.errors.indexOf('cpassword');
+                    if (index > -1) {
+                        this.errors.splice(index, 1);
+                    }                    
+                }
+            }
+        },
+
+        methods:{
+            async handleSubmit(){
+                if(this.errors){
+                    return false
+                }
+                let fd = new FormData()
+                fd.append('title', this.text_title)
+                fd.append('affiliation', this.text_affiliation)
+                fd.append('fname', this.text_fname)
+                fd.append('lname', this.text_lname)
+                fd.append('contactno', this.text_contactno)
+                fd.append('email', this.text_email)
+                fd.append('poi', this.select_poi)
+                fd.append('message', this.textarea_message)
+                fd.append('password', this.text_password)
+                let {data} = await axios.post('/api/registration', fd)
+                console.log(data)
+            }
+        }
+
+    }
+</script>
+
+<style>
+
+</style>

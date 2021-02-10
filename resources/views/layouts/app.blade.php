@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/vendor/lightbox-gallery/jquery.lightbox.min.css">
-    @yield('style')
+    <script src="https://kit.fontawesome.com/a7e4b82d07.js" crossorigin="anonymous"></script>
     <title>Convention</title>
 </head>
 <body>

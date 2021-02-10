@@ -1,5 +1,6 @@
 require('./bootstrap');
 import Vue from 'vue/dist/vue';
+import store  from './store/store'
 
 import App from './App.vue';
 import VueRouter from 'vue-router';
@@ -17,6 +18,9 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    store,
+    mounted() {
+    },
     router: router,
     render: h => h(App),
 });
