@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::post('registration', [HomeController::class, 'storeRegistration']);
+Route::post('login', [HomeController::class, 'login']);
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();

@@ -36,8 +36,92 @@
 
     <script>
 
-        const panorama = new PANOLENS.ImagePanorama( '/images/Equirectangular.jpg' );
-        const viewer = new PANOLENS.Viewer();
+        var viewer, panorama, container, infospot, infospot2, textureLoader, tex1, tex2, centerInfoSpot, logoInfospot;
+
+
+        panorama= new PANOLENS.ImagePanorama( '/images/Equirectangular.jpg' );
+        viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false } );
+
+        // centerInfoSpot = new PANOLENS.Infospot(
+        //   0,
+        //   '',
+        //   false
+        // )
+        // centerInfoSpot.position.set(4833.92, 1259.00, -39.04)
+        // window.onload = function(){
+
+        //   centerInfoSpot.focus();
+        // }
+        
+
+        // Default infospot
+        infospot = new PANOLENS.Infospot( 
+          4000, 
+          "/images/booth.png",
+          false
+        );
+        infospot.position.set( 337.72, -463.31, -4958.48 );
+        infospot.addHoverText( "Jester Gatdula Foundation", 200 );
+
+        infospot.addEventListener( "click", function(){
+          this.focus();
+        } );
+
+        logoInfospot = new PANOLENS.Infospot( 
+          1300, 
+          "https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg",
+          false
+        );
+        logoInfospot.position.set( 337.72, -463.31, -4958.48 );
+
+        
+
+// infospot.addEventListener( 'hoverenter', function( event ){
+//   this.material.opacity = 0.6;
+//   this.material.color.set( 0x00ff00 * Math.random() );
+//   this.material.map = tex2;
+//   this.scale.x *= 2;
+//   this.scale.y *= 2;
+// } );
+// infospot.addEventListener( 'hoverleave', function( event ){
+//   this.material.opacity = 1;
+//   this.material.color.set( 0xffffff );
+//   this.material.map = tex1;
+//   this.scale.x /= 2;
+//   this.scale.y /= 2;
+// } );            
+
+// Custom infospot
+// infospot2 = new PANOLENS.Infospot( 
+//   600, 
+//   "https://img.freepik.com/free-vector/realistic-illustration-empty-market-stall-with-red-white-striped-awning_1441-2557.jpg?size=338&ext=jpg", true
+// );
+
+// // infospot2.material.rotation = 30 * Math.PI / 180;
+// infospot2.position.set( -1726.01, 1955.54, -4257.94 );
+// infospot2.addHoverText( "Custom Infospot", 100 );
+// infospot2.addEventListener( "click", function(){
+//   this.focus();
+// } );
+// infospot2.addEventListener( 'hoverenter', function( event ){
+//   this.material.opacity = 0.6;
+//   this.material.color.set( 0x00ff00 * Math.random() );
+//   this.material.map = tex2;
+//   this.scale.x *= 2;
+//   this.scale.y *= 2;
+// } );
+// infospot2.addEventListener( 'hoverleave', function( event ){
+//   this.material.opacity = 1;
+//   this.material.color.set( 0xffffff );
+//   this.material.map = tex1;
+//   this.scale.x /= 2;
+//   this.scale.y /= 2;
+// } );        
+
+        panorama.add( centerInfoSpot );
+        panorama.add( logoInfospot );
+        panorama.add( infospot );
+
         viewer.add( panorama );
 
     </script>

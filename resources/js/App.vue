@@ -6,6 +6,7 @@
                 <div class="navbar-nav">
                     <router-link to="/" class="nav-item nav-link">Home</router-link>
                     <router-link to="/registration" class="nav-item nav-link">Registration</router-link>
+                    <router-link to="/login" class="nav-item nav-link">Login</router-link>
                 </div>
             </div>
         </nav>

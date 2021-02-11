@@ -1,6 +1,6 @@
 import Home from './components/Home.vue';
 import Registration from './components/Registration.vue';
-
+import Login from './components/Login.vue';
 
 export const routes = [
     {
@@ -13,4 +13,9 @@ export const routes = [
         path: '/registration',
         component: Registration
     },
+    {
+        name: 'login',
+        path: '/login',
+        component: Login
+    },    
 ];

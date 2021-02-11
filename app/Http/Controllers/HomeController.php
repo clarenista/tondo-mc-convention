@@ -26,4 +26,12 @@ class HomeController extends Controller
         return view("home.gallery");
     }
 
+    public function login(Request $request){
+        return response()->json([
+            'status' => 'ok',
+            'postdata' => $request->all()
+
+        ]);
+    }    
+
 }
