@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        
+
       html, body {
         margin: 0;
         width: 100%;
@@ -25,7 +25,7 @@
         padding: 20px 0;
         color: #fff;
       }
-    
+
     </style>
     <title>Document</title>
 </head>
@@ -52,11 +52,11 @@
 
         //   centerInfoSpot.focus();
         // }
-        
+
 
         // Default infospot
-        infospot = new PANOLENS.Infospot( 
-          4000, 
+        infospot = new PANOLENS.Infospot(
+          4000,
           "/images/booth.png",
           false
         );
@@ -67,14 +67,20 @@
           this.focus();
         } );
 
-        logoInfospot = new PANOLENS.Infospot( 
-          1300, 
+        logoInfospot = new PANOLENS.Infospot(
+          1300,
           "https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg",
           false
         );
         logoInfospot.position.set( 337.72, -463.31, -4958.48 );
 
-        
+        // FIXED BOOTH START
+        var cube = new THREE.Mesh( new THREE.BoxGeometry(700, 700, 700), new THREE.MeshBasicMaterial(
+            { map: new THREE.TextureLoader().load( '/images/booth.png') ,transparent: true, opacity: 1} ) );
+        cube.position.set(0, -150, 1000);
+        rotateObject(cube,0,90,0);
+        panorama.add( cube );
+        // FIXED BOOTH END
 
 // infospot.addEventListener( 'hoverenter', function( event ){
 //   this.material.opacity = 0.6;
@@ -89,11 +95,11 @@
 //   this.material.map = tex1;
 //   this.scale.x /= 2;
 //   this.scale.y /= 2;
-// } );            
+// } );
 
 // Custom infospot
-// infospot2 = new PANOLENS.Infospot( 
-//   600, 
+// infospot2 = new PANOLENS.Infospot(
+//   600,
 //   "https://img.freepik.com/free-vector/realistic-illustration-empty-market-stall-with-red-white-striped-awning_1441-2557.jpg?size=338&ext=jpg", true
 // );
 
@@ -116,7 +122,7 @@
 //   this.material.map = tex1;
 //   this.scale.x /= 2;
 //   this.scale.y /= 2;
-// } );        
+// } );
 
         panorama.add( centerInfoSpot );
         panorama.add( logoInfospot );
@@ -124,6 +130,12 @@
 
         viewer.add( panorama );
 
+        function rotateObject(object, degreeX=0, degreeY=0, degreeZ=0) {
+            object.rotateX(THREE.Math.degToRad(degreeX));
+            object.rotateY(THREE.Math.degToRad(degreeY));
+            object.rotateZ(THREE.Math.degToRad(degreeZ));
+        }
     </script>
 </body>
 </html>
+
