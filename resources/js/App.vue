@@ -1,17 +1,26 @@
 <template>
-    <div class="container">
+    <div>
+        <b-navbar toggleable="lg" type="dark" variant="info">
+            <b-navbar-brand href="/">AC</b-navbar-brand>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav">
-                    <router-link to="/" class="nav-item nav-link">Home</router-link>
-                    <router-link to="/registration" class="nav-item nav-link">Registration</router-link>
-                    <router-link to="/login" class="nav-item nav-link">Login</router-link>
-                </div>
-            </div>
-        </nav>
-        <br/>
-        <router-view></router-view>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+            <b-collapse id="nav-collapse" is-nav>
+            <b-navbar-nav>
+                <!--<b-nav-item href="#" >Link</b-nav-item> -->
+            </b-navbar-nav>
+
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
+                <router-link class="nav-link" :to="'/registration'">Registration</router-link>
+                <router-link class="nav-link" :to="'/login'">Login</router-link>
+                <router-link class="nav-link" :to="'/boothman'">Booth Manager</router-link>
+            </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+        <div class="container mt-3">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
