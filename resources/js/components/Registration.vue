@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+        <div class="alert alert-success" role="alert" v-if="successRegistration">
+            Registered successfully.
+        </div>
         <div class="row justify-content-center">
             <div class="col-lg-7">
                 
@@ -176,7 +179,8 @@
                 text_password: "",
                 text_cpassword: "",
                 select_poi: 1,
-                errors: []
+                errors: [],
+                successRegistration: false
             }
         } ,
         watch:{
@@ -198,21 +202,23 @@
 
         methods:{
             async handleSubmit(){
-                if(this.errors){
-                    return false
-                }
+                // if(this.errors){
+                //     return false
+                // }
                 let fd = new FormData()
                 fd.append('title', this.text_title)
                 fd.append('affiliation', this.text_affiliation)
-                fd.append('fname', this.text_fname)
-                fd.append('lname', this.text_lname)
+                fd.append('first_name', this.text_fname)
+                fd.append('last_name', this.text_lname)
                 fd.append('contactno', this.text_contactno)
                 fd.append('email', this.text_email)
                 fd.append('poi', this.select_poi)
                 fd.append('message', this.textarea_message)
                 fd.append('password', this.text_password)
                 let {data} = await axios.post('/api/registration', fd)
-                console.log(data)
+                if(data.status === 'ok'){
+                    this.successRegistration = true
+                }
             }
         }
 

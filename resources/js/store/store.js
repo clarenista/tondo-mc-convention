@@ -10,6 +10,7 @@ export default new Vuex.Store({
         {value: 'POI 2', key: 2},
         {value: 'POI 3', key: 3},
     ],
+    user:[],
 
     assets:[
       {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},
@@ -33,12 +34,18 @@ export default new Vuex.Store({
 
     // getter
     // $store.getters.flavor 
-    change(state, flavor) {
-      state.flavor = flavor
+    // change(state, flavor) {
+    //   state.flavor = flavor
+    // }
+
+    changeUser(state, user) {
+      state.user = user
     }
+
   },
   getters: {
     pois: state => state.pois,
-    assets: state => state.assets
+    assets: state => state.assets,
+    user: state => state.user,
   }
 })

@@ -23,7 +23,8 @@ export const routes = [
     {
         name: 'boothman',
         path: '/boothman',
-        component: BoothMan
+        component: BoothMan,
+        meta: { requiresAuth: true }
     },   
     
 ];

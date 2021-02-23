@@ -19,8 +19,12 @@
         -->
 
         <!-- Banner 
-        -->
         <banner></banner>
+        -->
+
+        <!-- External Links 
+        -->
+        <links></links>
 
         </div>                
     </div>
@@ -29,10 +33,12 @@
 <script>
     import Assets from './Assets.vue';
     import Banner from './Banner.vue';
+    import Links from './Links.vue';
     export default {
         components:{
             'assets': Assets,
             'banner': Banner,
+            'links': Links,
         },
         mounted() {
         },

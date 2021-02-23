@@ -16,3 +16,11 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+    // hot reloading
+    mix.options({
+        hmrOptions: {
+            host: 'localhost',  // mysite.test is my local domain used for testing
+            port: 8080,
+        }
+     });    

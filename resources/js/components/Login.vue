@@ -2,6 +2,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-5">
+                <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
+                    Login success.
+                </div>
+                <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
+                    Login failed. E-mail or password not found.
+                </div>
                 
                 <div class="card border-primary mb-3" >
                     <div class="card-header">User Login</div>
@@ -18,13 +24,18 @@
                                     >
                                 </div>
                                 <div class="form-group">
-                                    <input 
-                                        type="password" 
-                                        class="form-control" 
-                                        placeholder="Password *"
-                                        v-model="text_password"
-                                        required
-                                    >
+                                    <div class="input-group">
+                                        <input 
+                                            :type="isSeePassword ? 'text' : 'password'" 
+                                            class="form-control" 
+                                            placeholder="Password *"
+                                            v-model="text_password"
+                                            required
+                                        >
+                                        <div class="input-group-append" @click="toggleSeePassword">
+                                            <span class="input-group-text" id="my-addon"><i :class="isSeePassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
+                                        </div>
+                                    </div>
                                 </div>             
                                 <div class="form-group">
                                     <button class="btn btn-primary">Login</button>
@@ -48,6 +59,8 @@
             return{
                 text_email: "",
                 text_password: "",
+                isLoginSuccess: null,
+                isSeePassword: false
             }
         } ,
         watch:{
@@ -56,14 +69,24 @@
 
         methods:{
             async handleSubmit(){
-                if(this.errors){
-                    return false
-                }
+                this.isLoginSuccess = null
+                // if(this.errors){
+                //     return false
+                // }
                 let fd = new FormData()
                 fd.append('email', this.text_email)
                 fd.append('password', this.text_password)
                 let {data} = await axios.post('/api/login', fd)
-                console.log(data)
+                if(data.status === 'ok'){
+                    this.isLoginSuccess = true
+                    this.$store.commit('changeUser', data.user)
+                    this.$router.push('/boothman')
+                }else{
+                    this.isLoginSuccess = false
+                }
+            },
+            toggleSeePassword(){
+                this.isSeePassword = !this.isSeePassword
             }
         }
 

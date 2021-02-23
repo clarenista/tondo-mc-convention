@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class HomeController extends Controller
 {
@@ -15,6 +18,9 @@ class HomeController extends Controller
     }
 
     public function storeRegistration(Request $request){
+        $user = User::create($request->all());
+        $user->password = Hash::make($request->password);
+        $user->save();
         return response()->json([
             'status' => 'ok',
             'postdata' => $request->all()
@@ -27,11 +33,23 @@ class HomeController extends Controller
     }
 
     public function login(Request $request){
-        return response()->json([
-            'status' => 'ok',
-            'postdata' => $request->all()
-
-        ]);
+        
+        $user = User::where('email', $request->email)->first();
+        if($user){
+            if(Hash::check($request->password, $user->password)){
+                return response()->json([
+                    'status' => 'ok',
+                    'user' => $user
+                ]);
+            }
+        }else{
+            
+            return response()->json([
+                'status' => 'failed',
+            ]);
+        }
+        // if(Hash::check($request->password, $user->password)){
+        // }
     }    
 
 }
