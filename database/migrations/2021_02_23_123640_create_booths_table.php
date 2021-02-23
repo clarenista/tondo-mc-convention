@@ -15,8 +15,8 @@ class CreateBoothsTable extends Migration
     {
         Schema::create('booths', function (Blueprint $table) {
             $table->id();
-            $table->string('name');         # Phyzer etc
-            $table->boolean('status');      # active/ in-active
+            $table->string('name');                     # Phyzer etc
+            $table->boolean('status')->default(0);      # 0 = In-active/ 1 = Active
             $table->timestamps();
         });
     }
