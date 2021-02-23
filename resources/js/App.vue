@@ -29,7 +29,7 @@
                 </li>
             </ul>
             <div class="my-2 my-lg-0">
-                <button class="btn btn-primary my-2 my-sm-0" @click="handleLogInUser" v-if="$store.getters.user == []">Login</button>
+                <button class="btn btn-primary my-2 my-sm-0" @click="handleLogInUser" v-if="$store.getters.user == ''">Login</button>
                 <button class="btn btn-danger my-2 my-sm-0" @click="handleLogoutUser" v-else>Logout</button>
             </div>
         </div>
