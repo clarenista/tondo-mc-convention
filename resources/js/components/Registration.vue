@@ -87,10 +87,10 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label >Point of Interest</label>
+                                            <label >Role</label>
                                             <select 
                                                 class="custom-select" 
-                                                v-model="select_poi"
+                                                v-model="select_role"
                                                 required
                                                 >
                                                 <option 
@@ -104,21 +104,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <textarea 
-                                                placeholder="Message" 
-                                                class="form-control" 
-                                                rows="3"
-                                                v-model="textarea_message"
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <div class="form-group">
@@ -142,7 +127,10 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col">
+                                    
                                     <div class="form-group">
                                         <p>
                                             <small class="text-muted">
@@ -178,7 +166,7 @@
                 textarea_message: "",
                 text_password: "",
                 text_cpassword: "",
-                select_poi: 1,
+                select_role: 3,
                 errors: [],
                 successRegistration: false
             }
@@ -212,7 +200,7 @@
                 fd.append('last_name', this.text_lname)
                 fd.append('contactno', this.text_contactno)
                 fd.append('email', this.text_email)
-                fd.append('poi', this.select_poi)
+                fd.append('role', this.select_role)
                 fd.append('message', this.textarea_message)
                 fd.append('password', this.text_password)
                 let {data} = await axios.post('/api/registration', fd)

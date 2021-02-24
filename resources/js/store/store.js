@@ -6,9 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     pois: [
-        {value: 'POI 1', key: 1},
-        {value: 'POI 2', key: 2},
-        {value: 'POI 3', key: 3},
+        {value: 'ADMIN', key: 1},
+        {value: 'SPONSOR', key: 2},
+        {value: 'REGISTRANT', key: 3},
     ],
     user:[],
 

@@ -1,46 +1,43 @@
 <template>
     <div class="container">
-        <b-row v-if="!isUpload">
-            <b-col cols="3">
-                <b-card>
-                    <b-form-group id="input-group-3" label="Records:" label-for="input-3">
-                        <b-form-select
-                        
-                            id="input-3"
-                            v-model="form.size"
-                            :options="sizes"
-                            required
-                        ></b-form-select>
-                    </b-form-group>                
-                    <b-form-group id="input-group-3" label="Type:" label-for="input-3">
-                        <b-form-select
-                            id="input-3"
-                            v-model="form.type"
-                            :options="types"
-                            required
-                        ></b-form-select>
-                    </b-form-group>  
-                    <b-button @click="handleFilter">Filter</b-button>
-                    <b-button @click="handleUploadAssetPage">Upload new asset</b-button>
-                </b-card>
-            </b-col>
-            <b-col >
-                <b-row >
-                    <b-col cols="3" v-for="(item, index) in filteredAssets" :key="index"    >
-                        <b-card v-if="item.type == 'image'">
-                            <img :src="item.path" class="img-fluid">
-                        </b-card>
-                        <b-card v-if="item.type == 'pdf'">
-                            <a :href="item.path" target="_blank" >{{item.name}}</a>
-                        </b-card>
-                    </b-col>
-                </b-row>
-            </b-col>
-          
-        </b-row>
-        <b-row v-else class="justify-content-md-center">
-            <b-col>
+        <div class="row mt-3" v-if="!isUpload">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="input-3">Records:</label>
+                            <select v-model="form.size" id="input-3" class="custom-select" name="">
+                                <option v-for="(item, index) in sizes" :key="index">{{item}}</option>
+                            </select>
+                            <label for="input-3">Type:</label>
+                            <select v-model="form.type" id="input-3" class="custom-select" name="">
+                                <option v-for="(item, index) in types" :key="index">{{item}}</option>
+                            </select>
 
+                        </div>
+                        <button class="btn btn-primary btn-sm float-right" @click="handleFilter">Filter</button>
+                        <br>
+                        <button class="btn btn-secondary btn-sm" @click="handleUploadAssetPage">Upload new asset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-3" v-for="(item, index) in filteredAssets" :key="index">
+                        <div class="card m-1">
+                            <div class="card-body" v-if="item.type == 'image'">
+                                <img :src="item.path" class="img-fluid">
+                            </div>
+                            <div class="card-body" v-if="item.type == 'pdf'">
+                                <a :href="item.path" target="_blank" >{{item.name}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" v-else>
+            <div class="col">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="cursor:pointer;" @click="isUpload =false"><strong>Back to list</strong></div>
                     <div class="panel-body">
@@ -76,9 +73,8 @@
                     -->
                     </div>
                 </div>           
-            </b-col>
-        
-        </b-row>
+            </div>
+        </div>
     </div>
 </template>
 
