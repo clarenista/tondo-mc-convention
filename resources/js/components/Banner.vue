@@ -7,6 +7,7 @@
                 :class="modalShow ? 'show' : ''" 
                 :style="modalShow ? 'display: block;' : ''"
                 tabindex="-1" role="dialog" aria-hidden="true">
+                
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -29,7 +30,8 @@
             </div>
 
             
-        </div>    
+        </div>  
+
         <div class="row">
             <div class="col-3">
                 <button class="btn btn-primary" type="button" @click="handleChangeBannerClicked">Change banner</button>

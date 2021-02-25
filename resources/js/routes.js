@@ -3,6 +3,8 @@ import Registration from './components/Registration.vue';
 import Login from './components/Login.vue';
 import BoothMan from './components/BoothMan.vue';
 
+import Gallery from './components/Gallery.vue';
+
 
 export const routes = [
     {
@@ -33,5 +35,15 @@ export const routes = [
             is_sponsor : true
          }
     },   
+    {
+        name: 'gallery',
+        path: '/gallery',
+        component: Gallery,
+        meta: { 
+            requiresAuth: true,
+            is_admin : true
+         }
+    },
+
     
 ];

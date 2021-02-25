@@ -26,7 +26,20 @@ export default new Vuex.Store({
       {type: 'pdf', name: 'pdf 5', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
       {type: 'pdf', name: 'pdf 6', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
       {type: 'pdf', name: 'pdf 7', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-    ],    
+    ],  
+    
+    gallery: [
+      {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/400'},
+      {type: 'image', name: 'image 2', path: 'https://via.placeholder.com/500'},
+      {type: 'image', name: 'image 3', path: 'https://via.placeholder.com/400'},
+      {type: 'image', name: 'image 4', path: 'https://via.placeholder.com/500'},
+      {type: 'image', name: 'image 5', path: 'https://via.placeholder.com/400'},
+      {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/500'},
+      {type: 'image', name: 'image 2', path: 'https://via.placeholder.com/400'},
+      {type: 'image', name: 'image 3', path: 'https://via.placeholder.com/500'},
+      {type: 'image', name: 'image 4', path: 'https://via.placeholder.com/400'},
+      {type: 'image', name: 'image 5', path: 'https://via.placeholder.com/500'},
+    ],
   },
   mutations: {
     // setter
@@ -47,5 +60,6 @@ export default new Vuex.Store({
     pois: state => state.pois,
     assets: state => state.assets,
     user: state => state.user,
+    gallery: state => state.gallery,
   }
 })

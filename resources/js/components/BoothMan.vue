@@ -43,6 +43,10 @@
         -->
         <banner v-if="navSelected == 'Banner'"></banner>
 
+        <!-- Gallery 
+        -->
+        <gallery v-if="navSelected == 'Gallery'"></gallery>
+
         <!-- External Links 
         -->
         <links v-if="navSelected == 'External Links'"></links>
@@ -55,11 +59,15 @@
     import Assets from './Assets.vue';
     import Banner from './Banner.vue';
     import Links from './Links.vue';
+
+    import Gallery from './Gallery.vue';
+
     export default {
         components:{
             'assets': Assets,
             'banner': Banner,
             'links': Links,
+            'gallery' : Gallery,
         },
         mounted() {
         },
