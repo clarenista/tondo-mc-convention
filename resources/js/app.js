@@ -26,6 +26,33 @@ const router = new VueRouter({
     routes: routes
 });
 
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)) {
+        if(to.matched.some(record => record.meta.is_admin)) {
+            console.log('role', store.getters.user.role)
+            if(store.getters.user.role == 1){
+                next()
+            }
+            else{
+                next({ name: 'Login'})
+            }
+        }else if(to.matched.some(record => record.meta.is_sponsor)){
+            if(store.getters.user.role == 2){
+                next()
+            }
+            else{
+                next({ name: 'Login'})
+            }
+
+        }
+        else {
+            next()
+        }
+    }else{
+        next()
+    }
+  })
+
 const app = new Vue({
     el: '#app',
     store,
@@ -34,3 +61,4 @@ const app = new Vue({
     router: router,
     render: h => h(App),
 });
+

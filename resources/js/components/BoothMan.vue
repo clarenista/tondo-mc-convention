@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="">
         <div>
 
         <!--
@@ -14,17 +14,38 @@
         </b-nav>
         -->
 
+    <ul class="nav nav-tabs">
+        <li class="nav-item" 
+            v-for="(item, index) in navs" 
+            :key="index"
+            
+            
+        >
+            <a 
+                style="cursor:pointer;"
+                class="nav-link" 
+                :class="navSelected == item.text ? 'active' : '' " 
+                data-toggle="tab"
+                @click="handleSelectNav(item.text)"
+            >
+                {{item.text}}
+            </a>
+        </li>
+        
+    </ul>
+       
+
         <!-- Assets 
-        <assets></assets>
         -->
+        <assets v-if="navSelected == 'Assets'"></assets>
 
         <!-- Banner 
-        <banner></banner>
         -->
+        <banner v-if="navSelected == 'Banner'"></banner>
 
         <!-- External Links 
         -->
-        <links></links>
+        <links v-if="navSelected == 'External Links'"></links>
 
         </div>                
     </div>
@@ -49,6 +70,10 @@
                     {text: 'Assets', isActive: false},
                     {text: 'Banner', isActive: false},
                     {text: 'Gallery', isActive: false},
+                    {text: 'Brochures', isActive: false},
+                    {text: 'External Links', isActive: false},
+                    {text: 'Contact', isActive: false},
+                    {text: 'Quiz', isActive: false},
                 ],
                 navSelected: 'Assets',
 

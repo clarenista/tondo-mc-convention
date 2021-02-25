@@ -13,10 +13,14 @@ export const routes = [
     {
         name: 'registration',
         path: '/registration',
-        component: Registration
+        component: Registration,
+        meta: { 
+            requiresAuth: true,
+            is_admin : true
+         }
     },
     {
-        name: 'login',
+        name: 'Login',
         path: '/login',
         component: Login
     },  
@@ -24,7 +28,10 @@ export const routes = [
         name: 'boothman',
         path: '/boothman',
         component: BoothMan,
-        meta: { requiresAuth: true }
+        meta: { 
+            requiresAuth: true,
+            is_sponsor : true
+         }
     },   
     
 ];

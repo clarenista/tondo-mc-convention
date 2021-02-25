@@ -80,7 +80,10 @@
                 if(data.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$store.commit('changeUser', data.user)
-                    this.$router.push('/boothman')
+                    if(data.user.role == 1){
+                        this.$router.push('/registration')
+                    }else if(data.user.role == 2)
+                        this.$router.push('/boothman')
                 }else{
                     this.isLoginSuccess = false
                 }
