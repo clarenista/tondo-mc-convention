@@ -1898,9 +1898,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1910,6 +1907,13 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     toggleShow: function toggleShow() {
       this.showCollapse = !this.showCollapse;
+    },
+    handleLogInUser: function handleLogInUser() {
+      this.$router.push('/login');
+    },
+    handleLogoutUser: function handleLogoutUser() {
+      this.$store.commit('changeUser', '');
+      this.$router.push('/');
     }
   }
 });
@@ -2385,6 +2389,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {// console.log(this.$store.getters.pois)
   },
@@ -2392,7 +2401,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       text_email: "",
       text_password: "",
-      isLoginSuccess: null
+      isLoginSuccess: null,
+      isSeePassword: false
     };
   },
   watch: {},
@@ -2423,6 +2433,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (data.status === 'ok') {
                   _this.isLoginSuccess = true;
+
+                  _this.$store.commit('changeUser', data.user);
+
+                  _this.$router.push('/boothman');
                 } else {
                   _this.isLoginSuccess = false;
                 }
@@ -2434,6 +2448,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    toggleSeePassword: function toggleSeePassword() {
+      this.isSeePassword = !this.isSeePassword;
     }
   }
 });
@@ -2822,7 +2839,10 @@ var routes = [{
 }, {
   name: 'boothman',
   path: '/boothman',
-  component: _components_BoothMan_vue__WEBPACK_IMPORTED_MODULE_3__.default
+  component: _components_BoothMan_vue__WEBPACK_IMPORTED_MODULE_3__.default,
+  meta: {
+    requiresAuth: true
+  }
 }];
 
 /***/ }),
@@ -2856,6 +2876,7 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
       value: 'POI 3',
       key: 3
     }],
+    user: [],
     assets: [{
       type: 'image',
       name: 'image 1',
@@ -2915,8 +2936,11 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
     // this.$store.commit('change', event.target.value)
     // getter
     // $store.getters.flavor 
-    change: function change(state, flavor) {
-      state.flavor = flavor;
+    // change(state, flavor) {
+    //   state.flavor = flavor
+    // }
+    changeUser: function changeUser(state, user) {
+      state.user = user;
     }
   },
   getters: {
@@ -2925,6 +2949,9 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
     },
     assets: function assets(state) {
       return state.assets;
+    },
+    user: function user(state) {
+      return state.user;
     }
   }
 }));
@@ -22145,19 +22172,6 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { staticClass: "nav-link", attrs: { to: "/login" } },
-                    [_vm._v("Login")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "nav-item" },
-                [
-                  _c(
-                    "router-link",
                     { staticClass: "nav-link", attrs: { to: "/boothman" } },
                     [_vm._v("Booth Manager")]
                   )
@@ -22166,7 +22180,25 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "my-2 my-lg-0" }, [
+              _vm.$store.getters.user == ""
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary my-2 my-sm-0",
+                      on: { click: _vm.handleLogInUser }
+                    },
+                    [_vm._v("Login")]
+                  )
+                : _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger my-2 my-sm-0",
+                      on: { click: _vm.handleLogoutUser }
+                    },
+                    [_vm._v("Logout")]
+                  )
+            ])
           ]
         )
       ],
@@ -22186,26 +22218,6 @@ var staticRenderFns = [
         _vm._v("Home\n                "),
         _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { staticClass: "form-inline my-2 my-lg-0" }, [
-      _c("input", {
-        staticClass: "form-control mr-sm-2",
-        attrs: { type: "text", placeholder: "Search" }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-secondary my-2 my-sm-0",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("Search")]
-      )
     ])
   }
 ]
@@ -22725,31 +22737,126 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("input", {
-                      directives: [
+                    _c("div", { staticClass: "input-group" }, [
+                      (_vm.isSeePassword ? "text" : "password") === "checkbox"
+                        ? _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.text_password,
+                                expression: "text_password"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              placeholder: "Password *",
+                              required: "",
+                              type: "checkbox"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.text_password)
+                                ? _vm._i(_vm.text_password, null) > -1
+                                : _vm.text_password
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.text_password,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.text_password = $$a.concat([$$v]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.text_password = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.text_password = $$c
+                                }
+                              }
+                            }
+                          })
+                        : (_vm.isSeePassword ? "text" : "password") === "radio"
+                        ? _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.text_password,
+                                expression: "text_password"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              placeholder: "Password *",
+                              required: "",
+                              type: "radio"
+                            },
+                            domProps: {
+                              checked: _vm._q(_vm.text_password, null)
+                            },
+                            on: {
+                              change: function($event) {
+                                _vm.text_password = null
+                              }
+                            }
+                          })
+                        : _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.text_password,
+                                expression: "text_password"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              placeholder: "Password *",
+                              required: "",
+                              type: _vm.isSeePassword ? "text" : "password"
+                            },
+                            domProps: { value: _vm.text_password },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.text_password = $event.target.value
+                              }
+                            }
+                          }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
                         {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.text_password,
-                          expression: "text_password"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "password",
-                        placeholder: "Password *",
-                        required: ""
-                      },
-                      domProps: { value: _vm.text_password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.text_password = $event.target.value
-                        }
-                      }
-                    })
+                          staticClass: "input-group-append",
+                          on: { click: _vm.toggleSeePassword }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "input-group-text",
+                              attrs: { id: "my-addon" }
+                            },
+                            [
+                              _c("i", {
+                                class: _vm.isSeePassword
+                                  ? "fa fa-eye"
+                                  : "fa fa-eye-slash"
+                              })
+                            ]
+                          )
+                        ]
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _vm._m(0)
