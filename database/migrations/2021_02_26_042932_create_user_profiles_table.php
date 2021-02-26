@@ -14,18 +14,13 @@ class CreateUserProfilesTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-
             $table->id();
             $table->foreignId('user_id');
-            $table->string('title');
-            $table->string('affiliation');
+            $table->string('title')->nullable();
+            $table->string('affiliation')->nullable();
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

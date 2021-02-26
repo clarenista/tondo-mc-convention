@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use Spatie\Permission\Models\Role;
 
+Route::get('/', function () {
+    return "API Routes";
+});
 
-Route::get('test', function(){
+Route::get('test', function () {
     return "Success!";
 });
