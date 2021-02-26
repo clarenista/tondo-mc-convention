@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('mobile_number_verified_at')->nullable();
             $table->string('email')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable()->unique();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
