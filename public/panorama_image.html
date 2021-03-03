@@ -39,7 +39,7 @@
         var viewer, panorama, container, infospot, infospot2, textureLoader, tex1, tex2, centerInfoSpot, logoInfospot;
 
 
-        panorama= new PANOLENS.ImagePanorama( '/images/Equirectangular.jpg' );
+        panorama= new PANOLENS.ImagePanorama( '/images/Equirectangular.png' );
         viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false } );
 
         // centerInfoSpot = new PANOLENS.Infospot(
@@ -55,31 +55,31 @@
 
 
         // Default infospot
-        infospot = new PANOLENS.Infospot(
-          4000,
-          "/images/booth.png",
-          false
-        );
-        infospot.position.set( 337.72, -463.31, -4958.48 );
-        infospot.addHoverText( "Jester Gatdula Foundation", 200 );
+        // infospot = new PANOLENS.Infospot(
+        //   4000,
+        //   "/images/booth.png",
+        //   false
+        // );
+        // infospot.position.set( 337.72, -463.31, -4958.48 );
+        // infospot.addHoverText( "Jester Gatdula Foundation", 200 );
 
-        infospot.addEventListener( "click", function(){
-          this.focus();
-        } );
+        // infospot.addEventListener( "click", function(){
+        //   this.focus();
+        // } );
 
-        logoInfospot = new PANOLENS.Infospot(
-          1300,
-          "https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg",
-          false
-        );
-        logoInfospot.position.set( 337.72, -463.31, -4958.48 );
+        // logoInfospot = new PANOLENS.Infospot(
+        //   1300,
+        //   "https://images-na.ssl-images-amazon.com/images/I/61mtx+420hL._AC_US436_QL65_.jpg",
+        //   false
+        // );
+        // logoInfospot.position.set( 337.72, -463.31, -4958.48 );
 
         // FIXED BOOTH START
-        var cube = new THREE.Mesh( new THREE.BoxGeometry(700, 700, 700), new THREE.MeshBasicMaterial(
-            { map: new THREE.TextureLoader().load( '/images/booth.png') ,transparent: true, opacity: 1} ) );
-        cube.position.set(0, -150, 1000);
-        rotateObject(cube,0,90,0);
-        panorama.add( cube );
+        // var cube = new THREE.Mesh( new THREE.BoxGeometry(700, 700, 700), new THREE.MeshBasicMaterial(
+        //     { map: new THREE.TextureLoader().load( '/images/booth.png') ,transparent: true, opacity: 1} ) );
+        // cube.position.set(0, -150, 1000);
+        // rotateObject(cube,0,90,0);
+        // panorama.add( cube );
         // FIXED BOOTH END
 
 // infospot.addEventListener( 'hoverenter', function( event ){
@@ -124,9 +124,9 @@
 //   this.scale.y /= 2;
 // } );
 
-        panorama.add( centerInfoSpot );
-        panorama.add( logoInfospot );
-        panorama.add( infospot );
+        // panorama.add( centerInfoSpot );
+        // panorama.add( logoInfospot );
+        // panorama.add( infospot );
 
         viewer.add( panorama );
 

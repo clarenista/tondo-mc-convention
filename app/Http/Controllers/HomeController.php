@@ -42,7 +42,7 @@ class HomeController extends Controller
                     'status' => 'ok',
                     'user' => $user,
                     'permissions' => $user->getPermissionsViaRoles()->pluck('name'),
-                    'access_token' => $token
+                    'api_token' => $token
                 ]);
             }
         }else{

@@ -2610,6 +2610,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.$store.commit('changeUser', data.user);
 
+                  _this.$store.commit('updatePermissions', data.permissions);
+
                   if (data.user.role == 1) {
                     _this.$router.push('/registration');
                   } else if (data.user.role == 2) _this.$router.push('/boothman');
@@ -3001,7 +3003,8 @@ var routes = [{
   path: '/registration',
   component: _components_Registration_vue__WEBPACK_IMPORTED_MODULE_2__.default,
   meta: {
-    requiresAuth: true
+    requiresAuth: true,
+    requireCanCreateUser: true
   }
 }, {
   name: 'Login',
@@ -3031,6 +3034,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__.default({
   routes: routes
 });
 router.beforeEach(function (to, from, next) {
+  console.log(to.matched.some(function (record) {
+    return record.meta.requireCanCreateUser;
+  }));
+
   if (to.matched.some(function (record) {
     return record.meta.requiresAuth;
   })) {
@@ -3079,6 +3086,7 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
       key: 3
     }],
     user: null,
+    permissions: null,
     assets: [{
       type: 'image',
       name: 'image 1',
@@ -3184,6 +3192,9 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
     // }
     changeUser: function changeUser(state, user) {
       state.user = user;
+    },
+    updatePermissions: function updatePermissions(state, permissions) {
+      state.permissions = permissions;
     }
   },
   getters: {
@@ -3198,6 +3209,9 @@ vue_dist_vue__WEBPACK_IMPORTED_MODULE_0___default().use(vuex__WEBPACK_IMPORTED_M
     },
     gallery: function gallery(state) {
       return state.gallery;
+    },
+    permissions: function permissions(state) {
+      return state.permissions;
     }
   }
 }));
@@ -23191,9 +23205,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("p", [_vm._v(_vm._s(_vm.$store.getters.permissions))])])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("p", [_vm._v("Home")])])
+  }
+]
 render._withStripped = true
 
 

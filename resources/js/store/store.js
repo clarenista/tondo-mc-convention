@@ -11,6 +11,8 @@ export default new Vuex.Store({
         {value: 'REGISTRANT', key: 3},
     ],
     user: null,
+    permissions: null,
+    api_token: null,
 
     assets:[
       {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},
@@ -53,6 +55,12 @@ export default new Vuex.Store({
 
     changeUser(state, user) {
       state.user = user
+    },
+    updatePermissions(state, permissions) {
+      state.permissions = permissions
+    },
+    updateApiToken(state, api_token) {
+      state.api_token = api_token
     }
 
   },
@@ -61,5 +69,7 @@ export default new Vuex.Store({
     assets: state => state.assets,
     user: state => state.user,
     gallery: state => state.gallery,
+    permissions: state => state.permissions,
+    api_token: state => state.api_token,
   }
 })

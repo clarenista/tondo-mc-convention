@@ -80,7 +80,9 @@
                 if(data.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$store.commit('changeUser', data.user)
-                    if(data.user.role == 1){
+                    this.$store.commit('updatePermissions', data.permissions)
+                    this.$store.commit('updateApiToken', data.api_token)
+                    if(data.user.roles[0].name === 'admin'){
                         this.$router.push('/registration')
                     }else if(data.user.role == 2)
                         this.$router.push('/boothman')
