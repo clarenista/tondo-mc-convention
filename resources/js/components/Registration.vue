@@ -152,7 +152,7 @@
 <script>
     export default {
         mounted() {
-            // console.log(this.$store.getters.pois)
+            // console.log(this.$store.getters.user)
         },
         data(){
             

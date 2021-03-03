@@ -10,7 +10,7 @@ export default new Vuex.Store({
         {value: 'SPONSOR', key: 2},
         {value: 'REGISTRANT', key: 3},
     ],
-    user:[],
+    user: null,
 
     assets:[
       {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},

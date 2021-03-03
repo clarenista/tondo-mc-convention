@@ -19,7 +19,7 @@
 
             
             <!-- admin nav -->
-            <ul class="navbar-nav mr-auto" v-if="$store.getters.user.role === 1">
+            <ul class="navbar-nav mr-auto" >
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Home
                     <span class="sr-only">(current)</span>
@@ -28,25 +28,30 @@
                 <li class="nav-item">
                     <router-link class="nav-link" :to="'/registration'">Registration</router-link>
                 </li>
-            </ul>
-
-            <!-- sponsor nav -->
-            <ul class="navbar-nav mr-auto" v-if="$store.getters.user.role === 2">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                    <span class="sr-only">(current)</span>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <router-link class="nav-link" :to="'/boothman'">Booth Manager</router-link>
                 </li>
             </ul>
 
-            <ul class="navbar-nav mr-auto" v-else></ul>            
+            <!-- sponsor nav 
+            
+                <ul class="navbar-nav mr-auto" v-if="$store.getters.user.role === 2">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <router-link class="nav-link" :to="'/boothman'">Booth Manager</router-link>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav mr-auto" v-else></ul>            
+            -->
 
 
             <div class="my-2 my-lg-0">
-                <button class="btn btn-primary my-2 my-sm-0" @click="handleLogInUser" v-if="$store.getters.user == ''">Login</button>
+                <button class="btn btn-primary my-2 my-sm-0" @click="handleLogInUser" v-if="$store.getters.user == null">Login</button>
                 <button class="btn btn-danger my-2 my-sm-0" @click="handleLogoutUser" v-else>Logout</button>
             </div>
         </div>
@@ -74,7 +79,7 @@
                 this.$router.push('/login')
             },
             handleLogoutUser(){
-                this.$store.commit('changeUser', '')
+                this.$store.commit('changeUser', null)
                 this.$router.push('/')
             }
         }

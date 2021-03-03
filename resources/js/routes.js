@@ -1,9 +1,14 @@
+import Vue from 'vue/dist/vue';
+import store  from './store/store'
+import VueRouter from 'vue-router';
+
 import Home from './components/Home.vue';
 import Registration from './components/Registration.vue';
 import Login from './components/Login.vue';
 import BoothMan from './components/BoothMan.vue';
-
 import Gallery from './components/Gallery.vue';
+
+Vue.use(VueRouter);
 
 
 export const routes = [
@@ -18,13 +23,15 @@ export const routes = [
         component: Registration,
         meta: { 
             requiresAuth: true,
-            is_admin : true
          }
     },
     {
         name: 'Login',
         path: '/login',
-        component: Login
+        component: Login,
+        meta: { 
+            requiresAuth: false,
+         }
     },  
     {
         name: 'boothman',
@@ -32,7 +39,6 @@ export const routes = [
         component: BoothMan,
         meta: { 
             requiresAuth: true,
-            is_sponsor : true
          }
     },   
     {
@@ -47,3 +53,24 @@ export const routes = [
 
     
 ];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
+
+router.beforeEach((to, from, next) => {
+    if(to.matched.some(record => record.meta.requiresAuth)){
+        if(!store.getters.user){
+            next({
+                name: 'Login'
+            })
+        }else{
+            next()
+        }
+    }else{
+        next()
+    }
+});
+
+export default router;

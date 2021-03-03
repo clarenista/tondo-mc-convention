@@ -37,9 +37,12 @@ class HomeController extends Controller
         $user = User::where('email', $request->email)->first();
         if($user){
             if(Hash::check($request->password, $user->password)){
+                $token = ApiTokenController::update($user);
                 return response()->json([
                     'status' => 'ok',
-                    'user' => $user
+                    'user' => $user,
+                    'permissions' => $user->getPermissionsViaRoles()->pluck('name'),
+                    'access_token' => $token
                 ]);
             }
         }else{

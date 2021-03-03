@@ -76,7 +76,7 @@
                 let fd = new FormData()
                 fd.append('email', this.text_email)
                 fd.append('password', this.text_password)
-                let {data} = await axios.post('/api/login', fd)
+                let {data} = await axios.post('/api/v1/login', fd)
                 if(data.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$store.commit('changeUser', data.user)
