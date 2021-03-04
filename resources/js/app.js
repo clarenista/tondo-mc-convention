@@ -7,6 +7,8 @@ import App from './App.vue';
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 import router from './routes';
+
+import Permissions from './mixins/Permissions'
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
@@ -18,6 +20,7 @@ import router from './routes';
 // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
 
+Vue.mixin(Permissions);
 Vue.use(VueAxios, axios);
 
 

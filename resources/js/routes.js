@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 import Home from './components/Home.vue';
 import Registration from './components/Registration.vue';
+import Users from './components/Users.vue';
 import Login from './components/Login.vue';
 import BoothMan from './components/BoothMan.vue';
 import Gallery from './components/Gallery.vue';
@@ -28,6 +29,14 @@ export const routes = [
         meta: { 
             requiresAuth: true,
             requireCanCreateUser: true
+         }
+    },
+    {
+        name: 'users',
+        path: '/users',
+        component: Users,
+        meta: { 
+            requiresAuth: true,
          }
     },
     {

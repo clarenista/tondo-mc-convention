@@ -94,7 +94,7 @@
                                                 required
                                                 >
                                                 <option 
-                                                    v-for="(item, index) in $store.state.pois" 
+                                                    v-for="(item, index) in $store.state.roles" 
                                                     :key="index"
                                                     :value="item.key"
                                                 >
@@ -166,7 +166,7 @@
                 textarea_message: "",
                 text_password: "",
                 text_cpassword: "",
-                select_role: 3,
+                select_role: 'admin',
                 errors: [],
                 successRegistration: false
             }
@@ -190,6 +190,8 @@
 
         methods:{
             async handleSubmit(){
+                let api_token = this.$store.getters.api_token
+                let url = '/api/v1/registration?api_token='+api_token
                 // if(this.errors){
                 //     return false
                 // }
@@ -203,7 +205,8 @@
                 fd.append('role', this.select_role)
                 fd.append('message', this.textarea_message)
                 fd.append('password', this.text_password)
-                let {data} = await axios.post('/api/registration', fd)
+                fd.append('api_token', this.api_token)
+                let {data} = await axios.post(url, fd)
                 if(data.status === 'ok'){
                     this.successRegistration = true
                 }

@@ -5,14 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    pois: [
-        {value: 'ADMIN', key: 1},
-        {value: 'SPONSOR', key: 2},
-        {value: 'REGISTRANT', key: 3},
+    roles: [
+        {value: 'ADMIN', key: 'admin'},
+        {value: 'SPONSOR', key: 'sponsor'},
     ],
     user: null,
     permissions: null,
     api_token: null,
+    users:null,
 
     assets:[
       {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},
@@ -61,6 +61,9 @@ export default new Vuex.Store({
     },
     updateApiToken(state, api_token) {
       state.api_token = api_token
+    },
+    updateUsersList(state, users) {
+      state.users = users
     }
 
   },
@@ -71,5 +74,6 @@ export default new Vuex.Store({
     gallery: state => state.gallery,
     permissions: state => state.permissions,
     api_token: state => state.api_token,
+    users: state => state.users,
   }
 })

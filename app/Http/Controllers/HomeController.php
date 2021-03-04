@@ -17,16 +17,7 @@ class HomeController extends Controller
         return view("home.registration");
     }
 
-    public function storeRegistration(Request $request){
-        $user = User::create($request->all());
-        $user->password = Hash::make($request->password);
-        $user->save();
-        return response()->json([
-            'status' => 'ok',
-            'postdata' => $request->all()
-
-        ]);
-    }
+    
     
     public function gallery(){
         return view("home.gallery");

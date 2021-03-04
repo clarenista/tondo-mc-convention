@@ -24,8 +24,11 @@
                     <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item" v-if="$store.getters.permissions.includes('create user')">
+                <li class="nav-item" v-if="$can('create user')">
                     <router-link class="nav-link" :to="'/registration'">Registration</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link class="nav-link" :to="'/users'">Users</router-link>
                 </li>
             </ul>
 
