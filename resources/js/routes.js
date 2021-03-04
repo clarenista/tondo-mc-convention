@@ -89,7 +89,7 @@ router.beforeEach((to, from, next) => {
             })
         }else{
             if(to.matched.some(record => record.meta.requireCanCreateUser)){
-                if(store.getters.permissions.includes('create user')){
+                if(store.getters.permissions.includes('manage user')){
                     next()
                 }else{
                     next({

@@ -19,12 +19,7 @@
             
             <!-- admin nav -->
             <ul class="navbar-nav mr-auto" v-if="$store.getters.user.roles[0].name === 'admin'">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                    <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item" v-if="$can('create user')">
+                <li class="nav-item" v-if="$can('manage user')">
                     <router-link class="nav-link" :to="'/registration'">Registration</router-link>
                 </li>
                 <li class="nav-item">
