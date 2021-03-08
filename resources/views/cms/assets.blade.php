@@ -13,7 +13,7 @@
   <div class="card-body">
     <h5 class="card-title lead text-white">Contains all your banner</h5>
     <p class="card-text lead text-white">You can manage items under banner, just click the 'Manage' button</p>
-    <a href="#" class="btn btn-danger">Manage</a>
+    <a href="{{ url('/cms/assets/banner') }}" class="btn btn-danger">Manage</a>
   </div>
 </div>
 
@@ -23,7 +23,7 @@
   <div class="card-body">
     <h5 class="card-title lead text-white">Contains all images from your gallery</h5>
     <p class="card-text lead text-white">You can manage items under gallery, just click the 'Manage' button</p>
-    <a href="#" class="btn btn-danger">Manage</a>
+    <a href="{{ url('/cms/assets/gallery') }}" class="btn btn-danger">Manage</a>
   </div>
 </div>
 

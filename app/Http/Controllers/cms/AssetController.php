@@ -31,6 +31,14 @@ class AssetController extends Controller
         //
     }
 
+    public function manage_banner(){
+        return view("cms.manage.banner");
+    }
+
+    public function manage_gallery(){
+        return view("cms.manage.gallery");
+    }
+
     /**
      * Store a newly created resource in storage.
      *
