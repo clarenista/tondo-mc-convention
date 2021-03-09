@@ -13,6 +13,19 @@ export default new Vuex.Store({
     permissions: null,
     api_token: null,
     users:null,
+    sponsors:[
+      {id: 1, name: 'Johnson & Johnson', x: 3157.01, y: -1568.49, z: 3542.93, direction: 'NW'},
+      {id: 2, name: 'Astra Zenica', x: 2562.09, y: -1660.91, z: -3947.53, direction: 'NE'},
+      {id: 3, name: 'Novavax', x: -3451.00, y: -1282.21, z: 3369.48, direction: 'SW'},
+      {id: 4, name: 'Pfizer', x: -3776.58, y:-1341.95, z: -2973.09, direction: 'SE'},
+    ],
+    halls:[
+      {name: 'Hall A', x:4646.22, y:-58.08, z:1822.84},
+      {name: 'Hall B', x:4629.73, y:-485.25, z:1798.56},
+      {name: 'Hall C', x:4663.18, y:-85.20, z:-1775.68},
+      {name: 'Hall D', x:4649.42, y:-496.26, z:-1743.62},
+    ],
+
 
     assets:[
       {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},
@@ -64,6 +77,9 @@ export default new Vuex.Store({
     },
     updateUsersList(state, users) {
       state.users = users
+    },
+    updateSponsorsList(state, sponsors) {
+      state.sponsors = sponsors
     }
 
   },
@@ -75,5 +91,7 @@ export default new Vuex.Store({
     permissions: state => state.permissions,
     api_token: state => state.api_token,
     users: state => state.users,
+    sponsors: state => state.sponsors,
+    halls: state => state.halls,
   }
 })

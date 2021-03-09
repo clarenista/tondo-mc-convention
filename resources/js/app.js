@@ -24,7 +24,6 @@ Vue.mixin(Permissions);
 Vue.use(VueAxios, axios);
 
 
-
 const app = new Vue({
     el: '#app',
     store,
