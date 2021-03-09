@@ -1,9 +1,8 @@
 <template>
-    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-5">
+            <div class="col-lg-12">
                 <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
-                    Login success.
+                    Login successs.
                 </div>
                 <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
                     Login failed. E-mail or password not found.
@@ -46,7 +45,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
@@ -79,6 +77,7 @@
                 let {data} = await axios.post('/api/v1/login', fd)
                 if(data.status === 'ok'){
                     this.isLoginSuccess = true
+                    this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
                     this.$store.commit('updatePermissions', data.permissions)
                     this.$store.commit('updateApiToken', data.api_token)

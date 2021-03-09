@@ -7,10 +7,44 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Convention</title>
+    <style>
+<style>
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #000;
+}
+
+a:link, a:visited{
+  color: #bdc3c7;
+}
+
+.credit{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  color: #fff;
+}
+
+</style>        
+        
+    </style>
 </head>
 <body>
     <div id="app">
     </div>
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://pchen66.github.io/js/three/three.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.js" integrity="sha512-wi1en5HQFr/+nc03XLj7iJohyUcclImFC3U5uOjYE+CM6FTla7scwzbuy56+Z5sIZ3sZy1KuNdjLIid4vhJMzg==" crossorigin="anonymous"></script> -->
+
+
+    <script>
+
+        
+    </script>    
 </body>
 </html>

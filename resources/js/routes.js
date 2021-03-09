@@ -9,6 +9,7 @@ import Login from './components/Login.vue';
 import BoothMan from './components/BoothMan.vue';
 import Gallery from './components/Gallery.vue';
 import NotFound from './components/NotFound.vue';
+import SponsorPage from './components/SponsorPage.vue';
 
 Vue.use(VueRouter);
 
@@ -18,10 +19,26 @@ export const routes = [
         name: 'home',
         path: '/',
         component: Home,
-        meta: { 
-            requiresAuth: true,
-         }
+        // meta: { 
+        //     requiresAuth: true,
+        //  }
     },
+    {
+        name: 'sponsors',
+        path: '/sponsors/:id',
+        component: SponsorPage,
+        props: true
+
+
+    },
+    // {
+    //     name: 'home',
+    //     path: '/',
+    //     component: Home,
+    //     meta: { 
+    //         requiresAuth: true,
+    //      }
+    // },
     {
         name: 'registration',
         path: '/registration',
