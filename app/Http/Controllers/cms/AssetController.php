@@ -13,9 +13,12 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function home(){
         return view("cms.home");
+    }
 
+    public function index(){
+        return view("cms.assets");
     }
 
     /**
@@ -26,6 +29,14 @@ class AssetController extends Controller
     public function create()
     {
         //
+    }
+
+    public function manage_banner(){
+        return view("cms.manage.banner");
+    }
+
+    public function manage_gallery(){
+        return view("cms.manage.gallery");
     }
 
     /**
