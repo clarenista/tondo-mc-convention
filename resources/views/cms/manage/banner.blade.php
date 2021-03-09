@@ -29,7 +29,7 @@
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <p class="card-text">Last updated 3 mins ago</p>
-            <p><a href="#" class="btn btn-danger">remove</a></p>
+            <p><button class="btb btn-sm btn-danger">remove</button>&nbsp;<button class="btb btn-sm btn-info">edit</button></p>
           </div>
         </div>
 
@@ -39,7 +39,7 @@
             <h5 class="card-title">Card title </h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <p class="card-text">Last updated 3 mins ago</p>
-            <p><a href="#" class="btn btn-danger">remove</a></p>
+            <p><button class="btb btn-sm btn-danger">remove</button>&nbsp;<button class="btb btn-sm btn-info">edit</button></p>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
             <h5 class="card-title">Card title</h5>
             <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
             <p class="card-text">Last updated 3 mins ago</p>
-            <p><a href="#" class="btn btn-danger">remove</a></p>
+            <p><button class="btb btn-sm btn-danger">remove</button>&nbsp;<button class="btb btn-sm btn-info">edit</button></p>
           </div>
         </div>
       
