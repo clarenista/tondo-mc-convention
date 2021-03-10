@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
+    public function index(){
+        return view('users.index');
+    }
+
     public function loginView(){
         return view('cms.login');
     }
@@ -23,8 +27,14 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            
+            if(Auth::user()->hasRole('admin')){
+                return redirect()->intended('/cms/users');
 
-            return redirect()->intended('/cms');
+            }else{
+                return redirect()->intended('/cms/assets');
+                
+            }
         }
 
         return back()->withErrors([
@@ -37,8 +47,11 @@ class UserController extends Controller
         return redirect()->route('login');
     }
 
+    public function register(){
+        return view('users.register');
+    }
+
     public function storeRegistration(Request $request){
-        // $request->api_token = null;
         $user = User::create($request->except('api_token'));
         $user->password = Hash::make($request->password);
         $user->save();
@@ -51,22 +64,7 @@ class UserController extends Controller
             $user->assignRole($sponsor);
 
         }
-        // $user = User::with('permissions')->with('roles')->get();
-        // $user->givePermissionTo('booth manager');
-        // create permissions
-        // Permission::create(['name' => 'manage booth']);
-        
-        // create roles and assign existing permissions
-        // $role1 = Role::create(['name' => 'sponsor']);
-        // $role1->givePermissionTo('manage booth');
-        
-        // $user = User::find(1);
-        return response()->json([
-            'status' => 'ok',
-            'postdata' => $user
-            
-
-        ]);
+        return back()->withMessage('Registration success');
     }
 
     public function allUsers(){

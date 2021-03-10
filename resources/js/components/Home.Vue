@@ -66,7 +66,7 @@
                 var viewer, lobbyPanorama, hallPanorama, container, lobbySponsorsInfoSpot, hallsInfoSpot, centerInfoSpot;
                 container = document.querySelector( 'div.background' );
 
-                lobbyPanorama= new PANOLENS.ImagePanorama( '/images/Equirectangular.png' );
+                lobbyPanorama= new PANOLENS.ImagePanorama( '/images/lobby.png' );
                 hallPanorama = new PANOLENS.ImagePanorama( '/images/_Equirectangular.png' );
                 // goldBoothPanorama = new PANOLENS.ImagePanorama( '/images/Booth-gold.png' );
                 viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false} );

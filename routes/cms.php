@@ -8,11 +8,14 @@ Route::get('/login', [UserController::class, 'loginView'])->name('login');
 Route::get('/logout', [UserController::class, 'logoutUser']);
 Route::post('/login', [UserController::class, 'loginUser']);
 
-Route::middleware('auth')->group(function(){
+Route::group(['middleware' => ['role:admin']], function(){
+    Route::get('/register', [UserController::class, 'register']);
+    Route::post('/register', [UserController::class, 'storeRegistration']);
+    Route::get('/users', [UserController::class, 'index']);
+});
 
-    Route::get('/', [AssetController::class, 'home']);
+Route::group(['middleware' => ['role:sponsor']], function(){
     Route::get('/assets', [AssetController::class, 'index']);
-    
     Route::get('/assets/banner', [AssetController::class, 'manage_banner']);
     Route::get('/assets/gallery', [AssetController::class, 'manage_gallery']);
 });
