@@ -18,7 +18,9 @@ class AssetController extends Controller
     }
 
     public function index(){
-        return view("cms.assets");
+        $assets = Asset::all();
+
+        return view("cms.assets.list", compact('assets'));
     }
 
     /**
@@ -26,17 +28,8 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    public function manage_banner(){
-        return view("cms.manage.banner");
-    }
-
-    public function manage_gallery(){
-        return view("cms.manage.gallery");
+    public function create(){
+        return view("cms.assets.create");
     }
 
     /**
@@ -45,9 +38,20 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        // get user_id
+        $user_id = 1;
+
+        $asset = new Asset;
+        $asset->user_id = $user_id;
+        $asset->name = $request->name;
+        $asset->type = $request->type;
+        $asset->category = $request->category;
+        $asset->url = $request->url;
+        $asset->save();
+
+        return redirect('cms/assets');
     }
 
     /**
@@ -56,8 +60,8 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Asset $asset)
-    {
+    public function show(Asset $asset){
+
         //
     }
 
@@ -67,9 +71,12 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit(Asset $asset)
+    public function edit($id)
     {
-        //
+        $data = Asset::find($id);
+        \Log::info($data);
+
+        return view("cms/assets/edit", compact('data'));
     }
 
     /**
@@ -92,6 +99,6 @@ class AssetController extends Controller
      */
     public function destroy(Asset $asset)
     {
-        //
+        return "delete function here";
     }
 }
