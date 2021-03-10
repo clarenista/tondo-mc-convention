@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class HomeController extends Controller
 {
     public function index(){
-        return view("home.index");
+        return view("cms.home");
     }
 
     public function registration(){
