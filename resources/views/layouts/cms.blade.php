@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Content Management</title>
@@ -42,7 +43,11 @@
 
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item">
-                <a class="btn btn-primary text-white" href="#" role="button">Login</a>
+                @if(Auth::check())
+                    <a class="btn btn-danger text-white" href="/cms/logout" role="button">Logout</a>
+                @else
+                    <a class="btn btn-primary text-white" href="/cms/login" role="button">Login</a>
+                @endif
             </li>
         </ul>
 

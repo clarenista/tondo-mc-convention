@@ -9,9 +9,33 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+
+    public function loginView(){
+        return view('cms.login');
+    }
+
+    public function loginUser(Request $request){
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->intended('/cms');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
+    }
+
+    public function logoutUser(){
+        $logout = Auth::logout();
+        return redirect()->route('login');
+    }
 
     public function storeRegistration(Request $request){
         // $request->api_token = null;
