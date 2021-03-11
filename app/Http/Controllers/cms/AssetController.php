@@ -45,26 +45,22 @@ class AssetController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->hasFile('file')) {
-
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-        }
-
-        Asset::create(
-            $request->merge([
-                'url' => Storage::url($request->type . "/" . $file_name),
-            ])->validate([
+        $asset = Asset::create(
+            $request->validate([
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'url' => 'required|string',
+                'file' => 'nullable',
             ])
         );
 
         if ($request->hasFile('file')) {
-
-            $file->storeAs("{$request->type}/", $file_name);
+            $file = $request->file('file');
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs("{$asset->type}/", $file_name);
+            $asset->update([
+                'url' => Storage::url($asset->type . "/" . $file_name),
+            ]);
         }
 
         return \redirect()->route('cms.assets.index');
@@ -92,26 +88,22 @@ class AssetController extends Controller
     public function update(Request $request, Asset $asset)
     {
 
-        if ($request->hasFile('file')) {
-
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-        }
-
         $asset->update(
-            $request->merge([
-                'url' => Storage::url($request->type . "/" . $file_name),
-            ])->validate([
+            $request->validate([
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'url' => 'required|string',
+                'file' => 'nullable',
             ])
         );
 
         if ($request->hasFile('file')) {
-
-            $file->storeAs("{$request->type}/", $file_name);
+            $file = $request->file('file');
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs("{$asset->type}/", $file_name);
+            $asset->update([
+                'url' => Storage::url($asset->type . "/" . $file_name),
+            ]);
         }
 
         return \redirect()->route('cms.assets.index');
