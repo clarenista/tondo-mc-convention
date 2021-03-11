@@ -4,11 +4,14 @@ namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
+
+    use FileUploadTrait;
 
     /**
      * Display a listing of the resource.
@@ -50,18 +53,11 @@ class AssetController extends Controller
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'file' => 'nullable',
+                'file' => 'nullable|mime:*',
             ])
         );
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $file->storeAs("{$asset->type}/", $file_name);
-            $asset->update([
-                'url' => Storage::url($asset->type . "/" . $file_name),
-            ]);
-        }
+        $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index');
     }
@@ -93,18 +89,11 @@ class AssetController extends Controller
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'file' => 'nullable',
+                'file' => 'nullable|mime:*',
             ])
         );
 
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $file->storeAs("{$asset->type}/", $file_name);
-            $asset->update([
-                'url' => Storage::url($asset->type . "/" . $file_name),
-            ]);
-        }
+        $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index');
     }
