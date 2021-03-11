@@ -8,17 +8,12 @@ use Illuminate\Http\Request;
 
 class AssetController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
-    {
-
-        return view("cms.home");
-    }
-
     public function index()
     {
 
@@ -57,18 +52,6 @@ class AssetController extends Controller
         ]));
 
         return \redirect()->route('cms.assets.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Asset  $asset
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Asset $asset)
-    {
-
-        //
     }
 
     /**
