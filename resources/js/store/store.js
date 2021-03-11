@@ -13,17 +13,19 @@ export default new Vuex.Store({
     permissions: null,
     api_token: null,
     users:null,
+    
     sponsors:[
-      {id: 1, name: 'Johnson & Johnson', x: 3157.01, y: -1568.49, z: 3542.93, direction: 'NW'},
-      {id: 2, name: 'Astra Zenica', x: 2562.09, y: -1660.91, z: -3947.53, direction: 'NE'},
-      {id: 3, name: 'Novavax', x: -3451.00, y: -1282.21, z: 3369.48, direction: 'SW'},
-      {id: 4, name: 'Pfizer', x: -3776.58, y:-1341.95, z: -2973.09, direction: 'SE'},
+      {id: 1, name: 'Johnson & Johnson', x: 3663.38, y: -102.64, z: 3392.30, direction: 'NW'},
+      {id: 2, name: 'Astra Zenica', x: 3459.15, y: -183.72, z:-3592.03, direction: 'NE'},
+      {id: 3, name: 'Novavax', x: -2616.53, y: -168.16, z: 4246.58, direction: 'SW'},
+      {id: 4, name: 'Pfizer', x: -2881.17, y: -204.73, z: -4073.01, direction: 'SE'},
     ],
     halls:[
-      {name: 'Hall A', x:4646.22, y:-58.08, z:1822.84},
-      {name: 'Hall B', x:4629.73, y:-485.25, z:1798.56},
-      {name: 'Hall C', x:4663.18, y:-85.20, z:-1775.68},
-      {name: 'Hall D', x:4649.42, y:-496.26, z:-1743.62},
+      
+      {name: 'Hall A', x: 4669.04, y: 157.28, z: 1752.54},
+      {name: 'Hall B', x: 4670.81, y: -275.96, z: 1734.92},
+      {name: 'Hall C', x: 4686.30, y: 154.93, z: -1707.82},
+      {name: 'Hall D', x: 4680.38, y: -272.51, z: -1710.38},
     ],
 
 

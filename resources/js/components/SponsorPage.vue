@@ -7,23 +7,20 @@
 </template>
 <script>
 export default {
-    created() {
-        this.init()
-        window.addEventListener("load", function() {
-            window.dispatchEvent(new Event('resize'));
-        });
+    mounted() {
+        this.rescale()
+        window.addEventListener('resize', this.rescale)
     },
     data() {
         return {
-            style: {}
+            style: {},
+            uiRatio: [16, 9]
         }
     },
     methods:{
         init(){
             let vm = this
-            let resize = window.addEventListener('resize', function(){
-                vm.rescale()
-            })
+            
             
             // $(window)
             //     .resize(function() {
@@ -32,12 +29,15 @@ export default {
             //     .resize();
         },
         rescale(){
-            let parent, ratio, dimension, size;
-            let vm = this
-            parent = vm.$refs.parent 
+
+            let parent, ratio, uiratios, dimension, size;
+            parent = this.$refs.parent 
+            ratio = this.$refs.uiratio.dataset.uiRatio
+            uiratios = ratio.split(',')
+            console.log(this.$refs.uiratio.dataset.uiRatio)
             dimension = {
-                w: parseFloat(16),
-                h: parseFloat(9)
+                w: parseFloat(uiratios[0]),
+                h: parseFloat(uiratios[1])
             }
             size = Math.min(parent.clientWidth / dimension.w, parent.clientHeight / dimension.h);
             this.style = {width: dimension.w * size+"px", height: dimension.h * size+"px", }
