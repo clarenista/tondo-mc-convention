@@ -52,8 +52,6 @@ class BannerController extends Controller
             ])
         );
 
-        // dd($asset);
-
         $this->uploadFile($asset);
 
         return \redirect()->route('cms.banners.index')

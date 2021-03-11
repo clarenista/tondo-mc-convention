@@ -16,7 +16,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/register', [UserController::class, 'storeRegistration']);
     Route::get('/users', [UserController::class, 'index']);
 
-    // Route::resource('booths', BoothController::class);
+    Route::resource('booths', BoothController::class);
 });
 
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');

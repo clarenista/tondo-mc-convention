@@ -14,7 +14,7 @@ Booths
 
 <div class="row mb-3">
     <div class="col-sm col-lg">
-        <!-- <a href="{{ route('cms.booths.create') }}" class="btn btn-primary float-right">ADD NEW</a> -->
+        <a href="{{ route('cms.booths.create') }}" class="btn btn-primary float-right">ADD NEW</a>
     </div>
 </div>
 
