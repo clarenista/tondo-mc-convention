@@ -13,11 +13,15 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function home(){
+    public function home()
+    {
+
         return view("cms.home");
     }
 
-    public function index(){
+    public function index()
+    {
+
         $assets = Asset::all();
 
         return view("cms.assets.list", compact('assets'));
@@ -28,7 +32,9 @@ class AssetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create()
+    {
+
         return view("cms.assets.create");
     }
 
@@ -38,18 +44,17 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
-        // get user_id
-        $user_id = 1;
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'category' => 'required|string',
+            'url' => 'required|string',
+        ]);
 
-        $asset = new Asset;
-        $asset->user_id = $user_id;
-        $asset->name = $request->name;
-        $asset->type = $request->type;
-        $asset->category = $request->category;
-        $asset->url = $request->url;
-        $asset->save();
+        Asset::create($validated);
 
         return redirect('cms/assets');
     }
@@ -60,7 +65,8 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Asset $asset){
+    public function show(Asset $asset)
+    {
 
         //
     }
@@ -73,6 +79,7 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
+
         $data = Asset::find($id);
         \Log::info($data);
 
@@ -99,6 +106,7 @@ class AssetController extends Controller
      */
     public function destroy(Asset $asset)
     {
+
         return "delete function here";
     }
 }
