@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
-use App\Models\Booth;
+use App\Models\Asset;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 
-class BoothController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,9 @@ class BoothController extends Controller
      */
     public function index()
     {
-        $booths = Booth::all();
-        return view('cms.booth.list', compact('booths'));
+        $assets = Asset::where('user_id', Auth::id())->get();
+
+        return view("cms.banner.list", compact('assets'));
     }
 
     /**
@@ -28,9 +29,9 @@ class BoothController extends Controller
      */
     public function create()
     {
-        $booths = new Booth;
+        $asset = new Asset;
 
-        return view("cms.booth.form", \compact('booths'));
+        return view("cms.banner.form", \compact('asset'));
     }
 
     /**
@@ -41,36 +42,54 @@ class BoothController extends Controller
      */
     public function store(Request $request)
     {
-        $asset = Booth::create(
+        
+        $asset = Asset::create(
             $request->validate([
-                'name' => 'required|string',
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'category' => 'nullable|string',
+            'file' => 'nullable',
             ])
         );
 
-        return \redirect()->route('cms.booths.index')
-                ->with('success','You have successfully add a Booth.');
+        // dd($asset);
+
+        $this->uploadFile($asset);
+
+        return \redirect()->route('cms.banners.index')
+                ->with('success','You have successfully uploaded the files.');
     }
 
-    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Booth  $booth
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booth $booth)
+    public function edit($id)
     {
-        return view("cms.booths.form", \compact('booth'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Booth  $booth
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Booth $booth)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,10 +97,10 @@ class BoothController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Booth  $booth
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booth $booth)
+    public function destroy($id)
     {
         //
     }

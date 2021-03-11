@@ -1,20 +1,20 @@
 @extends('layouts.cms')
 
 @section('title')
-Assets
+Banner
 @stop
 
 @section('content')
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Assets</li>
+        <li class="breadcrumb-item active" aria-current="page">Banner</li>
     </ol>
 </nav>
 
 <div class="row mb-3">
     <div class="col-sm col-lg">
-        <a href="{{ URL::to('cms/assets/create') }}" class="btn btn-primary float-right">ADD NEW</a>
+        <a href="{{ route('cms.banners.create') }}" class="btn btn-primary float-right">ADD NEW</a>
     </div>
 </div>
 
@@ -35,7 +35,6 @@ Assets
                     <th class="text-center">Type</th>
                     <th class="text-center">Category</th>
                     <th class="text-center">Path</th>
-                    <th class="text-center">By</th>
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
@@ -46,11 +45,10 @@ Assets
                     <td>{{ $asset->type }}</td>
                     <td>{{ $asset->category }}</td>
                     <td>{{ $asset->url }}</td>
-                    <td>{{ $asset->user_id }}</td>
                     <td class="text-center">
-                        <a data-href="{{ route('cms.assets.destroy', $asset->id) }}"
+                        <a data-href="{{ route('cms.banners.destroy', $asset->id) }}"
                             class="btn btn-xm btn-danger btn-delete">delete</a>
-                        <a href="{{ route('cms.assets.edit', $asset->id) }}" class="btn btn-xm btn-info">edit</a>
+                        <a href="{{ route('cms.banners.edit', $asset->id) }}" class="btn btn-xm btn-info">edit</a>
                     </td>
                 </tr>
                 @endforeach
@@ -72,7 +70,6 @@ Assets
     $(".btn-delete").click(function() {
        
         if (confirm('Are you sure you want to delete?')) {
-            
             $.ajax({
                 url: $(this).data('href'),
                 type: 'DELETE',

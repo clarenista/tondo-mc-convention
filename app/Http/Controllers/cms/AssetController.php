@@ -48,7 +48,7 @@ class AssetController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'type' => 'required|string',
-                'category' => 'required|string',
+                'category' => 'nullable|string',
                 'file' => 'nullable',
             ])
         );
@@ -85,7 +85,7 @@ class AssetController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'type' => 'required|string',
-                'category' => 'required|string',
+                'category' => 'nullable|string',
                 'file' => 'nullable',
             ])
         );

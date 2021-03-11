@@ -29,7 +29,7 @@
                     <a class="nav-link text-white" href="{{ url('/cms/assets') }}">Assets <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url('/cms/banner') }}">Banner</a>
+                    <a class="nav-link text-white" href="{{ url('/cms/banners') }}">Banner</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Gallery</a>
@@ -54,6 +54,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cms/booths">Booths</a>
                 </li>
             @endhasrole
         </ul>
