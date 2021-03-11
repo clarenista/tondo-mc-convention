@@ -4,14 +4,10 @@ namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
-use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
-
-    use FileUploadTrait;
 
     /**
      * Display a listing of the resource.
