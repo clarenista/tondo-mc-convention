@@ -53,7 +53,7 @@ class AssetController extends Controller
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'file' => 'nullable|mime:*',
+                'file' => 'nullable',
             ])
         );
 
@@ -89,7 +89,7 @@ class AssetController extends Controller
                 'name' => 'required|string',
                 'type' => 'required|string',
                 'category' => 'required|string',
-                'file' => 'nullable|mime:*',
+                'file' => 'nullable',
             ])
         );
 
