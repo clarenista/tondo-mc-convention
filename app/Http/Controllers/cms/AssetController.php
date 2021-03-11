@@ -4,10 +4,14 @@ namespace App\Http\Controllers\cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use App\Traits\FileUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AssetController extends Controller
 {
+
+    use FileUploadTrait;
 
     /**
      * Display a listing of the resource.
@@ -44,12 +48,16 @@ class AssetController extends Controller
     public function store(Request $request)
     {
 
-        Asset::create($request->validate([
-            'name' => 'required|string',
-            'type' => 'required|string',
-            'category' => 'required|string',
-            'url' => 'required|string',
-        ]));
+        $asset = Asset::create(
+            $request->validate([
+                'name' => 'required|string',
+                'type' => 'required|string',
+                'category' => 'required|string',
+                'file' => 'nullable',
+            ])
+        );
+
+        $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index')
                 ->with('success','You have successfully uploaded the file.');
@@ -77,12 +85,16 @@ class AssetController extends Controller
     public function update(Request $request, Asset $asset)
     {
 
-        $asset->update($request->validate([
-            'name' => 'required|string',
-            'type' => 'required|string',
-            'category' => 'required|string',
-            'url' => 'required|string',
-        ]));
+        $asset->update(
+            $request->validate([
+                'name' => 'required|string',
+                'type' => 'required|string',
+                'category' => 'required|string',
+                'file' => 'nullable',
+            ])
+        );
+
+        $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index')
                 ->with('success','You have successfully updated the file.');
