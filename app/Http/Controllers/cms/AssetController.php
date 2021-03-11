@@ -35,7 +35,9 @@ class AssetController extends Controller
     public function create()
     {
 
-        return view("cms.assets.create");
+        $asset = new Asset;
+
+        return view("cms.assets.form", \compact('asset'));
     }
 
     /**
@@ -47,16 +49,14 @@ class AssetController extends Controller
     public function store(Request $request)
     {
 
-        $validated = $request->validate([
+        Asset::create($request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
             'category' => 'required|string',
             'url' => 'required|string',
-        ]);
+        ]));
 
-        Asset::create($validated);
-
-        return redirect('cms/assets');
+        return \redirect()->route('cms.assets.index');
     }
 
     /**
@@ -77,13 +77,10 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Asset $asset)
     {
 
-        $data = Asset::find($id);
-        \Log::info($data);
-
-        return view("cms/assets/edit", compact('data'));
+        return view("cms.assets.form", \compact('asset'));
     }
 
     /**
@@ -95,7 +92,15 @@ class AssetController extends Controller
      */
     public function update(Request $request, Asset $asset)
     {
-        //
+
+        $asset->update($request->validate([
+            'name' => 'required|string',
+            'type' => 'required|string',
+            'category' => 'required|string',
+            'url' => 'required|string',
+        ]));
+
+        return \redirect()->route('cms.assets.index');
     }
 
     /**
@@ -107,6 +112,10 @@ class AssetController extends Controller
     public function destroy(Asset $asset)
     {
 
-        return "delete function here";
+        $asset->delete();
+
+        return \response([
+            'message' => 'deleted.',
+        ]);
     }
 }

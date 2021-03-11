@@ -2,18 +2,15 @@
 
 @section('title')
 Assets
-@stop 
-
+@stop
 
 @section('content')
 
-
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" aria-current="page">Assets</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Assets</li>
+    </ol>
 </nav>
-
 
 <div class="row mb-3">
     <div class="col-sm col-lg">
@@ -23,7 +20,6 @@ Assets
 
 <div class="row">
     <div class="col-sm col-lg">
-
         <table id="example" class="table table-striped table-bordered">
             <thead>
                 <tr>
@@ -35,31 +31,44 @@ Assets
                 </tr>
             </thead>
             <tbody>
-            @foreach($assets as $asset)
+                @foreach($assets as $asset)
                 <tr>
                     <td>{{ $asset->name }}</td>
                     <td>{{ $asset->type }}</td>
                     <td>{{ $asset->category }}</td>
                     <td>{{ $asset->url }}</td>
                     <td class="text-center">
-                        <a href="{{ URL::to('cms/assets/delete/'.$asset->id) }}" class="btn btn-xm btn-danger">delete</a>
-                        <a href="{{ URL::to('cms/assets/edit/'.$asset->id) }}" class="btn btn-xm btn-info">edit</a>
+                        <a data-href="{{ route('cms.assets.destroy', $asset->id) }}"
+                            class="btn btn-xm btn-danger btn-delete">delete</a>
+                        <a href="{{ route('cms.assets.edit', $asset->id) }}" class="btn btn-xm btn-info">edit</a>
                     </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
-
 </div>
 
-@stop 
+@stop
 
 
 @section('js')
+
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
     } );
+
+    $(".btn-delete").click(function() {
+        $.ajax({
+            url: $(this).data('href'),
+            type: 'DELETE',
+            success: function(response) {
+                console.log(response);
+                location.reload();
+            }
+        });
+    });
 </script>
+
 @stop

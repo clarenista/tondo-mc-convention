@@ -29,9 +29,11 @@ a:link, a:visited{
   padding: 20px 0;
   color: #fff;
 }
+.input-group-prepend-120 {
+    width: 120px;
+}
+</style>
 
-</style>        
-        
     </style>
 </head>
 <body>
@@ -43,7 +45,7 @@ a:link, a:visited{
 
     <script>
 
-        
-    </script>    
+
+    </script>
 </body>
 </html>
