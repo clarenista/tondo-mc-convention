@@ -29,7 +29,7 @@ Add Assets
             <a href="{{ url('/cms/assets') }}" class="btn btn-info float-right">RETURN</a>
         </div>
         <div class="col-md-6">
-            <form action="{{ route('cms.assets.store') . ( $asset->id ? '/' . $asset->id : '') }}" method="post">
+            <form action="{{ route('cms.assets.store') . ( $asset->id ? '/' . $asset->id : '') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @isset($asset->id)
                 {{ method_field('PUT')}}
@@ -83,7 +83,7 @@ Add Assets
                             <span class="input-group-text">Upload</span>
                         </span>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="url">
+                            <input type="file" class="custom-file-input" name="file">
                             <label class="custom-file-label">Choose file</label>
                         </div>
                     </div>
