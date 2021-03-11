@@ -11,7 +11,7 @@
                 {{ $message }}
             </div>
         @enderror
-        
+
         <div class="card border-primary mb-3" >
             <div class="card-header">User Login</div>
             <div class="card-body">
@@ -19,9 +19,9 @@
                     @csrf
                     <div class="col">
                         <div class="form-group">
-                            <input 
-                                type="email" 
-                                class="form-control" 
+                            <input
+                                type="text"
+                                class="form-control"
                                 placeholder="Email Address *"
                                 name="email"
                                 value="{{ old('email') }}"
@@ -30,9 +30,9 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input 
+                                <input
                                     type="password"
-                                    class="form-control" 
+                                    class="form-control"
                                     placeholder="Password *"
                                     name="password"
                                     required
@@ -42,11 +42,11 @@
                                     <span class="input-group-text" id="my-addon"><i class="fa fa-eye-slash"></i></span>
                                 </div>
                             </div>
-                        </div>             
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Login</button>
                         </div>
-                    </div>                            
+                    </div>
                 </form>
             </div>
         </div>
