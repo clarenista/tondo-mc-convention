@@ -1,7 +1,7 @@
 @extends('layouts.cms')
 
 @section('title')
-Add Assets
+Add/ Edit Assets
 @stop
 
 

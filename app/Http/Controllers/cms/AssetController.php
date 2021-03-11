@@ -51,7 +51,8 @@ class AssetController extends Controller
             'url' => 'required|string',
         ]));
 
-        return \redirect()->route('cms.assets.index');
+        return \redirect()->route('cms.assets.index')
+                ->with('success','You have successfully uploaded the file.');
     }
 
     /**
@@ -83,7 +84,8 @@ class AssetController extends Controller
             'url' => 'required|string',
         ]));
 
-        return \redirect()->route('cms.assets.index');
+        return \redirect()->route('cms.assets.index')
+                ->with('success','You have successfully updated the file.');
     }
 
     /**
