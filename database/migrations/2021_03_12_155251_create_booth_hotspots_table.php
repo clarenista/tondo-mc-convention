@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBoothsTable extends Migration
+class CreateBoothHotspotsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBoothsTable extends Migration
      */
     public function up()
     {
-        Schema::create('booths', function (Blueprint $table) {
+        Schema::create('booth_hotspots', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('booth_id');
             $table->string('name')->nullable();
             $table->string('caption')->nullable();
-            $table->string('url')->nullable();
-            $table->float('x')->nullable();
-            $table->float('y')->nullable();
-            $table->boolean('active')->default(true);
+            $table->smallInteger('x')->nullable();
+            $table->smallInteger('y')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreign('booth_id')->references('id')->on('booths')->onDelete('cascade');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateBoothsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booths');
+        Schema::dropIfExists('booth_hotspots');
     }
 }

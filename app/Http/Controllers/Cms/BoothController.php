@@ -15,7 +15,9 @@ class BoothController extends Controller
      */
     public function index()
     {
+
         $booths = Booth::all();
+
         return view('cms.booth.list', compact('booths'));
     }
 
@@ -26,6 +28,7 @@ class BoothController extends Controller
      */
     public function create()
     {
+
         $booths = new Booth;
 
         return view("cms.booth.form", \compact('booths'));
@@ -39,14 +42,15 @@ class BoothController extends Controller
      */
     public function store(Request $request)
     {
-        $asset = Booth::create(
+
+        Booth::create(
             $request->validate([
                 'name' => 'required|string',
             ])
         );
 
         return \redirect()->route('cms.booths.index')
-            ->with('success', 'You have successfully add a Booth.');
+            ->with('success', 'You have successfully added a Booth.');
     }
 
     /**
@@ -57,6 +61,7 @@ class BoothController extends Controller
      */
     public function edit(Booth $booth)
     {
+
         return view("cms.booths.form", \compact('booth'));
     }
 
@@ -80,6 +85,10 @@ class BoothController extends Controller
      */
     public function destroy(Booth $booth)
     {
-        //
+
+        $booth->delete();
+
+        return \redirect()->route('cms.booth.index')
+            ->with('success', 'You have successfully deleted the booth.');
     }
 }

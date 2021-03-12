@@ -29,7 +29,8 @@ Add/ Edit Assets
             <a href="{{ url('/cms/assets') }}" class="btn btn-info float-right">RETURN</a>
         </div>
         <div class="col-md-6">
-            <form action="{{ route('cms.assets.store') . ( $asset->id ? '/' . $asset->id : '') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('cms.assets.store') . ( $asset->id ? '/' . $asset->id : '') }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
                 @isset($asset->id)
                 {{ method_field('PUT')}}
@@ -46,7 +47,7 @@ Add/ Edit Assets
                 </div>
                 <div class="form-group">
                     @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
@@ -60,7 +61,7 @@ Add/ Edit Assets
                 </div>
                 <div class="form-group">
                     @error('type')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
@@ -74,7 +75,7 @@ Add/ Edit Assets
                 </div>
                 <div class="form-group">
                     @error('category')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
@@ -90,7 +91,7 @@ Add/ Edit Assets
                 </div>
                 <div class="form-group">
                     @error('url')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">

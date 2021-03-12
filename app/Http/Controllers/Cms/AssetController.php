@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cms;
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssetController extends Controller
 {
@@ -44,16 +45,18 @@ class AssetController extends Controller
     public function store(Request $request)
     {
 
-        $asset = Asset::create(
-            $request->validate([
-                'name' => 'required|string',
-                'type' => 'required|string',
-                'category' => 'nullable|string',
-                'file' => 'nullable',
-            ])
-        );
-
-        $this->uploadFile($asset);
+        DB::transaction(function () {
+            $asset = Asset::create(
+                request()->validate([
+                    'name' => 'required|string',
+                    'type' => 'required|string',
+                    'category' => 'nullable|string',
+                    'file' => 'nullable',
+                ])
+            );
+            auth()->user()->booth->assets()->syncWithoutDetaching($asset);
+            $this->uploadFile($asset);
+        });
 
         return \redirect()->route('cms.assets.index')
             ->with('success', 'You have successfully uploaded the file.');
@@ -81,16 +84,18 @@ class AssetController extends Controller
     public function update(Request $request, Asset $asset)
     {
 
-        $asset->update(
-            $request->validate([
-                'name' => 'required|string',
-                'type' => 'required|string',
-                'category' => 'nullable|string',
-                'file' => 'nullable',
-            ])
-        );
-
-        $this->uploadFile($asset);
+        DB::transaction(function () use ($asset) {
+            $asset->update(
+                request()->validate([
+                    'name' => 'required|string',
+                    'type' => 'required|string',
+                    'category' => 'nullable|string',
+                    'file' => 'nullable',
+                ])
+            );
+            auth()->user()->booth->assets()->syncWithoutDetaching($asset);
+            $this->uploadFile($asset);
+        });
 
         return \redirect()->route('cms.assets.index')
             ->with('success', 'You have successfully updated the file.');
@@ -105,7 +110,10 @@ class AssetController extends Controller
     public function destroy(Asset $asset)
     {
 
-        $asset->delete();
+        DB::transaction(function () use ($asset) {
+            auth()->user()->booth->assets()->detach($asset);
+            $asset->delete();
+        });
 
         return \redirect()->route('cms.assets.index')
             ->with('success', 'You have successfully deleted the file.');

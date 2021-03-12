@@ -42,9 +42,14 @@ Booths
                     <td>{{ $booth->name }}</td>
                     <td>{{ $booth->active }}</td>
                     <td>
-                        <!-- <a data-href="{{ route('cms.banners.destroy', $booth->id) }}"
-                            class="btn btn-xm btn-danger btn-delete">delete</a>
-                        <a href="{{ route('cms.banners.edit', $booth->id) }}" class="btn btn-xm btn-info">edit</a> -->
+                        <form id="delete" action="{{ route('cms.booths.destroy', $booth->id) }}" method="POST">
+                            @csrf
+                            {{ method_field('DELETE')}}
+                            <div class="btn-group">
+                                <button class="btn btn-danger" type="submit">delete</button>
+                                <a href="{{ route('cms.booths.edit', $booth->id) }}" class="btn btn-info">edit</a>
+                            </div>
+                        </form>
                     </td>
                </tr>
                @endforeach
@@ -65,7 +70,7 @@ Booths
     } );
 
     $(".btn-delete").click(function() {
-       
+
         if (confirm('Are you sure you want to delete?')) {
             $.ajax({
                 url: $(this).data('href'),
@@ -76,7 +81,7 @@ Booths
                 }
             });
         }
-       
+
     });
 </script>
 

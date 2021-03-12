@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use \Askedio\SoftCascade\Traits\SoftCascadeTrait;
 
 class User extends Authenticatable
 {
@@ -37,9 +37,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $softCascade  = [
+    protected $softCascade = [
         'profile',
-        'messages'
+        'messages',
     ];
 
     /**
@@ -73,5 +73,11 @@ class User extends Authenticatable
     {
 
         return $this->hasMany(UserMessage::class);
+    }
+
+    public function booth()
+    {
+
+        return $this->hasOne(Booth::class);
     }
 }

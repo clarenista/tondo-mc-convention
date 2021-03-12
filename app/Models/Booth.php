@@ -12,4 +12,16 @@ class Booth extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function assets()
+    {
+
+        return $this->belongsToMany(Asset::class, 'asset_booth');
+    }
+
+    public function hotspots()
+    {
+
+        return $this->hasMany(BoothHotspot::class);
+    }
 }
