@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\cms;
+namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
@@ -42,7 +42,7 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $asset = Asset::create(
             $request->validate([
             'name' => 'required|string',

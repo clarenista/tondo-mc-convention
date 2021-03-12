@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\cms;
+namespace App\Http\Controllers\Cms;
 
 use App\Models\UserMessage;
 use Illuminate\Http\Request;

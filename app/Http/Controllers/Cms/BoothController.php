@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\cms;
+namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booth;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Auth;
 
 class BoothController extends Controller
 {
@@ -48,10 +46,9 @@ class BoothController extends Controller
         );
 
         return \redirect()->route('cms.booths.index')
-                ->with('success','You have successfully add a Booth.');
+            ->with('success', 'You have successfully add a Booth.');
     }
 
-    
     /**
      * Show the form for editing the specified resource.
      *
