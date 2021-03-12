@@ -25,18 +25,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @hasrole('sponsor')
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="{{ url('/cms/assets') }}">Assets <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ url('/cms/banners') }}">Banner</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Brochures</a>
-                </li>
+
+                @foreach (Auth::user()->booth->hotspots as $hotspot)
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->name }}</a>
+                    </li>
+                @endforeach
+
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">External Links</a>
                 </li>

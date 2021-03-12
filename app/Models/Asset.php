@@ -17,4 +17,10 @@ class Asset extends Model
         'category',
         'url',
     ];
+
+    public function hotspots()
+    {
+
+        return $this->belongsToMany(BoothHotspot::class, 'asset_hotspot');
+    }
 }

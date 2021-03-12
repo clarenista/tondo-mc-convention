@@ -84,7 +84,7 @@ Add/ Edit Assets
                             <span class="input-group-text">Upload</span>
                         </span>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="url">
+                            <input type="file" class="custom-file-input" name="file">
                             <label class="custom-file-label">Choose file</label>
                         </div>
                     </div>
@@ -115,4 +115,3 @@ Add/ Edit Assets
     });
 </script>
 @stop
-

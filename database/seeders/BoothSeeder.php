@@ -36,7 +36,7 @@ class BoothSeeder extends Seeder
 
         $hotspot = $booth->hotspots()->create([
             'name' => 'Brochures',
-            'x' => 600,
+            'x' => 500,
             'y' => 600,
         ]);
 
@@ -45,6 +45,19 @@ class BoothSeeder extends Seeder
             'type' => 'Brochure',
             'category' => 'Brochures',
             'url' => 'https://dev.convention.psp.com.ph/images/bt.png',
+        ]);
+
+        $hotspot = $booth->hotspots()->create([
+            'name' => 'Videos',
+            'x' => 900,
+            'y' => 600,
+        ]);
+
+        $hotspot->assets()->create([
+            'name' => 'Sample Video',
+            'type' => 'Video',
+            'category' => 'Video',
+            'url' => 'https://dev.convention.psp.com.ph/images/lt.png',
         ]);
 
     }
