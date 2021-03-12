@@ -9,15 +9,15 @@ use Illuminate\Support\Str;
 trait FileUploadTrait
 {
 
-    public function uploadFile(Model $model, $table = 'url')
+    public function uploadFile(Model $model, $name = 'file', $field = 'url')
     {
 
-        if (request()->hasFile('file')) {
-            $file = request()->file('file');
+        if (request()->hasFile($name)) {
+            $file = request()->file($name);
             $file_name = Str::slug(time() . "-" . $file->getClientOriginalName());
             $file->storeAs("{$model->type}/", $file_name);
             $model->update([
-                $table => Storage::url("{$model->type}/{$file_name}"),
+                $field => Storage::url("{$model->type}/{$file_name}"),
             ]);
         }
     }

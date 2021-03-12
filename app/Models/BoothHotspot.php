@@ -9,6 +9,13 @@ class BoothHotspot extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nane',
+        'caption',
+        'x',
+        'y',
+    ];
+
     public function assets()
     {
 

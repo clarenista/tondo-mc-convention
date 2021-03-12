@@ -84,7 +84,7 @@ Add Banner
                             <span class="input-group-text">Upload</span>
                         </span>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="file">
+                            <input type="file" class="custom-file-input" name="url">
                             <label class="custom-file-label">Choose file</label>
                         </div>
                     </div>

@@ -11,6 +11,11 @@ class Booth extends Model
 
     protected $fillable = [
         'name',
+        'caption',
+        'url',
+        'x',
+        'y',
+        'active',
     ];
 
     public function assets()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Cms;
 use App\Http\Controllers\Controller;
 use App\Models\Booth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BoothController extends Controller
 {
@@ -29,9 +30,9 @@ class BoothController extends Controller
     public function create()
     {
 
-        $booths = new Booth;
+        $booth = new Booth;
 
-        return view("cms.booth.form", \compact('booths'));
+        return view("cms.booth.form", \compact('booth'));
     }
 
     /**
@@ -43,11 +44,25 @@ class BoothController extends Controller
     public function store(Request $request)
     {
 
-        Booth::create(
-            $request->validate([
-                'name' => 'required|string',
-            ])
-        );
+        DB::transaction(function () {
+            $booth = Booth::create(
+                \request()->validate([
+                    'name' => 'required|string',
+                    'caption' => 'nullable|string',
+                    'url' => 'nullable|string',
+                    'x' => 'required',
+                    'y' => 'required',
+                ])
+            );
+            $this->uploadFile($booth->assets()->create([
+                'type' => 'Booth',
+                'category' => 'background',
+            ]), 'background');
+            $this->uploadFile($booth->assets()->create([
+                'type' => 'Booth',
+                'category' => 'booth',
+            ]), 'booth');
+        });
 
         return \redirect()->route('cms.booths.index')
             ->with('success', 'You have successfully added a Booth.');
@@ -62,7 +77,7 @@ class BoothController extends Controller
     public function edit(Booth $booth)
     {
 
-        return view("cms.booths.form", \compact('booth'));
+        return view("cms.booth.form", \compact('booth'));
     }
 
     /**
@@ -74,7 +89,29 @@ class BoothController extends Controller
      */
     public function update(Request $request, Booth $booth)
     {
-        //
+
+        DB::transaction(function () use ($booth) {
+            $booth->update(
+                \request()->validate([
+                    'name' => 'required|string',
+                    'caption' => 'nullable|string',
+                    'url' => 'nullable|string',
+                    'x' => 'required',
+                    'y' => 'required',
+                ])
+            );
+            $this->uploadFile($booth->assets()
+                    ->whereType('Booth')
+                    ->whereCategory('background')
+                    ->first(), 'background');
+            $this->uploadFile($booth->assets()
+                    ->whereType('Booth')
+                    ->whereCategory('booth')
+                    ->first(), 'booth');
+        });
+
+        return \redirect()->route('cms.booths.index')
+            ->with('success', 'You have successfully added a Booth.');
     }
 
     /**

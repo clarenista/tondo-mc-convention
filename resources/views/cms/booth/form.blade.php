@@ -29,28 +29,21 @@ Add Booth
             <a href="{{ url('/cms/booths') }}" class="btn btn-info float-right">RETURN</a>
         </div>
         <div class="col-md-6">
-            <form action="{{ route('cms.booths.store') . ( $booths->id ? '/' . $booths->id : '') }}" method="post">
+            <form action="{{ route('cms.booths.store') . ( $booth->id ? '/' . $booth->id : '') }}" method="post"
+                enctype="multipart/form-data">
                 @csrf
-                @isset($booths->id)
+                @isset($booth->id)
                 {{ method_field('PUT') }}
                 @endisset
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- added hidden to get user_id -->
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <span class="input-group-text">Name</span>
-                        </span>
-                        <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
-                            value="{{ old('name', $booths->name) }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-                
-               
+                <?php $model = $booth; ?>
+                @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
+                @include('cms.include.input-text', ['key' => 'caption', 'label' => 'Caption'])
+                @include('cms.include.input-text', ['key' => 'url', 'label' => 'Url'])
+                @include('cms.include.input-text', ['key' => 'x', 'label' => 'X Position'])
+                @include('cms.include.input-text', ['key' => 'y', 'label' => 'Y Position'])
+                @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
+                @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <div class="form-group">
                     <button class="btn btn-success btn-block">ADD NEW BOOTH</button>
                 </div>
@@ -63,12 +56,12 @@ Add Booth
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
-    } );
-
-    // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    $("input[type=file]").each(function () {
+        $(this).on('change', function(){
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     });
 </script>
 @stop
