@@ -11,7 +11,7 @@ class BoothController extends Controller
     public function get()
     {
 
-        return Booth::get();
+        return Booth::with('assets')->get();
     }
 
     public function show($booth_id)

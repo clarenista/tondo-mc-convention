@@ -17,6 +17,8 @@ class CreateAssetsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('name')->nullable();
+            $table->string('caption')->nullable();
+            $table->string('description')->nullable();
             $table->string('type')->nullable();
             $table->string('category')->nullable();
             $table->string('url')->nullable();
