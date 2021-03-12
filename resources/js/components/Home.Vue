@@ -73,7 +73,7 @@
             init(){
                 let vm = this
                 let {sponsors, halls} = vm.$store.getters
-                var viewer, lobbyPanorama, hallPanorama, container, lobbySponsorsInfoSpot, hallsInfoSpot, centerInfoSpot;
+                var viewer, lobbyPanorama, hallPanorama, container, lobbySponsorsInfoSpot, hallsInfoSpot, meetingInfoSpotEast ,meetingInfoSpotWest;
                 container = document.querySelector( 'div.background' );
 
                 lobbyPanorama= new PANOLENS.ImagePanorama( '/images/lobby.png' );
@@ -85,6 +85,37 @@
                 viewer.add( lobbyPanorama, hallPanorama );
                  // Pair with custom scale and image
                 hallPanorama.link( lobbyPanorama, new THREE.Vector3( 4936.44, -770.81, -63.85 ), 400, PANOLENS.DataImage.Info );
+
+                meetingInfoSpotEast = new PANOLENS.Infospot(
+                  300,
+                  PANOLENS.DataImage.Info,
+                  true
+                )
+                meetingInfoSpotEast.position.set(4483.87, 1004.02, 1957.63)
+                meetingInfoSpotEast.addHoverText("Meeting Hall")
+                meetingInfoSpotEast.addEventListener('click', function(){
+                        // viewer.setPanorama( goldBoothPanorama );
+                        vm.$router.push('/meeting')
+                        // sponsors[i].name)
+
+                    })
+                    lobbyPanorama.add( meetingInfoSpotEast );
+
+                meetingInfoSpotWest = new PANOLENS.Infospot(
+                  300,
+                  PANOLENS.DataImage.Info,
+                  true
+                )
+                meetingInfoSpotWest.position.set(4476.78, 1030.80, -1961.26)
+                meetingInfoSpotWest.addHoverText("Meeting Hall")
+                meetingInfoSpotWest.addEventListener('click', function(){
+                        // viewer.setPanorama( goldBoothPanorama );
+                        vm.$router.push('/meeting')
+                        // sponsors[i].name)
+
+                    })
+                    lobbyPanorama.add( meetingInfoSpotWest );                    
+
                 for(let i in sponsors){
                     lobbySponsorsInfoSpot = new PANOLENS.Infospot(
                     300,
@@ -120,7 +151,6 @@
                     vm.isLoadingAssets = false
                 });
 
-                lobbyPanorama.add( centerInfoSpot );
 
                                
             },

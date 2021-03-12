@@ -10,6 +10,7 @@ import BoothMan from './components/BoothMan.vue';
 import Gallery from './components/Gallery.vue';
 import NotFound from './components/NotFound.vue';
 import SponsorPage from './components/SponsorPage.vue';
+import Meeting from './components/Meeting.vue';
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,14 @@ export const routes = [
         path: '/sponsors/:id',
         component: SponsorPage,
         props: true
+
+
+    },
+    {
+        name: 'meeting',
+        path: '/meeting',
+        component: Meeting,
+        // props: true
 
 
     },
