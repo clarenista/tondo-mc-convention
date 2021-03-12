@@ -1,20 +1,34 @@
 <template>
-    <div class="parent" ref="parent" data-ui-coverBox>
+    <div class="parent" ref="parent" data-ui-coverBox :style="{ 'background-image': 'url(' + imagePath + ')' }">
         <div class="box" ref="uiratio" :style="style" data-ui-ratio="16,9">
-            
         </div>
     </div>
 </template>
 <script>
 export default {
+    props:['id'],
     mounted() {
         this.rescale()
         window.addEventListener('resize', this.rescale)
+        if(this.id == 1){
+            this.imagePath = '/images/booth1.png'
+        }else if(this.id == 2){
+            this.imagePath = '/images/booth2.png'
+
+        }else if(this.id == 3){
+            this.imagePath = '/images/booth3.png'
+
+        }else{
+            this.imagePath = '/images/booth4.png'
+
+        }
+        
     },
     data() {
         return {
             style: {},
-            uiRatio: [16, 9]
+            uiRatio: [16, 9],
+            imagePath: null
         }
     },
     methods:{
@@ -34,7 +48,6 @@ export default {
             parent = this.$refs.parent 
             ratio = this.$refs.uiratio.dataset.uiRatio
             uiratios = ratio.split(',')
-            console.log(this.$refs.uiratio.dataset.uiRatio)
             dimension = {
                 w: parseFloat(uiratios[0]),
                 h: parseFloat(uiratios[1])
@@ -59,13 +72,11 @@ export default {
   margin: auto;
   outline:2px solid red;
   overflow: hidden;
-  background-image: url('/images/lt.png');
 	background-size: 100% 100%;
     background-position: center;
 }
 
 [data-ui-ratio]{
-  background-image: url('/images/bt.png');
     background-repeat: no-repeat;
 	background-size: cover;
       position: absolute;
