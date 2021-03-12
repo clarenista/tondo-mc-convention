@@ -77,6 +77,8 @@ class BoothController extends Controller
     public function edit(Booth $booth)
     {
 
+        $booth->load('hotspots');
+
         return view("cms.booth.form", \compact('booth'));
     }
 
@@ -100,6 +102,9 @@ class BoothController extends Controller
                     'y' => 'required',
                 ])
             );
+            foreach(\request()->hotspots as $hotspot_id => $hotspot){
+                $booth->hotspots()->whereId($hotspot_id)->update($hotspot);
+            }
             $this->uploadFile($booth->assets()
                     ->whereType('Booth')
                     ->whereCategory('background')
