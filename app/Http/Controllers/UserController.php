@@ -27,13 +27,13 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            
+
             if(Auth::user()->hasRole('admin')){
                 return redirect()->intended('/cms/users');
 
             }else{
                 return redirect()->intended('/cms/assets');
-                
+
             }
         }
 
@@ -44,7 +44,7 @@ class UserController extends Controller
 
     public function logoutUser(){
         $logout = Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('cms.login');
     }
 
     public function register(){
@@ -58,7 +58,7 @@ class UserController extends Controller
         if($request->role == 'admin'){
             $admin = Role::where('name', 'admin')->first();
             $user->assignRole($admin);
-            
+
         }else{
             $sponsor = Role::where('name', 'sponsor')->first();
             $user->assignRole($sponsor);
@@ -69,15 +69,15 @@ class UserController extends Controller
 
     public function allUsers(){
         // app()[PermissionRegistrar::class]->forgetCachedPermissions();
-        
+
         // // create permissions
         // // Permission::create(['name' => 'manage booth']);
-        
+
         // // create roles and assign existing permissions
         // // $role1 = Role::create(['name' => 'sponsor']);
         // $role1 = Role::where('name', 'admin')->first();
         // // $role1->givePermissionTo('manage booth');
-        
+
         // $user = User::find(1);
         // $user->assignRole($role1);
         $users = User::all();

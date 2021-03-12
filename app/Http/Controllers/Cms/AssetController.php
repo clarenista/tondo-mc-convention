@@ -56,7 +56,7 @@ class AssetController extends Controller
         $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index')
-                ->with('success','You have successfully uploaded the file.');
+            ->with('success', 'You have successfully uploaded the file.');
     }
 
     /**
@@ -93,7 +93,7 @@ class AssetController extends Controller
         $this->uploadFile($asset);
 
         return \redirect()->route('cms.assets.index')
-                ->with('success','You have successfully updated the file.');
+            ->with('success', 'You have successfully updated the file.');
     }
 
     /**
@@ -107,8 +107,7 @@ class AssetController extends Controller
 
         $asset->delete();
 
-        return \response([
-            'message' => 'deleted.',
-        ]);
+        return \redirect()->route('cms.assets.index')
+            ->with('success', 'You have successfully deleted the file.');
     }
 }

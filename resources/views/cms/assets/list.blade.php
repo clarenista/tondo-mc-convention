@@ -24,7 +24,7 @@ Assets
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>{{ $message }}</strong>
+            <strong>{{ $message }}</strong>
         </div>
         @endif
 
@@ -45,12 +45,17 @@ Assets
                     <td>{{ $asset->name }}</td>
                     <td>{{ $asset->type }}</td>
                     <td>{{ $asset->category }}</td>
-                    <td>{{ $asset->url }}</td>
+                    <td><a href="{{$asset->url }}">{{ basename($asset->url)}}</a></td>
                     <td>{{ $asset->user_id }}</td>
-                    <td class="text-center">
-                        <a data-href="{{ route('cms.assets.destroy', $asset->id) }}"
-                            class="btn btn-xm btn-danger btn-delete">delete</a>
-                        <a href="{{ route('cms.assets.edit', $asset->id) }}" class="btn btn-xm btn-info">edit</a>
+                    <td>
+                        <form id="delete" action="{{ route('cms.assets.destroy', $asset->id) }}" method="POST">
+                            @csrf
+                            {{ method_field('DELETE')}}
+                            <div class="btn-group">
+                                <button class="btn btn-danger" type="submit">delete</button>
+                                <a href="{{ route('cms.assets.edit', $asset->id) }}" class="btn btn-info">edit</a>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -68,21 +73,8 @@ Assets
     $(document).ready(function() {
         $('#example').DataTable();
     } );
-
-    $(".btn-delete").click(function() {
-       
-        if (confirm('Are you sure you want to delete?')) {
-            
-            $.ajax({
-                url: $(this).data('href'),
-                type: 'DELETE',
-                success: function(response) {
-                    console.log(response);
-                    location.reload();
-                }
-            });
-        }
-       
+    $("form#delete").submit(function() {
+        return confirm('Are you sure you want to delete?');
     });
 </script>
 
