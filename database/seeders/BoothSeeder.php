@@ -15,6 +15,7 @@ class BoothSeeder extends Seeder
     public function run()
     {
         $booth = Booth::create([
+            'user_id' => 2,
             'name' => 'Astra Zeneca',
             'x' => 3600,
             'y' => 100,

@@ -10,7 +10,7 @@ class BoothHotspot extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nane',
+        'name',
         'caption',
         'x',
         'y',

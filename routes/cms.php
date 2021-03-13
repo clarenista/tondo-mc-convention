@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::name('cms.')->group(function () {
-
+    
     Route::get('/login', [UserController::class, 'loginView'])->name('login');
     Route::get('/logout', [UserController::class, 'logoutUser']);
     Route::post('/login', [UserController::class, 'loginUser']);
