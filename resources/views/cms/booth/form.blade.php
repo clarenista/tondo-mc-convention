@@ -16,6 +16,43 @@ Add Booth
     }
 </style>
 <div class="col-md-12">
+<div id="my-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Select Sponsor</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-light " id="example">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($sponsors as $key => $sponsor)
+                        <tr id="sponsor_details" data-details="{{$sponsor}}">
+                            <td>{{$key + 1}}</td>
+                            <td>{{$sponsor->first_name." ".$sponsor->last_name}}</td>
+                            <td>{{$sponsor->email}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" id="cancelSelectSponsor">Cancel</button>
+            </div>
+            
+        </div>
+    </div>
+</div>
     <div class="row">
         <div class="col-md-12">
             <nav aria-label="breadcrumb">
@@ -35,8 +72,23 @@ Add Booth
                 @isset($booth->id)
                 {{ method_field('PUT') }}
                 @endisset
-                <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- added hidden to get user_id -->
                 <?php $model = $booth; ?>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                        <span class="input-group-text">Sponsor</span>
+                        </span>
+                        <div class="form-control" id="sponsor_name">{{$booth->user ? $booth->user->first_name : 'Select Sponsor'}}</div>
+                        <input type="hidden" readonly class="form-control" name="user_id" value="{{$booth->user_id ? $booth->user_id : ''}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    @error('user_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+
                 @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
                 @include('cms.include.input-text', ['key' => 'caption', 'label' => 'Caption'])
                 @include('cms.include.input-text', ['key' => 'url', 'label' => 'Url'])
@@ -49,7 +101,7 @@ Add Booth
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-prepend">
-                            <span class="input-group-text">Brochures</span>
+                            <span class="input-group-text">{{$hotspot->name}}</span>
                         </span>
                         <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
                             placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
@@ -68,7 +120,29 @@ Add Booth
 @section('js')
 <script>
     $(document).ready(function() {
+        let sponsor_name = $('#sponsor_name')
+        let user_id = $('[name="user_id"]')
+        let modalSelectSponsor  =  $('#my-modal')
         $('#example').DataTable();
+        sponsor_name.click(function(e){
+            modalSelectSponsor.modal({
+                show: true,
+                backdrop: 'static',
+                keyboard: false
+            })
+        })
+        $('#sponsor_details').dblclick(function(){
+            let details = $(this).data("details")
+            user_id.val(details.id)
+            sponsor_name.text(details.first_name)
+            modalSelectSponsor.modal('hide')
+        })
+        $('#cancelSelectSponsor').click(function(){
+            if(!user_id){
+                user_id.val(null)
+            }
+            modalSelectSponsor.modal('hide')
+        });
     });
     $("input[type=file]").each(function () {
         $(this).on('change', function(){

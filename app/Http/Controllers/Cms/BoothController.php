@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,8 +32,8 @@ class BoothController extends Controller
     {
 
         $booth = new Booth;
-
-        return view("cms.booth.form", \compact('booth'));
+        $sponsors = User::doesntHave('booth')->role('sponsor')->get();
+        return view("cms.booth.form", \compact('booth', 'sponsors'));
     }
 
     /**
@@ -47,6 +48,7 @@ class BoothController extends Controller
         DB::transaction(function () {
             $booth = Booth::create(
                 \request()->validate([
+                    'user_id' => 'required',
                     'name' => 'required|string',
                     'caption' => 'nullable|string',
                     'url' => 'nullable|string',
@@ -77,9 +79,10 @@ class BoothController extends Controller
     public function edit(Booth $booth)
     {
 
-        $booth->load('hotspots');
+        $booth->load('hotspots', 'user');
+        $sponsors = User::doesntHave('booth')->role('sponsor')->get();
 
-        return view("cms.booth.form", \compact('booth'));
+        return view("cms.booth.form", \compact('booth', 'sponsors'));
     }
 
     /**

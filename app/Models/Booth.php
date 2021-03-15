@@ -10,6 +10,7 @@ class Booth extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'caption',
         'url',
@@ -28,5 +29,10 @@ class Booth extends Model
     {
 
         return $this->hasMany(BoothHotspot::class);
+    }
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+
     }
 }
