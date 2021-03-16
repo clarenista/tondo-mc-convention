@@ -105,6 +105,18 @@ Add Booth
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
+
+                @foreach ($booth->hotspots as $i => $hotspot)
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">{{$hotspot->name}}</span>
+                            </span>
+                            <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
+                                placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
+                        </div>
+                    </div>
+                @endforeach
                 
                 <br>
                 <div class="form-group">
@@ -135,23 +147,7 @@ Add Booth
                     </div>
                 </form>
                 </div>
-                @forelse ($booth->hotspots as $i => $hotspot)
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">{{$hotspot->name}}</span>
-                            </span>
-                            <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
-                                placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
-                        </div>
-                    </div>
-                @empty
-                    <p id="emptyHotspot">
-                        <span>
-                            No hotspot.
-                        </span>
-                    </p>
-                @endforelse
+                
             </div>
         @endisset
     </div>
