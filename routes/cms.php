@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::name('cms.')->group(function () {
-    Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+	Route::view('/booth', 'booth');
+	Route::get('/login', [AuthController::class, 'loginView'])->name('login');
     
     Route::get('/logout', [AuthController::class, 'logoutUser']);
     Route::post('/login', [AuthController::class, 'loginUser']);
