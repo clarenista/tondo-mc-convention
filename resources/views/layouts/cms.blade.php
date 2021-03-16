@@ -48,9 +48,6 @@
                     <a class="nav-link text-white" href="/cms/users">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="/cms/register">Register</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/booths">Booths</a>
                 </li>
             @endhasrole

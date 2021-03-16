@@ -42,14 +42,10 @@ Booths
                     <td>{{ $booth->name }}</td>
                     <td>{{ $booth->active }}</td>
                     <td>
-                        <form id="delete" action="{{ route('cms.booths.destroy', $booth->id) }}" method="POST">
-                            @csrf
-                            {{ method_field('DELETE')}}
-                            <div class="btn-group">
-                                <button class="btn btn-danger" type="submit">delete</button>
-                                <a href="{{ route('cms.booths.edit', $booth->id) }}" class="btn btn-info">edit</a>
-                            </div>
-                        </form>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-delete" type="submit" data-href="{{ route('cms.booths.destroy', $booth->id) }}">delete</button>
+                            <a href="{{ route('cms.booths.edit', $booth->id) }}" class="btn btn-info">edit</a>
+                        </div>
                     </td>
                </tr>
                @endforeach

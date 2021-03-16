@@ -26,7 +26,7 @@ Add Booth
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-light " id="example">
+                <table class="table table-light table-hover" id="example">
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
@@ -36,7 +36,7 @@ Add Booth
                     </thead>
                     <tbody>
                         @foreach($sponsors as $key => $sponsor)
-                        <tr id="sponsor_details" data-details="{{$sponsor}}">
+                        <tr onclick="select_sponsor({{$sponsor}})" style="cursor: pointer;">
                             <td>{{$key + 1}}</td>
                             <td>{{$sponsor->first_name." ".$sponsor->last_name}}</td>
                             <td>{{$sponsor->email}}</td>
@@ -131,12 +131,7 @@ Add Booth
                 keyboard: false
             })
         })
-        $('#sponsor_details').dblclick(function(){
-            let details = $(this).data("details")
-            user_id.val(details.id)
-            sponsor_name.text(details.first_name)
-            modalSelectSponsor.modal('hide')
-        })
+        
         $('#cancelSelectSponsor').click(function(){
             if(!user_id){
                 user_id.val(null)
@@ -150,5 +145,11 @@ Add Booth
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     });
+
+    function select_sponsor(sponsor){
+        $('[name="user_id"]').val(sponsor.id)
+        $('#sponsor_name').text(sponsor.first_name+" "+sponsor.last_name)
+        $('#my-modal').modal('hide')
+    }
 </script>
 @stop
