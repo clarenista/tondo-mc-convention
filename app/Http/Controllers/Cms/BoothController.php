@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booth;
+use App\Models\BoothHotspot;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -148,5 +149,10 @@ class BoothController extends Controller
         $sponsors = User::doesntHave('booth')->role('sponsor')->get();
 
         return view("cms.booth.form", \compact('booth', 'sponsors'));
+    }
+
+    public function destroyHotspot(Request $request, $id){
+        $hotspot_id = BoothHotspot::find($id);
+        $hotspot_id->delete();
     }
 }
