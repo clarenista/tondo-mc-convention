@@ -101,8 +101,8 @@
                 lobbyPanorama.link( hallPanorama_D, new THREE.Vector3( 4680.38, -272.51, -1710.38 ), 300, PANOLENS.DataImage.Info );
 
                 // to lobby
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4387.39, -120.88, 2377.16 ), 300, PANOLENS.DataImage.Info );
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4411.84, -139.49, -2327.57 ), 300, PANOLENS.DataImage.Info );
+                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4554.64, -92.61, 2051.37 ), 300, PANOLENS.DataImage.Info );
+                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4571.89, -92.96, -2012.66 ), 300, PANOLENS.DataImage.Info );
 
                 hallPanorama_A.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
                 hallPanorama_B.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
