@@ -58,14 +58,22 @@ Add Booth
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/cms/booths') }}">Booth</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Booth</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{isset($booth->id) ? 'Edit Booth' : 'Add Booth'}}</li>
                 </ol>
             </nav>
         </div>
+    </div>
+    <div class="row">
+
         <div class="col-md-12">
             <a href="{{ url('/cms/booths') }}" class="btn btn-info float-right">RETURN</a>
         </div>
+    </div>
+    <br>
+    <div class="row">
+
         <div class="col-md-6">
+            <h3>Booth Details</h3>
             <form action="{{ route('cms.booths.store') . ( $booth->id ? '/' . $booth->id : '') }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
@@ -97,23 +105,56 @@ Add Booth
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
-                @foreach ($booth->hotspots as $i => $hotspot)
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-prepend">
-                            <span class="input-group-text">{{$hotspot->name}}</span>
-                        </span>
-                        <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
-                            placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
-                    </div>
-                </div>
-                @endforeach
+                
                 <br>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">ADD NEW BOOTH</button>
+                    <button class="btn btn-success btn-block">{{isset($booth->id) ? 'EDIT NEW BOOTH' : 'ADD NEW BOOTH'}}</button>
                 </div>
             </form>
         </div>
+        @isset($booth->id)
+
+            <div class="col-md-6">
+                <h3>Hotspots</h3>
+                <a class="button" id="newHotspot">Add new</a>
+                <div id="hotspot_form" style="display:none;">
+                    <form action="{{ route('cms.hotspotStore', $booth->id) }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <?php $model = $booth; ?>
+
+
+                    @include('cms.include.input-text', ['key' => 'hotspot_name', 'label' => 'Name'])
+                    @include('cms.include.input-text', ['key' => 'hotspot_x', 'label' => 'X Position'])
+                    @include('cms.include.input-text', ['key' => 'hotspot_y', 'label' => 'Y Position'])
+                    <br>
+                    
+                    <br>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block">Add hotspot</button>
+                    </div>
+                </form>
+                </div>
+                @forelse ($booth->hotspots as $i => $hotspot)
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">{{$hotspot->name}}</span>
+                            </span>
+                            <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
+                                placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
+                        </div>
+                    </div>
+                @empty
+                    <p id="emptyHotspot">
+                        <span>
+                            No hotspot.
+                        </span>
+                    </p>
+                @endforelse
+            </div>
+        @endisset
+    </div>
     </div>
 </div>
 @stop
@@ -138,6 +179,11 @@ Add Booth
             }
             modalSelectSponsor.modal('hide')
         });
+
+        $('#newHotspot').click(function(){
+            $('#hotspot_form').show()
+            $('#emptyHotspot').hide()
+        })
     });
     $("input[type=file]").each(function () {
         $(this).on('change', function(){

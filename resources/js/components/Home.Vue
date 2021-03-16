@@ -73,23 +73,41 @@
             init(){
                 let vm = this
                 let {sponsors, halls} = vm.$store.getters
-                var viewer, lobbyPanorama, hallPanorama, meetingHallPanorama, container, lobbySponsorsInfoSpot, hallsInfoSpot, meetingInfoSpotEast ,meetingInfoSpotWest;
+                var viewer, lobbyPanorama, hallPanorama_A,hallPanorama_B,hallPanorama_C,hallPanorama_D, meetingHallPanorama, container, lobbySponsorsInfoSpot, hallsInfoSpot, meetingInfoSpotEast ,meetingInfoSpotWest;
                 container = document.querySelector( 'div.background' );
 
                 lobbyPanorama= new PANOLENS.ImagePanorama( '/images/lobby.png' );
-                hallPanorama = new PANOLENS.ImagePanorama( '/images/_Equirectangular.png' );
+                hallPanorama_A = new PANOLENS.ImagePanorama( '/images/hall.png' );
+                hallPanorama_B = new PANOLENS.ImagePanorama( '/images/hall.png' );
+                hallPanorama_C = new PANOLENS.ImagePanorama( '/images/hall.png' );
+                hallPanorama_D = new PANOLENS.ImagePanorama( '/images/hall.png' );
                 meetingHallPanorama = new PANOLENS.ImagePanorama( '/images/stage-min.png' );
                 // goldBoothPanorama = new PANOLENS.ImagePanorama( '/images/Booth-gold.png' );
                 viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false} );
                 viewer.getControl().rotateLeft(-90 * Math.PI / 180);
                 viewer.getControl().update();
-                viewer.add( lobbyPanorama, hallPanorama, meetingHallPanorama );
+                viewer.add( lobbyPanorama, hallPanorama_A,hallPanorama_B,hallPanorama_C,hallPanorama_D, meetingHallPanorama );
                  // Pair with custom scale and image
-                hallPanorama.link( lobbyPanorama, new THREE.Vector3( 4936.44, -770.81, -63.85 ), 300, PANOLENS.DataImage.Info );
+                // hallPanorama.link( lobbyPanorama, new THREE.Vector3( 4936.44, -770.81, -63.85 ), 300, PANOLENS.DataImage.Info );
+
+                // to meeting hall
                 lobbyPanorama.link( meetingHallPanorama, new THREE.Vector3( 4483.87, 1004.02, 1957.63 ), 300, PANOLENS.DataImage.Info );
                 lobbyPanorama.link( meetingHallPanorama, new THREE.Vector3( 4476.78, 1030.80, -1961.26 ), 300, PANOLENS.DataImage.Info );
+
+                // to halls 
+                lobbyPanorama.link( hallPanorama_A, new THREE.Vector3( 4669.04, 157.28, 1752.54 ), 300, PANOLENS.DataImage.Info );
+                lobbyPanorama.link( hallPanorama_B, new THREE.Vector3( 4670.81, -275.96, 1734.92 ), 300, PANOLENS.DataImage.Info );
+                lobbyPanorama.link( hallPanorama_C, new THREE.Vector3( 4686.30, 154.93, -1707.82 ), 300, PANOLENS.DataImage.Info );
+                lobbyPanorama.link( hallPanorama_D, new THREE.Vector3( 4680.38, -272.51, -1710.38 ), 300, PANOLENS.DataImage.Info );
+
+                // to lobby
                 meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4387.39, -120.88, 2377.16 ), 300, PANOLENS.DataImage.Info );
                 meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4411.84, -139.49, -2327.57 ), 300, PANOLENS.DataImage.Info );
+
+                hallPanorama_A.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_B.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_C.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_D.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
 
 
                 for(let i in sponsors){
@@ -108,21 +126,22 @@
                     })
                     lobbyPanorama.add( lobbySponsorsInfoSpot );
                 }
-                for(let i in halls){
-                    hallsInfoSpot = new PANOLENS.Infospot(
-                    300,
-                    PANOLENS.DataImage.Info,
-                    true
-                    );
-                    hallsInfoSpot.position.set( halls[i].x , halls[i].y , halls[i].z );
-                    hallsInfoSpot.addHoverText( halls[i].name);
-                    hallsInfoSpot.addEventListener('click', function(){
-                        viewer.setPanorama( hallPanorama );
-                        // vm.$router.push('/sponsors/'+sponsors[i].id)
+                // for(let i in halls){
+                //     lobbyPanorama.link( meetingHallPanorama, new THREE.Vector3( 4476.78, 1030.80, -1961.26 ), 300, PANOLENS.DataImage.Info );
+                //     hallsInfoSpot = new PANOLENS.Infospot(
+                //     300,
+                //     PANOLENS.DataImage.Info,
+                //     true
+                //     );
+                //     hallsInfoSpot.position.set( halls[i].x , halls[i].y , halls[i].z );
+                //     hallsInfoSpot.addHoverText( halls[i].name);
+                //     hallsInfoSpot.addEventListener('click', function(){
+                //         viewer.setPanorama( hallPanorama );
+                //         // vm.$router.push('/sponsors/'+sponsors[i].id)
 
-                    })
-                    lobbyPanorama.add( hallsInfoSpot );
-                }
+                //     })
+                //     lobbyPanorama.add( hallsInfoSpot );
+                // }
                 lobbyPanorama.addEventListener('load', function(e){
                     vm.isLoadingAssets = false
                 });

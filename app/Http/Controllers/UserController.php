@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -40,7 +41,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         
-        DB::transaction(function () {
+        DB::transaction(function ()  use ($request){
             $user = User::create(
                 \request()->validate([
                     'first_name' => 'required|string',
@@ -50,6 +51,8 @@ class UserController extends Controller
                     'password' => 'required',
                 ])
             );
+            $user->password = Hash::make($request->password);
+            $user->save();
 
             if(\request()->role == 'admin'){
                 $admin = Role::where('name', 'admin')->first();
@@ -64,7 +67,7 @@ class UserController extends Controller
         
 
         return \redirect()->route('cms.users.index')
-            ->with('success', 'You have successfully added a Booth.');
+            ->with('success', 'You have successfully added a User.');
     }
 
     /**
@@ -123,6 +126,6 @@ class UserController extends Controller
         $user->delete();
 
         return \redirect()->route('cms.users.index')
-            ->with('success', 'You have successfully deleted the booth.');
+            ->with('success', 'You have successfully deleted the user.');
     }
 }

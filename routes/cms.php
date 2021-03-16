@@ -31,6 +31,7 @@ Route::name('cms.')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('guests', UserController::class);
         Route::resource('booths', BoothController::class);
+        Route::post('booths/{id}/hotspots', [BoothController::class, 'storeHotspot'])->name('hotspotStore');
     });
 
     Route::middleware(['role:sponsor'])->group(function () {

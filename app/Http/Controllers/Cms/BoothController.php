@@ -45,6 +45,7 @@ class BoothController extends Controller
     public function store(Request $request)
     {
 
+
         DB::transaction(function () {
             $booth = Booth::create(
                 \request()->validate([
@@ -135,5 +136,17 @@ class BoothController extends Controller
 
         return \redirect()->route('cms.booth.index')
             ->with('success', 'You have successfully deleted the booth.');
+    }
+
+    public function storeHotspot(Request $request, $id){
+        $booth = Booth::find($id);
+        $hotspot = $booth->hotspots()->create([
+            'name' => $request->hotspot_name,
+            'x' => $request->hotspot_x,
+            'y' => $request->hotspot_y,
+        ]);
+        $sponsors = User::doesntHave('booth')->role('sponsor')->get();
+
+        return view("cms.booth.form", \compact('booth', 'sponsors'));
     }
 }

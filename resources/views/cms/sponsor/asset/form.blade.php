@@ -36,6 +36,8 @@ Add Booth
                 {{ method_field('PUT') }}
                 @endisset
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- added hidden to get user_id -->
+                <input type="hidden" name="type" value=" {{$hotspot->name}}"> <!-- added hidden to get user_id -->
+                <input type="hidden" name="category" value=" {{$hotspot->name}}"> <!-- added hidden to get user_id -->
                 <?php $model = $asset; ?>
                 @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
                 @include('cms.include.input-file', ['key' => 'file', 'label' => 'File'])
