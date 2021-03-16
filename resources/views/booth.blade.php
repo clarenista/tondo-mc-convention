@@ -12,7 +12,7 @@
             }
 
             .centered {
-                width: 250%;
+                width: 310%;
                 position: fixed;
                 top: 50%;
                 left: 50%;
