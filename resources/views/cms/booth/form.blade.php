@@ -114,6 +114,7 @@ Add Booth
                             </span>
                             <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
                                 placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
+                            <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">X</button>
                         </div>
                     </div>
                 @endforeach
@@ -180,7 +181,23 @@ Add Booth
             $('#hotspot_form').show()
             $('#emptyHotspot').hide()
         })
+
+        $(".btn-delete").click(function() {
+
+        if (confirm('Are you sure you want to delete?')) {
+            $.ajax({
+                url: $(this).data('href'),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                    location.reload();
+                }
+            });
+        }
+
+        });
     });
+
     $("input[type=file]").each(function () {
         $(this).on('change', function(){
             var fileName = $(this).val().split("\\").pop();
