@@ -83,7 +83,7 @@
                 hallPanorama_D = new PANOLENS.ImagePanorama( '/images/hall.png' );
                 meetingHallPanorama = new PANOLENS.ImagePanorama( '/images/stage-min.png' );
                 // goldBoothPanorama = new PANOLENS.ImagePanorama( '/images/Booth-gold.png' );
-                viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false, horizontalView: true} );
+                viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false, horizontalView: false} );
                 viewer.getControl().rotateLeft(-90 * Math.PI / 180);
                 viewer.getControl().update();
                 viewer.add( lobbyPanorama, hallPanorama_A,hallPanorama_B,hallPanorama_C,hallPanorama_D, meetingHallPanorama );
@@ -101,13 +101,13 @@
                 lobbyPanorama.link( hallPanorama_D, new THREE.Vector3( 4680.38, -272.51, -1710.38 ), 300, PANOLENS.DataImage.Info );
 
                 // to lobby
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4554.64, -92.61, 2051.37 ), 300, PANOLENS.DataImage.Info );
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4571.89, -92.96, -2012.66 ), 300, PANOLENS.DataImage.Info );
+                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4311.41, -359.44, 2502.92 ), 300, PANOLENS.DataImage.Info );
+                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4332.32, -387.61, -2462.20 ), 300, PANOLENS.DataImage.Info );
 
-                hallPanorama_A.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
-                hallPanorama_B.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
-                hallPanorama_C.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
-                hallPanorama_D.link( lobbyPanorama, new THREE.Vector3( 4977.73, 446.12, 9.20 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_A.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_B.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_C.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, PANOLENS.DataImage.Info );
+                hallPanorama_D.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, PANOLENS.DataImage.Info );
 
 
                 for(let i in sponsors){
