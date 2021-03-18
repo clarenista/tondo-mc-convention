@@ -83,7 +83,7 @@
                 hallPanorama_D = new PANOLENS.ImagePanorama( '/images/hall.png' );
                 meetingHallPanorama = new PANOLENS.ImagePanorama( '/images/stage-min.png' );
                 // goldBoothPanorama = new PANOLENS.ImagePanorama( '/images/Booth-gold.png' );
-                viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false} );
+                viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false, horizontalView: true} );
                 viewer.getControl().rotateLeft(-90 * Math.PI / 180);
                 viewer.getControl().update();
                 viewer.add( lobbyPanorama, hallPanorama_A,hallPanorama_B,hallPanorama_C,hallPanorama_D, meetingHallPanorama );
