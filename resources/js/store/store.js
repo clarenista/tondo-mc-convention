@@ -9,6 +9,7 @@ export default new Vuex.Store({
         {value: 'ADMIN', key: 'admin'},
         {value: 'SPONSOR', key: 'sponsor'},
     ],
+    booths:null,
     user: null,
     permissions: null,
     api_token: null,
@@ -22,41 +23,16 @@ export default new Vuex.Store({
     ],
     halls:[
       
-      {name: 'Hall A', x: 4669.04, y: 157.28, z: 1752.54},
-      {name: 'Hall B', x: 4670.81, y: -275.96, z: 1734.92},
-      {name: 'Hall C', x: 4686.30, y: 154.93, z: -1707.82},
-      {name: 'Hall D', x: 4680.38, y: -272.51, z: -1710.38},
+      {name: 'Hall A', x: 4669.04, y: 157.28, z: 1752.54, panorama: 'hallPanorama_A'},
+      {name: 'Hall B', x: 4670.81, y: -275.96, z: 1734.92, panorama: 'hallPanorama_B'},
+      {name: 'Hall C', x: 4686.30, y: 154.93, z: -1707.82, panorama: 'hallPanorama_C'},
+      {name: 'Hall D', x: 4680.38, y: -272.51, z: -1710.38, panorama: 'hallPanorama_D'},
     ],
+    meetingHalls: [
+      {name: 'Meeting Hall', x: 4483.87, y: 1004.02, z: 1957.63},
+      {name: 'Meeting Hall', x: 4476.78, y: 1030.80, z: -1961.26},
+    ]
 
-
-    assets:[
-      {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/100'},
-      {type: 'image', name: 'image 2', path: 'https://via.placeholder.com/200'},
-      {type: 'image', name: 'image 3', path: 'https://via.placeholder.com/300'},
-      {type: 'image', name: 'image 4', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 5', path: 'https://via.placeholder.com/500'},
-      {type: 'image', name: 'image 6', path: 'https://via.placeholder.com/600'},
-      {type: 'pdf', name: 'pdf 1', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 2', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 3', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 4', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 5', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 6', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-      {type: 'pdf', name: 'pdf 7', path: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf'},
-    ],  
-    
-    gallery: [
-      {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 2', path: 'https://via.placeholder.com/500'},
-      {type: 'image', name: 'image 3', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 4', path: 'https://via.placeholder.com/500'},
-      {type: 'image', name: 'image 5', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 1', path: 'https://via.placeholder.com/500'},
-      {type: 'image', name: 'image 2', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 3', path: 'https://via.placeholder.com/500'},
-      {type: 'image', name: 'image 4', path: 'https://via.placeholder.com/400'},
-      {type: 'image', name: 'image 5', path: 'https://via.placeholder.com/500'},
-    ],
   },
   mutations: {
     // setter
@@ -67,33 +43,22 @@ export default new Vuex.Store({
     // change(state, flavor) {
     //   state.flavor = flavor
     // }
-
+    updateBooths(state, booths) {
+        state.booths = booths
+      },
     changeUser(state, user) {
       state.user = user
     },
-    updatePermissions(state, permissions) {
-      state.permissions = permissions
-    },
-    updateApiToken(state, api_token) {
-      state.api_token = api_token
-    },
-    updateUsersList(state, users) {
-      state.users = users
-    },
-    updateSponsorsList(state, sponsors) {
-      state.sponsors = sponsors
-    }
+    
 
   },
   getters: {
     pois: state => state.pois,
     assets: state => state.assets,
+    booths: state => state.booths,
     user: state => state.user,
-    gallery: state => state.gallery,
-    permissions: state => state.permissions,
-    api_token: state => state.api_token,
-    users: state => state.users,
-    sponsors: state => state.sponsors,
     halls: state => state.halls,
+    sponsors: state => state.sponsors,
+    meetingHalls: state => state.meetingHalls,
   }
 })
