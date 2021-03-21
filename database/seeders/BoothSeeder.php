@@ -19,6 +19,8 @@ class BoothSeeder extends Seeder
             'name' => 'Astra Zeneca',
             'x' => 3600,
             'y' => 100,
+            'z' => 200,
+            'panorama_location' => 'lobby'
         ]);
 
         $booth->assets()->create([

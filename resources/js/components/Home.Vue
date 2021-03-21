@@ -5,17 +5,16 @@
           <div id="bar"></div>
         </div>
         <!-- Modal -->
-        <div :class="modalShow ? 'modal-open': ''">
+        <div  class="modal-open">
             <div 
-                class="modal fade" 
-                :class="modalShow ? 'show' : ''" 
-                :style="modalShow ? 'display: block;' : ''"
+                class="modal fade show" 
+                
                 tabindex="-1" role="dialog" aria-hidden="true">
                 
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <Login @isLoginSuccess="isLoginSuccess"></Login>
+                            <pre>{{booths}}</pre>
                         </div>
                     </div>
                 </div>
@@ -46,7 +45,8 @@
                 showCollapse: false,
                 api_token: [],
                 modalShow: false,
-                isLoadingAssets: true
+                isLoadingAssets: true,
+                booths: null
             }
         },
         methods:{
@@ -65,7 +65,9 @@
             },
             async init(){
               let {data} = await axios.get('api/v1/booths')
-              this.$store.commit('updateBooths', event.target.value)
+              this.$store.commit('updateBooths', data)
+              this.booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+              
                 let vm = this
                 let {sponsors,meetingHalls, halls} = vm.$store.getters
                 var 
@@ -82,6 +84,12 @@
                   lobbyInfospot,
                   exhibitHallInfospot,
                   lobbySponsorsInfoSpot,
+                  lobbyInfospotMeetingHallRight,
+                  lobbyInfospotMeetingHallLeft,
+                  lobbyInfospotA,
+                  lobbyInfospotB,
+                  lobbyInfospotC,
+                  lobbyInfospotD,
                 container = document.querySelector( 'div.background' );
                 bar = document.querySelector( '#bar' );
                 var lookAtPositions = [
@@ -163,16 +171,16 @@
                     let panorama 
                     switch(halls[i].panorama){
                       case 'hallPanorama_A':
-                        panorama = hallPanorama_A
+                        panorama = {'target': hallPanorama_A, 'location': 'Hall_a'}
                         break
                       case 'hallPanorama_B':
-                        panorama = hallPanorama_B
+                        panorama = {'target': hallPanorama_B, 'location': 'Hall_b'}
                         break
                       case 'hallPanorama_C':
-                        panorama = hallPanorama_C
+                        panorama = {'target': hallPanorama_C, 'location': 'Hall_c'}
                         break
                       default:
-                        panorama = hallPanorama_D
+                        panorama = {'target': hallPanorama_D, 'location': 'Hall_d'}
                         break    
                     }
                     vm.onButtonClick( bar, viewer, panorama )
@@ -183,22 +191,84 @@
 
 
                 // to lobby
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4355.13, 303.00, 2424.75 ), 300, DataImage.LeftArrowIcon );
-                meetingHallPanorama.link( lobbyPanorama, new THREE.Vector3( 4327.84, 300.39, -2478.52 ), 300, DataImage.RightArrowIcon );
+                lobbyInfospotMeetingHallLeft = new PANOLENS.Infospot(
+                    300,
+                    DataImage.LeftArrowIcon,
+                    true
+                  );
+                lobbyInfospotMeetingHallLeft.position.set( 4355.13, 303.00, 2424.75 );
+                lobbyInfospotMeetingHallLeft.addHoverText( "Lobby" );
+                lobbyInfospotMeetingHallLeft.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                meetingHallPanorama.add( lobbyInfospotMeetingHallLeft );
 
-                hallPanorama_A.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, DataImage.LeftArrowIcon );
+                lobbyInfospotMeetingHallRight = new PANOLENS.Infospot(
+                    300,
+                    DataImage.RightArrowIcon,
+                    true
+                  );
+                lobbyInfospotMeetingHallRight.position.set( 4327.84, 300.39, -2478.52 );
+                lobbyInfospotMeetingHallRight.addHoverText( "Lobby" );
+                lobbyInfospotMeetingHallRight.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                meetingHallPanorama.add( lobbyInfospotMeetingHallRight );
+
+                lobbyInfospotA = new PANOLENS.Infospot(
+                    300,
+                    DataImage.LeftArrowIcon,
+                    true
+                  );
+                lobbyInfospotA.position.set( 4988.46, -272.10, 16.26 );
+                lobbyInfospotA.addHoverText( "Lobby" );
+                lobbyInfospotA.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                hallPanorama_A.add( lobbyInfospotA );
+
                 hallPanorama_A.link( meetingHallPanorama, new THREE.Vector3( 4892.53, 420.40, 908.61 ), 300, DataImage.MeetingHallIcon );
                 hallPanorama_A.link( meetingHallPanorama, new THREE.Vector3( 4893.91, 420.52, -899.82 ), 300, DataImage.MeetingHallIcon );
 
-                hallPanorama_B.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, DataImage.LeftArrowIcon );
+                lobbyInfospotB = new PANOLENS.Infospot(
+                    300,
+                    DataImage.LeftArrowIcon,
+                    true
+                  );
+                lobbyInfospotB.position.set( 4988.46, -272.10, 16.26 );
+                lobbyInfospotB.addHoverText( "Lobby" );
+                lobbyInfospotB.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                hallPanorama_B.add( lobbyInfospotB );
                 hallPanorama_B.link( meetingHallPanorama, new THREE.Vector3( 4892.53, 420.40, 908.61 ), 300, DataImage.MeetingHallIcon );
                 hallPanorama_B.link( meetingHallPanorama, new THREE.Vector3( 4893.91, 420.52, -899.82 ), 300, DataImage.MeetingHallIcon );
 
-                hallPanorama_C.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, DataImage.LeftArrowIcon );
+                lobbyInfospotC = new PANOLENS.Infospot(
+                    300,
+                    DataImage.LeftArrowIcon,
+                    true
+                  );
+                lobbyInfospotC.position.set( 4988.46, -272.10, 16.26 );
+                lobbyInfospotC.addHoverText( "Lobby" );
+                lobbyInfospotC.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                hallPanorama_C.add( lobbyInfospotC );
                 hallPanorama_C.link( meetingHallPanorama, new THREE.Vector3( 4892.53, 420.40, 908.61 ), 300, DataImage.MeetingHallIcon );
                 hallPanorama_C.link( meetingHallPanorama, new THREE.Vector3( 4893.91, 420.52, -899.82 ), 300, DataImage.MeetingHallIcon );
 
-                hallPanorama_D.link( lobbyPanorama, new THREE.Vector3( 4988.46, -272.10, 16.26 ), 300, DataImage.LeftArrowIcon );
+                lobbyInfospotD = new PANOLENS.Infospot(
+                    300,
+                    DataImage.LeftArrowIcon,
+                    true
+                  );
+                lobbyInfospotD.position.set( 4988.46, -272.10, 16.26 );
+                lobbyInfospotD.addHoverText( "Lobby" );
+                lobbyInfospotD.addEventListener( "click", function(){
+                  vm.onButtonClick( bar, viewer, {"target": lobbyPanorama, "location": 'lobby'} )
+                } );
+                hallPanorama_D.add( lobbyInfospotD );
                 hallPanorama_D.link( meetingHallPanorama, new THREE.Vector3( 4892.53, 420.40, 908.61 ), 300, DataImage.MeetingHallIcon );
                 hallPanorama_D.link( meetingHallPanorama, new THREE.Vector3( 4893.91, 420.52, -899.82 ), 300, DataImage.MeetingHallIcon );
 
@@ -260,10 +330,16 @@
                 }, 1000);
               }
             },
-            onButtonClick( bar, viewer, targetPanorama ) {
+            onButtonClick( bar, viewer, panorama ) {
+              if (panorama instanceof PANOLENS.ImagePanorama){
+                viewer.setPanorama( panorama );
+              } else {
+                viewer.setPanorama( panorama.target );
+                this.booths = _.filter(this.$store.getters.booths, ['panorama_location', panorama.location])
+              }
               bar.classList.remove( 'hide' );
-              viewer.setPanorama( targetPanorama );
-              
+
+              console.log(this.booths)
             }
         },
 
