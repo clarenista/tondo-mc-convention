@@ -135,6 +135,7 @@
                 meetingHallPanorama.addEventListener( 'enter-fade-start', function(){
                   viewer.tweenControlCenter( lookAtPositions[1], 0 );
                 } );
+                meetingHallPanorama.addEventListener( 'progress', vm.onProgressUpdate );
                 // goldBoothPanorama = new PANOLENS.ImagePanorama( '/images/Booth-gold.png' );
                 viewer = new PANOLENS.Viewer( { output: 'console', autoHideInfospot: false , container: container, controlBar:false, horizontalView: false} );
                 // viewer.getControl().rotateLeft(-90 * Math.PI / 180);
