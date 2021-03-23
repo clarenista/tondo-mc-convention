@@ -39,6 +39,7 @@
         mounted() {
             this.init()
             this.api_token = this.$store.getters.api_token ? this.$store.getters.api_token : null
+            
         },
         data(){
             return{
@@ -67,7 +68,6 @@
               let {data} = await axios.get('api/v1/booths')
               this.$store.commit('updateBooths', data)
               this.booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
-              
                 let vm = this
                 let {sponsors,meetingHalls, halls} = vm.$store.getters
                 var 
@@ -274,17 +274,17 @@
                 hallPanorama_D.link( meetingHallPanorama, new THREE.Vector3( 4893.91, 420.52, -899.82 ), 300, DataImage.MeetingHallIcon );
 
 
-                for(let i in sponsors){
+                for(let i in vm.booths){
                     lobbySponsorsInfoSpot = new PANOLENS.Infospot(
                     300,
                     DataImage.BoothIcon,
                     true
                     );
-                    lobbySponsorsInfoSpot.position.set( sponsors[i].x , sponsors[i].y , sponsors[i].z );
-                    lobbySponsorsInfoSpot.addHoverText( sponsors[i].name);
+                    lobbySponsorsInfoSpot.position.set( vm.booths[i].x , vm.booths[i].y , vm.booths[i].z );
+                    lobbySponsorsInfoSpot.addHoverText( vm.booths[i].name);
                     lobbySponsorsInfoSpot.addEventListener('click', function(){
                         // viewer.setPanorama( goldBoothPanorama );
-                        vm.$router.push('/sponsors/'+sponsors[i].id)
+                        vm.$router.push('/sponsors/'+vm.booths[i].id)
                         // alert(sponsors[i].name)
 
                     })
