@@ -4,6 +4,7 @@ use App\Http\Controllers\Cms\AssetController;
 use App\Http\Controllers\Cms\BannerController;
 use App\Http\Controllers\Cms\BoothController;
 use App\Http\Controllers\Cms\Sponsor\AssetController as SponsorAssetController;
+use App\Http\Controllers\Cms\ExternalLinkController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
@@ -40,6 +41,7 @@ Route::name('cms.')->group(function () {
 
         Route::name('sponsor.')->group(function () {
             Route::resource('assets', SponsorAssetController::class);
+            Route::resource('links', ExternalLinkController::class);
         });
         Route::resource('banners', BannerController::class);
     });
