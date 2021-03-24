@@ -39,8 +39,8 @@ class BoothSeeder extends Seeder
 
         $hotspot = $booth->hotspots()->create([
             'name' => 'Brochures',
-            'x' => 500,
-            'y' => 600,
+            'x' => 50,
+            'y' => 50,
         ]);
 
         $hotspot->assets()->create([
@@ -52,8 +52,8 @@ class BoothSeeder extends Seeder
 
         $hotspot = $booth->hotspots()->create([
             'name' => 'Videos',
-            'x' => 900,
-            'y' => 600,
+            'x' => 36,
+            'y' => 71,
         ]);
 
         $hotspot->assets()->create([

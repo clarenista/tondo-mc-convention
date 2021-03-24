@@ -1,18 +1,40 @@
 <template>
-    <section class="hotspots--wrapper">
-        <img src="/images/bt.png" class="hotspots--figure">
-        <a class="hotspot hotspot--iphone" href="#">
-            <span class="hotspot--cta"></span>
-        </a>
-        <a class="hotspot hotspot--macbook" href="#">
-            <span class="hotspot--title">MacBook</span>
-            <span class="hotspot--cta"></span>
-        </a>
+    <div>
+           <Modal :value="value" v-if="selectedHotspot != null">
+                <template v-slot:title >
+                    <h1>{{selectedHotspot.name}}</h1>
+                </template>           
+                <template v-slot:body >
+                    <div class="row">
+                        <div class="col-12">
+                            <img  :src="selectedHotspot.assets[0].url" class="img-fluid" alt="" srcset="">
+                        </div>
+                    </div>
+                </template>  
+                <template v-slot:footer >
+                    <button class="btn btn-secondary" type="button" @click="handleCloseModal">Close</button>
+                </template>          
+           </Modal>
+        <div class="booth-container">
+            <img class="centered" src="/images/lt.png">
+            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back to lobby</button>
+        </div>
+        <section class="hotspots--wrapper" >
+            <img src="/images/bt.png" class="hotspots--figure">
+            <a v-if="booth_details.hotspots != null" href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
+                <span class="hotspot--cta"></span>
+            </a>
+            
+        </section>
         
-    </section>
+    </div>
 </template>
 <script>
+import Modal from './Modal.vue'
 export default {
+    components:{
+        Modal
+    },
     props:['id'],
     mounted() {
      this.init()
@@ -20,28 +42,18 @@ export default {
     },
     data() {
         return {
-            booth_details: null
+            booth_details: null,
+            modalShow: false,
+            selectedHotspot: null,
+            value: false
         }
     },
     methods:{
         async init(){
+            const wrapper = document.querySelector('.hotspots--wrapper');
             let {data} = await axios.get('/api/v1/booths/'+this.id);
-            console.log(data)
             this.booth_details = data
-
-            data.forEach((point) => {
-                let a = document.createElement('a'); 
-                a.style.left = point.x;
-                a.style.top = point.y;
-                a.title = point.data;
-                a.className= 'overlay-image';
-                a.src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/544303/Target_Logo.svg"
-                overlay.appendChild(img);
-                a.data = point.data;
-                a.addEventListener('mouseenter', handleMouseEnter);
-                a.addEventListener('mouseleave', handleMouseLeave);
-            });
-            
+            console.log(this.booth_details.hotspots)
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -61,24 +73,65 @@ export default {
             // size = Math.min(parent.clientWidth / dimension.w, parent.clientHeight / dimension.h);
             // this.style = {width: dimension.w * size+"px", height: dimension.h * size+"px", }
                       
+        },
+        
+        
+        addStyle(item){
+            return {right: item.y+'%', top: item.x+'%'}
+        },
+        handleBackToLobby(){
+            this.$router.push('/')
+        },
+        handleSelectHotspot(hotspot){
+            this.value = true
+            this.selectedHotspot = hotspot
+        },
+        handleCloseModal(){
+            this.selectedHotspot = null
+            this.value = false
         }
     }
 
   }
 </script>
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Maven+Pro:500&display=swap');
+
+@media screen and (orientation:portrait) {
+    .booth-container {
+        height: 100vw;
+    }
+
+    .centered {
+        width: 310%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-51.5%, -50%);
+    }
+}
+
+@media screen and (orientation:landscape) {
+    .booth-container {
+        height: 100vh;
+    }
+
+    .centered {
+        height: 250%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-51%, -48%);
+    }
+}
 
 body div {
   margin: 0;
   padding: 0;
   display: flex;
-  min-height: 100vh;
 }
 
 .hotspots--wrapper {
-  background-image: url('/images/lt.png');
-  background-size: cover;
+  overflow: hidden;
   position: relative;
   margin: auto;
   max-width: 960px;
@@ -88,6 +141,7 @@ body div {
 
 .hotspots--figure {
   max-width: 100%;
+  
 }
 
 .hotspot {
@@ -154,6 +208,7 @@ body div {
   66% {transform: scale(0.4);}
   100% {transform: scale(0.4);}
 }
+
 
 .hotspot--iphone {
     top: 36%;
