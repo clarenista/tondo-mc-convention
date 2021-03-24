@@ -107,6 +107,8 @@ class BoothController extends Controller
                     'url' => 'nullable|string',
                     'x' => 'required',
                     'y' => 'required',
+                    'z' => 'required',
+                    'panorama_location' => 'required',
                 ])
             );
             foreach(\request()->hotspots as $hotspot_id => $hotspot){
