@@ -38,8 +38,6 @@ export default {
 }
 </script>
 <style scoped>
-.modal {
-    overflow: visible;
-      }
+
     
 </style>

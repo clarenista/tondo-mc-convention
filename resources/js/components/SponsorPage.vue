@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="container" >
            <Modal :value="value" v-if="selectedHotspot != null">
                 <template v-slot:title >
                     <h1>{{selectedHotspot.name}}</h1>
@@ -38,6 +38,13 @@ export default {
     props:['id'],
     mounted() {
      this.init()
+
+    axios.get("/images/lt.mp4")
+      .then(res => console.log(res.headers))
+
+    //  fetch("/images/lt.mp4", {method:"HEAD"})
+    // .then(response => response.headers.get("Content-Type"))
+    // .then(type => console.log(`.${type.replace(/.+\/|;.+/g, "")}`));
         
     },
     data() {
@@ -53,7 +60,6 @@ export default {
             const wrapper = document.querySelector('.hotspots--wrapper');
             let {data} = await axios.get('/api/v1/booths/'+this.id);
             this.booth_details = data
-            console.log(this.booth_details.hotspots)
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -124,9 +130,14 @@ export default {
     }
 }
 
-body div {
+div#container{
   margin: 0;
   padding: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+body div {
   display: flex;
 }
 
