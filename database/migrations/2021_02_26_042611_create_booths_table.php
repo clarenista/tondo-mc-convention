@@ -19,8 +19,8 @@ class CreateBoothsTable extends Migration
             $table->string('name')->nullable();
             $table->string('caption')->nullable();
             $table->string('url')->nullable();
-            $table->float('x')->nullable();
-            $table->float('y')->nullable();
+            $table->float('pitch')->nullable();
+            $table->float('yaw')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

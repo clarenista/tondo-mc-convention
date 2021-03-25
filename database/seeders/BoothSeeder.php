@@ -17,9 +17,8 @@ class BoothSeeder extends Seeder
         $booth = Booth::create([
             'user_id' => 2,
             'name' => 'Astra Zeneca',
-            'x' => 3459.15, 
-            'y' => -183.72,
-            'z' =>  -3592.03,
+            'pitch' => -1.2, 
+            'yaw' => 45.9,
             'panorama_location' => 'lobby'
         ]);
 
