@@ -102,6 +102,8 @@ Add Booth
                 @include('cms.include.input-text', ['key' => 'url', 'label' => 'Url'])
                 @include('cms.include.input-text', ['key' => 'x', 'label' => 'X Position'])
                 @include('cms.include.input-text', ['key' => 'y', 'label' => 'Y Position'])
+                @include('cms.include.input-text', ['key' => 'z', 'label' => 'Z Position'])
+                @include('cms.include.input-select', ['key' => 'panorama_location', 'label' => 'Location'])
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
