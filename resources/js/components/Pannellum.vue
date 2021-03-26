@@ -37,8 +37,17 @@ export default {
 
             "scenes": {
                 "lobby": {
-                    "type": "equirectangular",
-                    "panorama": "/images/lobby.png",
+                    "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/lobby",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         // meeting hall left
                         {
@@ -92,8 +101,17 @@ export default {
                 },
 
                 "meeting_hall": {
-                    "type": "equirectangular",
-                    "panorama": "/images/stage-min.png",
+                    "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/stage",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         {
                             "pitch": 3.8,
@@ -112,8 +130,17 @@ export default {
                     ]
                 },
                 "exhibit_hall_a" :{
-                  "type": "equirectangular",
-                    "panorama": "/images/hall.png",
+                  "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/hall",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         {
                             "pitch": -3,
@@ -139,8 +166,17 @@ export default {
                     ]
                 },
                 "exhibit_hall_b" :{
-                  "type": "equirectangular",
-                    "panorama": "/images/hall.png",
+                  "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/hall",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         {
                             "pitch": -3,
@@ -166,8 +202,17 @@ export default {
                     ]
                 },
                 "exhibit_hall_c" :{
-                  "type": "equirectangular",
-                    "panorama": "/images/hall.png",
+                  "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/hall",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         {
                             "pitch": -3,
@@ -193,8 +238,17 @@ export default {
                     ]
                 },
                 "exhibit_hall_d" :{
-                  "type": "equirectangular",
-                    "panorama": "/images/hall.png",
+                  "hfov": 100.0,
+                    "type": "multires",
+                    "multiRes": {
+                      "basePath": "/images/multires/hall",
+                      "path": "/%l/%s%y_%x",
+                      "fallbackPath": "/fallback/%s",
+                      "extension": "jpg",
+                      "tileResolution": 512,
+                      "maxLevel": 3,
+                      "cubeResolution": 1904
+                    },
                     "hotSpots": [
                         {
                             "pitch": -3,
