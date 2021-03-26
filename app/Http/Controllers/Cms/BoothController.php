@@ -54,9 +54,8 @@ class BoothController extends Controller
                     'name' => 'required|string',
                     'caption' => 'nullable|string',
                     'url' => 'nullable|string',
-                    'x' => 'required',
-                    'y' => 'required',
-                    'z' => 'required',
+                    'pitch' => 'required',
+                    'yaw' => 'required',
                     'panorama_location' => 'required',
                 ])
             );
@@ -105,9 +104,8 @@ class BoothController extends Controller
                     'name' => 'required|string',
                     'caption' => 'nullable|string',
                     'url' => 'nullable|string',
-                    'x' => 'required',
-                    'y' => 'required',
-                    'z' => 'required',
+                    'pitch' => 'required',
+                    'yaw' => 'required',
                     'panorama_location' => 'required',
                 ])
             );

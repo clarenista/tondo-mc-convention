@@ -14,9 +14,8 @@ class Booth extends Model
         'name',
         'caption',
         'url',
-        'x',
-        'y',
-        'z',
+        'pitch',
+        'yaw',
         'panorama_location',
         'active',
     ];
