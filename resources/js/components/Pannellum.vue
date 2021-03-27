@@ -7,25 +7,35 @@
 </template>
 <script>
 export default {
+    created() {
+    },
     data() {
       return {
-        booths: null
+        booths: null,
+        viewer: null,
+        panorama_details: null,
+        lobby_booths: null,
+        hall_a_booths: null,
+        hall_b_booths: null,
+        hall_c_booths: null,
+        hall_d_booths: null,
       }
     },
     mounted() {
-        this.init()
+       this.init()
+       window.addEventListener("resize", this.reSize);
+      //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
+       
     },
     methods:{
       async init(){
         let vm = this
         let {data} = await axios.get('api/v1/booths')
         this.$store.commit('updateBooths', data)
-        this.booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
-        for(let i in this.booths){
-          this.booths[i].cssClass = "custom-hotspot booth"
-          this.booths[i].clickHandlerFunc = ()=>{ this.$router.push('/sponsors/'+this.booths[i].id)}
-        }
-        let panorama_details = {   
+        // this.booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+        this.booths = this.$store.getters.booths
+        
+        this.panorama_details = {   
             "default": {
                 "firstScene": "lobby",
                 "sceneFadeDuration": 500,
@@ -37,7 +47,6 @@ export default {
 
             "scenes": {
                 "lobby": {
-                    "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/lobby",
@@ -51,11 +60,11 @@ export default {
                     "hotSpots": [
                         // meeting hall left
                         {
+                            "type": "scene",
                             "pitch": 12.9,
                             "yaw": -23.5,
-                            "type": "scene",
                             "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall"
+                            "sceneId": "meeting_hall",
                         },
                         // meeting hall right
                         {
@@ -63,7 +72,7 @@ export default {
                             "yaw": 23.3,
                             "type": "scene",
                             "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall"
+                            "sceneId": "meeting_hall",
                         },
                         // hall a
                         {
@@ -101,7 +110,6 @@ export default {
                 },
 
                 "meeting_hall": {
-                    "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/stage",
@@ -130,10 +138,9 @@ export default {
                     ]
                 },
                 "exhibit_hall_a" :{
-                  "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
-                      "basePath": "/images/multires/hall",
+                      "basePath": "/images/multires/hall_a",
                       "path": "/%l/%s%y_%x",
                       "fallbackPath": "/fallback/%s",
                       "extension": "jpg",
@@ -166,10 +173,9 @@ export default {
                     ]
                 },
                 "exhibit_hall_b" :{
-                  "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
-                      "basePath": "/images/multires/hall",
+                      "basePath": "/images/multires/hall_b",
                       "path": "/%l/%s%y_%x",
                       "fallbackPath": "/fallback/%s",
                       "extension": "jpg",
@@ -202,10 +208,9 @@ export default {
                     ]
                 },
                 "exhibit_hall_c" :{
-                  "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
-                      "basePath": "/images/multires/hall",
+                      "basePath": "/images/multires/hall_c",
                       "path": "/%l/%s%y_%x",
                       "fallbackPath": "/fallback/%s",
                       "extension": "jpg",
@@ -238,10 +243,9 @@ export default {
                     ]
                 },
                 "exhibit_hall_d" :{
-                  "hfov": 100.0,
                     "type": "multires",
                     "multiRes": {
-                      "basePath": "/images/multires/hall",
+                      "basePath": "/images/multires/hall_d",
                       "path": "/%l/%s%y_%x",
                       "fallbackPath": "/fallback/%s",
                       "extension": "jpg",
@@ -275,9 +279,52 @@ export default {
                 }
             }
         }
-        panorama_details.scenes.lobby.hotSpots.push(...this.booths)
-        pannellum.viewer('panorama', panorama_details );        
+        for(let i in this.booths){
+          this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].clickHandlerFunc = ()=>{ this.$router.push('/sponsors/'+this.booths[i].id)}
+          
+        }
+        this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
+        this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
+        this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
+        this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
+        this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+        this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(...this.hall_a_booths)
+        this.panorama_details.scenes.exhibit_hall_b.hotSpots.push(...this.hall_b_booths)
+        this.panorama_details.scenes.exhibit_hall_c.hotSpots.push(...this.hall_c_booths)
+        this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(...this.hall_d_booths)
+
+        // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
+        this.viewer= pannellum.viewer('panorama', this.panorama_details ); 
+        // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
+        this.viewer.on('scenechange', this.reSize)
+        this.reSize()
       },
+      reSize() {
+        // Get screen size (inner/outerWidth, inner/outerHeight)
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+
+        if(width<height) {
+          // portrait
+          this.viewer.setHfov(50  ); 
+        } else {
+          // landscape (or width=height)
+          this.viewer.setHfov(100 );
+        }
+      },
+      updateBooth(scene){
+        this.reSize
+        this.booths = _.filter(this.$store.getters.booths, ['panorama_location', scene])
+        for(let i in this.booths){
+          this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].clickHandlerFunc = ()=>{ this.$router.push('/sponsors/'+this.booths[i].id)}
+          _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+        }
+        this.panorama_details.scenes.scene.hotSpots.push(...this.booths)
+        console.log(this.booths)
+      }
     }
 }
 </script>
