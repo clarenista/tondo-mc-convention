@@ -18,5 +18,6 @@ class UserMessage extends Model
         'moible_number',
         'email',
         'interest',
+        'message',
     ];
 }

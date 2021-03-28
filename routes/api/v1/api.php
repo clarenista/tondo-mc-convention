@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\BoothController;
+use App\Http\Controllers\Api\v1\GuestEventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Route::middleware('auth:api')->get('/users', [UserController::class, 'allUsers']
 Route::get('booths', [BoothController::class, 'get']);
 Route::get('booths/{booth_id}', [BoothController::class, 'show']);
 Route::post('booths/{booth_id}/message', [BoothController::class, 'storeMessage']);
+
+Route::post('/guests/event/push', [GuestEventController::class, 'push']);
