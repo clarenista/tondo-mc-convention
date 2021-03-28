@@ -26,7 +26,7 @@ class AddPanoramaLocationAndZToTableBooths extends Migration
     public function down()
     {
         Schema::table('booths', function (Blueprint $table) {
-            //
+            $table->dropColumn('panorama_location');
         });
     }
 }

@@ -46,7 +46,6 @@ class BoothController extends Controller
     public function store(Request $request)
     {
 
-
         DB::transaction(function () {
             $booth = Booth::create(
                 \request()->validate([
@@ -109,7 +108,7 @@ class BoothController extends Controller
                     'panorama_location' => 'required',
                 ])
             );
-            foreach(\request()->hotspots as $hotspot_id => $hotspot){
+            foreach (\request()->hotspots as $hotspot_id => $hotspot) {
                 $booth->hotspots()->whereId($hotspot_id)->update($hotspot);
             }
             $this->uploadFile($booth->assets()
@@ -136,12 +135,13 @@ class BoothController extends Controller
     {
 
         $booth->delete();
+        $booths = Booth::all();
 
-        return \redirect()->route('cms.booth.index')
-            ->with('success', 'You have successfully deleted the booth.');
+        return view('cms.booth.list', compact('booths'))->with('success', 'You have successfully deleted the booth.');
     }
 
-    public function storeHotspot(Request $request, $id){
+    public function storeHotspot(Request $request, $id)
+    {
         $booth = Booth::find($id);
         $hotspot = $booth->hotspots()->create([
             'name' => $request->hotspot_name,
@@ -153,7 +153,8 @@ class BoothController extends Controller
         return view("cms.booth.form", \compact('booth', 'sponsors'));
     }
 
-    public function destroyHotspot(Request $request, $id){
+    public function destroyHotspot(Request $request, $id)
+    {
         $hotspot_id = BoothHotspot::find($id);
         $hotspot_id->delete();
     }

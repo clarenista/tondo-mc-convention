@@ -9,4 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class UserMessage extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'subject',
+        'name',
+        'affiliation',
+        'moible_number',
+        'email',
+        'interest',
+    ];
 }

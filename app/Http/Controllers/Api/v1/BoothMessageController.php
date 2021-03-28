@@ -5,13 +5,24 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\Booth;
 
-class BoothController extends Controller
+class BoothMessageController extends Controller
 {
 
-    public function get()
+    public function store(Booth $booth)
     {
 
-        return Booth::with('assets')->get();
+        request()->user()->boothMessage()->create(\request()->merge([
+            'booth_id' => $booth->id,
+        ])->validate([
+            'booth_id' => 'required',
+            'subject' => 'required',
+            'name' => 'required',
+            'affiliation' => 'required',
+            'moible_number' => 'required',
+            'email' => 'required',
+            'interest' => 'required',
+            'message' => 'required',
+        ]));
     }
 
     public function show($booth_id)
@@ -36,22 +47,5 @@ class BoothController extends Controller
 
         return $return;
 
-    }
-
-    public function storeMessage(Booth $booth)
-    {
-
-        request()->user()->boothMessage()->create(\request()->merge([
-            'booth_id' => $booth->id,
-        ])->validate([
-            'booth_id' => 'required',
-            'subject' => 'required',
-            'name' => 'required',
-            'affiliation' => 'required',
-            'moible_number' => 'required',
-            'email' => 'required',
-            'interest' => 'required',
-            'message' => 'required',
-        ]));
     }
 }
