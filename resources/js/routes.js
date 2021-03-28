@@ -3,6 +3,7 @@ import store  from './store/store'
 import VueRouter from 'vue-router';
 
 import Home from './components/Home.vue';
+import Pannellum from './components/Pannellum.vue';
 import Registration from './components/Registration.vue';
 import Users from './components/Users.vue';
 import Login from './components/Login.vue';
@@ -19,7 +20,7 @@ export const routes = [
     {
         name: 'home',
         path: '/',
-        component: Home,
+        component: Pannellum,
         // meta: { 
         //     requiresAuth: true,
         //  }

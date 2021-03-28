@@ -9,6 +9,9 @@ import axios from 'axios';
 import router from './routes';
 
 import Permissions from './mixins/Permissions'
+import 'pannellum'
+
+require('pannellum/build/pannellum.css')
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)

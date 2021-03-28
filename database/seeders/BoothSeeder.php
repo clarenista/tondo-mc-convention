@@ -17,8 +17,9 @@ class BoothSeeder extends Seeder
         $booth = Booth::create([
             'user_id' => 2,
             'name' => 'Astra Zeneca',
-            'x' => 3600,
-            'y' => 100,
+            'pitch' => -1.2, 
+            'yaw' => 45.9,
+            'panorama_location' => 'lobby'
         ]);
 
         $booth->assets()->create([
@@ -37,8 +38,8 @@ class BoothSeeder extends Seeder
 
         $hotspot = $booth->hotspots()->create([
             'name' => 'Brochures',
-            'x' => 500,
-            'y' => 600,
+            'x' => 50,
+            'y' => 50,
         ]);
 
         $hotspot->assets()->create([
@@ -50,8 +51,8 @@ class BoothSeeder extends Seeder
 
         $hotspot = $booth->hotspots()->create([
             'name' => 'Videos',
-            'x' => 900,
-            'y' => 600,
+            'x' => 36,
+            'y' => 71,
         ]);
 
         $hotspot->assets()->create([

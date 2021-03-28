@@ -16,6 +16,8 @@ class Booth extends Model
         'url',
         'x',
         'y',
+        'z',
+        'panorama_location',
         'active',
     ];
 

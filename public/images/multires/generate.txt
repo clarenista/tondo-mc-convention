@@ -1,0 +1,1 @@
+python C:\xampp\htdocs\convention\node_modules\pannellum\utils\multires\generate.py -n "C:\Program Files\Hugin\bin\nona.exe" c:\xampp\htdocs\convention\public\images\lobby.png --output "./lobby"

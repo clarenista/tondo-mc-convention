@@ -33,7 +33,7 @@
                 @endforeach
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">External Links</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.index') }}">External Links</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Contact</a>
