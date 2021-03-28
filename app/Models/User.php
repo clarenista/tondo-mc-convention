@@ -80,4 +80,12 @@ class User extends Authenticatable
 
         return $this->hasOne(Booth::class);
     }
+
+    public function boothMessages()
+    {
+
+        return $this->hasMany(UserMessage::class);
+    }
+
+
 }

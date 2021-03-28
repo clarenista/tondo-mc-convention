@@ -38,20 +38,26 @@ class BoothController extends Controller
 
     }
 
-    public function storeMessage(Booth $booth)
+    public function storeMessage($booth_id)
     {
+        $response = request()
+            ->user()
+            ->boothMessages()
+            ->create(
+                \request()->merge([
+                    'booth_id' => $booth_id,
+                ])->validate([
+                    'booth_id' => 'required',
+                    'subject' => 'nullable',
+                    'name' => 'nullable',
+                    'affiliation' => 'nullable',
+                    'moible_number' => 'nullable',
+                    'email' => 'nullable',
+                    'interest' => 'nullable',
+                    'message' => 'nullable',
+                ])
+            );
 
-        request()->user()->boothMessage()->create(\request()->merge([
-            'booth_id' => $booth->id,
-        ])->validate([
-            'booth_id' => 'required',
-            'subject' => 'required',
-            'name' => 'required',
-            'affiliation' => 'required',
-            'moible_number' => 'required',
-            'email' => 'required',
-            'interest' => 'required',
-            'message' => 'required',
-        ]));
+        return $response;
     }
 }

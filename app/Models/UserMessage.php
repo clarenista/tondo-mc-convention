@@ -11,6 +11,7 @@ class UserMessage extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'booth_id',
         'subject',
         'name',
         'affiliation',

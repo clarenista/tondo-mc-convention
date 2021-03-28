@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/users', [UserController::class, 'allUsers']
 
 Route::get('booths', [BoothController::class, 'get']);
 Route::get('booths/{booth_id}', [BoothController::class, 'show']);
+Route::post('booths/{booth_id}/message', [BoothController::class, 'storeMessage']);
