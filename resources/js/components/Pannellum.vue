@@ -390,4 +390,13 @@ export default {
     width: 100%;
     height: 100%;
   }  
+   div >>> .pnlm-about-msg {
+    width: 0;
+    height: 0;
+    padding: 0;
+    
+  }
+  .pnlm-about-msg >>> a { 
+    display: none; 
+  }
 </style>

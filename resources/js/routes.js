@@ -21,9 +21,9 @@ export const routes = [
         name: 'home',
         path: '/',
         component: Pannellum,
-        // meta: { 
-        //     requiresAuth: true,
-        //  }
+        meta: { 
+            requiresAuth: true,
+         }
     },
     {
         name: 'sponsors',
@@ -72,7 +72,6 @@ export const routes = [
         component: Login,
         meta: { 
             requiresAuth: false,
-            requireCanManageBooth: true
          }
     },  
     {
