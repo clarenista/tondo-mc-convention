@@ -5,12 +5,10 @@
         </span>
 
         <select class="custom-select" required name="{{ $key }}">
-            <option value="">Choose...</option>
-            <option value="lobby">Lobby</option>
-            <option value="hall_a">Hall A</option>
-            <option value="hall_b">Hall B</option>
-            <option value="hall_c">Hall C</option>
-            <option value="hall_d">Hall D</option>
+            <option value="">Select type</option>
+            <option value="gold">Gold</option>
+            <option value="silver">Silver</option>
+            <option value="bronze">Bronze</option>
         </select>
         <!-- <input type="text" class="form-control" name="{{ $key }}" placeholder="{{ $label }}" aria-label="{{ $label }}"
             value="{{ old($key, $model->{$key}) }}"> -->
