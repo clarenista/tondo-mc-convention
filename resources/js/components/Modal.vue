@@ -1,6 +1,6 @@
 <template>
 <!-- Modal -->
-        <div class="modal" :class="value ? 'modal-open': ''">
+        <div class="modal" :class="value ? 'modal-open': ''" :style="value ? 'display:flex;': ''">
             <div 
                 class="modal fade" 
                 :class="value ? 'show' : ''" 
@@ -38,6 +38,5 @@ export default {
 }
 </script>
 <style scoped>
-
     
 </style>
