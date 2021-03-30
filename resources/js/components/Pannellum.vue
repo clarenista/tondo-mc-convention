@@ -79,47 +79,47 @@ export default {
                         // meeting hall left
                         {
                             "type": "scene",
-                            "pitch": 12.9,
-                            "yaw": -23.5,
+                            "pitch": 19.1,
+                            "yaw": -23.1,
                             "cssClass": "custom-hotspot meeting_hall",
                             "sceneId": "meeting_hall",
                         },
                         // meeting hall right
                         {
-                            "pitch": 12.9,
-                            "yaw": 23.3,
+                            "pitch": 19,
+                            "yaw": 23.1,
                             "type": "scene",
                             "cssClass": "custom-hotspot meeting_hall",
                             "sceneId": "meeting_hall",
                         },
                         // hall a
                         {
-                            "pitch": 1.9,
-                            "yaw": -21.3,
+                            "pitch": 1.8,
+                            "yaw": -20.4,
                             "type": "scene",
                             "cssClass": "custom-hotspot exhibit_hall",
                             "sceneId": "exhibit_hall_a"
                         },
                         // hall b
                         {
-                            "pitch": -3,
-                            "yaw": -21.3,
+                            "pitch": -3.1,
+                            "yaw": -20.4,
                             "type": "scene",
                             "cssClass": "custom-hotspot exhibit_hall",
                             "sceneId": "exhibit_hall_b"
                         },
                         // hall c
                         {
-                            "pitch": 1.9,
-                            "yaw": 21.3,
+                            "pitch": 1.8,
+                            "yaw": 20.4,
                             "type": "scene",
                             "cssClass": "custom-hotspot exhibit_hall",
                             "sceneId": "exhibit_hall_c"
                         },
                         // hall d
                         {
-                            "pitch": -3,
-                            "yaw": 21.3,
+                            "pitch": -3.1,
+                            "yaw": 20.4,
                             "type": "scene",
                             "cssClass": "custom-hotspot exhibit_hall",
                             "sceneId": "exhibit_hall_d"
