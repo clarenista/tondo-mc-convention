@@ -71,7 +71,7 @@ class BoothController extends Controller
             ]), 'booth');
 
             $hotspot = $booth->hotspots()->create([
-                'name' => 'External Link',
+                'name' => 'external-link',
                 'x' => 0,
                 'y' => 0,
             ]);
@@ -86,7 +86,7 @@ class BoothController extends Controller
             $hotspot->assets()->attach($asset);
 
             $hotspot = $booth->hotspots()->create([
-                'name' => 'Contact Us Link',
+                'name' => 'contact-us',
                 'x' => 0,
                 'y' => 0,
             ]);
