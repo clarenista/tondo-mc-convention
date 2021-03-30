@@ -47,6 +47,7 @@ class BoothController extends Controller
     {
 
         DB::transaction(function () {
+
             $booth = Booth::create(
                 \request()->validate([
                     'user_id' => 'required',
@@ -59,40 +60,46 @@ class BoothController extends Controller
                     'type' => 'required',
                 ])
             );
+
             $this->uploadFile($booth->assets()->create([
                 'type' => 'Booth',
                 'category' => 'background',
             ]), 'background');
+
             $this->uploadFile($booth->assets()->create([
                 'type' => 'Booth',
                 'category' => 'booth',
             ]), 'booth');
 
             $hotspot = $booth->hotspots()->create([
-                'name' => 'External Link',
+                'name' => 'external-link',
                 'x' => 0,
                 'y' => 0,
             ]);
 
-            $hotspot->assets()->create([
+            $asset = $hotspot->assets()->create([
                 'name' => 'Website',
                 'url' => 'http://localhost',
                 'type' => 'Booth',
                 'category' => 'external-link',
             ]);
 
+            $hotspot->assets()->attach($asset);
+
             $hotspot = $booth->hotspots()->create([
-                'name' => 'Contact Us Link',
+                'name' => 'contact-us',
                 'x' => 0,
                 'y' => 0,
             ]);
 
-            $hotspot->assets()->create([
+            $asset = $hotspot->assets()->create([
                 'name' => 'Contact Us',
                 'url' => 'http://localhost',
                 'type' => 'Booth',
                 'category' => 'contact-us',
             ]);
+
+            $hotspot->assets()->attach($asset);
         });
 
         return \redirect()->route('cms.booths.index')
