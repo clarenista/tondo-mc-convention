@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isWelcomed: true,
     roles: [
         {value: 'ADMIN', key: 'admin'},
         {value: 'SPONSOR', key: 'sponsor'},
@@ -49,7 +50,9 @@ export default new Vuex.Store({
     changeUser(state, user) {
       state.user = user
     },
-    
+    updateIsWelcomed(state, isWelcomed) {
+      state.isWelcomed = isWelcomed
+    },
 
   },
   getters: {
@@ -60,5 +63,6 @@ export default new Vuex.Store({
     halls: state => state.halls,
     sponsors: state => state.sponsors,
     meetingHalls: state => state.meetingHalls,
+    isWelcomed: state => state.isWelcomed,
   }
 })

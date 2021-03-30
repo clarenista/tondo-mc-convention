@@ -137,10 +137,12 @@
                 fd.append('email', this.text_email)
                 fd.append('password', this.text_password)
                 let {data} = await axios.post('/api/v1/login', fd)
-                if(data.status === 'ok'){
+                console.log(data)
+                if(data.response.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
-                    this.$store.commit('changeUser', data.user)
+                    this.$store.commit('changeUser', data.response.user)
+                    localStorage.setItem("access_token", data.access_token);
                     this.$router.push('/')
                 }else{
                     this.isLoginSuccess = false

@@ -2,16 +2,29 @@
     <div class="background full">
       <div id="panorama">
       </div>
-        <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
+      <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
+      <Modal :value="$store.getters.isWelcomed">
+        <template v-slot:title >
+            <h3>Hello {{$store.getters.user.first_name}},</h3>
+        </template>
+        <template v-slot:body >
+            <p>Welcome to First PSP Virtual Event. </p>
+        </template>
+        <template v-slot:footer >
+            <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">Done</button>
+        </template>
+      </Modal>  
     </div>
 </template>
 <script>
 import Sidebar from './Sidebar'
+import Modal from './Modal'
 export default {
   components:{
-    Sidebar
+    Sidebar, Modal
   },
     created() {
+      // this.showModal = true
     },
     data() {
       return {
@@ -23,6 +36,7 @@ export default {
         hall_b_booths: null,
         hall_c_booths: null,
         hall_d_booths: null,
+        showModal: true
       }
     },
     mounted() {
@@ -327,10 +341,12 @@ export default {
           _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
         }
         this.panorama_details.scenes.scene.hotSpots.push(...this.booths)
-        console.log(this.booths)
       },
       handleNavigateTo(sceneId){
         this.viewer.loadScene(sceneId)
+      },
+      handleUpdateIsWelcomed(){
+        this.$store.commit('updateIsWelcomed', false)
       }
     }
 }
@@ -406,4 +422,5 @@ export default {
   .pnlm-about-msg >>> a { 
     display: none; 
   }
+
 </style>

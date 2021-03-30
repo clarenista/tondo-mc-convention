@@ -46,7 +46,10 @@ class HomeController extends Controller
                 'password' => $request->password,
             ],
         ]);
-        return json_decode((string) $response->getBody(), true);
+        return response()->json([
+            'response' => json_decode((string) $response->getBody(), true),
+            'access_token' => json_decode((string) $token->getBody(), true)['access_token']
+        ]);
         
         // $user = User::where('email', $request->email)->first();
         // if($user){

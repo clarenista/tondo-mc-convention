@@ -22,7 +22,7 @@ export const routes = [
         path: '/',
         component: Pannellum,
         meta: { 
-            // requiresAuth: true,
+            requiresAuth: true,
          }
     },
     {
