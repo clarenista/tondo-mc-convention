@@ -80,7 +80,10 @@ class ExternalLinkController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $asset = Asset::find($id);
+        // $asset = Asset::find($id);
+
+        $asset = \request()->user()->booth->assets()->whereCategory('external-link')->first();
+
         return view('cms.external_link.form', \compact('asset'));
     }
 
@@ -95,10 +98,10 @@ class ExternalLinkController extends Controller
     {
         $asset_id = Asset::find($id)
                     ->update([
-                        'name' => $request['name'], 
+                        'name' => $request['name'],
                         'url' => $request['url']
                     ]);
-        
+
         return \redirect()->route('cms.sponsor.links.index')
             ->with('success', 'You have successfully updated the file.');
     }
