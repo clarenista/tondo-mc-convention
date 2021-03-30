@@ -56,6 +56,7 @@ class BoothController extends Controller
                     'pitch' => 'required',
                     'yaw' => 'required',
                     'panorama_location' => 'required',
+                    'type' => 'required',
                 ])
             );
             $this->uploadFile($booth->assets()->create([
@@ -106,6 +107,7 @@ class BoothController extends Controller
                     'pitch' => 'required',
                     'yaw' => 'required',
                     'panorama_location' => 'required',
+                    'type' => 'required',
                 ])
             );
             foreach (\request()->hotspots as $hotspot_id => $hotspot) {

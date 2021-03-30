@@ -17,6 +17,7 @@ class Booth extends Model
         'pitch',
         'yaw',
         'panorama_location',
+        'type',
         'active',
     ];
 
