@@ -32,12 +32,12 @@
                     </li>
                 @endforeach
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.links.index') }}">External Links</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Contact</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Quiz</a>
                 </li>

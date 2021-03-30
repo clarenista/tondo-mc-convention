@@ -116,7 +116,8 @@ Add Booth
                             </span>
                             <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
                                 placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
-                            <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">X</button>
+                            <button class="btn-delete btn btn-info btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">&check;</button>
+                            <a class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">X</a>
                         </div>
                     </div>
                 @endforeach
