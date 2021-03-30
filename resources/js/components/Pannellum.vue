@@ -1,12 +1,16 @@
 <template >
     <div class="background full">
       <div id="panorama">
-
       </div>
+        <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
     </div>
 </template>
 <script>
+import Sidebar from './Sidebar'
 export default {
+  components:{
+    Sidebar
+  },
     created() {
     },
     data() {
@@ -324,6 +328,9 @@ export default {
         }
         this.panorama_details.scenes.scene.hotSpots.push(...this.booths)
         console.log(this.booths)
+      },
+      handleNavigateTo(sceneId){
+        this.viewer.loadScene(sceneId)
       }
     }
 }
