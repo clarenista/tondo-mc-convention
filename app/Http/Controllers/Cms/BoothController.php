@@ -67,6 +67,32 @@ class BoothController extends Controller
                 'type' => 'Booth',
                 'category' => 'booth',
             ]), 'booth');
+
+            $hotspot = $booth->hotspots()->create([
+                'name' => 'External Link',
+                'x' => 0,
+                'y' => 0,
+            ]);
+
+            $hotspot->assets()->create([
+                'name' => 'Website',
+                'url' => 'http://localhost',
+                'type' => 'Booth',
+                'category' => 'external-link',
+            ]);
+
+            $hotspot = $booth->hotspots()->create([
+                'name' => 'Contact Us Link',
+                'x' => 0,
+                'y' => 0,
+            ]);
+
+            $hotspot->assets()->create([
+                'name' => 'Contact Us',
+                'url' => 'http://localhost',
+                'type' => 'Booth',
+                'category' => 'contact-us',
+            ]);
         });
 
         return \redirect()->route('cms.booths.index')
