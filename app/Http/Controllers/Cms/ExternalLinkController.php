@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use Database\Seeders\BoothSeeder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -105,8 +106,10 @@ class ExternalLinkController extends Controller
             'url' => $request['url'],
         ]);
 
-        return \redirect()->route('cms.sponsor.links.index')
-            ->with('success', 'You have successfully updated the file.');
+        return view('cms.external_link.form', \compact('asset'));
+
+        // return \redirect()->route('cms.sponsor.links.index')
+        //     ->with('success', 'You have successfully updated the file.');
     }
 
     /**
