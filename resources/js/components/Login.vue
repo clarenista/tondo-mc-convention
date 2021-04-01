@@ -86,8 +86,7 @@
                 let fd = new FormData()
                 fd.append('email', this.text_email)
                 fd.append('password', this.text_password)
-                let {data} = await axios.post('/api/v1/login', fd)
-                console.log(data)
+                let {data} = await axios.post('/api/login', fd)
                 if(data.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
