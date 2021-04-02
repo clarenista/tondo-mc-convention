@@ -15,7 +15,7 @@ class UserMessage extends Model
         'subject',
         'name',
         'affiliation',
-        'moibile_number',
+        'mobile_number',
         'email',
         'interest',
         'message',
