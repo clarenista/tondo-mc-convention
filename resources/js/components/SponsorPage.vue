@@ -156,7 +156,7 @@ export default {
     methods:{
         async init(){
             const wrapper = document.querySelector('.hotspots--wrapper');
-            let {data} = await axios.get('/api/v1/booths/'+this.id);
+            let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
             // $(window)
             //     .resize(function() {
@@ -195,7 +195,7 @@ export default {
             this.value = false
         },
         async handleSendMessage(){
-          let url = '/api/v1/booths/{booth_id}/message?api_token='+localStorage.getItem('access_token')
+          let url = '/api/v1/booths/'+this.id+'/message?api_token='+localStorage.getItem('access_token')
 
           // append text fields
           let fd = new FormData()
@@ -207,6 +207,7 @@ export default {
           fd.append('interest', this.interest)
           fd.append('message', this.message)
           let {data} = await axios.post(url, fd)
+          
           if(data.status === 'ok'){
             this.successMessage = true
           }

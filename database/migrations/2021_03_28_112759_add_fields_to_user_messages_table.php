@@ -16,7 +16,7 @@ class AddFieldsToUserMessagesTable extends Migration
         Schema::table('user_messages', function (Blueprint $table) {
             $table->string('interest')->nullable()->after('user_id');
             $table->string('email')->nullable()->after('user_id');
-            $table->string('moible_number')->nullable()->after('user_id');
+            $table->string('mobile_number')->nullable()->after('user_id');
             $table->string('affiliation')->nullable()->after('user_id');
             $table->string('name')->nullable()->after('user_id');
             $table->string('subject')->nullable()->after('user_id');
@@ -32,7 +32,7 @@ class AddFieldsToUserMessagesTable extends Migration
     public function down()
     {
         Schema::table('user_messages', function (Blueprint $table) {
-            $table->dropColumn(['interest','email','moible_number','affiliation','name','subject','booth_id']);
+            $table->dropColumn(['interest','email','mobile_number','affiliation','name','subject','booth_id']);
         });
     }
 }
