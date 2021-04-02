@@ -195,7 +195,7 @@ export default {
             this.value = false
         },
         async handleSendMessage(){
-          let url = '/api/v1/booths/{booth_id}/message?api_token='+localStorage.getItem('access_token')
+          let url = '/api/v1/booths/'+this.id+'/message?api_token='+localStorage.getItem('access_token')
 
           // append text fields
           let fd = new FormData()
