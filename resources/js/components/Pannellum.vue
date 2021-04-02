@@ -77,54 +77,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        // meeting hall left
-                        {
-                            "type": "scene",
-                            "pitch": 19.1,
-                            "yaw": -23.1,
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        // meeting hall right
-                        {
-                            "pitch": 19,
-                            "yaw": 23.1,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        // hall a
-                        {
-                            "pitch": 1.8,
-                            "yaw": -20.4,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot exhibit_hall",
-                            "sceneId": "exhibit_hall_a"
-                        },
-                        // hall b
-                        {
-                            "pitch": -3.1,
-                            "yaw": -20.4,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot exhibit_hall",
-                            "sceneId": "exhibit_hall_b"
-                        },
-                        // hall c
-                        {
-                            "pitch": 1.8,
-                            "yaw": 20.4,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot exhibit_hall",
-                            "sceneId": "exhibit_hall_c"
-                        },
-                        // hall d
-                        {
-                            "pitch": -3.1,
-                            "yaw": 20.4,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot exhibit_hall",
-                            "sceneId": "exhibit_hall_d"
-                        },
+
                     ]
                 },
 
@@ -140,20 +93,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        {
-                            "pitch": 3.8,
-                            "yaw": -29.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot left_arrow",
-                            "sceneId": "lobby",
-                        },
-                        {
-                            "pitch": 3.8,
-                            "yaw": 29.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot right_arrow",
-                            "sceneId": "lobby",
-                        },
+                        
                     ]
                 },
                 "exhibit_hall_a" :{
@@ -168,27 +108,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        {
-                            "pitch": -3,
-                            "yaw": -0,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot left_arrow",
-                            "sceneId": "lobby",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": -10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": 10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
+                        
                     ]
                 },
                 "exhibit_hall_b" :{
@@ -203,27 +123,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        {
-                            "pitch": -3,
-                            "yaw": -0,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot left_arrow",
-                            "sceneId": "lobby",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": -10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": 10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
+                        
                     ]
                 },
                 "exhibit_hall_c" :{
@@ -238,27 +138,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        {
-                            "pitch": -3,
-                            "yaw": -0,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot left_arrow",
-                            "sceneId": "lobby",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": -10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": 10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
+                        
                     ]
                 },
                 "exhibit_hall_d" :{
@@ -273,34 +153,14 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        {
-                            "pitch": -3,
-                            "yaw": -0,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot left_arrow",
-                            "sceneId": "lobby",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": -10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
-                        {
-                            "pitch": 10.6,
-                            "yaw": 10.6,
-                            "type": "scene",
-                            "cssClass": "custom-hotspot meeting_hall",
-                            "sceneId": "meeting_hall",
-                        },
+                        
                     ]
                 }
             }
         }
         for(let i in this.booths){
           this.booths[i].cssClass = "custom-hotspot booth"
-          this.booths[i].clickHandlerFunc = ()=>{ this.$router.push('/sponsors/'+this.booths[i].id)}
+          this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
           
         }
         this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
@@ -308,17 +168,35 @@ export default {
         this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
         this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
         this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+        for(let i in this.$store.getters.scene_hotSpots){
+          this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+        }
+        this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
         this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+
+        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+        
+        this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
         this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(...this.hall_a_booths)
+
+        this.panorama_details.scenes.exhibit_hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
         this.panorama_details.scenes.exhibit_hall_b.hotSpots.push(...this.hall_b_booths)
+
+        this.panorama_details.scenes.exhibit_hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
         this.panorama_details.scenes.exhibit_hall_c.hotSpots.push(...this.hall_c_booths)
+
+        this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
         this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(...this.hall_d_booths)
 
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
         this.viewer= pannellum.viewer('panorama', this.panorama_details ); 
         // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
-        this.viewer.on('scenechange', this.reSize)
+        this.viewer.on('scenechange', this.handleSceneChange)
         this.reSize()
+      },
+      handleSceneChange(){
+        this.reSize()
+        this.$store.commit('changeCurrentScene',this.viewer.getScene())
       },
       reSize() {
         // Get screen size (inner/outerWidth, inner/outerHeight)
@@ -345,9 +223,31 @@ export default {
       },
       handleNavigateTo(sceneId){
         this.viewer.loadScene(sceneId)
+        const label = sceneId+" hotspot"
+        this.sendGuestEvent('click', label)
       },
       handleUpdateIsWelcomed(){
         this.$store.commit('updateIsWelcomed', false)
+      },
+      handleBoothClicked(booth){
+        console.log()
+        const label = booth.name+" booth"
+        this.$router.push('sponsors/'+booth.id)
+        this.sendGuestEvent('click', label)
+      },
+      handleHotspotClicked(scene){
+        const label = scene+" hotspot"
+        this.sendGuestEvent('click', label)
+      },
+      async sendGuestEvent(event, label){
+        // category: lobby,
+        // label: click Astra Zeneca Booth
+        let fd = new FormData()
+        fd.append('category', this.$store.getters.currentScene)
+        fd.append('label', event+" "+label)
+        fd.append('user', this.$store.getters.user.id)
+
+        let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
       }
     }
 }
