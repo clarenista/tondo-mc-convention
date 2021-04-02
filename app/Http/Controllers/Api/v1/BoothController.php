@@ -40,7 +40,8 @@ class BoothController extends Controller
 
     public function storeMessage($booth_id)
     {
-        $response = request()
+        $response = request()->user();
+        dd($response)
             ->user()
             ->boothMessages()
             ->create(
@@ -57,7 +58,7 @@ class BoothController extends Controller
                     'message' => 'nullable',
                 ])
             );
-
+            
         return $response;
     }
 }

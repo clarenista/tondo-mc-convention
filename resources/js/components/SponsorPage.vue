@@ -86,6 +86,16 @@
                         </template>
                         <!-- CONTACT US FORM -->
 
+                        <template v-if="selectedHotspot.name == 'Brochures'">
+                          <div class="col-12">
+                            <ul>
+                              <li>list 1</li>
+                              <li>list 2</li>
+                              <li>list 3</li>
+                            </ul>
+                          </div>
+                        </template>
+
                     </div>
                 </template>
                 <template v-slot:footer >
@@ -97,6 +107,7 @@
             <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back to lobby</button>
         </div>
         <section class="hotspots--wrapper" >
+          <!-- {{booth_details}} -->
             <img src="/images/bt.png" class="hotspots--figure">
             <a v-if="booth_details.hotspots != null" href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
                 <span class="hotspot--cta"></span>
@@ -184,8 +195,7 @@ export default {
             this.value = false
         },
         async handleSendMessage(){
-          let access_token = localStorage.getItem('access_token');
-          let url = '/api/v1/booths/{booth_id}/message?access_token='+access_token
+          let url = '/api/v1/booths/{booth_id}/message?api_token='+localStorage.getItem('access_token')
 
           // append text fields
           let fd = new FormData()
