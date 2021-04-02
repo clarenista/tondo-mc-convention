@@ -1,5 +1,8 @@
 <template>
     <div id="container" >
+            <div class="alert alert-success" role="alert" v-if="successMessage">
+                Message sent.
+            </div>
            <Modal :value="value" v-if="selectedHotspot != null">
                 <template v-slot:title >
                     <h1>{{selectedHotspot.name}}</h1>
@@ -9,6 +12,80 @@
                         <div class="col-12">
                             <img  :src="selectedHotspot.assets[0].url" class="img-fluid" alt="" srcset="">
                         </div>
+
+                        <!-- CONTACT US FORM -->
+                        <template v-if="selectedHotspot.name == 'contact-us'">
+                        
+                        <div class="col-12 mb-3">
+                          <!-- {{selectedHotspot.assets[0].url}} -->
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Subject</span>
+                              </span>
+                              <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
+                          </div>
+                        </div>
+                        
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Fullname</span>
+                              </span>
+                              <input type="text" class="form-control" v-model="name" placeholder="Fullname" aria-label="">
+                          </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Affiliation</span>
+                              </span>
+                              <input type="text" class="form-control" v-model="affiliation" placeholder="Affiliation" aria-label="">
+                          </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Mobile #</span>
+                              </span>
+                              <input type="text" class="form-control" v-model="mobile_number" placeholder="Mobile #" aria-label="">
+                          </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Email</span>
+                              </span>
+                              <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
+                          </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Interest</span>
+                              </span>
+                              <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
+                          </div>
+                        </div>
+
+                        <div class="col-12 mb-3">
+                          <div class="input-group">
+                              <span class="input-group-prepend">
+                                  <span class="input-group-text">Message</span>
+                              </span>
+                              <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
+                          </div>
+                        </div>
+
+                        <div class="col-12">
+                          <button class="btn btn-success btn-block" @click="handleSendMessage()">&#9993; SEND MESSAGE</button>
+                        </div>
+                        </template>
+                        <!-- CONTACT US FORM -->
+
                     </div>
                 </template>  
                 <template v-slot:footer >
@@ -52,7 +129,17 @@ export default {
             booth_details: null,
             modalShow: false,
             selectedHotspot: null,
-            value: false
+            value: false,
+            // contact-us field
+            subject: '',
+            name: '',
+            affiliation: '',
+            mobile_number: '',
+            email: '',
+            interest: '',
+            message: '',
+            successMessage: false,
+
         }
     },
     methods:{
@@ -95,6 +182,25 @@ export default {
         handleCloseModal(){
             this.selectedHotspot = null
             this.value = false
+        },
+        async handleSendMessage(){
+          let access_token = localStorage.getItem('access_token');
+          let url = '/api/v1/booths/{booth_id}/message?access_token='+access_token
+
+          // append text fields
+          let fd = new FormData()
+          fd.append('subject', this.subject)
+          fd.append('name', this.name)
+          fd.append('affiliation', this.affiliation)
+          fd.append('mobile_number', this.mobile_number)
+          fd.append('email', this.email)
+          fd.append('interest', this.interest)
+          fd.append('message', this.message)
+          let {data} = await axios.post(url, fd)
+          if(data.status === 'ok'){
+            this.successMessage = true
+          }
+          
         }
     }
 

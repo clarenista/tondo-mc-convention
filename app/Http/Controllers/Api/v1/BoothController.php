@@ -51,7 +51,7 @@ class BoothController extends Controller
                     'subject' => 'nullable',
                     'name' => 'nullable',
                     'affiliation' => 'nullable',
-                    'moible_number' => 'nullable',
+                    'mobile_number' => 'nullable',
                     'email' => 'nullable',
                     'interest' => 'nullable',
                     'message' => 'nullable',
