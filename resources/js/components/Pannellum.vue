@@ -49,8 +49,8 @@ export default {
       async init(){
         let vm = this
         // auth:api
-        // let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
-        let {data} = await axios.get('api/v1/booths')
+        let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
+        // let {data} = await axios.get('api/v1/booths')
         this.$store.commit('updateBooths', data)
         this.booths = this.$store.getters.booths
         
