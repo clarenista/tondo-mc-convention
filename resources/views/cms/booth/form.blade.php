@@ -103,6 +103,7 @@ Add Booth
                 @include('cms.include.input-text', ['key' => 'pitch', 'label' => 'X Position'])
                 @include('cms.include.input-text', ['key' => 'yaw', 'label' => 'Y Position'])
                 @include('cms.include.input-select', ['key' => 'panorama_location', 'label' => 'Location'])
+                @include('cms.include.input-select-type', ['key' => 'type', 'label' => 'Booth Type'])
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
@@ -115,14 +116,15 @@ Add Booth
                             </span>
                             <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
                                 placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
-                            <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">X</button>
+                            <button class="btn-edit btn btn-info btn-sm ml-3 text-center" type="button" data-href="">&#9998;</button>
+                            <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">&#10008;</button>
                         </div>
                     </div>
                 @endforeach
                 
                 <br>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">{{isset($booth->id) ? 'EDIT NEW BOOTH' : 'ADD NEW BOOTH'}}</button>
+                    <button class="btn btn-success btn-block">&#10004; {{isset($booth->id) ? 'EDIT NEW BOOTH' : 'ADD NEW BOOTH'}}</button>
                 </div>
             </form>
         </div>
@@ -145,7 +147,7 @@ Add Booth
                     
                     <br>
                     <div class="form-group">
-                        <button class="btn btn-success btn-block">Add hotspot</button>
+                        <button class="btn btn-success btn-block">&#10004; Add hotspot</button>
                     </div>
                 </form>
                 </div>

@@ -6,7 +6,7 @@
 
         <select class="custom-select" required name="{{ $key }}">
             <option value="">Choose...</option>
-            <option value="looby">Lobby</option>
+            <option value="lobby">Lobby</option>
             <option value="hall_a">Hall A</option>
             <option value="hall_b">Hall B</option>
             <option value="hall_c">Hall C</option>

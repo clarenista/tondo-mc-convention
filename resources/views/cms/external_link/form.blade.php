@@ -20,14 +20,14 @@ Add External Link
         <div class="col-md-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('cms.sponsor.links.index') }}">External Link</a></li>
+                    <!-- <li class="breadcrumb-item"><a href="{{ route('cms.sponsor.links.index') }}">External Link</a></li> -->
                     <li class="breadcrumb-item active" aria-current="page">Add External Link</li>
                 </ol>
             </nav>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <a href="{{ route('cms.sponsor.links.index') }}" class="btn btn-info float-right">RETURN</a>
-        </div>
+        </div> -->
         <div class="col-md-6">
             <form action="{{ route('cms.sponsor.links.store') . ( $asset->id ? '/' . $asset->id : '') }}" method="post">
                 @csrf
@@ -67,7 +67,7 @@ Add External Link
                 </div>
                 
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">{{isset($asset->id) ? 'UPDATE EXTERNAL LINK' : 'ADD EXTERNAL LINK'}}</button>
+                    <button class="btn btn-info btn-block">&#10004; {{isset($asset->id) ? 'UPDATE EXTERNAL LINK' : 'ADD EXTERNAL LINK'}}</button>
                 </div>
             </form>
         </div>

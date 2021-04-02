@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Cms;
 
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
+use Database\Seeders\BoothSeeder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExternalLinkController extends Controller
 {
@@ -15,11 +16,12 @@ class ExternalLinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $user_id = Auth::id();
         $assets = Asset::where('type', '=', 'external_link')
-                        ->where('user_id', $user_id)
-                        ->get();
+            ->where('user_id', $user_id)
+            ->get();
         return view('cms.external_link.list', compact('assets'));
     }
 
@@ -28,7 +30,8 @@ class ExternalLinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
+    public function create()
+    {
 
         $asset = new Asset;
         return view('cms.external_link.form', \compact('asset'));
@@ -80,7 +83,9 @@ class ExternalLinkController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $asset = Asset::find($id);
+
+        $asset = \request()->user()->booth->hotspots()->whereName('external-link')->first()->assets()->first();
+
         return view('cms.external_link.form', \compact('asset'));
     }
 
@@ -93,14 +98,18 @@ class ExternalLinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $asset_id = Asset::find($id)
-                    ->update([
-                        'name' => $request['name'], 
-                        'url' => $request['url']
-                    ]);
-        
-        return \redirect()->route('cms.sponsor.links.index')
-            ->with('success', 'You have successfully updated the file.');
+
+        $asset = \request()->user()->booth->hotspots()->whereName('external-link')->first()->assets()->first();
+
+        $asset_id = $asset->update([
+            'name' => $request['name'],
+            'url' => $request['url'],
+        ]);
+
+        return view('cms.external_link.form', \compact('asset'));
+
+        // return \redirect()->route('cms.sponsor.links.index')
+        //     ->with('success', 'You have successfully updated the file.');
     }
 
     /**

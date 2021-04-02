@@ -46,7 +46,7 @@ class UserController extends Controller
                 \request()->validate([
                     'first_name' => 'required|string',
                     'last_name' => 'required|string',
-                    'mobile_number' => 'required|integer',
+                    'mobile_number' => 'required|string',
                     'email' => 'unique:users',
                     'password' => 'required',
                 ])

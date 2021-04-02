@@ -26,17 +26,18 @@
         <ul class="navbar-nav mr-auto">
             @hasrole('sponsor')
 
-                @foreach (Auth::user()->booth->hotspots as $hotspot)
+                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['external-link','contact-us']) as $hotspot)
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->name }}</a>
                     </li>
                 @endforeach
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.index') }}">External Links</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.edit',1) }}">External Links</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Contact</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.contacts.edit',1) }}">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">Quiz</a>
