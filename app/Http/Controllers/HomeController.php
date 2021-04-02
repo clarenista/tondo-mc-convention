@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function login(Request $request){
         $guzzle = new \GuzzleHttp\Client;
 
-        $token = $guzzle->post('http://localhost:90/oauth/token', [
+        $token = $guzzle->post(env('DOMAIN').'/oauth/token', [
             'form_params' => [
                 'grant_type' => env('PASSPORT_GRANT_TYPE'),
                 'client_id' => env('PASSPORT_CLIENT_ID'),
@@ -38,7 +38,7 @@ class HomeController extends Controller
         ]);
         // return json_decode((string) $token->getBody(), true)['access_token'];
         
-        $response = $guzzle->post('http://localhost:90/api/user', [
+        $response = $guzzle->post(env('DOMAIN').'/api/user', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.json_decode((string) $token->getBody(), true)['access_token'],
