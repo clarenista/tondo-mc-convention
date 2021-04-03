@@ -11,7 +11,7 @@ class GuestEventController extends Controller
 
     public function push()
     {
-
+        // dd(\request()->user());
         $input = \request()->validate([
             'type' => 'in:ping,event',
             'category' => 'required',

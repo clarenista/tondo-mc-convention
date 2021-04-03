@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\ApiTokenController;
+use Illuminate\Support\Str;
 
 
 class HomeController extends Controller
@@ -26,17 +28,17 @@ class HomeController extends Controller
     public function login(Request $request){
         $guzzle = new \GuzzleHttp\Client;
 
-        $token = $guzzle->post('http://localhost:90/oauth/token', [
+        $token = $guzzle->post(env('DOMAIN').'/oauth/token', [
             'form_params' => [
-                'grant_type' => 'client_credentials',
-                'client_id' => '3',
-                'client_secret' => 'ypUepPwgymTaZtt6mvdjAkoOHGjPcZTVvBaHUjBM',
+                'grant_type' => env('PASSPORT_GRANT_TYPE'),
+                'client_id' => env('PASSPORT_CLIENT_ID'),
+                'client_secret' => env('PASSPORT_CLIENT_SECRET'),
                 'scope' => '*',
             ],
         ]);
         // return json_decode((string) $token->getBody(), true)['access_token'];
         
-        $response = $guzzle->post('http://localhost:90/api/user', [
+        $response = $guzzle->post(env('DOMAIN').'/api/user', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.json_decode((string) $token->getBody(), true)['access_token'],
@@ -46,10 +48,35 @@ class HomeController extends Controller
                 'password' => $request->password,
             ],
         ]);
-        return response()->json([
-            'response' => json_decode((string) $response->getBody(), true),
-            'access_token' => json_decode((string) $token->getBody(), true)['access_token']
-        ]);
+        $result =json_decode((string) $response->getBody(), true);
+        if($result){
+
+            $user = User::firstOrCreate(
+                [
+                    'registrant_id' => $result['user']['id']
+                ],
+                [
+                    'registrant_id' => $result['user']['id'],
+                    'api_token' => hash('sha256', Str::random(80)),
+                    'name' => $result['user']['first_name'] ." ". $result['user']['last_name'],
+                    'first_name' => $result['user']['first_name'],
+                    'last_name' => $result['user']['last_name'],
+                    'mobile_number' => $result['user']['contact'],
+                    'email' => $result['user']['username'],
+                    'password' => $result['user']['password'],
+                ]
+    
+            );
+            return response()->json([
+                'status' => 'ok',
+                'user' => $user,
+                'access_token' => $user->api_token
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'failed',
+            ]);
+        }
         
         // $user = User::where('email', $request->email)->first();
         // if($user){

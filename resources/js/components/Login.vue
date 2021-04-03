@@ -1,54 +1,4 @@
 <template>
-<!-- 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
-                    Login successs.
-                </div>
-                <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
-                    Login failed. E-mail or password not found.
-                </div>
-                
-                <div class="card border-primary mb-3" >
-                    <div class="card-header">User Login</div>
-                    <div class="card-body">
-                        <form method="POST" @submit.prevent="handleSubmit">
-                            <div class="col">
-                                <div class="form-group">
-                                    <input 
-                                        type="text" 
-                                        class="form-control" 
-                                        placeholder="Email Address *"
-                                        v-model="text_email"
-                                        required
-                                    >
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input 
-                                            :type="isSeePassword ? 'text' : 'password'" 
-                                            class="form-control" 
-                                            placeholder="Password *"
-                                            v-model="text_password"
-                                            required
-                                        >
-                                        <div class="input-group-append" @click="toggleSeePassword">
-                                            <span class="input-group-text" id="my-addon"><i :class="isSeePassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
-                                        </div>
-                                    </div>
-                                </div>             
-                                <div class="form-group">
-                                    <button class="btn btn-primary">Login</button>
-                                </div>
-                            </div>                            
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
--->
 <div class="background full">
     <div class="register">
         <div class="row">
@@ -136,12 +86,11 @@
                 let fd = new FormData()
                 fd.append('email', this.text_email)
                 fd.append('password', this.text_password)
-                let {data} = await axios.post('/api/v1/login', fd)
-                console.log(data)
-                if(data.response.status === 'ok'){
+                let {data} = await axios.post('/api/login', fd)
+                if(data.status === 'ok'){
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
-                    this.$store.commit('changeUser', data.response.user)
+                    this.$store.commit('changeUser', data.user)
                     localStorage.setItem("access_token", data.access_token);
                     this.$router.push('/')
                 }else{
@@ -165,7 +114,6 @@ div >>> .register{
 }
 div.background {
   height: 100%;
-  position: fixed;
   top: 0;
   left: 0;
 }
