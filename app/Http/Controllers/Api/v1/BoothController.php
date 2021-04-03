@@ -72,6 +72,10 @@ class BoothController extends Controller
 
         $sent_at = date("Y-m-d H:i:s");
 
+        request()->validate([
+            'answers' => 'required'
+        ]);
+
         foreach (request()->answers as $question_id => $answer) {
             QuestionAnswer::create([
                 'user_id' => request()->user()->id,
