@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\BoothController;
+use App\Http\Controllers\Api\v1\GuestController;
 use App\Http\Controllers\Api\v1\GuestEventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -24,4 +25,5 @@ Route::get('booths/{booth_id}/questionnaire', [BoothController::class, 'showQues
 Route::post('booths/{booth_id}/message', [BoothController::class, 'storeMessage']);
 Route::post('booths/{booth_id}/questionnaire/answer/submit', [BoothController::class, 'storeQuestionnaireAnswerSubmit']);
 
+Route::get('/guests/booths/tracker', [GuestController::class, 'boothTracker']);
 Route::post('/guests/event/push', [GuestEventController::class, 'push']);
