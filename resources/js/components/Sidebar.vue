@@ -1,7 +1,8 @@
 <template >
 <div>
     <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" @click="closeNav">&times;</a>
+        <div class="text-center"><img src="images/PSP_LOGO.png" width="260px" alt="psp_logo" srcset=""></div>
+    <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
     <a 
         href="javascript:void(0)" 
         v-if="item.type=='nav-item'" 
@@ -12,9 +13,11 @@
         <i class="fa" :class="item.icon"></i> {{item.name}}
     </a>
     <div class="nav-item dropdown " :class="showDropdown ? 'show' : ''" v-else>
-        <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa" :class="item.icon"></i> {{item.name}}</a>
-        <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="width:100%;">
-          <a class="dropdown-item" @click="handleNavigateTo(dropdown)" href="#" v-for="(dropdown, index) in item.dropdowns" :key="index"><i class="fa" :class="item.icon"></i> {{dropdown.name}}</a>
+        <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa" :class="item.icon"></i> {{item.name}}</a>
+        <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="width:100%; background-color: #44948c; color: #f6f6f6;">
+          <a class="dropdown-item" @click="handleNavigateTo(dropdown)" style="padding-left: 80px;" href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
+              <i class="fa" :class="item.icon"></i> {{dropdown.name}}</a>
         </div>
     </div>
     <a href="javascript:void(0)" @click="handleLogout">
@@ -45,7 +48,7 @@ export default {
     },
     methods:{
         openNav(){
-            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").style.width = "320px";
         },
         closeNav(){
             document.getElementById("mySidenav").style.width = "0";
@@ -88,23 +91,27 @@ button.open-btn{
   z-index: 3;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #4c748c;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+
+  /* transparent css */
+  background-image: linear-gradient(180deg, #4c748c, #9cf0c8);
+  opacity: 96%;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 42px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 24px;
+  color: #f1f1f1;
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: #416dff;
 }
 
 .sidenav .closebtn {
