@@ -17,4 +17,10 @@ class UserEventCategory extends Model
 
         return $this->morphTo();
     }
+
+    public function events()
+    {
+
+        return $this->hasMany(UserEvent::class);
+    }
 }

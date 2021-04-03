@@ -1,30 +1,31 @@
 <?php
 
-use App\Http\Controllers\Cms\AssetController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BannerController;
 use App\Http\Controllers\Cms\BoothController;
-use App\Http\Controllers\Cms\Sponsor\AssetController as SponsorAssetController;
-use App\Http\Controllers\Cms\ExternalLinkController;
 use App\Http\Controllers\Cms\ContactController;
+use App\Http\Controllers\Cms\ExternalLinkController;
+use App\Http\Controllers\Cms\QuestionController;
+use App\Http\Controllers\Cms\QuestionnaireController;
+use App\Http\Controllers\Cms\Sponsor\AssetController as SponsorAssetController;
+use App\Http\Controllers\Cms\Sponsor\EventController;
+use App\Http\Controllers\Cms\Sponsor\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-
 
 // Route::group(['middleware' => ['role:admin']], function () {
 
 // });
-
 
 // Route::group(['as' => 'cms.', 'middleware' => ['role:sponsor']], function () {
 
 // });
 
 Route::name('cms.')->group(function () {
-	Route::view('/booth', 'booth');
-	Route::get('/login', [AuthController::class, 'loginView'])->name('login');
-    
+    Route::view('/booth', 'booth');
+    Route::get('/login', [AuthController::class, 'loginView'])->name('login');
+
     Route::get('/logout', [AuthController::class, 'logoutUser']);
     Route::post('/login', [AuthController::class, 'loginUser']);
 
@@ -34,6 +35,8 @@ Route::name('cms.')->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('guests', UserController::class);
         Route::resource('booths', BoothController::class);
+        Route::resource('questionnaires', QuestionnaireController::class);
+
         Route::post('booths/{id}/hotspots', [BoothController::class, 'storeHotspot'])->name('hotspotStore');
         Route::post('booths/{id}/destroyHotspot', [BoothController::class, 'destroyHotspot'])->name('hotspotDestroy');
     });
@@ -44,8 +47,12 @@ Route::name('cms.')->group(function () {
             Route::resource('assets', SponsorAssetController::class);
             Route::resource('links', ExternalLinkController::class);
             Route::resource('contacts', ContactController::class);
+            Route::get('events', [EventController::class, 'index'])->name('events.index');
+            Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
+            Route::resource('contacts', ContactController::class);
         });
         Route::resource('banners', BannerController::class);
     });
 
+    Route::resource('questions', QuestionController::class);
 });

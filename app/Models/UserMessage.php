@@ -20,4 +20,10 @@ class UserMessage extends Model
         'interest',
         'message',
     ];
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
+    }
 }

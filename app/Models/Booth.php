@@ -32,9 +32,27 @@ class Booth extends Model
 
         return $this->hasMany(BoothHotspot::class);
     }
-    
-    public function user(){
-        return $this->belongsTo(User::class);
 
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
+    }
+
+    public function messages(){
+
+        return $this->hasMany(UserMessage::class);
+    }
+
+    public function questionnaire()
+    {
+
+        return $this->morphOne(Questionnaire::class, 'questionnaireable');
+    }
+
+    public function eventCategory()
+    {
+
+        return $this->morphOne(UserEventCategory::class, 'categorizable');
     }
 }

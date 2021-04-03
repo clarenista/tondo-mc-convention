@@ -40,7 +40,13 @@
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.contacts.edit',1) }}">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Quiz</a>
+                    <a class="nav-link text-white" href="{{ route('cms.questions.index', 'questionnaire_id='. auth()->user()->booth->questionnaire->id) }}">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.events.index',1) }}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.messages.index',1) }}">Messages</a>
                 </li>
             @endhasrole
 
@@ -50,6 +56,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/booths">Booths</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cms/questionnaires">Questionnaires</a>
                 </li>
             @endhasrole
         </ul>
