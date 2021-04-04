@@ -19,6 +19,9 @@ Route::post('/login', [HomeController::class, 'login']);
 Route::middleware('auth:api')->post('/registration', [UserController::class, 'storeRegistration']);
 Route::middleware('auth:api')->get('/users', [UserController::class, 'allUsers']);
 
+// Route::get('user', [UserController::class, 'user']);
+Route::get('user', [UserController::class, 'user']);
+
 Route::get('booths', [BoothController::class, 'get']);
 Route::get('booths/{booth_id}', [BoothController::class, 'show']);
 Route::get('booths/{booth_id}/questionnaire', [BoothController::class, 'showQuestionnaire']);

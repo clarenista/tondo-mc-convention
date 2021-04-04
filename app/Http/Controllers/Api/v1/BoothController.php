@@ -25,6 +25,7 @@ class BoothController extends Controller
         $return = [
             'id' => $booth->id,
             'name' => $booth->name,
+            'panorama_location' => $booth->panorama_location,
         ];
 
         foreach ($booth->assets as $asset) {

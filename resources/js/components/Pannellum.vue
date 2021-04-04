@@ -14,6 +14,7 @@
             <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">Done</button>
         </template>
       </Modal>  
+      
     </div>
 </template>
 <script>
@@ -23,9 +24,8 @@ export default {
   components:{
     Sidebar, Modal
   },
-    created() {
-      // this.showModal = true
-    },
+  props:['sceneId'],
+    
     data() {
       return {
         booths: null,
@@ -42,6 +42,7 @@ export default {
     mounted() {
        this.init()
        window.addEventListener("resize", this.reSize);
+        
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
        
     },
@@ -56,7 +57,7 @@ export default {
         
         this.panorama_details = {   
             "default": {
-                "firstScene": "lobby",
+                "firstScene": this.sceneId ? this.sceneId : "lobby",
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
@@ -77,7 +78,14 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
+                      {
+                        "clickHandlerFunc": ()=>{this.$router.push('/vote')},
+                        "scene": 'lobby',
+                        "pitch": 22,
+                        "yaw": 0,
+                        "cssClass": "custom-hotspot meeting_hall",
 
+                      },
                     ]
                 },
 

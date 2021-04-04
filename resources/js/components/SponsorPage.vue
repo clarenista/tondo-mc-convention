@@ -104,12 +104,12 @@
            </Modal>
         <div class="booth-container">
             <img class="centered" src="/images/lt.png">
-            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back to lobby</button>
+            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back to {{booth_details  ? booth_details.panorama_location.replace(/_/g, ' ') : ''}}</button>
         </div>
-        <section class="hotspots--wrapper" >
+        <section class="hotspots--wrapper" v-if="booth_details != null">
           <!-- {{booth_details}} -->
             <img src="/images/bt.png" class="hotspots--figure">
-            <a v-if="booth_details.hotspots != null" href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
+            <a  href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
                 <span class="hotspot--cta"></span>
             </a>
 
@@ -127,8 +127,8 @@ export default {
     mounted() {
      this.init()
 
-    axios.get("/images/lt.mp4")
-      .then(res => console.log(res.headers))
+    // axios.get("/images/lt.mp4")
+    //   .then(res => console.log(res.headers))
 
     //  fetch("/images/lt.mp4", {method:"HEAD"})
     // .then(response => response.headers.get("Content-Type"))
@@ -184,7 +184,7 @@ export default {
             return {right: item.y+'%', top: item.x+'%'}
         },
         handleBackToLobby(){
-            this.$router.push('/')
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
         },
         handleSelectHotspot(hotspot){
             this.value = true

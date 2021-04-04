@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 
 import Home from './components/Home.vue';
 import Pannellum from './components/Pannellum.vue';
+import Vote from './components/Vote.vue';
 import Registration from './components/Registration.vue';
 import Users from './components/Users.vue';
 import Login from './components/Login.vue';
@@ -21,6 +22,7 @@ export const routes = [
         name: 'home',
         path: '/',
         component: Pannellum,
+        props: true,
         meta: { 
             requiresAuth: true,
          }
@@ -29,7 +31,20 @@ export const routes = [
         name: 'sponsors',
         path: '/sponsors/:id',
         component: SponsorPage,
-        props: true
+        props: true,
+        meta: { 
+            requiresAuth: true,
+         }        
+
+
+    },
+    {
+        name: 'vote',
+        path: '/vote',
+        component: Vote,
+        meta: { 
+            requiresAuth: true,
+         }        
 
 
     },
@@ -109,7 +124,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     // console.log(to.matched.some(record => record.meta.requireCanCreateUser))
     if(to.matched.some(record => record.meta.requiresAuth)){
-        if(!store.getters.user){
+        if(localStorage.getItem('access_token') == null){
             next({
                 name: 'login'
             })

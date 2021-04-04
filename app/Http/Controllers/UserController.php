@@ -15,6 +15,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function user(){
+         return request()->user();
+     }
+
     public function index()
     {
         $users = User::all();
