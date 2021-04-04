@@ -178,7 +178,7 @@ class BoothController extends Controller
             $booth->eventCategory()->update([
                 'name' => Str::slug($booth->name),
                 'description' => $booth->name,
-            ])
+            ]);
         });
 
         return \redirect()->route('cms.booths.index')

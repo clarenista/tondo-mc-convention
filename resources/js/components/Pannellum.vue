@@ -230,20 +230,19 @@ export default {
         this.$store.commit('updateIsWelcomed', false)
       },
       handleBoothClicked(booth){
-        console.log()
         const label = booth.name+" booth"
         this.$router.push('sponsors/'+booth.id)
-        this.sendGuestEvent('click', label)
+        this.sendGuestEvent('click', label, booth)
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
         this.sendGuestEvent('click', label)
       },
-      async sendGuestEvent(event, label){
+      async sendGuestEvent(event, label, booth = null){
         // category: lobby,
         // label: click Astra Zeneca Booth
         let fd = new FormData()
-        fd.append('category', this.$store.getters.currentScene)
+        fd.append('category', booth != null ? booth.name : this.$store.getters.currentScene)
         fd.append('label', event+" "+label)
         fd.append('user', this.$store.getters.user.id)
 

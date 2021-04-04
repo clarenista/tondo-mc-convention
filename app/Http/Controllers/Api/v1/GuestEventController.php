@@ -18,7 +18,7 @@ class GuestEventController extends Controller
             'label' => 'string',
         ]);
 
-        $category = UserEventCategory::whereName($input['category'])->firstOrCreate([
+        $category = UserEventCategory::firstOrCreate([
             'name' => Str::slug($input['category']),
         ], [
             'description' => $input['category'],

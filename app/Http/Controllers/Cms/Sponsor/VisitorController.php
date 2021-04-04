@@ -11,11 +11,9 @@ class VisitorController extends Controller
 
     public function index()
     {
-
         $category = request()->user()->booth->eventCategory()->with(['events' => function ($q) {
             $q->with('user')->distinct('user_id');
         }])->first();
-
         return view("cms.sponsor.visitor.index", compact('category'));
     }
 }
