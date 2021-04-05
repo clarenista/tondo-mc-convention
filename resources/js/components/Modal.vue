@@ -38,5 +38,18 @@ export default {
 }
 </script>
 <style scoped>
-    
+.modal-title {
+    background-attachment: fixed;
+    object-fit: cover;
+    object-fit: scale-down;
+    min-height: 106px;
+    background: url('/images/modal_header.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+   
+}
+.modal {
+    min-width: 729px;
+
+}
 </style>

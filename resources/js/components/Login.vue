@@ -16,6 +16,7 @@
                     <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
                         Login failed. E-mail or password not found.
                     </div>
+
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading display-4 text-light">Sign In</h3>
                         <div class="row register-form justify-content-center align-items-center">
@@ -45,7 +46,8 @@
                                             </div>
                                         </div>             
                                         <div class="form-group align-middle">
-                                            <button class="btn btn-light btn-lg btn-block text-success">Login</button>
+                                            <button class="btn btn-light btn-lg btn-block text-success">
+                                                <i class="fa fa-user"></i> Login</button>
                                         </div>
                                 </form>
                             </div>                            
