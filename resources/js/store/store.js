@@ -18,6 +18,7 @@ export default new Vuex.Store({
     currentScene: 'lobby',
     
     scene_hotSpots: [
+
       {
         "scene": 'lobby',
         "type": "scene",

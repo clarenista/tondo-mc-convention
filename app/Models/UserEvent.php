@@ -15,4 +15,14 @@ class UserEvent extends Model
         'sent_at',
     ];
 
+    public function user(){
+
+        return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+
+        return $this->belongsTo(UserEventCategory::class, 'user_event_category_id', 'id');
+    }
 }

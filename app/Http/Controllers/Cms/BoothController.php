@@ -8,6 +8,7 @@ use App\Models\BoothHotspot;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BoothController extends Controller
 {
@@ -71,20 +72,29 @@ class BoothController extends Controller
                 'category' => 'booth',
             ]), 'booth');
 
+            $booth->questionnaire()->create([
+                'name' => $booth->name . " Quiz",
+                'description' => $booth->name . " Quiz",
+                'category' => "Quiz",
+            ]);
+
+            $booth->eventCategory()->create([
+                'name' => Str::slug($booth->name),
+                'description' => $booth->name,
+            ]);
+
             $hotspot = $booth->hotspots()->create([
                 'name' => 'external-link',
                 'x' => 0,
                 'y' => 0,
             ]);
 
-            $asset = $hotspot->assets()->create([
+            $hotspot->assets()->create([
                 'name' => 'Website',
                 'url' => 'http://localhost',
                 'type' => 'Booth',
                 'category' => 'external-link',
             ]);
-
-            $hotspot->assets()->attach($asset);
 
             $hotspot = $booth->hotspots()->create([
                 'name' => 'contact-us',
@@ -92,14 +102,25 @@ class BoothController extends Controller
                 'y' => 0,
             ]);
 
-            $asset = $hotspot->assets()->create([
+            $hotspot->assets()->create([
                 'name' => 'Contact Us',
-                'url' => 'http://localhost',
+                'url' => '',
                 'type' => 'Booth',
                 'category' => 'contact-us',
             ]);
 
-            $hotspot->assets()->attach($asset);
+            $hotspot = $booth->hotspots()->create([
+                'name' => 'quiz',
+                'x' => 0,
+                'y' => 0,
+            ]);
+
+            $hotspot->assets()->create([
+                'name' => 'Quiz',
+                'url' => '',
+                'type' => 'Booth',
+                'category' => 'quiz',
+            ]);
         });
 
         return \redirect()->route('cms.booths.index')
@@ -154,6 +175,10 @@ class BoothController extends Controller
                     ->whereType('Booth')
                     ->whereCategory('booth')
                     ->first(), 'booth');
+            $booth->eventCategory()->update([
+                'name' => Str::slug($booth->name),
+                'description' => $booth->name,
+            ]);
         });
 
         return \redirect()->route('cms.booths.index')
