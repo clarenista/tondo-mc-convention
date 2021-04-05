@@ -168,6 +168,7 @@ export default {
         }
         for(let i in this.booths){
           this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
           
         }

@@ -104,7 +104,7 @@
            </Modal>
         <div class="booth-container">
             <img class="centered" src="/images/lt.png">
-            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back to {{booth_details  ? booth_details.panorama_location.replace(/_/g, ' ') : ''}}</button>
+            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
         </div>
         <section class="hotspots--wrapper" v-if="booth_details != null">
           <!-- {{booth_details}} -->
@@ -159,6 +159,7 @@ export default {
             const wrapper = document.querySelector('.hotspots--wrapper');
             let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
+            this.sendBoothGuestEvent(data)
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -214,6 +215,17 @@ export default {
             this.successMessage = true
           }
 
+        },
+        async sendBoothGuestEvent(booth){
+          // category: lobby,
+          // label: click Astra Zeneca Booth
+          let fd = new FormData()
+
+          fd.append('type', 'event')
+          fd.append('category', booth.name)
+          fd.append('label', 'visit')
+
+          let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         }
     }
 

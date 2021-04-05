@@ -1,10 +1,16 @@
 <template >
-    <div class="background full">
-      <iframe src="http://pcqaclvoting2020.bobongmd.com/"></iframe>
-    </div>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="http://pcqaclvoting2020.bobongmd.com" allowfullscreen></iframe>
+    <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
+  </div>
 </template>
 <script>
 export default {
+  methods:{
+    handleBackToLobby(){
+            this.$router.push({ name: 'home' })
+        },
+  }
     
 }
 </script>

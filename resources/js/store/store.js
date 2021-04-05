@@ -26,7 +26,7 @@ export default new Vuex.Store({
         "yaw": -23.1,
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
-
+        "text": "Meeting Hall",
       },
       {
         "scene": 'lobby',
@@ -35,6 +35,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
+        "text": "Meeting Hall",
       },
       // hall a
       {
@@ -43,7 +44,8 @@ export default new Vuex.Store({
         "yaw": -20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_a"
+        "sceneId": "exhibit_hall_a",
+        "text": "Exhibit Hall A",
       },
       // hall b
       {
@@ -52,7 +54,8 @@ export default new Vuex.Store({
         "yaw": -20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_b"
+        "sceneId": "exhibit_hall_b",
+        "text": "Exhibit Hall B",
       },
       // hall c
       {
@@ -61,7 +64,8 @@ export default new Vuex.Store({
         "yaw": 20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_c"
+        "sceneId": "exhibit_hall_c",
+        "text": "Exhibit Hall C",
       },
       // hall d
       {
@@ -70,7 +74,8 @@ export default new Vuex.Store({
         "yaw": 20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_d"
+        "sceneId": "exhibit_hall_d",
+        "text": "Exhibit Hall D",
       },
       {
         "scene": 'meeting_hall',
@@ -79,6 +84,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot left_arrow",
         "sceneId": "lobby",
+        "text": "Lobby",
       },
       {
         "scene": 'meeting_hall',
@@ -87,6 +93,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot right_arrow",
         "sceneId": "lobby",
+        "text": "Lobby",
       },
       {
         "scene": 'exhibit_hall',
@@ -95,6 +102,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot left_arrow",
         "sceneId": "lobby",
+        "text": "Lobby",
       },
       {
         "scene": 'exhibit_hall',
@@ -103,6 +111,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
+        "text": "Meeting Hall",
       },
       {
         "scene": 'exhibit_hall',
@@ -111,6 +120,7 @@ export default new Vuex.Store({
         "type": "scene",
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
+        "text": "Meeting Hall",
       },
     ]
 
