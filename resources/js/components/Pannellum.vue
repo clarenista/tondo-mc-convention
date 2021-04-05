@@ -5,13 +5,14 @@
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed">
         <template v-slot:title >
-            <h3>Hello {{$store.getters.user.first_name}},</h3>
+            <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
-        <template v-slot:body >
-            <p>Welcome to First PSP Virtual Event. </p>
+        <template v-slot:body>
+            <p class="text-center lead text-success mt-3 mb-3"><strong> Welcome to First PSP Virtual Event.</strong></p>
         </template>
         <template v-slot:footer >
-            <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">Done</button>
+            <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">
+              <i class="fa fa-caret-right"></i> proceed</button>
         </template>
       </Modal>  
       
