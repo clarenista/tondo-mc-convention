@@ -20,6 +20,7 @@ Assets
                     <th class="text-center">First Name</th>
                     <th class="text-center">Last Name</th>
                     <th class="text-center">Description</th>
+                    <th class="text-center">Date/Time of visit</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +29,7 @@ Assets
                     <td>{{ $event->user->first_name }}</td>
                     <td>{{ $event->user->last_name }}</td>
                     <td>{{ $event->user->email }}</td>
+                    <td>{{ date('F d, Y - g:i:s A', strtotime($event->sent_at)) }}</td>
                 </tr>
                 @endforeach
             </tbody>

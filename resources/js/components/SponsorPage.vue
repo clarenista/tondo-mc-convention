@@ -15,23 +15,23 @@
 
                         <!-- CONTACT US FORM -->
                         <template v-if="selectedHotspot.name == 'contact-us'">
-
+                          
                         <div class="col-12 mb-3">
                           <!-- {{selectedHotspot.assets[0].url}} -->
                           <div class="input-group">
                               <span class="input-group-prepend">
-                                  <span class="input-group-text">Subject</span>
+                                  <span class="input-group-text">Subject&nbsp;&nbsp;</span>
                               </span>
                               <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
                           </div>
                         </div>
 
-                        <div class="col-12 mb-3">
+                        <!-- <div class="col-12 mb-3">
                           <div class="input-group">
                               <span class="input-group-prepend">
                                   <span class="input-group-text">Fullname</span>
                               </span>
-                              <input type="text" class="form-control" v-model="name" placeholder="Fullname" aria-label="">
+                              <input type="text" class="form-control" v-model="name" placeholder="Fullname" aria-label="" value="">
                           </div>
                         </div>
 
@@ -60,12 +60,12 @@
                               </span>
                               <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
                           </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-12 mb-3">
                           <div class="input-group">
                               <span class="input-group-prepend">
-                                  <span class="input-group-text">Interest</span>
+                                  <span class="input-group-text">Interest&nbsp;&nbsp;</span>
                               </span>
                               <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
                           </div>
@@ -151,6 +151,7 @@ export default {
             message: '',
             successMessage: false,
 
+            data: '',
         }
     },
     methods:{
@@ -209,6 +210,7 @@ export default {
           let {data} = await axios.post(url, fd)
           
           if(data.status === 'ok'){
+            this.modalShow = false
             this.successMessage = true
           }
 
