@@ -85,8 +85,8 @@ class BoothController extends Controller
 
             $hotspot = $booth->hotspots()->create([
                 'name' => 'external-link',
-                'x' => 0,
-                'y' => 0,
+                'x' => 56,
+                'y' => 21,
             ]);
 
             $hotspot->assets()->create([
@@ -98,8 +98,8 @@ class BoothController extends Controller
 
             $hotspot = $booth->hotspots()->create([
                 'name' => 'contact-us',
-                'x' => 0,
-                'y' => 0,
+                'x' => 66,
+                'y' => 16,
             ]);
 
             $hotspot->assets()->create([
@@ -111,8 +111,8 @@ class BoothController extends Controller
 
             $hotspot = $booth->hotspots()->create([
                 'name' => 'quiz',
-                'x' => 0,
-                'y' => 0,
+                'x' => 60,
+                'y' => 72,
             ]);
 
             $hotspot->assets()->create([
