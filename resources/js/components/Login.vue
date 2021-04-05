@@ -1,13 +1,14 @@
 <template>
 <div class="background full">
     <div class="register">
-        <div class="row">
-            <div class="col-md-4 register-left">
+        <div class="row col-10">
+            <div class="col-md-6 register-left">
                 <img src="/images/logo.png" alt=""/>
-                <h3>Welcome</h3>
-                <p>Philippine Society of Pathologists, Inc. Virtual Event</p>
+                <h3 class="lead text-white">Welcome</h3>
+                <p class="lead text-white">Philippine Society of Pathologists, Inc. Virtual Event</p>
             </div>
-            <div class="col-md-8 register-right">
+
+            <div class="col-md-6 register-right">
                 <div class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.
@@ -16,15 +17,15 @@
                         Login failed. E-mail or password not found.
                     </div>
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Login User</h3>
+                        <h3 class="register-heading display-4 text-light">Sign In</h3>
                         <div class="row register-form justify-content-center align-items-center">
                             <div class="col-lg-10 col-sm-12">
                                 <form method="POST" @submit.prevent="handleSubmit">
                                         <div class="form-group">
                                             <input 
                                                 type="text" 
-                                                class="form-control" 
-                                                placeholder="Username *"
+                                                class="form-control text-center" 
+                                                placeholder="Username"
                                                 v-model="text_email"
                                                 required
                                             >
@@ -33,8 +34,8 @@
                                             <div class="input-group">
                                                 <input 
                                                     :type="isSeePassword ? 'text' : 'password'" 
-                                                    class="form-control" 
-                                                    placeholder="Password *"
+                                                    class="form-control text-center" style="padding-left: 70px;" 
+                                                    placeholder="Password"
                                                     v-model="text_password"
                                                     required
                                                 >
@@ -43,19 +44,19 @@
                                                 </div>
                                             </div>
                                         </div>             
-                                        <div class="form-group">
-                                            <button class="btn btn-primary">Login</button>
+                                        <div class="form-group align-middle">
+                                            <button class="btn btn-light btn-lg btn-block text-success">Login</button>
                                         </div>
                                 </form>
                             </div>                            
                         </div>
                     </div>
                     
-                </div>
+                </div>        
             </div>
         </div>
-
     </div>
+
 </div>
 </template>
 
@@ -123,8 +124,9 @@ div.full{
 }
 .register{
     overflow: hidden;
-    background: -webkit-linear-gradient(left, #18a01f, #12ff75);
+    /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
     padding: 3%;
+    
 }
 .register-left{
     text-align: center;
@@ -144,7 +146,11 @@ div.full{
     cursor: pointer;
 }
 .register-right{
-    background: #f8f9fa;
+    text-align: center;
+    align-items: center;
+    background-image: linear-gradient(180deg,  #d2ffe9, #d0dee7);
+    background: rgba(210,255,233, 0.2);
+    /* opacity: 0.7; */
 }
 .register-left img{
     margin-top: 15%;
@@ -212,4 +218,15 @@ div.full{
     margin-bottom: -15%;
     color: #495057;
 }
+
+.btn-light {
+    border: 1px solid #cfcfcf;
+}
+.btn-light:hover {
+    background: #4c748c;
+}
+.lead{
+    text-shadow: 0 2px 3px #000;
+}
+
 </style>

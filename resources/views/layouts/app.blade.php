@@ -8,32 +8,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Convention</title>
     <style>
-<style>
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-image: linear-gradient(to right, #9cf0c8, #4c748c);
+        background-size: cover;
+        background: url("images/login_bg.jpg") no-repeat;        
+        background-position: center;
+        background-attachment: fixed;
+      }
 
-html, body {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: #000;
-}
+      a:link, a:visited{
+        color: #bdc3c7;
+      }
 
-a:link, a:visited{
-  color: #bdc3c7;
-}
-
-.credit{
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  padding: 20px 0;
-  color: #fff;
-}
-.input-group-prepend-120 {
-    width: 120px;
-}
-</style>
-
+      .credit{
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        padding: 20px 0;
+        color: #fff;
+      }
+      .input-group-prepend-120 {
+          width: 120px;
+      }
     </style>
 </head>
 <body>
