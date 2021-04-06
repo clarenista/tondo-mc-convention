@@ -15,7 +15,7 @@
         overflow: hidden;
         background-image: linear-gradient(to right, #9cf0c8, #4c748c);
         background-size: cover;
-        background: url("images/login_bg.jpg") no-repeat;        
+        background: url("images/login_bg.jpg") no-repeat;
         background-position: center;
         background-attachment: fixed;
       }
@@ -33,6 +33,9 @@
       }
       .input-group-prepend-120 {
           width: 120px;
+      }
+      #zmmtg-root {
+          display: none;
       }
     </style>
 </head>

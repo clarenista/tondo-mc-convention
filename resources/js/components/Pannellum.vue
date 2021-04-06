@@ -14,19 +14,20 @@
             <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">
               <i class="fa fa-caret-right"></i> proceed</button>
         </template>
-      </Modal>  
-      
+      </Modal>
+
     </div>
 </template>
 <script>
 import Sidebar from './Sidebar'
 import Modal from './Modal'
+import MeetingHall from './MeetingHall/MeetingHall.js'
 export default {
   components:{
     Sidebar, Modal
   },
   props:['sceneId'],
-    
+
     data() {
       return {
         booths: null,
@@ -43,9 +44,9 @@ export default {
     mounted() {
        this.init()
        window.addEventListener("resize", this.reSize);
-        
+
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
-       
+
     },
     methods:{
       async init(){
@@ -55,8 +56,8 @@ export default {
         // let {data} = await axios.get('api/v1/booths')
         this.$store.commit('updateBooths', data)
         this.booths = this.$store.getters.booths
-        
-        this.panorama_details = {   
+
+        this.panorama_details = {
             "default": {
                 "firstScene": this.sceneId ? this.sceneId : "lobby",
                 "sceneFadeDuration": 500,
@@ -102,7 +103,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        
+
                     ]
                 },
                 "exhibit_hall_a" :{
@@ -117,7 +118,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        
+
                     ]
                 },
                 "exhibit_hall_b" :{
@@ -132,7 +133,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        
+
                     ]
                 },
                 "exhibit_hall_c" :{
@@ -147,7 +148,7 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        
+
                     ]
                 },
                 "exhibit_hall_d" :{
@@ -162,15 +163,16 @@ export default {
                       "cubeResolution": 1904
                     },
                     "hotSpots": [
-                        
+
                     ]
                 }
             }
         }
         for(let i in this.booths){
           this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
-          
+
         }
         this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
         this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
@@ -184,7 +186,7 @@ export default {
         this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
 
         this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
-        
+
         this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
         this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(...this.hall_a_booths)
 
@@ -198,10 +200,16 @@ export default {
         this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(...this.hall_d_booths)
 
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
-        this.viewer= pannellum.viewer('panorama', this.panorama_details ); 
+        this.viewer= pannellum.viewer('panorama', this.panorama_details );
         // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
         this.viewer.on('scenechange', this.handleSceneChange)
+        this.viewer.on('load', this.handleSceneLoad);
         this.reSize()
+      },
+      handleSceneLoad(){
+          if(this.viewer.getScene()=="meeting_hall"){
+              MeetingHall.init(this)
+          }
       },
       handleSceneChange(){
         this.reSize()
@@ -214,7 +222,7 @@ export default {
 
         if(width<height) {
           // portrait
-          this.viewer.setHfov(50  ); 
+          this.viewer.setHfov(50  );
         } else {
           // landscape (or width=height)
           this.viewer.setHfov(100 );
@@ -264,7 +272,7 @@ export default {
   div >>> .custom-hotspot {
     height: 32px;
     width: 32px;
-    animation: pulse 2s infinite;   
+    animation: pulse 2s infinite;
     border-radius: 50%;
   }
   div >>> .meeting_hall{
@@ -278,15 +286,15 @@ export default {
   div >>> .booth{
     background-image: url('/images/icons/booth-icon-min.png');
     background-size: cover;
-  }  
+  }
   div >>> .left_arrow{
     background-image: url('/images/icons/left_arrow-min.png');
     background-size: cover;
-  }  
+  }
   div >>> .right_arrow{
     background-image: url('/images/icons/right_arrow-min.png');
     background-size: cover;
-  }      
+  }
   @-webkit-keyframes pulse {
     0% {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
@@ -311,7 +319,7 @@ export default {
       -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }        
+  }
   div.background {
     position: fixed;
     top: 0;
@@ -321,15 +329,15 @@ export default {
   div.full{
     width: 100%;
     height: 100%;
-  }  
+  }
    div >>> .pnlm-about-msg {
     width: 0;
     height: 0;
     padding: 0;
-    
+
   }
-  .pnlm-about-msg >>> a { 
-    display: none; 
+  .pnlm-about-msg >>> a {
+    display: none;
   }
 
 </style>
