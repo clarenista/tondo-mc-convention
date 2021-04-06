@@ -2,13 +2,13 @@
 <div class="background full">
     <div class="register">
         <div class="row col-10">
-            <div class="col-md-6 register-left">
+            <div class="register-left col-md-6 ">
                 <img src="/images/logo.png" alt=""/>
                 <!-- <h3 class="lead text-white">Welcome</h3> -->
                 <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
             </div>
 
-            <div class="col-md-6 register-right">
+            <div class="register-right col-md-6">
                 <div class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.
@@ -125,7 +125,7 @@ div.full{
   height: 100%;
 }
 .register{
-    overflow: hidden;
+    overflow: visble;
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
     padding: 3%;
     
@@ -228,5 +228,22 @@ div.full{
     background: #4c748c;
 }
 
+@media screen and (max-width: 768px) {
+    .register-left {
+        position: absolute;
+        top: 99%;
+    }
+    .register-left img {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        width: 60%;
+    }
+    .register-left p {
+        font-size: medium;
+    }
+    .register-right h3 {
+        font-size: xx-large;
+    }
+}
 
 </style>

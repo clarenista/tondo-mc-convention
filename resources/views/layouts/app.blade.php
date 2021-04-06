@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Convention</title>
     <style>
-      html, body {
+      body {
         margin: 0;
         width: 100%;
         height: 100%;

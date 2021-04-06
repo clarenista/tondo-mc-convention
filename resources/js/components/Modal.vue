@@ -48,8 +48,5 @@ export default {
     background-repeat: no-repeat;
    
 }
-.modal {
-    min-width: 729px;
 
-}
 </style>
