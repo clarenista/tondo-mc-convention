@@ -35,7 +35,7 @@
                                             <div class="input-group">
                                                 <input 
                                                     :type="isSeePassword ? 'text' : 'password'" 
-                                                    class="form-control text-center" style="padding-left: 70px;" 
+                                                    class="form-control text-center" id="txtpassword"
                                                     placeholder="Password"
                                                     v-model="text_password"
                                                     required
@@ -127,7 +127,7 @@ div.full{
 .register{
     overflow: visble;
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
-    padding: 3%;
+    padding: 10% 1% 3%;
     
 }
 .register-left{
@@ -228,14 +228,18 @@ div.full{
     background: #4c748c;
 }
 
-@media screen and (max-width: 768px) {
+#txtpassword {
+    padding-left: 70px;
+}
+
+@media screen and (max-width: 767px) {
     .register-left {
         position: absolute;
         top: 99%;
     }
     .register-left img {
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin-top: 3%;
+        margin-bottom: 1%;
         width: 60%;
     }
     .register-left p {
@@ -245,5 +249,28 @@ div.full{
         font-size: xx-large;
     }
 }
+
+@media screen and (max-width: 280px) {
+    .register-left {
+        position: absolute;
+        top: 99%;
+    }
+    .register-left img {
+        margin-top: 13%;
+        margin-bottom: 1%;
+        width: 80%;
+    }
+    .register-left p {
+        font-size: medium;
+    }
+    .register-right h3 {
+        font-size: x-large;
+    }
+    #txtpassword {
+        padding-left: 62px;
+    }
+    
+}
+
 
 </style>

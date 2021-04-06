@@ -1,7 +1,7 @@
 <template >
 <div>
     <div id="mySidenav" class="sidenav">
-        <div class="text-center"><img src="images/PSP_LOGO.png" width="260px" alt="psp_logo" srcset=""></div>
+        <div class="text-center"><img id="psp_logo" src="images/PSP_LOGO.png" width="240px" alt="psp_logo" srcset=""></div>
     <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
     <a 
         href="javascript:void(0)" 
@@ -48,7 +48,7 @@ export default {
     },
     methods:{
         openNav(){
-            document.getElementById("mySidenav").style.width = "320px";
+            document.getElementById("mySidenav").style.width = "300px";
         },
         closeNav(){
             document.getElementById("mySidenav").style.width = "0";
@@ -82,6 +82,9 @@ button.open-btn{
     cursor: pointer;
     top: 0;
     z-index: 2;
+    
+    background-color: #4c748c;
+    border: #4c748c;
 }
 
 .sidenav {
@@ -125,5 +128,5 @@ button.open-btn{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}    
+}  
 </style>
