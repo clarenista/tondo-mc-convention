@@ -206,9 +206,12 @@ export default {
         this.reSize()
       },
       handleSceneLoad(){
-        let zoomBtn = this.$el.querySelector(".open-zoom-meeting").addEventListener('click', ()=>{
-            this.$router.push('zoom-meeting');
-        });
+        let zoomBtn = this.$el.querySelector(".open-zoom-meeting");
+        if(zoomBtn){
+            zoomBtn.addEventListener('click', () => {
+                this.$router.push('zoom-meeting');
+            });
+        }
       },
       handleSceneChange(){
         this.reSize()
