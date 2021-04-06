@@ -44,7 +44,7 @@ export default {
     mounted() {
        this.init()
        window.addEventListener("resize", this.reSize);
-
+       MeetingHall.leaveZoom(this);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
 
     },
