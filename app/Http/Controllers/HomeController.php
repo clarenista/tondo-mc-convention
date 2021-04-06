@@ -19,8 +19,8 @@ class HomeController extends Controller
         return view("home.registration");
     }
 
-    
-    
+
+
     public function gallery(){
         return view("home.gallery");
     }
@@ -28,17 +28,17 @@ class HomeController extends Controller
     public function login(Request $request){
         $guzzle = new \GuzzleHttp\Client;
 
-        $token = $guzzle->post(env('DOMAIN').'/oauth/token', [
+        $token = $guzzle->post(config('app.domain').'/oauth/token', [
             'form_params' => [
-                'grant_type' => env('PASSPORT_GRANT_TYPE'),
-                'client_id' => env('PASSPORT_CLIENT_ID'),
-                'client_secret' => env('PASSPORT_CLIENT_SECRET'),
+                'grant_type' => config('app.passport.grant_type'),
+                'client_id' => config('app.passport.client_id'),
+                'client_secret' => config('app.passport.client_secret'),
                 'scope' => '*',
             ],
         ]);
         // return json_decode((string) $token->getBody(), true)['access_token'];
-        
-        $response = $guzzle->post(env('DOMAIN').'/api/user', [
+
+        $response = $guzzle->post(config('app.domain').'/api/user', [
             'headers' => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.json_decode((string) $token->getBody(), true)['access_token'],
@@ -65,7 +65,7 @@ class HomeController extends Controller
                     'email' => $result['user']['username'],
                     'password' => $result['user']['password'],
                 ]
-    
+
             );
             return response()->json([
                 'status' => 'ok',
@@ -77,7 +77,7 @@ class HomeController extends Controller
                 'status' => 'failed',
             ]);
         }
-        
+
         // $user = User::where('email', $request->email)->first();
         // if($user){
         //     if(Hash::check($request->password, $user->password)){
@@ -90,13 +90,13 @@ class HomeController extends Controller
         //         ]);
         //     }
         // }else{
-            
+
         //     return response()->json([
         //         'status' => 'failed',
         //     ]);
         // }
         // if(Hash::check($request->password, $user->password)){
         // }
-    }    
+    }
 
 }
