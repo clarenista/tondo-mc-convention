@@ -37,6 +37,9 @@
       #zmmtg-root {
           display: none;
       }
+      #aria-notify-area {
+          display: none;
+      }
     </style>
 </head>
 <body>

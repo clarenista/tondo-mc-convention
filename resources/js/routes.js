@@ -13,7 +13,7 @@ import Gallery from './components/Gallery.vue';
 import NotFound from './components/NotFound.vue';
 import SponsorPage from './components/SponsorPage.vue';
 import Meeting from './components/Meeting.vue';
-import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
+// import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
 
 Vue.use(VueRouter);
 
@@ -57,14 +57,14 @@ export const routes = [
 
 
     },
-    {
-        name: 'zoom-meeting',
-        path: '/zoom-meeting',
-        component: ZoomMeeting,
-        // props: true
+    // {
+    //     name: 'zoom-meeting',
+    //     path: '/zoom-meeting',
+    //     component: ZoomMeeting,
+    //     // props: true
 
 
-    },
+    // },
     // {
     //     name: 'home',
     //     path: '/',
