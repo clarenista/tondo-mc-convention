@@ -21,6 +21,7 @@
 <script>
 import Sidebar from './Sidebar'
 import Modal from './Modal'
+import MeetingHall from './MeetingHall/MeetingHall.js'
 export default {
   components:{
     Sidebar, Modal
@@ -206,12 +207,9 @@ export default {
         this.reSize()
       },
       handleSceneLoad(){
-        let zoomBtn = this.$el.querySelector(".open-zoom-meeting");
-        if(zoomBtn){
-            zoomBtn.addEventListener('click', () => {
-                this.$router.push('zoom-meeting');
-            });
-        }
+          if(this.viewer.getScene()=="meeting_hall"){
+              MeetingHall.init(this)
+          }
       },
       handleSceneChange(){
         this.reSize()
