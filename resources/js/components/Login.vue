@@ -129,6 +129,7 @@ div.full{
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
     padding: 10% 1% 3%;
     
+    
 }
 .register-left{
     text-align: center;
@@ -151,10 +152,11 @@ div.full{
     text-align: center;
     align-items: center;
     background: rgba(230, 230, 230, 0.2);
+    margin-bottom: 3%;
 }
 .register-left img{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    /* margin-top: 5%; */
+    /* margin-bottom: 5%; */
     width: 90%;
 }
 @-webkit-keyframes mover {
