@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue';
-import store  from './store/store'
+import store from './store/store'
 import VueRouter from 'vue-router';
 
 import Home from './components/Home.vue';
@@ -13,6 +13,7 @@ import Gallery from './components/Gallery.vue';
 import NotFound from './components/NotFound.vue';
 import SponsorPage from './components/SponsorPage.vue';
 import Meeting from './components/Meeting.vue';
+import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
 
 Vue.use(VueRouter);
 
@@ -23,18 +24,18 @@ export const routes = [
         path: '/',
         component: Pannellum,
         props: true,
-        meta: { 
+        meta: {
             requiresAuth: true,
-         }
+        }
     },
     {
         name: 'sponsors',
         path: '/sponsors/:id',
         component: SponsorPage,
         props: true,
-        meta: { 
+        meta: {
             requiresAuth: true,
-         }        
+        }
 
 
     },
@@ -42,9 +43,9 @@ export const routes = [
         name: 'vote',
         path: '/vote',
         component: Vote,
-        meta: { 
+        meta: {
             requiresAuth: true,
-         }        
+        }
 
 
     },
@@ -56,11 +57,19 @@ export const routes = [
 
 
     },
+    {
+        name: 'zoom-meeting',
+        path: '/zoom-meeting',
+        component: ZoomMeeting,
+        // props: true
+
+
+    },
     // {
     //     name: 'home',
     //     path: '/',
     //     component: Home,
-    //     meta: { 
+    //     meta: {
     //         requiresAuth: true,
     //      }
     // },
@@ -68,44 +77,44 @@ export const routes = [
         name: 'registration',
         path: '/registration',
         component: Registration,
-        meta: { 
+        meta: {
             requiresAuth: true,
             requireCanCreateUser: true
-         }
+        }
     },
     {
         name: 'users',
         path: '/users',
         component: Users,
-        meta: { 
+        meta: {
             requiresAuth: true,
-         }
+        }
     },
     {
         name: 'login',
         path: '/login',
         component: Login,
-        meta: { 
+        meta: {
             requiresAuth: false,
-         }
-    },  
+        }
+    },
     {
         name: 'boothman',
         path: '/boothman',
         component: BoothMan,
-        meta: { 
+        meta: {
             requiresAuth: true,
             requireCanManageBooth: true
-         }
-    },   
+        }
+    },
     {
         name: 'gallery',
         path: '/gallery',
         component: Gallery,
-        meta: { 
+        meta: {
             requiresAuth: true,
-            is_admin : true
-         }
+            is_admin: true
+        }
     },
     {
         name: 'notFound',
@@ -113,7 +122,7 @@ export const routes = [
         component: NotFound,
     },
 
-    
+
 ];
 
 const router = new VueRouter({
@@ -123,37 +132,39 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     // console.log(to.matched.some(record => record.meta.requireCanCreateUser))
-    if(to.matched.some(record => record.meta.requiresAuth)){
-        if(localStorage.getItem('access_token') == null){
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (localStorage.getItem('access_token') == null) {
             next({
                 name: 'login'
             })
-        }else{
-            if(to.matched.some(record => record.meta.requireCanCreateUser)){
-                if(store.getters.permissions.includes('manage user')){
+        } else {
+            if (to.matched.some(record => record.meta.requireCanCreateUser)) {
+                if (store.getters.permissions.includes('manage user')) {
                     next()
-                }else{
+                } else {
                     next({
                         name: 'notFound'
                     })
                 }
-            }else if(to.matched.some(record => record.meta.requireCanManageBooth)){
-                if(store.getters.permissions.includes('manage booth')){
+            } else if (to.matched.some(record => record.meta.requireCanManageBooth)) {
+                if (store.getters.permissions.includes('manage booth')) {
                     next()
-                }else{
+                } else {
                     next({
                         name: 'notFound'
                     })
                 }
             }
-            
-            else{
+
+            else {
                 next()
             }
         }
-    }else{
+    } else {
         next()
     }
 });
 
 export default router;
+
+

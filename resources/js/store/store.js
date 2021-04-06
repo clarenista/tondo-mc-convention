@@ -16,7 +16,7 @@ export default new Vuex.Store({
     api_token: null,
     users:null,
     currentScene: 'lobby',
-    
+
     scene_hotSpots: [
 
       {
@@ -96,6 +96,14 @@ export default new Vuex.Store({
         "text": "Lobby",
       },
       {
+        "scene": 'meeting_hall',
+        "pitch": 3.8,
+        "yaw": 0,
+        "type": "scene",
+        "cssClass": "custom-hotspot right_arrow open-zoom-meeting",
+        "text": "Zoom Meeting",
+      },
+      {
         "scene": 'exhibit_hall',
         "pitch": -3,
         "yaw": -0,
@@ -131,7 +139,7 @@ export default new Vuex.Store({
     //   {id: 4, name: 'Pfizer', x: -2881.17, y: -204.73, z: -4073.01, direction: 'SE'},
     // ],
     // halls:[
-      
+
     //   {name: 'Hall A', x: 4669.04, y: 157.28, z: 1752.54, panorama: 'hallPanorama_A'},
     //   {name: 'Hall B', x: 4670.81, y: -275.96, z: 1734.92, panorama: 'hallPanorama_B'},
     //   {name: 'Hall C', x: 4686.30, y: 154.93, z: -1707.82, panorama: 'hallPanorama_C'},
@@ -148,7 +156,7 @@ export default new Vuex.Store({
     // this.$store.commit('change', event.target.value)
 
     // getter
-    // $store.getters.flavor 
+    // $store.getters.flavor
     // change(state, flavor) {
     //   state.flavor = flavor
     // }
