@@ -12,7 +12,7 @@ export default {
         }
     },
     async openZoomMobile(vue) {
-        let { data } = await vue.axios.get('/api/v1/guests/zoom/join/mobile?api_token=123123');
+        let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/mobile?api_token=${localStorage.getItem('access_token')}`);
         window.open(data, "_blank");
     }
 }
