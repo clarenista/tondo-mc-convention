@@ -11,10 +11,6 @@ export default {
             });
         }
     },
-    leaveZoom(vue) {
-        document.querySelector("#zmmtg-root").style.display = "none";
-        vue.ZoomMtg.leaveMeeting({})
-    },
     async openZoomMobile(vue) {
         let { data } = await vue.axios.get('/api/v1/guests/zoom/join/mobile?api_token=123123');
         window.open(data, "_blank");
