@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function(){
 //     return view('layouts.app');
 // });
-
+Route::get('/meeting-hall', function(){
+    return view('app.plugins.zoom');
+});
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '.*');

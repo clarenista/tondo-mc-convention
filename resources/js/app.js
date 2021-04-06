@@ -26,10 +26,6 @@ require('pannellum/build/pannellum.css')
 Vue.mixin(Permissions);
 Vue.use(VueAxios, axios);
 
-// import { ZoomMtg } from "@zoomus/websdk";
-
-// Vue.prototype.ZoomMtg = ZoomMtg;
-
 const app = new Vue({
     el: '#app',
     store,

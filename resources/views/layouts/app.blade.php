@@ -34,12 +34,6 @@
       .input-group-prepend-120 {
           width: 120px;
       }
-      #zmmtg-root {
-          display: none;
-      }
-      #aria-notify-area {
-          display: none;
-      }
     </style>
 </head>
 <body>

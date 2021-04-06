@@ -29,5 +29,6 @@ Route::post('booths/{booth_id}/message', [BoothController::class, 'storeMessage'
 Route::post('booths/{booth_id}/questionnaire/answer/submit', [BoothController::class, 'storeQuestionnaireAnswerSubmit']);
 
 Route::get('/guests/zoom/join/config', [GuestController::class, 'zoomJoin']);
+Route::get('/guests/zoom/join/mobile', [GuestController::class, 'zoomJoinMobile']);
 Route::get('/guests/booths/tracker', [GuestController::class, 'boothTracker']);
 Route::post('/guests/event/push', [GuestEventController::class, 'push']);

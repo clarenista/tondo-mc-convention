@@ -28,12 +28,17 @@ class GuestController extends Controller
         return $return;
     }
 
-    public function zoomJoin($meetingNumber = "72255603998")
+    public function zoomJoinMobile(){
+
+        return 'https://us04web.zoom.us/j/78803086236?pwd=TXp6L2xUcit0WlNUaEx5SWNIcUhvQT09';
+    }
+
+    public function zoomJoin($meetingNumber = "78803086236")
     {
 
         $apiKey = '9srj55u0SxGqM9F2dUU1nA';
         $secret = 'GRa14V4N2ukM2Ci6yu8NSnzLmftWJnOf97BB';
-        $passWord = 'sVB7su';
+        $passWord = '7e7kbw';
         $user = request()->user();
         $signature = $this->zoomSignature($apiKey, $secret, $meetingNumber);
         $userName = $user->first_name . " " . $user->last_name;
