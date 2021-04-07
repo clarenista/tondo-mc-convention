@@ -103,7 +103,7 @@ button.open-btn{
 
   /* transparent css */
   background-image: linear-gradient(180deg, #4c748c, #9cf0c8);
-  opacity: 96%;
+  /* opacity: 0.96; */
 }
 
 .sidenav a {
