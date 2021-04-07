@@ -96,14 +96,12 @@ button.open-btn{
   z-index: 3;
   top: 0;
   left: 0;
-  background-color: #4c748c;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
 
-  /* transparent css */
   background-image: linear-gradient(180deg, #4c748c, #9cf0c8);
-  /* opacity: 0.96; */
+  /* transparent css */
 }
 
 .sidenav a {
