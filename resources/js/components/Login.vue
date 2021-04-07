@@ -1,8 +1,16 @@
 <template>
 <div class="background full">
     <div class="register">
+        <!-- 
+        <button class="btn btn-primary btn-sm" @click="handleToggleBgMusic" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">
+            <i class="fa fa-volume-up" v-if="!$store.getters.bgmStart"></i>
+            <i class="fa fa-volume-off" v-else></i>
+        </button>
+            <Timer :endTime="'2021-04-07 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+        -->
         <div class="row col-10">
             <div class="register-left col-md-6 ">
+    
                 <img src="/images/logo.png" alt=""/>
                 <!-- <h3 class="lead text-white">Welcome</h3> -->
                 <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
@@ -63,7 +71,11 @@
 </template>
 
 <script>
+    import Timer from './Timer.vue'
     export default {
+        components:{
+            Timer
+        },
         mounted() {
             // console.log(this.$store.getters.pois)
         },
@@ -73,7 +85,8 @@
                 text_email: "",
                 text_password: "",
                 isLoginSuccess: null,
-                isSeePassword: false
+                isSeePassword: false,
+                isOpen: false
             }
         } ,
         watch:{
@@ -94,6 +107,7 @@
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
+                    this.$store.commit('updateBgmStart')
                     localStorage.setItem("access_token", data.access_token);
                     this.$router.push('/')
                 }else{
@@ -102,6 +116,12 @@
             },
             toggleSeePassword(){
                 this.isSeePassword = !this.isSeePassword
+            },
+            handleTimerEnd(e){
+                this.isOpen = e
+            },
+            handleToggleBgMusic(){
+                this.$store.commit('updateBgmStart')
             }
         }
 
