@@ -16,6 +16,7 @@ export default new Vuex.Store({
     api_token: null,
     users:null,
     currentScene: 'lobby',
+    bgmStart: true,
 
     scene_hotSpots: [
 
@@ -172,7 +173,16 @@ export default new Vuex.Store({
     changeCurrentScene(state, scene) {
       state.currentScene = scene
     },
-
+    updateBgmStart(state) {
+      state.bgmStart = !state.bgmStart
+      const bgm = document.getElementById('bgm');
+      if(state.bgmStart){
+        bgm.pause()
+        bgm.currentTime = 0;
+      }else{
+        bgm.play()
+      }
+    },
   },
   getters: {
     pois: state => state.pois,
@@ -185,5 +195,6 @@ export default new Vuex.Store({
     isWelcomed: state => state.isWelcomed,
     currentScene: state => state.currentScene,
     scene_hotSpots: state => state.scene_hotSpots,
+    bgmStart: state => state.bgmStart,
   }
 })
