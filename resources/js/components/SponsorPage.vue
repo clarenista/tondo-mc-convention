@@ -6,7 +6,7 @@
 
             <Modal :value="value" v-if="selectedHotspot != null">
                 <template v-slot:title >
-                    <h1>{{selectedHotspot.name}}</h1>
+                    <h1 class="text-light">{{selectedHotspot.name}}</h1>
                 </template>
                 <template v-slot:body >
                     <div class="row">
@@ -59,6 +59,22 @@
                           </div>
                         </template>
                         <!-- BROCHURES -->
+
+                        <template v-if="selectedHotspot.name == 'Gallery'">
+                          <div class="card-columns">
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+                          </div>                    
+                        </template>
 
                     </div>
                 </template>
@@ -369,4 +385,5 @@ body div {
     height: 5px;
   }
 }
+
 </style>
