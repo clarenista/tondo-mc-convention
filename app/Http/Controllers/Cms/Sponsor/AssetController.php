@@ -57,10 +57,13 @@ class AssetController extends Controller
                 request()->validate([
                     'name' => 'required|string',
                     'url' => 'nullable',
+                    'thumbnail_url' => 'nullable',
+                    'type' => 'nullable',
+                    'category' => 'nullable',
                 ])
             );
             $hotspot->assets()->attach($asset);
-            $this->uploadFile($asset);
+            $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');
         });
 
         return \redirect()->route('cms.sponsor.assets.index', ['hotspot_id' => \request()->hotspot_id])
@@ -94,15 +97,16 @@ class AssetController extends Controller
         DB::transaction(function () use ($asset) {
             $hotspot = BoothHotspot::find(\request()->hotspot_id);
             $asset->update(
-                request()->validate([
-                    request()->validate([
-                        'name' => 'required|string',
-                        'url' => 'nullable',
-                    ]),
+                $input = request()->validate([
+                    'name' => 'required|string',
+                    'url' => 'nullable',
+                    'thumbnail_url' => 'nullable',
+                    'type' => 'nullable',
+                    'category' => 'nullable',
                 ])
             );
             $hotspot->assets()->attach($asset);
-            $this->uploadFile($asset);
+            $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');
         });
 
         return \redirect()->route('cms.sponsor.assets.index', ['hotspot_id' => \request()->hotspot_id])

@@ -16,6 +16,7 @@ class Asset extends Model
         'type',
         'category',
         'url',
+        'thumbnail_url',
     ];
 
     public function hotspots()
