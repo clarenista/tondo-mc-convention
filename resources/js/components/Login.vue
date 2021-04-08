@@ -107,8 +107,9 @@
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
-                    this.$store.commit('updateBgmStart')
+                    this.$store.commit('updateBgmStart', true)
                     localStorage.setItem("access_token", data.access_token);
+                    localStorage.setItem("bgmStart", true);
                     this.$router.push('/')
                 }else{
                     this.isLoginSuccess = false

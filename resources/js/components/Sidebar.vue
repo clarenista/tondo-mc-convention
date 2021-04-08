@@ -68,7 +68,7 @@ export default {
             // update isWelcomed
             this.$store.commit('updateIsWelcomed', true)
 
-            this.$store.commit('updateBgmStart')
+            this.$store.commit('updateBgmStart', false)
 
             // redirect to login
             this.$router.push('/login')

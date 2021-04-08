@@ -240,7 +240,7 @@ export default {
       handleNavigateTo(sceneId){
         this.viewer.loadScene(sceneId)
         const label = sceneId+" hotspot"
-        this.sendGuestEvent('click', label)
+        this.$sendGuestEvent('click', label)
       },
       handleUpdateIsWelcomed(){
         this.$store.commit('updateIsWelcomed', false)
@@ -248,22 +248,13 @@ export default {
       handleBoothClicked(booth){
         const label = booth.name+" booth"
         this.$router.push('sponsors/'+booth.id)
-        this.sendGuestEvent('click', label, booth)
+        this.$sendGuestEvent('click', label, booth)
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
-        this.sendGuestEvent('click', label)
+        this.$sendGuestEvent('click', label)
       },
-      async sendGuestEvent(event, label, booth = null){
-        // category: lobby,
-        // label: click Astra Zeneca Booth
-        let fd = new FormData()
-        fd.append('category', booth != null ? booth.name : this.$store.getters.currentScene)
-        fd.append('label', event+" "+label)
-        fd.append('user', this.$store.getters.user.id)
-
-        let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
-      }
+      
     }
 }
 </script>

@@ -171,8 +171,9 @@ export default {
             this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
         },
         handleSelectHotspot(hotspot){
-            this.value = true
-            this.selectedHotspot = hotspot
+          this.value = true
+          this.selectedHotspot = hotspot
+          this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
         handleCloseModal(){
             this.selectedHotspot = null
@@ -198,14 +199,14 @@ export default {
           }
 
         },
-        async sendBoothGuestEvent(booth){
+        async sendBoothGuestEvent(booth = null, hotspot=null){
           // category: lobby,
           // label: click Astra Zeneca Booth
           let fd = new FormData()
 
           fd.append('type', 'event')
           fd.append('category', booth.name)
-          fd.append('label', 'visit')
+          fd.append('label', hotspot == null ? 'visit' : 'click '+hotspot.name+" hotspot")
 
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         }
