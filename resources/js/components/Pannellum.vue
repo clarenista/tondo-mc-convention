@@ -1,6 +1,12 @@
 <template >
     <div class="background full">
       <div id="panorama">
+        <div id="controls">
+          <div class="ctrl" @click="handleBgmPlayToggle">
+            <i class="fa fa-volume-up" v-if="$store.getters.bgmStart"></i>
+            <i class="fa fa-volume-off" v-else></i>
+          </div>
+        </div>
       </div>
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed">
@@ -254,6 +260,14 @@ export default {
         const label = scene+" hotspot"
         this.$sendGuestEvent('click', label)
       },
+      handleBgmPlayToggle(){
+        if(this.$store.getters.bgmStart){
+          this.$store.commit('updateBgmStart', false)
+        }else{
+          this.$store.commit('updateBgmStart', true)
+          
+        }
+      }
       
     }
 }
@@ -329,5 +343,24 @@ export default {
   .pnlm-about-msg >>> a {
     display: none;
   }
+  #controls {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 3px;
+    }
+    .ctrl {
+        padding: 8px 5px;
+        width: 30px;
+        text-align: center;
+        background: rgba(200, 200, 200, 0.8);
+        display: inline-block;
+        cursor: pointer;
+    }
+    .ctrl:hover {
+        background: rgba(200, 200, 200, 1);
+    }
 
 </style>

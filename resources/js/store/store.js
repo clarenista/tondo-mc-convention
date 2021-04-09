@@ -174,11 +174,11 @@ export default new Vuex.Store({
       state.currentScene = scene
     },
     updateBgmStart(state, start) {
-      // state.bgmStart = !state.bgmStart
+      state.bgmStart = start
       const bgm = document.getElementById('bgm');
       if(!start){
         bgm.pause()
-        bgm.currentTime = 0;
+        // bgm.currentTime = 0;
       }else{
         bgm.play()
       }

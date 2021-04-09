@@ -31,7 +31,7 @@ Vue.use(VueAxios, axios);
 const app = new Vue({
     el: '#app',
     store,
-    created() {
+    mounted() {
         if(localStorage.getItem('access_token') != null){
             this.getUser()
         }
