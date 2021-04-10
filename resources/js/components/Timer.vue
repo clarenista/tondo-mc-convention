@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row d-flex justify-content-center">
-            <div class="col-8">
+            <div class="col-12">
                 <div class="row">
                     <div class="col p-1">
                         <div class="card card-primary bg-primary text-light">
@@ -36,7 +36,9 @@
                         </div>
                     </div>                                                          
                 </div>
+                <p class="text-center text-light mt-3 login_msg">PSP 69<sup>th</sup> Annual Convention Virtual Event <br> 23<sup>rd</sup> - 26<sup>th</sup> of April 2021</p>
             </div>
+
         </div>
         
         
@@ -96,6 +98,62 @@ export default {
     }   
 }
 </script>
-<style lang="">
-    
+<style scoped>
+.login_msg {
+    font-size: 1.5rem;
+    font-weight:300;
+    line-height: 1.2;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+}
+ .display-4 {
+    font-size: 2.0rem;
+}
+.lead {
+    font-size: 2.0rem;
+}
+
+@media screen and (max-width: 768px) {
+    .login_msg {
+        font-size: 1.0rem;
+    }
+    .display-4 {
+        font-size: 1.4rem;
+    }
+    .lead {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+    .display-4 {
+        font-size: 0.6rem;
+    }
+   
+}
+
+@media screen and (max-width: 360px) {
+    .login_msg {
+        font-size: 0.7rem;
+    }
+    .display-4 {
+        font-size: 1.3rem;
+    }
+    .lead {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .login_msg {
+        font-size: 0.9rem;
+    }
+    .display-4 {
+        font-size: 1.3rem;
+    }
+    .lead {
+        font-size: 0.4rem;
+    }
+}
+
 </style>

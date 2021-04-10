@@ -1,13 +1,12 @@
 <template>
 <div class="background full">
     <div class="register">
-        <!-- 
+        
         <button class="btn btn-primary btn-sm" @click="handleToggleBgMusic" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">
             <i class="fa fa-volume-up" v-if="!$store.getters.bgmStart"></i>
             <i class="fa fa-volume-off" v-else></i>
         </button>
-            <Timer :endTime="'2021-04-07 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
-        -->
+       
         <div class="row col-10">
             <div class="register-left col-md-6 ">
     
@@ -17,7 +16,8 @@
             </div>
 
             <div class="register-right col-md-6">
-                <div class="tab-content" id="myTabContent">
+                <Timer class="register-form" :endTime="'2021-04-10 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+                <div v-else  class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.
                     </div>
@@ -271,6 +271,11 @@ div.full{
     .register-right h3 {
         font-size: xx-large;
     }
+
+    .register-right p {
+        font-weight:normal;
+    }
+
 }
 
 @media screen and (max-width: 280px) {
@@ -279,7 +284,7 @@ div.full{
         top: 99%;
     }
     .register-left img {
-        margin-top: 13%;
+        margin-top: 5%;
         margin-bottom: 1%;
         width: 80%;
     }
@@ -294,6 +299,5 @@ div.full{
     }
     
 }
-
 
 </style>
