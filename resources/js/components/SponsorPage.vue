@@ -3,109 +3,111 @@
             <div class="alert alert-success" role="alert" v-if="successMessage">
                 Message sent.
             </div>
-           <Modal :value="value" v-if="selectedHotspot != null">
+
+            <Modal :value="value" v-if="selectedHotspot != null">
                 <template v-slot:title >
-                    <h1>{{selectedHotspot.name}}</h1>
+                    <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
                 </template>
                 <template v-slot:body >
-                    <div class="row">
-                        <div class="col-12">
-                            <img  :src="selectedHotspot.assets[0].url" class="img-fluid" alt="" srcset="">
-                        </div>
+                    <div class="row px-4">
+                      <!-- External link -->
+                        <template v-if="selectedHotspot.name == 'external-link'">
+                          <div class="card ">
+                            <h3 class="card-header">{{selectedHotspot.assets[0].name}}</h3>
+                              <a :href="selectedHotspot.assets[0].url" target="_blank">
+                                <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
+                              </a>
 
-                        <!-- CONTACT US FORM -->
-                        <template v-if="selectedHotspot.name == 'contact-us'">
-                          
-                        <div class="col-12 mb-3">
-                          <!-- {{selectedHotspot.assets[0].url}} -->
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Subject&nbsp;&nbsp;</span>
-                              </span>
-                              <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
                           </div>
-                        </div>
-
-                        <!-- <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Fullname</span>
-                              </span>
-                              <input type="text" class="form-control" v-model="name" placeholder="Fullname" aria-label="" value="">
-                          </div>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Affiliation</span>
-                              </span>
-                              <input type="text" class="form-control" v-model="affiliation" placeholder="Affiliation" aria-label="">
-                          </div>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Mobile #</span>
-                              </span>
-                              <input type="text" class="form-control" v-model="mobile_number" placeholder="Mobile #" aria-label="">
-                          </div>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Email</span>
-                              </span>
-                              <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
-                          </div>
-                        </div> -->
-
-                        <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Interest&nbsp;&nbsp;</span>
-                              </span>
-                              <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
-                          </div>
-                        </div>
-
-                        <div class="col-12 mb-3">
-                          <div class="input-group">
-                              <span class="input-group-prepend">
-                                  <span class="input-group-text">Message</span>
-                              </span>
-                              <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
-                          </div>
-                        </div>
-
-                        <div class="col-12">
-                          <button class="btn btn-success btn-block" @click="handleSendMessage()">&#9993; SEND MESSAGE</button>
-                        </div>
                         </template>
-                        <!-- CONTACT US FORM -->
+                        <!-- External link -->
 
-                        <template v-if="selectedHotspot.name == 'Brochures'">
+
+                        <!-- CONTACT US FORM -->
+                        <template v-else-if="selectedHotspot.name == 'contact-us'">
+                          <div class="col-12 mb-3">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <span class="input-group-text">Subject&nbsp;&nbsp;</span>
+                                </span>
+                                <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
+                            </div>
+                          </div>
+
+                          <div class="col-12 mb-3">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <span class="input-group-text">Interest&nbsp;&nbsp;</span>
+                                </span>
+                                <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
+                            </div>
+                          </div>
+
+                          <div class="col-12 mb-3">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <span class="input-group-text">Message</span>
+                                </span>
+                                <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
+                            </div>
+                          </div>
+
                           <div class="col-12">
-                            <ul>
-                              <li>list 1</li>
-                              <li>list 2</li>
-                              <li>list 3</li>
-                            </ul>
+                            <button class="btn btn-success btn-block" @click="handleSendMessage()">&#9993; SEND MESSAGE</button>
                           </div>
                         </template>
+                        <!-- CONTACT US FORM -->
+
+                        <!-- BROCHURES
+                          <template v-if="selectedHotspot.name == 'Brochures'">
+                            <div class="col-12">
+                              <ul>
+                                <li v-for="(i, index) in booth_details.hotspots.Brochures.assets" :key="index">
+                                  <a style="color: blue; text-decoration: none;" :href="i.url">{{ i.name }}</a></li>
+                              </ul>
+                            </div>
+                          </template>
+                         -->
+                        <!-- GALLERY 
+                        <template v-if="selectedHotspot.name == 'Gallery'">
+                          <div class="card-columns">
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+
+                            <div class="card text-white">
+                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" height="150px" class="card-img" alt="..."></a>
+                            </div>
+                          </div>                    
+                        </template>
+                        -->
+
+                        <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
+                          <div class="card ">
+                            <p class="card-header">{{item.name}}</p>
+                              <a :href="item.url" target="_blank">
+                                <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
+                              </a>
+
+                          </div>
+                        </div>                        
 
                     </div>
                 </template>
                 <template v-slot:footer >
                     <button class="btn btn-secondary" type="button" @click="handleCloseModal">Close</button>
                 </template>
-           </Modal>
+            </Modal>
+
         <div class="booth-container">
             <img class="centered" src="/images/lt.png">
             <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
         </div>
+
         <section class="hotspots--wrapper" v-if="booth_details != null">
           <!-- {{booth_details}} -->
             <img src="/images/bt.png" class="hotspots--figure">
@@ -189,8 +191,9 @@ export default {
             this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
         },
         handleSelectHotspot(hotspot){
-            this.value = true
-            this.selectedHotspot = hotspot
+          this.value = true
+          this.selectedHotspot = hotspot
+          this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
         handleCloseModal(){
             this.selectedHotspot = null
@@ -216,14 +219,14 @@ export default {
           }
 
         },
-        async sendBoothGuestEvent(booth){
+        async sendBoothGuestEvent(booth = null, hotspot=null){
           // category: lobby,
           // label: click Astra Zeneca Booth
           let fd = new FormData()
 
           fd.append('type', 'event')
           fd.append('category', booth.name)
-          fd.append('label', 'visit')
+          fd.append('label', hotspot == null ? 'visit' : 'click '+hotspot.name+" hotspot")
 
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         }
@@ -403,4 +406,5 @@ body div {
     height: 5px;
   }
 }
+
 </style>

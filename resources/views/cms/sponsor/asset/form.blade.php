@@ -41,7 +41,7 @@ Add Booth
                 <?php $model = $asset; ?>
                 @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
                 @include('cms.include.input-text', ['key' => 'url', 'label' => 'URL'])
-                @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'thumbnail'])
+                @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'Thumbnail'])
                 <div class="form-group">
                     <button class="btn btn-success btn-block">ADD NEW BOOTH</button>
                 </div>

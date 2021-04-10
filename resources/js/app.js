@@ -9,6 +9,7 @@ import axios from 'axios';
 import router from './routes';
 
 import Permissions from './mixins/Permissions'
+import SendEvent from './mixins/SendEvent'
 import 'pannellum'
 
 require('pannellum/build/pannellum.css')
@@ -24,14 +25,21 @@ require('pannellum/build/pannellum.css')
 // Vue.use(IconsPlugin)
 
 Vue.mixin(Permissions);
+Vue.mixin(SendEvent);
 Vue.use(VueAxios, axios);
 
 const app = new Vue({
     el: '#app',
     store,
-    created() {
+    mounted() {
         if(localStorage.getItem('access_token') != null){
             this.getUser()
+        }
+        if(localStorage.getItem('bgmStart')){
+            this.$store.commit('updateBgmStart', true)
+        }else{
+            this.$store.commit('updateBgmStart', false)
+
         }
     },
     router,

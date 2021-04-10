@@ -1,8 +1,16 @@
 <template>
 <div class="background full">
     <div class="register">
+        <!-- 
+        <button class="btn btn-primary btn-sm" @click="handleToggleBgMusic" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">
+            <i class="fa fa-volume-up" v-if="!$store.getters.bgmStart"></i>
+            <i class="fa fa-volume-off" v-else></i>
+        </button>
+            <Timer :endTime="'2021-04-07 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+        -->
         <div class="row col-10">
             <div class="register-left col-md-6 ">
+    
                 <img src="/images/logo.png" alt=""/>
                 <!-- <h3 class="lead text-white">Welcome</h3> -->
                 <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
@@ -35,7 +43,7 @@
                                             <div class="input-group">
                                                 <input 
                                                     :type="isSeePassword ? 'text' : 'password'" 
-                                                    class="form-control text-center" style="padding-left: 70px;" 
+                                                    class="form-control text-center" id="txtpassword"
                                                     placeholder="Password"
                                                     v-model="text_password"
                                                     required
@@ -63,7 +71,11 @@
 </template>
 
 <script>
+    import Timer from './Timer.vue'
     export default {
+        components:{
+            Timer
+        },
         mounted() {
             // console.log(this.$store.getters.pois)
         },
@@ -73,7 +85,8 @@
                 text_email: "",
                 text_password: "",
                 isLoginSuccess: null,
-                isSeePassword: false
+                isSeePassword: false,
+                isOpen: false
             }
         } ,
         watch:{
@@ -94,7 +107,9 @@
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
+                    this.$store.commit('updateBgmStart', true)
                     localStorage.setItem("access_token", data.access_token);
+                    localStorage.setItem("bgmStart", true);
                     this.$router.push('/')
                 }else{
                     this.isLoginSuccess = false
@@ -102,6 +117,12 @@
             },
             toggleSeePassword(){
                 this.isSeePassword = !this.isSeePassword
+            },
+            handleTimerEnd(e){
+                this.isOpen = e
+            },
+            handleToggleBgMusic(){
+                this.$store.commit('updateBgmStart')
             }
         }
 
@@ -127,7 +148,8 @@ div.full{
 .register{
     overflow: visble;
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
-    padding: 3%;
+    padding: 10% 1% 3%;
+    
     
 }
 .register-left{
@@ -151,10 +173,11 @@ div.full{
     text-align: center;
     align-items: center;
     background: rgba(230, 230, 230, 0.2);
+    margin-bottom: 3%;
 }
 .register-left img{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    /* margin-top: 5%; */
+    /* margin-bottom: 5%; */
     width: 90%;
 }
 @-webkit-keyframes mover {
@@ -228,14 +251,18 @@ div.full{
     background: #4c748c;
 }
 
-@media screen and (max-width: 768px) {
+#txtpassword {
+    padding-left: 70px;
+}
+
+@media screen and (max-width: 767px) {
     .register-left {
         position: absolute;
         top: 99%;
     }
     .register-left img {
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin-top: 3%;
+        margin-bottom: 1%;
         width: 60%;
     }
     .register-left p {
@@ -245,5 +272,28 @@ div.full{
         font-size: xx-large;
     }
 }
+
+@media screen and (max-width: 280px) {
+    .register-left {
+        position: absolute;
+        top: 99%;
+    }
+    .register-left img {
+        margin-top: 13%;
+        margin-bottom: 1%;
+        width: 80%;
+    }
+    .register-left p {
+        font-size: medium;
+    }
+    .register-right h3 {
+        font-size: x-large;
+    }
+    #txtpassword {
+        padding-left: 62px;
+    }
+    
+}
+
 
 </style>

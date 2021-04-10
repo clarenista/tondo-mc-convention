@@ -107,7 +107,7 @@ Add Booth
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
-
+                
                 @foreach ($booth->hotspots as $i => $hotspot)
                     <div class="form-group">
                         <div class="input-group">
@@ -116,11 +116,16 @@ Add Booth
                             </span>
                             <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][name]"
                                 placeholder="Hotspot" aria-label="Hotspot" value="{{$hotspot->name}}">
-                            <button class="btn-edit btn btn-info btn-sm ml-3 text-center" type="button" data-href="{{ $hotspot->id }}" title="edit"><i class="fa fa-pencil" ></i></button>
+                            <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][x]"
+                                placeholder="X" aria-label="Hotspot" value="{{$hotspot->x}}">
+                            <input type="text" class="form-control" name="hotspots[{{$hotspot->id}}][y]"
+                                placeholder="Y" aria-label="Hotspot" value="{{$hotspot->y}}">
                             <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">&#10008;</button>
                         </div>
-                    </div>
-                @endforeach
+                    </div> 
+                @endforeach 
+                   
+                
                 
                 <br>
                 <div class="form-group">
@@ -187,16 +192,16 @@ Add Booth
 
         $(".btn-delete").click(function() {
 
-        if (confirm('Are you sure you want to delete?')) {
-            $.ajax({
-                url: $(this).data('href'),
-                type: 'POST',
-                success: function(response) {
-                    console.log(response);
-                    location.reload();
-                }
-            });
-        }
+            if (confirm('Are you sure you want to delete?')) {
+                $.ajax({
+                    url: $(this).data('href'),
+                    type: 'POST',
+                    success: function(response) {
+                        console.log(response);
+                        location.reload();
+                    }
+                });
+            }
 
         });
     });

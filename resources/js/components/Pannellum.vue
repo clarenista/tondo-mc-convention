@@ -1,6 +1,12 @@
 <template >
     <div class="background full">
       <div id="panorama">
+        <div id="controls">
+          <div class="ctrl" @click="handleBgmPlayToggle">
+            <i class="fa fa-volume-up" v-if="$store.getters.bgmStart"></i>
+            <i class="fa fa-volume-off" v-else></i>
+          </div>
+        </div>
       </div>
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed">
@@ -240,7 +246,7 @@ export default {
       handleNavigateTo(sceneId){
         this.viewer.loadScene(sceneId)
         const label = sceneId+" hotspot"
-        this.sendGuestEvent('click', label)
+        this.$sendGuestEvent('click', label)
       },
       handleUpdateIsWelcomed(){
         this.$store.commit('updateIsWelcomed', false)
@@ -248,22 +254,21 @@ export default {
       handleBoothClicked(booth){
         const label = booth.name+" booth"
         this.$router.push('sponsors/'+booth.id)
-        this.sendGuestEvent('click', label, booth)
+        this.$sendGuestEvent('click', label, booth)
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
-        this.sendGuestEvent('click', label)
+        this.$sendGuestEvent('click', label)
       },
-      async sendGuestEvent(event, label, booth = null){
-        // category: lobby,
-        // label: click Astra Zeneca Booth
-        let fd = new FormData()
-        fd.append('category', booth != null ? booth.name : this.$store.getters.currentScene)
-        fd.append('label', event+" "+label)
-        fd.append('user', this.$store.getters.user.id)
-
-        let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
+      handleBgmPlayToggle(){
+        if(this.$store.getters.bgmStart){
+          this.$store.commit('updateBgmStart', false)
+        }else{
+          this.$store.commit('updateBgmStart', true)
+          
+        }
       }
+      
     }
 }
 </script>
@@ -338,5 +343,24 @@ export default {
   .pnlm-about-msg >>> a {
     display: none;
   }
+  #controls {
+        position: absolute;
+        bottom: 0;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        padding-bottom: 3px;
+    }
+    .ctrl {
+        padding: 8px 5px;
+        width: 30px;
+        text-align: center;
+        background: rgba(200, 200, 200, 0.8);
+        display: inline-block;
+        cursor: pointer;
+    }
+    .ctrl:hover {
+        background: rgba(200, 200, 200, 1);
+    }
 
 </style>

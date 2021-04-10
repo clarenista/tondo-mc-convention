@@ -182,7 +182,7 @@ class BoothController extends Controller
         });
 
         return \redirect()->route('cms.booths.index')
-            ->with('success', 'You have successfully added a Booth.');
+            ->with('success', 'You have successfully updated a Booth.');
     }
 
     /**
