@@ -55,6 +55,9 @@
 
             @hasrole('admin')
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('cms.event-management.index')}}">Event Management</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/users">Users</a>
                 </li>
                 <li class="nav-item">

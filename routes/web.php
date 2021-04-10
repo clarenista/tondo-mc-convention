@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function(){
 //     return view('layouts.app');
 // });
+
+Route::get('/api/v1/event', [EventController::class, 'get'])->middleware([]);
+
 Route::get('/meeting-hall', function(){
     return view('app.plugins.zoom');
 });
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '.*');
+
+

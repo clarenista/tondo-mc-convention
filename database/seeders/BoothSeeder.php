@@ -17,7 +17,7 @@ class BoothSeeder extends Seeder
         $booth = Booth::create([
             'user_id' => 2,
             'name' => 'Astra Zeneca',
-            'pitch' => -2.26, 
+            'pitch' => -2.26,
             'yaw' => 42.28,
             'panorama_location' => 'lobby'
         ]);
@@ -61,6 +61,11 @@ class BoothSeeder extends Seeder
             'category' => 'Video',
             'url' => 'https://dev.convention.psp.com.ph/images/lt.png',
         ]);
+
+    }
+
+    private function seedBooth($booth){
+
 
     }
 }

@@ -4,7 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BannerController;
 use App\Http\Controllers\Cms\BoothController;
 use App\Http\Controllers\Cms\ContactController;
+use App\Http\Controllers\Cms\EventController as CmsEventController;
+use App\Http\Controllers\Cms\EventManagementController;
 use App\Http\Controllers\Cms\ExternalLinkController;
+use App\Http\Controllers\Cms\ProgramController;
 use App\Http\Controllers\Cms\QuestionController;
 use App\Http\Controllers\Cms\QuestionnaireController;
 use App\Http\Controllers\Cms\Sponsor\AssetController as SponsorAssetController;
@@ -40,6 +43,10 @@ Route::name('cms.')->group(function () {
 
         Route::post('booths/{id}/hotspots', [BoothController::class, 'storeHotspot'])->name('hotspotStore');
         Route::post('booths/{id}/destroyHotspot', [BoothController::class, 'destroyHotspot'])->name('hotspotDestroy');
+
+        Route::get('event-management', [EventManagementController::class, 'index'])->name('event-management.index');
+        Route::put('events/update', [CmsEventController::class, 'update'])->name('event.update');
+        Route::put('programs/update', [ProgramController::class, 'update'])->name('program.update');
     });
 
     Route::middleware(['role:sponsor'])->group(function () {
