@@ -6,7 +6,7 @@ use App\Models\Event;
 use App\Models\Program;
 use Illuminate\Database\Seeder;
 
-class AssetSeeder extends Seeder
+class EventAndProgramSeeder extends Seeder
 {
     /**
      * Run the database seeds.
