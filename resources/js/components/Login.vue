@@ -16,7 +16,7 @@
             </div>
 
             <div class="register-right col-md-6">
-                <Timer class="register-form" :endTime="'2021-04-23 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+                <Timer class="register-form" :endTime="'2021-04-10 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
                 <div v-else  class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.

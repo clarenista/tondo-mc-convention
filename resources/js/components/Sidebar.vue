@@ -85,8 +85,11 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-color: #4c748c;
+    background-image: linear-gradient(90deg, #4c748c, #80b1cf);
     border: #4c748c;
+    /* border-radius: 15%;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px; */
 }
 
 .sidenav {
