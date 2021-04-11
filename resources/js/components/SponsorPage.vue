@@ -104,13 +104,13 @@
             </Modal>
 
         <div class="booth-container">
-            <img class="centered" src="/images/lt.png">
+            <img class="centered" :src="booth_details.background">
             <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
         </div>
 
         <section class="hotspots--wrapper" v-if="booth_details != null">
           <!-- {{booth_details}} -->
-            <img src="/images/bt.png" class="hotspots--figure">
+            <img :src="booth_details.booth" class="hotspots--figure">
             <a  href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
                 <span class="hotspot--cta"></span>
             </a>
