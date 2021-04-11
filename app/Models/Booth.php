@@ -18,6 +18,8 @@ class Booth extends Model
         'yaw',
         'panorama_location',
         'type',
+        'background',
+        'booth',
         'active',
     ];
 

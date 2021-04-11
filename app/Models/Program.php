@@ -24,5 +24,7 @@ class Program extends Model
         'video_thumbnail_url',
         'audio_url',
         'audio_thumbnail_url',
+        'unique_id',
+        'unique_code',
     ];
 }

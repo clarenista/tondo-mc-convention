@@ -1,22 +1,22 @@
 <template>
 <div class="background full">
     <div class="register">
-        
+
         <button class="btn btn-primary btn-sm" @click="handleToggleBgMusic" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">
             <i class="fa fa-volume-up" v-if="!$store.getters.bgmStart"></i>
             <i class="fa fa-volume-off" v-else></i>
         </button>
-       
+
         <div class="row col-10">
             <div class="register-left col-md-6 ">
-    
+
                 <img src="/images/logo.png" alt=""/>
                 <!-- <h3 class="lead text-white">Welcome</h3> -->
                 <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
             </div>
 
-            <div class="register-right col-md-6">
-                <Timer class="register-form" :endTime="'2021-04-10 14:07:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+            <div class="register-right col-md-6" v-if="start_at">
+                <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
                 <div v-else  class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.
@@ -31,9 +31,9 @@
                             <div class="col-lg-10 col-sm-12">
                                 <form method="POST" @submit.prevent="handleSubmit">
                                         <div class="form-group">
-                                            <input 
-                                                type="text" 
-                                                class="form-control text-center" 
+                                            <input
+                                                type="text"
+                                                class="form-control text-center"
                                                 placeholder="Username"
                                                 v-model="text_email"
                                                 required
@@ -41,8 +41,8 @@
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <input 
-                                                    :type="isSeePassword ? 'text' : 'password'" 
+                                                <input
+                                                    :type="isSeePassword ? 'text' : 'password'"
                                                     class="form-control text-center" id="txtpassword"
                                                     placeholder="Password"
                                                     v-model="text_password"
@@ -52,17 +52,17 @@
                                                     <span class="input-group-text" id="my-addon"><i :class="isSeePassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
                                                 </div>
                                             </div>
-                                        </div>             
+                                        </div>
                                         <div class="form-group align-middle">
                                             <button class="btn btn-light btn-lg btn-block text-success">
                                                 <i class="fa fa-user"></i> Login</button>
                                         </div>
                                 </form>
-                            </div>                            
+                            </div>
                         </div>
                     </div>
-                    
-                </div>        
+
+                </div>
             </div>
         </div>
     </div>
@@ -76,24 +76,36 @@
         components:{
             Timer
         },
-        mounted() {
+        created() {
+            this.init()
             // console.log(this.$store.getters.pois)
         },
         data(){
-            
+
             return{
                 text_email: "",
                 text_password: "",
                 isLoginSuccess: null,
                 isSeePassword: false,
-                isOpen: false
+                isOpen: false,
+                start_at: null,
             }
         } ,
         watch:{
-            
+
         },
 
         methods:{
+            async init(){
+                let {data} = await axios.get('/api/v1/event')
+                let now = new Date()
+                let start_at_ = new Date(data.start_at)
+                if(now > start_at_){
+                    this.isOpen = true
+                }
+                this.start_at = data.start_at
+            },
+
             async handleSubmit(){
                 this.isLoginSuccess = null
                 // if(this.errors){
@@ -149,8 +161,8 @@ div.full{
     overflow: visble;
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
     padding: 10% 1% 3%;
-    
-    
+
+
 }
 .register-left{
     text-align: center;
@@ -297,7 +309,7 @@ div.full{
     #txtpassword {
         padding-left: 62px;
     }
-    
+
 }
 
 </style>

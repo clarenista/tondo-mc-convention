@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Models\Program;
 use App\Models\UserEvent;
 use App\Models\UserEventCategory;
 
@@ -30,20 +31,24 @@ class GuestController extends Controller
 
     public function zoomJoinMobile(){
 
-        return 'https://us04web.zoom.us/j/78803086236?pwd=TXp6L2xUcit0WlNUaEx5SWNIcUhvQT09';
+        $program = Program::first();
+
+        return $program->video_url;
     }
 
     public function zoomJoin($meetingNumber = "78803086236")
     {
 
+        $program = Program::first();
+        $meetingNumber = $program->unique_id;
+
         $apiKey = '9srj55u0SxGqM9F2dUU1nA';
         $secret = 'GRa14V4N2ukM2Ci6yu8NSnzLmftWJnOf97BB';
-        $passWord = '7e7kbw';
+        $passWord = $program->unique_code;
         $user = request()->user();
         $signature = $this->zoomSignature($apiKey, $secret, $meetingNumber);
         $userName = $user->first_name . " " . $user->last_name;
         $userEmail = $user->email . '@gmail.com';
-
         return compact('signature', 'meetingNumber', 'userName', 'apiKey', 'userEmail', 'passWord');
     }
 

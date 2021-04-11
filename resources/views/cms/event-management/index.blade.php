@@ -79,6 +79,8 @@ Event Management
             @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
             @include('cms.include.input-text', ['key' => 'description', 'label' => 'description'])
             @include('cms.include.input-text', ['key' => 'video_url', 'label' => 'Zoom Link'])
+            @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID'])
+            @include('cms.include.input-text', ['key' => 'unique_code', 'label' => 'Zoom Pass Code'])
             <div class="form-group">
                 <button class="btn btn-info btn-block">&#10004;UPDATE PROGRAM</button>
             </div>

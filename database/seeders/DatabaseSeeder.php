@@ -42,5 +42,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->assignRole('sponsor');
+
+        $this->call(EventAndProgramSeeder::class);
+        $this->call(BoothSeeder::class);
     }
 }

@@ -19,6 +19,8 @@ class ProgramController extends Controller
             'description' => 'nullable',
             'video_url' => 'nullable',
             'video_thumbnail_url' => 'nullable',
+            'unique_id' => 'nullable',
+            'unique_code' => 'nullable',
         ]);
 
         $event = Program::first();

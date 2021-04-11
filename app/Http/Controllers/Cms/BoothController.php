@@ -47,10 +47,10 @@ class BoothController extends Controller
     public function store(Request $request)
     {
 
-        DB::transaction(function () {
+        DB::transaction(function () use ($request) {
 
             $booth = Booth::create(
-                \request()->validate([
+                $request->validate([
                     'user_id' => 'required',
                     'name' => 'required|string',
                     'caption' => 'nullable|string',
@@ -77,50 +77,32 @@ class BoothController extends Controller
                 'description' => $booth->name . " Quiz",
                 'category' => "Quiz",
             ]);
-
             $booth->eventCategory()->create([
                 'name' => Str::slug($booth->name),
                 'description' => $booth->name,
             ]);
 
-            $hotspot = $booth->hotspots()->create([
-                'name' => 'external-link',
-                'x' => 56,
-                'y' => 21,
-            ]);
+            $hotpots = [
+                ['External Link', 56, 21, 'https://localhost'],
+                ['Contact Us', 66, 16, ''],
+                ['Quiz', 60, 72, ''],
+                ['Brochure', 66, 24, ''],
+                ['Videos', 37, 71, ''],
+                ['Gallery', 40, 38, ''],
+            ];
 
-            $hotspot->assets()->create([
-                'name' => 'Website',
-                'url' => 'http://localhost',
-                'type' => 'Booth',
-                'category' => 'external-link',
-            ]);
-
-            $hotspot = $booth->hotspots()->create([
-                'name' => 'contact-us',
-                'x' => 66,
-                'y' => 16,
-            ]);
-
-            $hotspot->assets()->create([
-                'name' => 'Contact Us',
-                'url' => '',
-                'type' => 'Booth',
-                'category' => 'contact-us',
-            ]);
-
-            $hotspot = $booth->hotspots()->create([
-                'name' => 'quiz',
-                'x' => 60,
-                'y' => 72,
-            ]);
-
-            $hotspot->assets()->create([
-                'name' => 'Quiz',
-                'url' => '',
-                'type' => 'Booth',
-                'category' => 'quiz',
-            ]);
+            foreach ($hotpots as $hotpot) {
+                $booth->hotspots()->create([
+                    'name' => Str::slug($hotpot[0]),
+                    'x' => $hotpot[1],
+                    'y' => $hotpot[2],
+                ])->assets()->create([
+                    'name' => $hotpot[0],
+                    'url' => $hotpot[3],
+                    'type' => 'Booth',
+                    'category' => Str::slug($hotpot[0]),
+                ]);
+            }
         });
 
         return \redirect()->route('cms.booths.index')
