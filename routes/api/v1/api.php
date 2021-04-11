@@ -36,3 +36,4 @@ Route::get('/guests/booths/tracker', [GuestController::class, 'boothTracker']);
 Route::post('/guests/event/push', [GuestEventController::class, 'push']);
 
 Route::get('/program', [ProgramController::class, 'get']);
+Route::get('/event', [EventController::class, 'get']);

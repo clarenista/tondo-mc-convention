@@ -15,8 +15,8 @@
                 <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
             </div>
 
-            <div class="register-right col-md-6">
-                <Timer class="register-form" :endTime="'2021-04-10 14:00:00:00'" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
+            <div class="register-right col-md-6" v-if="start_at">
+                <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
                 <div v-else  class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
                         Login successs.
@@ -76,7 +76,8 @@
         components:{
             Timer
         },
-        mounted() {
+        created() {
+            this.init()
             // console.log(this.$store.getters.pois)
         },
         data(){
@@ -86,7 +87,8 @@
                 text_password: "",
                 isLoginSuccess: null,
                 isSeePassword: false,
-                isOpen: false
+                isOpen: false,
+                start_at: null,
             }
         } ,
         watch:{
@@ -94,6 +96,16 @@
         },
 
         methods:{
+            async init(){
+                let {data} = await axios.get('/api/v1/event')
+                let now = new Date()
+                let start_at_ = new Date(data.start_at)
+                if(now > start_at_){
+                    this.isOpen = true
+                }
+                this.start_at = data.start_at
+            },
+
             async handleSubmit(){
                 this.isLoginSuccess = null
                 // if(this.errors){
