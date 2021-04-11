@@ -17,10 +17,16 @@ class EventAndProgramSeeder extends Seeder
     {
 
         if (!Event::first()) {
-            Event::create([]);
+            Event::create([
+                'start_at' => '2021-04-10 08:00:00',
+                'end_at' => '2021-05-10 08:00:00',
+            ]);
         }
         if (!Program::first()) {
-            Program::create([]);
+            Program::create([
+                'start_at' => '2021-04-10 08:00:00',
+                'end_at' => '2021-05-10 08:00:00',
+            ]);
         }
     }
 }
