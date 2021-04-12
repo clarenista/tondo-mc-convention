@@ -36,7 +36,7 @@
                         </div>
                     </div>                                                          
                 </div>
-                <p class="text-center text-light mt-3 login_msg">PSP 69<sup>th</sup> Annual Convention Virtual Event <br> 23<sup>rd</sup> - 26<sup>th</sup> of April 2021</p>
+                <p class="text-center text-light mt-3 login_msg">{{introduction}}</p>
             </div>
 
         </div>
@@ -61,7 +61,8 @@ export default {
             minutes: '',
             seconds: '',
             isClose: false,
-            distance: '',            
+            distance: '',    
+            introduction: 'PSP 69<sup>th</sup> Annual Convention Virtual Event <br> 23<sup>rd</sup> - 26<sup>th</sup> of April 2021',        
         }
     },
     methods:{

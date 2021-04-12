@@ -1,5 +1,57 @@
 <template >
     <div class="background full">
+      <div class="booth_tracker">
+        <h1><i class="fa fa-address-card text-dark" data-toggle="tooltip" title="View My Activity" aria-hidden="true" ></i></h1>
+      </div>
+
+      <!-- ZOOM TIMER -->
+      <div id="zoom_countdown">
+        <div class="col-12">
+          <div  class="row">
+            <div class="col p-1" id="box">
+                <div class="card card-primary bg-dark text-light">
+                    <div class="card-body text-center">
+                        <p class="display-4 m-0">{{zeroPad(days)}}</p>
+                        <p class="lead m-0 text-light text-uppercase">days</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col p-1" id="box">
+                <div class="card card-primary bg-dark text-light">
+                    <div class="card-body text-center">
+                        <p class="display-4 m-0">{{zeroPad(hours)}}</p>
+                        <p class="lead m-0 text-light text-uppercase">hrs</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col p-1" id="box">
+                <div class="card card-primary bg-dark text-light">
+                    <div class="card-body text-center">
+                        <p class="display-4 m-0">{{zeroPad(minutes)}}</p>
+                        <p class="lead m-0 text-light text-uppercase">mins</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col p-1" id="box">
+                <div class="card card-primary bg-dark text-light">
+                    <div class="card-body text-center">
+                        <p class="display-4 m-0">{{zeroPad(seconds)}}</p>
+                        <p class="lead m-0 text-light text-uppercase">secs</p>
+                    </div>
+                </div>
+            </div>  
+          </div>
+
+          <div class="row">
+            <div class="col text-center text-dark intro"><small>Zoom meeting starts after countdown</small></div>                                                       
+          </div>
+          
+        </div>
+      </div>
+
       <div id="panorama">
         <div id="controls">
           <div class="ctrl" @click="handleBgmPlayToggle">
@@ -44,14 +96,23 @@ export default {
         hall_b_booths: null,
         hall_c_booths: null,
         hall_d_booths: null,
-        showModal: true
+        showModal: true,
+        
+        countDownStartTime: '',
+        countDownEndTime: '',
+        counDownDistance: '',
+        days: '',
+        hours: '',
+        minutes: '',
+        seconds: '',
+        endTime: ''
       }
     },
     mounted() {
-       this.init()
-       window.addEventListener("resize", this.reSize);
+      this.init()
+      window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
-
+      this.loadTimer()
     },
     methods:{
       async init(){
@@ -210,6 +271,8 @@ export default {
         this.viewer.on('scenechange', this.handleSceneChange)
         this.viewer.on('load', this.handleSceneLoad);
         this.reSize()
+
+        
       },
       handleSceneLoad(){
           if(this.viewer.getScene()=="meeting_hall"){
@@ -267,10 +330,41 @@ export default {
           this.$store.commit('updateBgmStart', true)
           
         }
-      }
-      
+      },
+
+      // ZOOM TIMER
+      loadTimer(){
+        this.countDownEndTime =  new Date("April 12, 2021 14:34:25").getTime();
+        this.countDownStart()
+        let x = setInterval(()=>{
+            this.countDownStart()
+            if(this.distance < 0){
+                clearInterval(x)
+                this.handleTimerEnd()
+
+            }
+        }, 1000)
+      },
+      countDownStart(){
+                
+          let now = new Date().getTime();
+          this.distance = this.countDownEndTime - now;
+
+          // Time calculations for days, hours, minutes and seconds
+          this.days = Math.floor(this.distance / (1000 * 60 * 60 * 24));
+          this.hours = Math.floor((this.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
+          this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
+      },
+      handleTimerEnd(){
+        document.getElementById("zoom_countdown").style.display = "none"
+      },
+      zeroPad(num){
+          return String(num).padStart(2, '0');
+      },
     }
 }
+
 </script>
 <style scoped>
   div >>> .custom-hotspot {
@@ -362,5 +456,89 @@ export default {
     .ctrl:hover {
         background: rgba(200, 200, 200, 1);
     }
+  
+  .booth_tracker {
+    position: fixed;
+    top: 0.1em;
+    right: 0.5em;
+    /* background-color: rgba(0,0,0,0.5); */
+    z-index: 2;
+    cursor: pointer;
+  }
+  #zoom_countdown {
+    position: fixed;
+    top: 0.4em;
+    right: 3.5em;
+    z-index: 2;
+  }
+  #zoom_countdown .intro {
+    font-size: 0.9em;
+  }
+  #zoom_countdown .display-4 {
+      font-size: 0.9rem;
+  }
+  #zoom_countdown .lead {
+      font-size: 0.5rem;
+  }
+  #box .card-body {
+      padding: 0.5rem !important; 
+  }
+
+  @media screen and (max-width: 750px) {
+    #zoom_countdown .display-4 {
+       font-size: 0.8rem;
+    }
+    #zoom_countdown .lead {
+       font-size: 0.5rem;
+    }
+    #zoom_countdown .intro {
+        font-size: 0.6em;
+      }
+      #box .card-body {
+          padding: 0.6rem !important; 
+      }
+    
+  }
+
+  @media screen and (max-width: 320px) {
+
+      #zoom_countdown .display-4 {
+          font-size: 0.6rem;
+      }
+    
+  }
+
+  @media screen and (max-width: 360px) {
+      #zoom_countdown .display-4 {
+          font-size: 0.7rem;
+      }
+      #zoom_countdown .lead {
+          font-size: 0.4rem;
+      }
+      #zoom_countdown .intro {
+        font-size: 0.6em;
+      }
+      #box .card-body {
+          padding: 0.6rem !important; 
+      }
+  }
+
+@media screen and (max-width: 280px) {
+    #zoom_countdown .display-4 {
+          font-size: 0.7rem;
+      }
+      #zoom_countdown .lead {
+          font-size: 0.4rem;
+      }
+      #zoom_countdown .intro {
+        font-size: 0.4em;
+      }
+      #box .card-body {
+          padding: 0.4rem !important; 
+      }
+}
+ 
+
+  
 
 </style>

@@ -17,7 +17,7 @@
             <i class="fa" :class="item.icon"></i> {{item.name}}</a>
         <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="width:100%; background-color: #44948c; color: #f6f6f6;">
           <a class="dropdown-item" @click="handleNavigateTo(dropdown)" style="padding-left: 80px;" href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
-              <i class="fa" :class="item.icon"></i> {{dropdown.name}}</a>
+              <i class="fa" :class="dropdown.icon"></i> {{dropdown.name}}</a>
         </div>
     </div>
     <a href="javascript:void(0)" @click="handleLogout">
@@ -36,12 +36,12 @@ export default {
             navItems: [
                 {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item'},
                 {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item'},
-                {name: "Exhibit Hall", sceneId: '', icon: 'fa-dashboard', type:'dropdown', 
+                {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown', 
                     dropdowns:[
-                        {name: "Exhibit Hall A", sceneId: 'exhibit_hall_a', icon: 'fa-user'},
-                        {name: "Exhibit Hall B", sceneId: 'exhibit_hall_b', icon: 'fa-user'},
-                        {name: "Exhibit Hall C", sceneId: 'exhibit_hall_c', icon: 'fa-user'},
-                        {name: "Exhibit Hall D", sceneId: 'exhibit_hall_d', icon: 'fa-user'},
+                        {name: "Exhibit Hall A", sceneId: 'exhibit_hall_a', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall B", sceneId: 'exhibit_hall_b', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall C", sceneId: 'exhibit_hall_c', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall D", sceneId: 'exhibit_hall_d', icon: 'fa-map-marker'},
                     ]},
             ]
         }
@@ -85,8 +85,11 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-color: #4c748c;
+    background-image: linear-gradient(90deg, #4c748c, #80b1cf);
     border: #4c748c;
+    /* border-radius: 15%;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px; */
 }
 
 .sidenav {
