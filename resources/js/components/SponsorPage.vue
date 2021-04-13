@@ -105,14 +105,19 @@
 
         <div class="booth-container">
             <img class="centered" :src="booth_details.background">
-            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
+            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;">< Back</button>
         </div>
 
         <section class="hotspots--wrapper" v-if="booth_details != null">
-          <!-- {{booth_details}} -->
             <img :src="booth_details.booth" class="hotspots--figure">
             <a  href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
-                <span class="hotspot--cta"></span>
+                <!-- <span class="hotspot--cta" v-if="index == 'brochure'"></span> -->
+                <img class="icons" src="/images/icons/brochure.png" alt="brochure" srcset="" v-if="index == 'brochure'">
+                <img class="icons" src="/images/icons/contact.png" alt="brochure" srcset="" v-if="index == 'contact-us'">
+                <img class="icons" src="/images/icons/link.png" alt="brochure" srcset="" v-if="index == 'external-link'">
+                <img class="icons" src="/images/icons/gallery.png" alt="brochure" srcset="" v-if="index == 'gallery'">
+                <img class="icons" src="/images/icons/quiz.png" alt="brochure" srcset="" v-if="index == 'quiz'">
+                <img class="icons" src="/images/icons/video.png" alt="brochure" srcset="" v-if="index == 'video'">
             </a>
 
         </section>
@@ -202,20 +207,29 @@ export default {
         async handleSendMessage(){
           let url = '/api/v1/booths/'+this.id+'/message?api_token='+localStorage.getItem('access_token')
 
+
+
           // append text fields
           let fd = new FormData()
           fd.append('subject', this.subject)
-          fd.append('name', this.name)
-          fd.append('affiliation', this.affiliation)
-          fd.append('mobile_number', this.mobile_number)
-          fd.append('email', this.email)
+          // fd.append('name', this.name)
+          // fd.append('affiliation', this.affiliation)
+          // fd.append('mobile_number', this.mobile_number)
+          // fd.append('email', this.email)
           fd.append('interest', this.interest)
           fd.append('message', this.message)
-          let {data} = await axios.post(url, fd)
-          
-          if(data.status === 'ok'){
-            this.modalShow = false
-            this.successMessage = true
+
+          try {
+            let {data} = await axios.post(url, fd)
+            this.selectedHotspot = null
+            this.value = false
+
+            this.subject = ''
+            this.interest = ''
+            this.message = ''
+          } catch (error) {
+            alert(JSON.stringify(error.message))
+            this.value = true
           }
 
         },
@@ -240,13 +254,14 @@ export default {
     .booth-container {
         height: 100vw;
     }
-
+    
     .centered {
         width: 310%;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-51.5%, -50%);
+        
     }
 }
 
@@ -270,6 +285,7 @@ div#container{
   display: flex;
   min-height: 100vh;
 }
+
 
 body div {
   display: flex;
@@ -404,6 +420,66 @@ body div {
   .hotspot--cta::after {
     width: 5px;
     height: 5px;
+  }
+}
+
+/* ICONS */
+.hotspots--wrapper a img {
+  width: 75px;
+}
+
+.hotspots--wrapper a img:hover {
+  opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+  .hotspots--wrapper a img {
+    width: 40px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+    .hotspots--wrapper a img {
+      width: 20px;
+    }
+    
+  }
+
+  @media screen and (max-width: 320px) {
+
+    .hotspots--wrapper a img {
+      width: 17px;
+    }
+    
+  }
+
+  @media screen and (max-width: 360px) {
+    .hotspots--wrapper a img {
+      width: 20px;
+    }
+  }
+
+@media screen and (max-width: 280px) {
+  .hotspots--wrapper a img {
+    width: 15px;
   }
 }
 
