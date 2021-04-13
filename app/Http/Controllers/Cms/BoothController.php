@@ -86,7 +86,7 @@ class BoothController extends Controller
                 ['External Link', 56, 21, 'https://localhost'],
                 ['Contact Us', 66, 16, ''],
                 ['Quiz', 60, 72, ''],
-                ['Brochure', 66, 24, ''],
+                ['Brochures', 66, 24, ''],
                 ['Videos', 37, 71, ''],
                 ['Gallery', 40, 38, ''],
             ];
@@ -94,6 +94,7 @@ class BoothController extends Controller
             foreach ($hotpots as $hotpot) {
                 $booth->hotspots()->create([
                     'name' => Str::slug($hotpot[0]),
+                    'caption' => $hotpot[0],
                     'x' => $hotpot[1],
                     'y' => $hotpot[2],
                 ])->assets()->create([
