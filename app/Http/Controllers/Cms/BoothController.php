@@ -94,6 +94,7 @@ class BoothController extends Controller
             foreach ($hotpots as $hotpot) {
                 $booth->hotspots()->create([
                     'name' => Str::slug($hotpot[0]),
+                    'caption' => $hotpot[0],
                     'x' => $hotpot[1],
                     'y' => $hotpot[2],
                 ])->assets()->create([
