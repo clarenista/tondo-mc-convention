@@ -20,7 +20,7 @@
                           </div> -->
                           <div class="row text-center">
                             <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
-                            <p></p>
+                            <p>{{selectedHotspot.assets[0].url}}</p>
                             <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
                           </div>
                         </template>
