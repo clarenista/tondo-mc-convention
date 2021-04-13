@@ -5,7 +5,7 @@
       </div>
 
       <!-- ZOOM TIMER -->
-      <div id="zoom_countdown" v-if="!isOpen">
+      <div id="zoom_countdown" v-if="isOpen">
         <div class="col-12">
           <div  class="row">
             <div class="col p-1" id="box">
@@ -105,7 +105,7 @@ export default {
         hours: '',
         minutes: '',
         seconds: '',
-        start_at: 'April 12, 2021 14:34:25',
+        start_at: null,
         isOpen: false,
       }
     },
@@ -335,7 +335,17 @@ export default {
       },
 
       // ZOOM TIMER
-      loadTimer(){
+      async loadTimer(){
+        let {data} = await axios.get('/api/v1/program?api_token='+localStorage.getItem('access_token'))
+        this.start_at = data.start_at
+
+        // disable display
+        let now = new Date()
+        let start_at_ = new Date(data.start_at)
+        if(now < start_at_){
+            this.isOpen = true
+        }
+
         this.countDownEndTime =  new Date(this.start_at).getTime();
         this.countDownStart()
         let x = setInterval(()=>{
