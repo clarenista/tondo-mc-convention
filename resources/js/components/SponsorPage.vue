@@ -12,12 +12,16 @@
                     <div class="row px-4">
                       <!-- External link -->
                         <template v-if="selectedHotspot.name == 'external-link'">
-                          <div class="card ">
+                          <!-- <div class="card ">
                             <h3 class="card-header">{{selectedHotspot.assets[0].name}}</h3>
                               <a :href="selectedHotspot.assets[0].url" target="_blank">
                                 <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
                               </a>
-
+                          </div> -->
+                          <div class="row text-center">
+                            <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
+                            <p></p>
+                            <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
                           </div>
                         </template>
                         <!-- External link -->
@@ -70,10 +74,8 @@
                             </a>   
                           </div>
                         </div>
-                        
                         </template>
-                        <!-- GALLERY  -->
-                       
+                        <!-- GALLERY  -->                       
 
                         <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
                           <div class="card ">
@@ -231,7 +233,9 @@ export default {
           fd.append('label', hotspot == null ? 'visit' : 'click '+hotspot.name+" hotspot")
 
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
-        }
+        },
+
+
     }
 
   }
