@@ -18,7 +18,7 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // RIGHT
-                ['A', -2.26, 42.28, 'gold'],
+                ['A', -2.26, 42.28, 'gold', 'http://dev.convention.psp.com.ph//storage/Booth/1618149550-mindray-bgpng', 'http://dev.convention.psp.com.ph//storage/Booth/1618149551-mindray-boothpng'],
                 ['B', -2.00, 129.05, 'gold'],
                 // LEFT
                 ['C', -1.74, -41.12, 'gold'],
@@ -104,8 +104,8 @@ class BoothSeeder extends Seeder
 
     private function seedBooth($user, $booth, $location)
     {
+
         try {
-            $user->assignRole('sponsor');
             (new BoothController)->store(new Request([
                 'user_id' => $user->id,
                 'name' => $user->name,
@@ -114,7 +114,12 @@ class BoothSeeder extends Seeder
                 'panorama_location' => Str::snake($location),
                 'type' => $booth[3],
             ]));
-
+            if (isset($booth[4])) {
+                $user->booth->assets()->whereCategory('background')->first()->update(['url' => $booth[4]]);
+            }
+            if (isset($booth[5])) {
+                $user->booth->assets()->whereCategory('booth')->first()->update(['url' => $booth[5]]);
+            }
         } catch (\Throwable $th) {
             dd($th->errors());
         }
