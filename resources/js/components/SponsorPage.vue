@@ -279,7 +279,7 @@ body div {
   overflow: hidden;
   position: relative;
   margin: auto;
-  max-width: 960px;
+  /* max-width: 960px; */
   font-family: 'Maven Pro', sans-srif;
   font-weight: 500;
 }
