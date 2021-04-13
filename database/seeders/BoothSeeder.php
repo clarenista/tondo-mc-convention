@@ -120,6 +120,7 @@ class BoothSeeder extends Seeder
             if (isset($booth[5])) {
                 $user->booth->assets()->whereCategory('booth')->first()->update(['url' => $booth[5]]);
             }
+            $user->assignRole('sponsor');
         } catch (\Throwable $th) {
             dd($th->errors());
         }
