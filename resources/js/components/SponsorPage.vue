@@ -58,33 +58,22 @@
                         </template>
                         <!-- CONTACT US FORM -->
 
-                        <!-- BROCHURES
-                          <template v-if="selectedHotspot.name == 'Brochures'">
-                            <div class="col-12">
-                              <ul>
-                                <li v-for="(i, index) in booth_details.hotspots.Brochures.assets" :key="index">
-                                  <a style="color: blue; text-decoration: none;" :href="i.url">{{ i.name }}</a></li>
-                              </ul>
-                            </div>
-                          </template>
-                         -->
-                        <!-- GALLERY 
-                        <template v-if="selectedHotspot.name == 'Gallery'">
-                          <div class="card-columns">
-                            <div class="card text-white">
-                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg" height="150px" class="card-img" alt="..."></a>
-                            </div>
-
-                            <div class="card text-white">
-                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg" height="150px" class="card-img" alt="..."></a>
-                            </div>
-
-                            <div class="card text-white">
-                              <a href="http://"><img src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg" height="150px" class="card-img" alt="..."></a>
-                            </div>
-                          </div>                    
+                        <!-- GALLERY  -->
+                        <template v-else-if="selectedHotspot.name == 'gallery'">
+                        <div class="col-6" v-for="(item, index) in selectedHotspot.assets" :key="index">
+                          <div class="card" >
+                            <a :href="item.url" target="_blank">
+                              <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
+                              <div class="card-img-overlay">
+                                {{item.name}}
+                              </div>
+                            </a>   
+                          </div>
+                        </div>
+                        
                         </template>
-                        -->
+                        <!-- GALLERY  -->
+                       
 
                         <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
                           <div class="card ">
@@ -92,7 +81,6 @@
                               <a :href="item.url" target="_blank">
                                 <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
                               </a>
-
                           </div>
                         </div>                        
 
@@ -112,12 +100,12 @@
             <img :src="booth_details.booth" class="hotspots--figure">
             <a  href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
                 <!-- <span class="hotspot--cta" v-if="index == 'brochure'"></span> -->
-                <img class="icons" src="/images/icons/brochure.png" alt="brochure" srcset="" v-if="index == 'brochure'">
-                <img class="icons" src="/images/icons/contact.png" alt="brochure" srcset="" v-if="index == 'contact-us'">
-                <img class="icons" src="/images/icons/link.png" alt="brochure" srcset="" v-if="index == 'external-link'">
-                <img class="icons" src="/images/icons/gallery.png" alt="brochure" srcset="" v-if="index == 'gallery'">
-                <img class="icons" src="/images/icons/quiz.png" alt="brochure" srcset="" v-if="index == 'quiz'">
-                <img class="icons" src="/images/icons/video.png" alt="brochure" srcset="" v-if="index == 'video'">
+                <img class="pulse" src="/images/icons/brochure.png" alt="brochure" srcset="" v-if="index == 'brochure'">
+                <img class="pulse" src="/images/icons/contact.png" alt="brochure" srcset="" v-if="index == 'contact-us'">
+                <img class="pulse" src="/images/icons/link.png" alt="brochure" srcset="" v-if="index == 'external-link'">
+                <img class="pulse" src="/images/icons/gallery.png" alt="brochure" srcset="" v-if="index == 'gallery'">
+                <img class="pulse" src="/images/icons/quiz.png" alt="brochure" srcset="" v-if="index == 'quiz'">
+                <img class="pulse" src="/images/icons/video.png" alt="brochure" srcset="" v-if="index == 'video'">
             </a>
 
         </section>
