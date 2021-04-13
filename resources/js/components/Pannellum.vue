@@ -3,7 +3,6 @@
       <div class="booth_tracker">
         <h1><i class="fa fa-address-card text-dark" data-toggle="tooltip" title="View My Activity" aria-hidden="true" ></i></h1>
       </div>
-
       <!-- ZOOM TIMER -->
       <div id="zoom_countdown" v-if="!isOpen">
         <div class="col-12">
@@ -61,7 +60,7 @@
         </div>
       </div>
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
-      <Modal :value="$store.getters.isWelcomed">
+      <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
@@ -80,7 +79,13 @@
 import Sidebar from './Sidebar'
 import Modal from './Modal'
 import MeetingHall from './MeetingHall/MeetingHall.js'
+    
 export default {
+  created() {
+    this.getProgramTime()
+    console.log('created', this.start_at)
+
+  },
   components:{
     Sidebar, Modal
   },
@@ -105,15 +110,14 @@ export default {
         hours: '',
         minutes: '',
         seconds: '',
-        start_at: 'April 12, 2021 14:34:25',
+        start_at: '',
         isOpen: false,
       }
     },
-    mounted() {
+      mounted() {
       this.init()
       window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
-      this.loadTimer()
       
     },
     methods:{
@@ -124,7 +128,8 @@ export default {
         // let {data} = await axios.get('api/v1/booths')
         this.$store.commit('updateBooths', data)
         this.booths = this.$store.getters.booths
-
+        
+        
         this.panorama_details = {
             "default": {
                 "firstScene": this.sceneId ? this.sceneId : "lobby",
@@ -349,9 +354,6 @@ export default {
       countDownStart(){
                 
           let now = new Date().getTime();
-          if(now > this.start_at){
-              this.isOpen = true
-          }
           this.distance = this.countDownEndTime - now;
 
           // Time calculations for days, hours, minutes and seconds
@@ -361,11 +363,26 @@ export default {
           this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
       },
       handleTimerEnd(){
-        document.getElementById("zoom_countdown").style.display = "none"
+        this.isOpen = true
       },
       zeroPad(num){
           return String(num).padStart(2, '0');
       },
+      async getProgramTime(){
+        try{
+          let {data} = await axios.get('api/v1/program?api_token='+localStorage.getItem('access_token'))
+          this.start_at = data.start_at
+          let now = new Date()
+          let start_at_ = new Date(data.start_at)
+          if(now > start_at_){
+              this.isOpen = true
+          }
+          this.loadTimer()
+
+        }catch (error) {
+          alert(JSON.stringify(error.message))
+        }
+      }
     }
 }
 
@@ -436,10 +453,11 @@ export default {
     width: 0;
     height: 0;
     padding: 0;
+    visibility: hidden;
 
   }
   .pnlm-about-msg >>> a {
-    display: none;
+    visibility: hidden;
   }
   #controls {
         position: absolute;
