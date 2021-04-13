@@ -1,6 +1,6 @@
 <template >
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="http://pcqaclvoting2020.bobongmd.com" allowfullscreen></iframe>
+  <div class="embed-responsive embed-responsive-16by9 background full">
+    <iframe class="embed-responsive-item" src="https://vote.psp.com.ph" allowfullscreen></iframe>
     <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">< Back</button>
   </div>
 </template>

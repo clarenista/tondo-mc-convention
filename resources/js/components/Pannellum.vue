@@ -5,7 +5,7 @@
       </div>
 
       <!-- ZOOM TIMER -->
-      <div id="zoom_countdown">
+      <div id="zoom_countdown" v-if="!isOpen">
         <div class="col-12">
           <div  class="row">
             <div class="col p-1" id="box">
@@ -105,7 +105,8 @@ export default {
         hours: '',
         minutes: '',
         seconds: '',
-        endTime: ''
+        start_at: 'April 12, 2021 14:34:25',
+        isOpen: false,
       }
     },
     mounted() {
@@ -113,6 +114,7 @@ export default {
       window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
       this.loadTimer()
+      
     },
     methods:{
       async init(){
@@ -334,20 +336,22 @@ export default {
 
       // ZOOM TIMER
       loadTimer(){
-        this.countDownEndTime =  new Date("April 12, 2021 14:34:25").getTime();
+        this.countDownEndTime =  new Date(this.start_at).getTime();
         this.countDownStart()
         let x = setInterval(()=>{
             this.countDownStart()
             if(this.distance < 0){
                 clearInterval(x)
                 this.handleTimerEnd()
-
             }
         }, 1000)
       },
       countDownStart(){
                 
           let now = new Date().getTime();
+          if(now > this.start_at){
+              this.isOpen = true
+          }
           this.distance = this.countDownEndTime - now;
 
           // Time calculations for days, hours, minutes and seconds
