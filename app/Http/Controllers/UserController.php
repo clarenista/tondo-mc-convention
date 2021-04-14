@@ -17,7 +17,8 @@ class UserController extends Controller
      */
 
      public function user(){
-         return request()->user();
+
+         return User::with('booth')->find(request()->user()->id);
      }
 
     public function index()

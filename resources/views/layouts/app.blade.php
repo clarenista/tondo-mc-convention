@@ -15,7 +15,7 @@
         overflow: hidden;
         background-image: linear-gradient(to right, #9cf0c8, #4c748c);
         background-size: cover;
-        background: url("images/login_bg.jpg") no-repeat;
+        background: url("/images/login_bg.jpg") no-repeat;
         background-position: center;
         background-attachment: fixed;
       }

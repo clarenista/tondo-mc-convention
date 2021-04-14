@@ -96,6 +96,7 @@ class BoothSeeder extends Seeder
                         'last_name' => $location,
                         'email' => "sponsor_" . strtolower($booth[0]),
                         'password' => Hash::make("sponsor_" . strtolower($booth[0])),
+                        'classification' => 'sponsor',
                     ]), $booth, $location);
                 }
             }

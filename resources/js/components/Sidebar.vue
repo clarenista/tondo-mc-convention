@@ -38,10 +38,10 @@ export default {
                 {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item'},
                 {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown', 
                     dropdowns:[
-                        {name: "Exhibit Hall A", sceneId: 'exhibit_hall_a', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall B", sceneId: 'exhibit_hall_b', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall C", sceneId: 'exhibit_hall_c', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall D", sceneId: 'exhibit_hall_d', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall A", sceneId: 'hall_a', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall B", sceneId: 'hall_b', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall C", sceneId: 'hall_c', icon: 'fa-map-marker'},
+                        {name: "Exhibit Hall D", sceneId: 'hall_d', icon: 'fa-map-marker'},
                     ]},
             ]
         }
