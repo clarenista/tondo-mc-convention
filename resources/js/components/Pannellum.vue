@@ -104,8 +104,7 @@
       </div>
 
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
-
-      <Modal :value="$store.getters.isWelcomed">
+      <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
@@ -140,7 +139,6 @@ export default {
         hall_b_booths: null,
         hall_c_booths: null,
         hall_d_booths: null,
-        showModal: false,
         
         countDownStartTime: '',
         countDownEndTime: '',
@@ -151,6 +149,7 @@ export default {
         seconds: '',
         start_at: null,
         isOpen: false,
+        sponsor_booth: null
       }
     },
     mounted() {
@@ -218,7 +217,7 @@ export default {
 
                     ]
                 },
-                "exhibit_hall_a" :{
+                "hall_a" :{
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/hall_a",
@@ -233,7 +232,7 @@ export default {
 
                     ]
                 },
-                "exhibit_hall_b" :{
+                "hall_b" :{
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/hall_b",
@@ -248,7 +247,7 @@ export default {
 
                     ]
                 },
-                "exhibit_hall_c" :{
+                "hall_c" :{
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/hall_c",
@@ -263,7 +262,7 @@ export default {
 
                     ]
                 },
-                "exhibit_hall_d" :{
+                "hall_d" :{
                     "type": "multires",
                     "multiRes": {
                       "basePath": "/images/multires/hall_d",
@@ -286,37 +285,48 @@ export default {
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
         }
-        this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
-        this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
-        this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
-        this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
-        this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
-        for(let i in this.$store.getters.scene_hotSpots){
-          this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+        if(this.$store.getters.user.classification ==='sponsor'){
+          this.viewer= pannellum.viewer('panorama', this.panorama_details );
+          this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
+          this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
+
+        }else{
+
+          this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
+          this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
+          this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
+          this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
+          this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+          for(let i in this.$store.getters.scene_hotSpots){
+            this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+          }
+          this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
+          this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+
+          this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+
+          this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+          this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
+
+          this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+          this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
+
+          this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+          this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
+
+          this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+          this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
+
+          this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
-        this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
-        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
-
-        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
-
-        this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.exhibit_hall_a.hotSpots.push(...this.hall_a_booths)
-
-        this.panorama_details.scenes.exhibit_hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.exhibit_hall_b.hotSpots.push(...this.hall_b_booths)
-
-        this.panorama_details.scenes.exhibit_hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.exhibit_hall_c.hotSpots.push(...this.hall_c_booths)
-
-        this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.exhibit_hall_d.hotSpots.push(...this.hall_d_booths)
-
-        // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
-        this.viewer= pannellum.viewer('panorama', this.panorama_details );
-        // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
-        this.viewer.on('scenechange', this.handleSceneChange)
-        this.viewer.on('load', this.handleSceneLoad);
-        this.reSize()
+          // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
+          // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
+          this.viewer.on('scenechange', this.handleSceneChange)
+          this.viewer.on('load', this.handleSceneLoad);
+          this.reSize()
 
         
       },
@@ -415,7 +425,7 @@ export default {
           this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
       },
       handleTimerEnd(){
-        document.getElementById("zoom_countdown").style.display = "none"
+        this.isOpen = false
       },
       zeroPad(num){
           return String(num).padStart(2, '0');

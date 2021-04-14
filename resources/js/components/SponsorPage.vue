@@ -1,97 +1,97 @@
 <template>
     <div id="container" >
-            <div class="alert alert-success" role="alert" v-if="successMessage">
-                Message sent.
-            </div>
+        <div class="alert alert-success" role="alert" v-if="successMessage">
+            Message sent.
+        </div>
 
-            <Modal :value="value" v-if="selectedHotspot != null">
-                <template v-slot:title >
-                    <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
-                </template>
-                <template v-slot:body >
-                    <div class="row px-4">
-                      <!-- External link -->
-                        <template v-if="selectedHotspot.name == 'external-link'">
-                          <!-- <div class="card ">
-                            <h3 class="card-header">{{selectedHotspot.assets[0].name}}</h3>
-                              <a :href="selectedHotspot.assets[0].url" target="_blank">
-                                <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
-                              </a>
-                          </div> -->
-                          <div class="row text-center">
-                            <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
-                            <p>{{selectedHotspot.assets[0].url}}</p>
-                            <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
-                          </div>
-                        </template>
-                        <!-- External link -->
+        <Modal :value="value" v-if="selectedHotspot != null">
+            <template v-slot:title >
+                <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
+            </template>
+            <template v-slot:body >
+                <div class="row px-4">
+                  <!-- External link -->
+                    <template v-if="selectedHotspot.name == 'external-link'">
+                      <!-- <div class="card ">
+                        <h3 class="card-header">{{selectedHotspot.assets[0].name}}</h3>
+                          <a :href="selectedHotspot.assets[0].url" target="_blank">
+                            <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
+                          </a>
+                      </div> -->
+                      <div class="row text-center">
+                        <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
+                        <p>{{selectedHotspot.assets[0].url}}</p>
+                        <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
+                      </div>
+                    </template>
+                    <!-- External link -->
 
 
-                        <!-- CONTACT US FORM -->
-                        <template v-else-if="selectedHotspot.name == 'contact-us'">
-                          <div class="col-12 mb-3">
-                            <div class="input-group">
-                                <span class="input-group-prepend">
-                                    <span class="input-group-text">Subject&nbsp;&nbsp;</span>
-                                </span>
-                                <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="" required>
-                            </div>
-                          </div>
-
-                          <div class="col-12 mb-3">
-                            <div class="input-group">
-                                <span class="input-group-prepend">
-                                    <span class="input-group-text">Interest&nbsp;&nbsp;</span>
-                                </span>
-                                <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="" required>
-                            </div>
-                          </div>
-
-                          <div class="col-12 mb-3">
-                            <div class="input-group">
-                                <span class="input-group-prepend">
-                                    <span class="input-group-text">Message</span>
-                                </span>
-                                <textarea class="form-control" v-model="message" placeholder="Message" aria-label="" required></textarea>
-                            </div>
-                          </div>
-
-                          <div class="col-12">
-                            <button class="btn btn-success btn-block" @click="handleSendMessage()">&#9993; SEND MESSAGE</button>
-                          </div>
-                        </template>
-                        <!-- CONTACT US FORM -->
-
-                        <!-- GALLERY  -->
-                        <template v-else-if="selectedHotspot.name == 'gallery'">
-                        <div class="col-6" v-for="(item, index) in selectedHotspot.assets" :key="index">
-                          <div class="card" >
-                            <a :href="item.url" target="_blank">
-                              <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
-                              <div class="card-img-overlay">
-                                {{item.name}}
-                              </div>
-                            </a>   
-                          </div>
+                    <!-- CONTACT US FORM -->
+                    <template v-else-if="selectedHotspot.name == 'contact-us'">
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Subject&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
                         </div>
-                        </template>
-                        <!-- GALLERY  -->                       
+                      </div>
 
-                        <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
-                          <div class="card ">
-                            <p class="card-header">{{item.name}}</p>
-                              <a :href="item.url" target="_blank">
-                                <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
-                              </a>
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Interest&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
+                        </div>
+                      </div>
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Message</span>
+                            </span>
+                            <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <button class="btn btn-success btn-block" @click="handleSendMessage()">&#9993; SEND MESSAGE</button>
+                      </div>
+                    </template>
+                    <!-- CONTACT US FORM -->
+
+                    <!-- GALLERY  -->
+                    <template v-else-if="selectedHotspot.name == 'gallery'">
+                    <div class="col-6" v-for="(item, index) in selectedHotspot.assets" :key="index">
+                      <div class="card" >
+                        <a :href="item.url" target="_blank">
+                          <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
+                          <div class="card-img-overlay">
+                            {{item.name}}
                           </div>
-                        </div>                        
-
+                        </a>   
+                      </div>
                     </div>
-                </template>
-                <template v-slot:footer >
-                    <button class="btn btn-secondary" type="button" @click="handleCloseModal">Close</button>
-                </template>
-            </Modal>
+                    </template>
+                    <!-- GALLERY  -->                       
+
+                    <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
+                      <div class="card ">
+                        <p class="card-header">{{item.name}}</p>
+                          <a :href="item.url" target="_blank">
+                            <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
+                          </a>
+                      </div>
+                    </div>                        
+
+                </div>
+            </template>
+            <template v-slot:footer >
+                <button class="btn btn-secondary" type="button" @click="handleCloseModal">Close</button>
+            </template>
+        </Modal>
 
         <div class="booth-container">
             <img class="centered" :src="booth_details.background">
@@ -122,6 +122,7 @@ export default {
     },
     props:['id'],
     mounted() {
+      
      this.init()
 
     // axios.get("/images/lt.mp4")
@@ -157,6 +158,9 @@ export default {
             let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
             this.sendBoothGuestEvent(data)
+            if(this.$store.getters.user.booth.id != this.id){
+
+            }
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -183,7 +187,14 @@ export default {
             return {right: item.y+'%', top: item.x+'%'}
         },
         handleBackToLobby(){
+          
+          if(this.$store.getters.user.classification === 'sponsor'){
+
+            this.$router.push({ name: 'home'})
+          }else{
+
             this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
+          }
         },
         handleSelectHotspot(hotspot){
           this.value = true

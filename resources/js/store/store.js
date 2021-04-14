@@ -45,7 +45,7 @@ export default new Vuex.Store({
         "yaw": -20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_a",
+        "sceneId": "hall_a",
         "text": "Exhibit Hall A",
       },
       // hall b
@@ -55,7 +55,7 @@ export default new Vuex.Store({
         "yaw": -20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_b",
+        "sceneId": "hall_b",
         "text": "Exhibit Hall B",
       },
       // hall c
@@ -65,7 +65,7 @@ export default new Vuex.Store({
         "yaw": 20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_c",
+        "sceneId": "hall_c",
         "text": "Exhibit Hall C",
       },
       // hall d
@@ -75,7 +75,7 @@ export default new Vuex.Store({
         "yaw": 20.4,
         "type": "scene",
         "cssClass": "custom-hotspot exhibit_hall",
-        "sceneId": "exhibit_hall_d",
+        "sceneId": "hall_d",
         "text": "Exhibit Hall D",
       },
       {

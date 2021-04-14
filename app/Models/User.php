@@ -29,6 +29,7 @@ class User extends Authenticatable
         'mobile_number',
         'email',
         'password',
+        'classification',
         'api_token',
         'registrant_id'
     ];

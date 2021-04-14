@@ -31,7 +31,7 @@ Vue.use(VueAxios, axios);
 const app = new Vue({
     el: '#app',
     store,
-    mounted() {
+    created() {
         if(localStorage.getItem('access_token') != null){
             this.getUser()
         }
@@ -46,7 +46,7 @@ const app = new Vue({
     render: h => h(App),
     methods: {
         async getUser(){
-            let {data} = await axios.get('api/v1/user?api_token='+localStorage.getItem('access_token'))
+            let {data} = await axios.get('/api/v1/user?api_token='+localStorage.getItem('access_token'))
             store.commit('changeUser', data)
             store.commit('updateIsWelcomed', false)
         }
