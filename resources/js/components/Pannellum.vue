@@ -1,7 +1,49 @@
 <template >
     <div class="background full">
+      <!-- BOOTH TRACKER BUTTON -->
       <div class="booth_tracker">
-        <h1><i class="fa fa-address-card text-dark" data-toggle="tooltip" title="View My Activity" aria-hidden="true" ></i></h1>
+        <h1><i class="fa fa-address-card text-dark" type="button" @click="handleBoothTracker" title="View My Activity" aria-hidden="true" ></i></h1>
+      </div>
+
+      <div id="booth_visits" class="bg-light text-dark table-responsive">
+        <h3 class="display-4">
+          <i class="fa fa-address-card text-dark"></i> Booth Tracker</h3>
+        <hr>
+
+        <div>
+          <table class="table table-light table-striped table-bordered">
+            <thead>
+              <th>Booth Name</th>
+              <th>Visited</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>booth-a-lobby</td>
+                <td><a href="http://">
+                    <i class="fa fa-check text-success"></i>
+                  </a></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>booth-a-lobby</td>
+                <td>false</td>
+                <td>
+                  <a href="http://">
+                    <i class="fa fa-share text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>booth-a-lobby</td>
+                <td><a href="http://">
+                    <i class="fa fa-check text-success"></i>
+                  </a></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- ZOOM TIMER -->
@@ -46,7 +88,7 @@
           </div>
 
           <div class="row">
-            <div class="col text-center text-dark intro"><small>Zoom meeting starts after countdown</small></div>                                                       
+            <div class="col text-center intro"><small>Zoom meeting starts after countdown</small></div>                                                       
           </div>
           
         </div>
@@ -60,7 +102,9 @@
           </div>
         </div>
       </div>
+
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
+
       <Modal :value="$store.getters.isWelcomed">
         <template v-slot:title >
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
@@ -96,7 +140,7 @@ export default {
         hall_b_booths: null,
         hall_c_booths: null,
         hall_d_booths: null,
-        showModal: true,
+        showModal: false,
         
         countDownStartTime: '',
         countDownEndTime: '',
@@ -376,6 +420,19 @@ export default {
       zeroPad(num){
           return String(num).padStart(2, '0');
       },
+      // ZOOM TIMER
+
+      // BOOTH TRACKER
+      handleBoothTracker(){
+       
+         var x = document.getElementById("booth_visits");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+      }
+      // BOOTH TRACKER
     }
 }
 
@@ -479,6 +536,20 @@ export default {
     z-index: 2;
     cursor: pointer;
   }
+
+  #booth_visits{
+    padding: 1%;
+    position: fixed;
+    top: 5em;
+    right: 0.5em;
+    z-index: 2;
+    width: 25%;
+    height: 75%;
+    display: none;
+  }
+
+
+
   #zoom_countdown {
     position: fixed;
     top: 0.4em;

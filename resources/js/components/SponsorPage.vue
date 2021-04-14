@@ -34,7 +34,7 @@
                                 <span class="input-group-prepend">
                                     <span class="input-group-text">Subject&nbsp;&nbsp;</span>
                                 </span>
-                                <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
+                                <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="" required>
                             </div>
                           </div>
 
@@ -43,7 +43,7 @@
                                 <span class="input-group-prepend">
                                     <span class="input-group-text">Interest&nbsp;&nbsp;</span>
                                 </span>
-                                <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
+                                <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="" required>
                             </div>
                           </div>
 
@@ -52,7 +52,7 @@
                                 <span class="input-group-prepend">
                                     <span class="input-group-text">Message</span>
                                 </span>
-                                <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
+                                <textarea class="form-control" v-model="message" placeholder="Message" aria-label="" required></textarea>
                             </div>
                           </div>
 
