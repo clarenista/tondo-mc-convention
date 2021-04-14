@@ -101,6 +101,8 @@
         </template>
       </Modal>
 
+      <marquee v-if="announcement != null" direction="left"> Announcement: {{announcement}}</marquee>
+
     </div>
 </template>
 <script>
@@ -135,6 +137,8 @@ export default {
         isOpen: false,
         sponsor_booth: null,
         visited_booths: null,
+
+        announcement: 'All participants, kindly go to the meeting hall now.',
       }
     },
     mounted() {
@@ -548,7 +552,16 @@ export default {
     height: 75%;
   }
 
-
+  marquee {
+    position: fixed;
+    bottom: 5em;
+    right: 0.8em;
+    /* border: 1px solid red; */
+    width: 30%;
+    height: 5%;
+    font-weight:600;
+    color:firebrick;
+  }
 
   #zoom_countdown {
     position: fixed;
@@ -595,6 +608,10 @@ export default {
     #booth_visits .table td {
       font-size: 0.8rem;
     }
+
+    marquee {
+        width: 90%;
+    }
     
   }
 
@@ -632,6 +649,10 @@ export default {
       #booth_visits .table td {
         font-size: 0.6rem;
       }
+
+      marquee {
+        width: 90%;
+      }
   }
 
 @media screen and (max-width: 280px) {
@@ -660,24 +681,22 @@ export default {
       #booth_visits .table td {
         font-size: 0.6rem;
       }
+
+      marquee {
+        width: 90%;
+        height: 5%;
+        font-weight:600;
+        color:firebrick;
+      }
 }
 
-/* @media screen and (max-width: 1024px) {
-      #booth_visits{
-        width: 55%;
-      }
-      #booth_visits .display-4 {
-        font-size: 4rem;
-        padding-left: 5%;
-      }
-      #booth_visits .table th {
-        font-size: 1.6rem;
-      }
-      #booth_visits .table td {
-        font-size: 1.6rem;
+@media screen and (max-width: 1024px) {
+
+      marquee {
+        width: 90%;
       }
 
-} */
+}
  
 
   
