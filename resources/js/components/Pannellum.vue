@@ -1,50 +1,34 @@
 <template >
     <div class="background full">
-      <!-- BOOTH TRACKER BUTTON -->
+      <!-- BOOTH TRACKER -->
       <div class="booth_tracker">
         <h1><i class="fa fa-address-card text-dark" type="button" @click="handleBoothTracker" title="View My Activity" aria-hidden="true" ></i></h1>
       </div>
 
       <div id="booth_visits" class="bg-light text-dark table-responsive">
-        <h3 class="display-4">
-          <i class="fa fa-address-card text-dark"></i> Booth Tracker</h3>
+        <h3 class="display-4">Booth Tracker</h3>
         <hr>
-
         <div>
           <table class="table table-light table-striped table-bordered">
             <thead>
               <th>Booth Name</th>
               <th>Visited</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </thead>
             <tbody>
-              <tr>
-                <td>booth-a-lobby</td>
-                <td><a href="http://">
-                    <i class="fa fa-check text-success"></i>
-                  </a></td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>booth-a-lobby</td>
-                <td>false</td>
+              <tr v-for="(i, index) in visited_booths" :key="index">
+                <td>{{i.name}}</td>
                 <td>
-                  <a href="http://">
-                    <i class="fa fa-share text-danger"></i>
-                  </a>
+                  <i v-if="i.visited != true" class="fa fa-times text-danger"></i>
+                  <i v-else class="fa fa-check text-success"></i>
                 </td>
-              </tr>
-              <tr>
-                <td>booth-a-lobby</td>
-                <td><a href="http://">
-                    <i class="fa fa-check text-success"></i>
-                  </a></td>
-                <td>-</td>
+                <!-- <td><a href="http://"></a></td> -->
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <!-- BOOTH TRACKER -->
 
       <!-- ZOOM TIMER -->
       <div id="zoom_countdown" v-if="isOpen">
@@ -149,7 +133,8 @@ export default {
         seconds: '',
         start_at: null,
         isOpen: false,
-        sponsor_booth: null
+        sponsor_booth: null,
+        visited_booths: null,
       }
     },
     mounted() {
@@ -157,7 +142,8 @@ export default {
       window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
       this.loadTimer()
-      
+      this.handleLoadBoothTracker()
+      document.getElementById('booth_visits').style.display = "none"
     },
     methods:{
       async init(){
@@ -441,6 +427,11 @@ export default {
           } else {
             x.style.display = "none";
           }
+      },
+
+      async handleLoadBoothTracker(){
+        let {data} = await axios.get('api/v1/guests/booths/tracker?api_token='+localStorage.getItem('access_token'))
+        this.visited_booths = data
       }
       // BOOTH TRACKER
     }
@@ -553,9 +544,8 @@ export default {
     top: 5em;
     right: 0.5em;
     z-index: 2;
-    width: 25%;
+    width: 35%;
     height: 75%;
-    display: none;
   }
 
 
@@ -588,10 +578,23 @@ export default {
     }
     #zoom_countdown .intro {
         font-size: 0.6em;
+    }
+    #box .card-body {
+        padding: 0.6rem !important; 
+    }
+
+    #booth_visits{
+        width: 55%;
       }
-      #box .card-body {
-          padding: 0.6rem !important; 
-      }
+    #booth_visits .display-4 {
+      font-size: 2rem;
+    }
+    #booth_visits .table th {
+      font-size: 0.8rem;
+    }
+    #booth_visits .table td {
+      font-size: 0.8rem;
+    }
     
   }
 
@@ -616,6 +619,19 @@ export default {
       #box .card-body {
           padding: 0.6rem !important; 
       }
+
+      #booth_visits{
+        width: 55%;
+      }
+      #booth_visits .display-4 {
+        font-size: 2rem;
+      }
+      #booth_visits .table th {
+        font-size: 0.6rem;
+      }
+      #booth_visits .table td {
+        font-size: 0.6rem;
+      }
   }
 
 @media screen and (max-width: 280px) {
@@ -631,7 +647,37 @@ export default {
       #box .card-body {
           padding: 0.4rem !important; 
       }
+      #booth_visits{
+        width: 95%;
+      }
+      #booth_visits .display-4 {
+        font-size: 2rem;
+        padding-left: 5%;
+      }
+      #booth_visits .table th {
+        font-size: 0.6rem;
+      }
+      #booth_visits .table td {
+        font-size: 0.6rem;
+      }
 }
+
+/* @media screen and (max-width: 1024px) {
+      #booth_visits{
+        width: 55%;
+      }
+      #booth_visits .display-4 {
+        font-size: 4rem;
+        padding-left: 5%;
+      }
+      #booth_visits .table th {
+        font-size: 1.6rem;
+      }
+      #booth_visits .table td {
+        font-size: 1.6rem;
+      }
+
+} */
  
 
   
