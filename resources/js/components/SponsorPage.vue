@@ -95,7 +95,7 @@
 
         <div class="booth-container">
             <img class="centered" :src="booth_details.background">
-            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;">< Back</button>
+            <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
         </div>
 
         <section class="hotspots--wrapper" v-if="booth_details != null">
@@ -158,9 +158,6 @@ export default {
             let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
             this.sendBoothGuestEvent(data)
-            if(this.$store.getters.user.booth.id != this.id){
-
-            }
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -193,7 +190,7 @@ export default {
             this.$router.push({ name: 'home'})
           }else{
 
-            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
           }
         },
         handleSelectHotspot(hotspot){

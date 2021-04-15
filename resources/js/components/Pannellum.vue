@@ -186,7 +186,7 @@ export default {
                         "scene": 'lobby',
                         "pitch": 22,
                         "yaw": 0,
-                        "cssClass": "custom-hotspot meeting_hall",
+                        "cssClass": "custom-hotspot vote",
 
                       },
                     ]
@@ -449,6 +449,12 @@ export default {
     animation: pulse 2s infinite;
     border-radius: 50%;
   }
+  div >>> .vote{
+    height: 50px;
+    width: 50px;
+    background-image: url('/images/icons/vote.png');
+    background-size: cover;
+  }  
   div >>> .meeting_hall{
     background-image: url('/images/icons/meeting-hall-icon-min.png');
     background-size: cover;
