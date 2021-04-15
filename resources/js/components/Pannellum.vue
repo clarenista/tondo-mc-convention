@@ -455,10 +455,15 @@ export default {
     background-image: url('/images/icons/vote.png');
     background-size: cover;
   }  
+  
   div >>> .meeting_hall{
     background-image: url('/images/icons/meeting-hall-icon-min.png');
     background-size: cover;
   }
+  div >>> .zoom{
+    background-image: url('/images/icons/zoom.png');
+    background-size: cover;
+  }  
   div >>> .exhibit_hall{
     background-image: url('/images/icons/exhibit-hall-icon-min.png');
     background-size: cover;
