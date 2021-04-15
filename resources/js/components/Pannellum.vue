@@ -519,10 +519,11 @@ export default {
     width: 0;
     height: 0;
     padding: 0;
+    visibility: hidden;
 
   }
   .pnlm-about-msg >>> a {
-    display: none;
+    visibility: hidden;
   }
   #controls {
         position: absolute;
