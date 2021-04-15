@@ -64,14 +64,12 @@
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
-                    <div class="col-6" v-for="(item, index) in selectedHotspot.assets" :key="index">
+                    <div class="col-6 mb-3" v-for="(item, index) in selectedHotspot.assets" :key="index"> 
                       <div class="card" >
-                        <a :href="item.url" target="_blank">
-                          <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
-                          <div class="card-img-overlay">
-                            {{item.name}}
-                          </div>
-                        </a>   
+                        <img :src="item.url" class="card-img" alt="...">
+                        <div class="card-body" style="padding: 3% !important;">
+                          <a :href="item.url" style=" text-decoration: none; color: blue;" title="View Image"><span class="card-text">{{item.name}}</span></a>
+                        </div>
                       </div>
                     </div>
                     </template>
@@ -131,7 +129,7 @@ export default {
     //  fetch("/images/lt.mp4", {method:"HEAD"})
     // .then(response => response.headers.get("Content-Type"))
     // .then(type => console.log(`.${type.replace(/.+\/|;.+/g, "")}`));
-
+    this.loadLightBox()
     },
     data() {
         return {
@@ -246,6 +244,9 @@ export default {
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         },
 
+        viewImage(){
+                  
+        },
 
     }
 
