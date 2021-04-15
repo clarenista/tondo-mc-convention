@@ -99,7 +99,7 @@
             async init(){
                 let {data} = await axios.get('/api/v1/event')
                 let now = new Date()
-                let start_at_ = new Date(data.start_at)
+                let start_at_ = data.start_at_
                 if(now > start_at_){
                     this.isOpen = true
                 }

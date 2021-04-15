@@ -77,13 +77,10 @@ export default {
 
                 }
             }, 1000)
-            console.log('type of countDownEndTime', typeof this.countDownEndTime)
-            console.log('value of countDownEndTime', this.countDownEndTime)
         },
         countDownStart(){
                 
             let now = new Date().getTime();
-            console.log('value of now', now)
             this.distance = this.countDownEndTime - now;
 
             // Time calculations for days, hours, minutes and seconds

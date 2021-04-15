@@ -381,16 +381,16 @@ export default {
       // ZOOM TIMER
       async loadTimer(){
         let {data} = await axios.get('/api/v1/program?api_token='+localStorage.getItem('access_token'))
-        this.start_at = data.start_at
+        this.start_at = data.start_at_
 
         // disable display
         let now = new Date()
-        let start_at_ = new Date(data.start_at)
+        let start_at_ = data.start_at_
         if(now < start_at_){
             this.isOpen = true
         }
 
-        this.countDownEndTime =  new Date(this.start_at).getTime();
+        this.countDownEndTime =  this.start_at;
         this.countDownStart()
         let x = setInterval(()=>{
             this.countDownStart()
