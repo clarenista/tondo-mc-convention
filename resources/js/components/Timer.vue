@@ -67,7 +67,7 @@ export default {
     },
     methods:{
         init(){
-            this.countDownEndTime =  new Date(this.endTime).getTime();
+            this.countDownEndTime =  this.endTime;
             this.countDownStart()
             let x = setInterval(()=>{
                 this.countDownStart()

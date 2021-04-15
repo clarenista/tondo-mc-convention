@@ -103,7 +103,7 @@
                 if(now > start_at_){
                     this.isOpen = true
                 }
-                this.start_at = data.start_at
+                this.start_at = data.start_at_
             },
 
             async handleSubmit(){
