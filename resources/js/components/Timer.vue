@@ -36,7 +36,7 @@
                         </div>
                     </div>                                                          
                 </div>
-                <p class="text-center text-light mt-3 login_msg">{{introduction}}</p>
+                <p class="text-center text-light mt-3 login_msg" v-html="introduction"></p>
             </div>
 
         </div>
@@ -47,14 +47,14 @@
 <script>
 export default {
     props:['endTime'],
-    mounted() {
+    created() {
         // this.settings = this.props_settings
         this.init()        
     },
     data() {
         return {
             countDownStartTime: '',
-            countDownEndTime: '',
+            countDownEndTime: 0,
             counDownDistance: '',
             days: '',
             hours: '',
@@ -77,6 +77,8 @@ export default {
 
                 }
             }, 1000)
+            console.log('type of countDownEndTime', typeof this.countDownEndTime)
+            console.log('value of countDownEndTime', this.countDownEndTime)
         },
         countDownStart(){
                 
