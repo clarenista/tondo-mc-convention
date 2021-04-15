@@ -83,6 +83,7 @@ export default {
         countDownStart(){
                 
             let now = new Date().getTime();
+            console.log('value of now', now)
             this.distance = this.countDownEndTime - now;
 
             // Time calculations for days, hours, minutes and seconds
