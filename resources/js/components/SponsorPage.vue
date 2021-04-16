@@ -17,12 +17,6 @@
                 <div class="row px-4">
                   <!-- External link -->
                     <template v-if="selectedHotspot.name == 'external-link'">
-                      <!-- <div class="card ">
-                        <h3 class="card-header">{{selectedHotspot.assets[0].name}}</h3>
-                          <a :href="selectedHotspot.assets[0].url" target="_blank">
-                            <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
-                          </a>
-                      </div> -->
                       <div class="row text-center">
                         <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
                         <p>{{selectedHotspot.assets[0].url}}</p>
@@ -69,14 +63,30 @@
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
-                    <div class="col-4" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
-                       <div class="card ">
-                        <p class="card-header">{{item.name}}</p>
+                    <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
+                       <div class="card" style="cursor:pointer;">
+                        <div class="card-img-overlay text-white"><small>{{item.name}}</small></div>
                         <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
                       </div>
                     </div>
                     </template>
-                    <!-- GALLERY  -->                       
+                    <!-- GALLERY  -->  
+                    
+                    <!-- VIDEO -->
+                    <template v-else-if="selectedHotspot.name == 'videos'">
+                    <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
+                      <div class="card text-center" style="cursor:pointer;">
+                        <img :src="'https://www.youtube.com/embed/'+item.url" width="100%" alt="" srcset="">
+                        <div class="card-body bg-dark">
+                         <img src="/images/logo.png" width="55%" alt="" srcset="">
+                        </div>
+                        <div class="card-footer">
+                          <div class="lead"><i class="fa fa-file-video-o" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    </template>
+                    <!-- VIDEO -->
 
                     <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
                       <div class="card ">
@@ -103,12 +113,12 @@
             <img :src="booth_details.booth" class="hotspots--figure">
             <a  href="" class="hotspot" @click.prevent="handleSelectHotspot(item)" v-for="(item, index) in booth_details.hotspots" :key="index" :style="addStyle(item)">
                 <!-- <span class="hotspot--cta" v-if="index == 'brochure'"></span> -->
-                <img class="pulse" src="/images/icons/brochure.png" alt="brochure" srcset="" v-if="index == 'brochure'">
-                <img class="pulse" src="/images/icons/contact.png" alt="brochure" srcset="" v-if="index == 'contact-us'">
-                <img class="pulse" src="/images/icons/link.png" alt="brochure" srcset="" v-if="index == 'external-link'">
-                <img class="pulse" src="/images/icons/gallery.png" alt="brochure" srcset="" v-if="index == 'gallery'">
-                <img class="pulse" src="/images/icons/quiz.png" alt="brochure" srcset="" v-if="index == 'quiz'">
-                <img class="pulse" src="/images/icons/video.png" alt="brochure" srcset="" v-if="index == 'video'">
+                <img class="pulse" src="/images/icons/brochure.png" alt="brochure" srcset="" v-if="index == 'brochures'">
+                <img class="pulse" src="/images/icons/contact.png" alt="contact-us" srcset="" v-if="index == 'contact-us'">
+                <img class="pulse" src="/images/icons/link.png" alt="external-link" srcset="" v-if="index == 'external-link'">
+                <img class="pulse" src="/images/icons/gallery.png" alt="gallery" srcset="" v-if="index == 'gallery'">
+                <img class="pulse" src="/images/icons/quiz.png" alt="quiz" srcset="" v-if="index == 'quiz'">
+                <img class="pulse" src="/images/icons/video.png" alt="videos" srcset="" v-if="index == 'videos'">
             </a>
 
         </section>

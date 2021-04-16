@@ -9,7 +9,7 @@
                 
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-title container">
+                        <div class="modal-title container text-uppercase">
                             <slot name="title"></slot>
                         </div>
                         <div class="modal-body">
@@ -46,7 +46,10 @@ export default {
     background: url('/images/modal_header.jpg');
     background-position: center;
     background-repeat: no-repeat;
-   
+    
+}
+.h1, h1 {
+    font-weight: 100;
 }
 
 </style>
