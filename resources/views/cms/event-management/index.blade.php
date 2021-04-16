@@ -100,7 +100,7 @@ Event Management
             @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
             @include('cms.include.input-text', ['key' => 'message', 'label' => 'Message'])
             <div class="form-group">
-                <button class="btn btn-info btn-block">&#10004;UPDATE EVENT</button>
+                <button class="btn btn-info btn-block">&#10004;BROADCAST ANNOUNCEMENT</button>
             </div>
         </form>
     </div>
