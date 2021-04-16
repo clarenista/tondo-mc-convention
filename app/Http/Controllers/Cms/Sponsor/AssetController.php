@@ -105,7 +105,7 @@ class AssetController extends Controller
                     'category' => 'nullable',
                 ])
             );
-            $hotspot->assets()->attach($asset);
+            // $hotspot->assets()->attach($asset);
             $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');
         });
 

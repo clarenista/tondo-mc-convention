@@ -6,6 +6,11 @@
 
         <Modal :value="value" v-if="selectedHotspot != null">
             <template v-slot:title >
+              <CoolLightBox 
+                :items="selectedHotspot.assets" 
+                :index="indexSelected"
+                @close="indexSelected = null">
+              </CoolLightBox>
                 <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
             <template v-slot:body >
@@ -64,12 +69,10 @@
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
-                    <div class="col-6 mb-3" v-for="(item, index) in selectedHotspot.assets" :key="index"> 
-                      <div class="card" >
-                        <img :src="item.url" class="card-img" alt="...">
-                        <div class="card-body" style="padding: 3% !important;">
-                          <a :href="item.url" style=" text-decoration: none; color: blue;" title="View Image"><span class="card-text">{{item.name}}</span></a>
-                        </div>
+                    <div class="col-4" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
+                       <div class="card ">
+                        <p class="card-header">{{item.name}}</p>
+                        <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
                       </div>
                     </div>
                     </template>
@@ -93,7 +96,7 @@
 
         <div class="booth-container">
             <img class="centered" :src="booth_details.background">
-            <button class="btn btn-primary btn-sm" @click="handleBackToLobby" type="button" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;">< Back</button>
+            <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
         </div>
 
         <section class="hotspots--wrapper" v-if="booth_details != null">
@@ -129,25 +132,25 @@ export default {
     //  fetch("/images/lt.mp4", {method:"HEAD"})
     // .then(response => response.headers.get("Content-Type"))
     // .then(type => console.log(`.${type.replace(/.+\/|;.+/g, "")}`));
-    this.loadLightBox()
+
     },
     data() {
         return {
-            booth_details: null,
-            modalShow: false,
-            selectedHotspot: null,
-            value: false,
-            // contact-us field
-            subject: '',
-            name: '',
-            affiliation: '',
-            mobile_number: '',
-            email: '',
-            interest: '',
-            message: '',
-            successMessage: false,
-
-            data: '',
+          booth_details: null,
+          modalShow: false,
+          selectedHotspot: null,
+          value: false,
+          // contact-us field
+          subject: '',
+          name: '',
+          affiliation: '',
+          mobile_number: '',
+          email: '',
+          interest: '',
+          message: '',
+          successMessage: false,
+          data: '',
+          indexSelected: null
         }
     },
     methods:{
@@ -156,9 +159,6 @@ export default {
             let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
             this.sendBoothGuestEvent(data)
-            if(this.$store.getters.user.booth.id != this.id){
-
-            }
             // $(window)
             //     .resize(function() {
             //         vm.rescale();
@@ -191,11 +191,14 @@ export default {
             this.$router.push({ name: 'home'})
           }else{
 
-            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  "exhibit_"+this.booth_details.panorama_location : 'lobby' }})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
           }
         },
         handleSelectHotspot(hotspot){
           this.value = true
+          for(let i in hotspot.assets){
+            hotspot.assets[i]['src'] = hotspot.assets[i].url
+          }
           this.selectedHotspot = hotspot
           this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
@@ -244,9 +247,10 @@ export default {
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         },
 
-        viewImage(){
-                  
-        },
+        handleSelectAssetIndex(assetIndex){
+          // this.value = false
+          this.indexSelected=assetIndex
+        }
 
     }
 

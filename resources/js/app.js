@@ -11,6 +11,8 @@ import router from './routes';
 import Permissions from './mixins/Permissions'
 import SendEvent from './mixins/SendEvent'
 import 'pannellum'
+import CoolLightBox from 'vue-cool-lightbox'
+import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 require('pannellum/build/pannellum.css')
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
@@ -27,6 +29,7 @@ require('pannellum/build/pannellum.css')
 Vue.mixin(Permissions);
 Vue.mixin(SendEvent);
 Vue.use(VueAxios, axios);
+Vue.use(CoolLightBox)
 
 const app = new Vue({
     el: '#app',
