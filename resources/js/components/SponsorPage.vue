@@ -75,12 +75,13 @@
                     
                     <!-- VIDEO -->
                     <template v-else-if="selectedHotspot.name == 'videos'">
-
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
                       <div class="card text-center" style="cursor:pointer;">
                         <img :src="'https://www.youtube.com/embed/'+item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
-                         <img src="/images/youtube_logo.png" width="55%" alt="" srcset="">
+                          <!-- use to have a clickable image on the card -->
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
+                         <img v-else src="https://media.tenor.com/images/2c2d6329835b0cc59bb8368b66e423df/tenor.gif" width="98%" alt="" srcset="">
                         </div>
                         <div class="card-footer bg-danger">
                           <div class="lead text-white" style="align-items: center;"><i class="fa fa-file-video-o" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
@@ -89,6 +90,24 @@
                     </div>
                     </template>
                     <!-- VIDEO -->
+
+                    <!-- BROCHURES -->
+                    <template v-else-if="selectedHotspot.name == 'brochures'">
+                    <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">  
+                      <div class="card text-center" style="cursor:pointer;">
+                        <img :src="item.url" width="100%" alt="" srcset="">
+                        <div class="card-body bg-dark">
+                          <!-- use to have a clickable image on the card -->
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
+                         <img v-else src="/images/pdf-icon.png" width="98%" alt="" srcset="">
+                        </div>
+                        <div class="card-footer">
+                          <div class="lead text-dark" style="align-items: center;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                        </div>
+                      </div>
+                    </div>
+                    </template>
+                    <!-- BROCHURES -->
 
                     <div class="col-4" v-else v-for="(item, index) in selectedHotspot.assets" :key="index">
                       <div class="card ">
