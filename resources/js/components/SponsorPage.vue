@@ -1,5 +1,6 @@
 <template>
     <div id="container" >
+      
         <div class="alert alert-success" role="alert" v-if="successMessage">
             Message sent.
         </div>
@@ -158,6 +159,7 @@ export default {
             const wrapper = document.querySelector('.hotspots--wrapper');
             let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
             this.booth_details = data
+            this.$store.commit('changeBoothDetails', data)
             this.sendBoothGuestEvent(data)
             // $(window)
             //     .resize(function() {
