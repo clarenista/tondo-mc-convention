@@ -43,13 +43,13 @@ Add Booth
                         </tr>
                         @endforeach
                     </tbody>
-                    
+
                 </table>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-warning" type="button" id="cancelSelectSponsor">Cancel</button>
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -107,7 +107,7 @@ Add Booth
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
                 @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
-                
+
                 @foreach ($booth->hotspots as $i => $hotspot)
                     <div class="form-group">
                         <div class="input-group">
@@ -122,11 +122,11 @@ Add Booth
                                 placeholder="Y" aria-label="Hotspot" value="{{$hotspot->y}}">
                             <button class="btn-delete btn btn-danger btn-sm ml-3 text-center" type="button" data-href="{{ route('cms.hotspotDestroy', $hotspot->id) }}">&#10008;</button>
                         </div>
-                    </div> 
-                @endforeach 
-                   
-                
-                
+                    </div>
+                @endforeach
+
+
+
                 <br>
                 <div class="form-group">
                     <button class="btn btn-success btn-block">&#10004; {{isset($booth->id) ? 'EDIT NEW BOOTH' : 'ADD NEW BOOTH'}}</button>
@@ -149,14 +149,14 @@ Add Booth
                     @include('cms.include.input-text', ['key' => 'hotspot_x', 'label' => 'X Position'])
                     @include('cms.include.input-text', ['key' => 'hotspot_y', 'label' => 'Y Position'])
                     <br>
-                    
+
                     <br>
                     <div class="form-group">
                         <button class="btn btn-success btn-block">&#10004; Add hotspot</button>
                     </div>
                 </form>
                 </div>
-                
+
             </div>
         @endisset
     </div>
@@ -177,7 +177,7 @@ Add Booth
                 keyboard: false
             })
         })
-        
+
         $('#cancelSelectSponsor').click(function(){
             if(!user_id){
                 user_id.val(null)

@@ -63,6 +63,9 @@
                     <a class="nav-link text-white" href="/cms/booths">Booths</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="/cms/standees">Standees</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/questionnaires">Questionnaires</a>
                 </li>
             @endhasrole

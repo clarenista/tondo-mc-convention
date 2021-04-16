@@ -20,7 +20,7 @@ class BoothController extends Controller
     public function index()
     {
 
-        $booths = Booth::all();
+        $booths = Booth::whereNotIn('type',['standee'])->get();
 
         return view('cms.booth.list', compact('booths'));
     }
@@ -202,7 +202,7 @@ class BoothController extends Controller
     {
 
         $booth->delete();
-        $booths = Booth::all();
+        $booths = Booth::whereNotIn('type',['standee'])->get();
 
         return view('cms.booth.list', compact('booths'))->with('success', 'You have successfully deleted the booth.');
     }
