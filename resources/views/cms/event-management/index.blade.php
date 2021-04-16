@@ -12,6 +12,15 @@ Event Management
     </ol>
 </nav>
 
+<style>
+    .input-group>span {
+        width: 150px;
+    }
+
+    .input-group>span>span {
+        width: 150px;
+    }
+</style>
 <div class="row">
     <div class="col-sm col-lg">
         <h3>PSP EVENT</h3>
