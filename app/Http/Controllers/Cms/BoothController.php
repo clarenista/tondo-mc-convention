@@ -82,14 +82,38 @@ class BoothController extends Controller
                 'description' => $booth->name,
             ]);
 
-            $hotpots = [
-                ['External Link', 55, 16, 'https://localhost'],
-                ['Contact Us', 69, 10, ''],
-                ['Quiz', 60, 82, ''],
-                ['Brochures', 69, 19, ''],
-                ['Videos', 42, 72, ''],
-                ['Gallery', 47, 38, ''],
-            ];
+            if ($booth['type'] = 'gold') {
+                $hotpots = [
+                    ['External Link', 55, 16, 'https://localhost'],
+                    ['Contact Us', 69, 10, ''],
+                    ['Quiz', 60, 82, ''],
+                    ['Brochures', 69, 19, ''],
+                    ['Videos', 42, 72, ''],
+                    ['Gallery', 47, 38, ''],
+                ];
+            }
+
+            if ($booth['type'] = 'silver') {
+                $hotpots = [
+                    ['External Link', 55, 16, 'https://localhost'],
+                    ['Contact Us', 69, 10, ''],
+                    ['Quiz', 60, 82, ''],
+                    ['Brochures', 69, 19, ''],
+                    ['Videos', 42, 72, ''],
+                    ['Gallery', 47, 38, ''],
+                ];
+            }
+
+            if ($booth['type'] = 'bronze') {
+                $hotpots = [
+                    ['External Link', 55, 16, 'https://localhost'],
+                    ['Contact Us', 69, 10, ''],
+                    ['Quiz', 60, 82, ''],
+                    ['Brochures', 69, 19, ''],
+                    ['Videos', 42, 72, ''],
+                    ['Gallery', 47, 38, ''],
+                ];
+            }
 
             foreach ($hotpots as $hotpot) {
                 $booth->hotspots()->create([
