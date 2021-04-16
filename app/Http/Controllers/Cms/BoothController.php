@@ -83,12 +83,12 @@ class BoothController extends Controller
             ]);
 
             $hotpots = [
-                ['External Link', 56, 21, 'https://localhost'],
-                ['Contact Us', 66, 16, ''],
-                ['Quiz', 60, 72, ''],
-                ['Brochures', 66, 24, ''],
-                ['Videos', 37, 71, ''],
-                ['Gallery', 40, 38, ''],
+                ['External Link', 55, 16, 'https://localhost'],
+                ['Contact Us', 69, 10, ''],
+                ['Quiz', 60, 82, ''],
+                ['Brochures', 69, 19, ''],
+                ['Videos', 42, 72, ''],
+                ['Gallery', 47, 38, ''],
             ];
 
             foreach ($hotpots as $hotpot) {

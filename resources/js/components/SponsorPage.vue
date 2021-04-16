@@ -74,14 +74,15 @@
                     
                     <!-- VIDEO -->
                     <template v-else-if="selectedHotspot.name == 'videos'">
+
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
                       <div class="card text-center" style="cursor:pointer;">
                         <img :src="'https://www.youtube.com/embed/'+item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
-                         <img src="/images/logo.png" width="55%" alt="" srcset="">
+                         <img src="/images/youtube_logo.png" width="55%" alt="" srcset="">
                         </div>
-                        <div class="card-footer">
-                          <div class="lead"><i class="fa fa-file-video-o" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                        <div class="card-footer bg-danger">
+                          <div class="lead text-white" style="align-items: center;"><i class="fa fa-file-video-o" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
                         </div>
                       </div>
                     </div>
