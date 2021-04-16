@@ -35,6 +35,7 @@ export const routes = [
         props: true,
         meta: {
             requiresAuth: true,
+            isSponsor: true
         }
 
 
@@ -138,23 +139,34 @@ router.beforeEach((to, from, next) => {
                 name: 'login'
             })
         } else {
-            if (to.matched.some(record => record.meta.requireCanCreateUser)) {
-                if (store.getters.permissions.includes('manage user')) {
+            if(to.matched.some(record => record.meta.isSponsor)){
+                if(store.getters.user){
                     next()
-                } else {
+                    
+                }else{
                     next({
-                        name: 'notFound'
+                        name: 'home'
                     })
-                }
-            } else if (to.matched.some(record => record.meta.requireCanManageBooth)) {
-                if (store.getters.permissions.includes('manage booth')) {
-                    next()
-                } else {
-                    next({
-                        name: 'notFound'
-                    })
+
                 }
             }
+            // if (to.matched.some(record => record.meta.requireCanCreateUser)) {
+            //     if (store.getters.permissions.includes('manage user')) {
+            //         next()
+            //     } else {
+            //         next({
+            //             name: 'notFound'
+            //         })
+            //     }
+            // } else if (to.matched.some(record => record.meta.requireCanManageBooth)) {
+            //     if (store.getters.permissions.includes('manage booth')) {
+            //         next()
+            //     } else {
+            //         next({
+            //             name: 'notFound'
+            //         })
+            //     }
+            // }
 
             else {
                 next()

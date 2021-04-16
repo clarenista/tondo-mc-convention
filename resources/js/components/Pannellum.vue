@@ -187,7 +187,7 @@ export default {
                         "pitch": 22,
                         "yaw": 0,
                         "cssClass": "custom-hotspot vote",
-
+                        "id": "vote"
                       },
                     ]
                 },
@@ -278,6 +278,7 @@ export default {
         if(this.$store.getters.user.classification ==='sponsor'){
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
           this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
+          this.viewer.removeHotSpot('vote')
           this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
           this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
           this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw

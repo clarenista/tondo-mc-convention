@@ -45,7 +45,6 @@ const app = new Vue({
 
         }
     },
-    router,
     render: h => h(App),
     methods: {
         async getUser(){
@@ -54,5 +53,6 @@ const app = new Vue({
             store.commit('updateIsWelcomed', false)
         }
     },
+    router,
 });
 
