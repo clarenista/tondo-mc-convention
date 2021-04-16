@@ -22,10 +22,10 @@
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
                             You are about to be redirected to a new internet site: 
-                            <a :href="selectedHotspot.assets[0].url"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
+                            <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
-                          <small>Click <span class="badge badge-primary">link</span> if you wish to continue.</small>
+                          <small>Click the <u class="text-primary">link</u> if you wish to continue.</small>
                         </div>
                       </div>
                     
@@ -187,7 +187,7 @@ export default {
           message: '',
           successMessage: false,
           data: '',
-          indexSelected: null
+          indexSelected: null,
         }
     },
     methods:{
