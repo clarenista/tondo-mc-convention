@@ -18,11 +18,19 @@
                 <div class="row px-4">
                   <!-- External link -->
                     <template v-if="selectedHotspot.name == 'external-link'">
-                      <div class="row text-center">
-                        <p class="lead text-danger"><strong>You are about to be redirected to a new internet site. <br> Click 'PROCEED' if you wish to continue.</strong></p>
-                        <p>{{selectedHotspot.assets[0].url}}</p>
-                        <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
+                      <div class="row p-1 text-center">
+                        <div class="col-12">
+                          <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
+                            You are about to be redirected to a new internet site: <u class="text-primary">{{selectedHotspot.assets[0].url}}</u>.</h3>
+                        </div>
+                        <div class="col-12 mt-3">
+                          <small>Click <span class="badge badge-primary">PROCEED</span> if you wish to continue.</small>
+                        </div>
+                        <div class="col-12 mt-3">
+                          <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
+                        </div>
                       </div>
+                    
                     </template>
                     <!-- External link -->
 
@@ -523,4 +531,9 @@ body div {
   }
 }
 
+.redirrect_msg {
+  font-size: 2.2rem;
+  font-weight:300;
+  line-height:1;
+}
 </style>
