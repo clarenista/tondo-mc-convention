@@ -99,7 +99,13 @@ class ExternalLinkController extends Controller
     public function update(Request $request, $id)
     {
 
-        $asset = \request()->user()->booth->hotspots()->whereName('external-link')->first()->assets()->first();
+        $hotspot = \request()->user()->booth->hotspots()->whereName('external-link')->first();
+
+        $hotspot->update([
+            'caption' => $request['name'],
+        ]);
+
+        $asset = $hotspot->assets()->first();
 
         $asset_id = $asset->update([
             'name' => $request['name'],

@@ -87,6 +87,24 @@ Event Management
         </form>
     </div>
 </div>
+<div class="row">
+
+    <div class="col-sm col-lg">
+        <h3>PSP ANNOUNCEMENT</h3>
+        <form action="{{ route('cms.event.broadcast') }}" method="post">
+            @csrf
+            {{ method_field('PUT') }}
+            @php
+                $model = $event;
+            @endphp
+            @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
+            @include('cms.include.input-text', ['key' => 'message', 'label' => 'Message'])
+            <div class="form-group">
+                <button class="btn btn-info btn-block">&#10004;UPDATE EVENT</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 @stop
 

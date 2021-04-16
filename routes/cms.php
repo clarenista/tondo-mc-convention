@@ -46,6 +46,7 @@ Route::name('cms.')->group(function () {
 
         Route::get('event-management', [EventManagementController::class, 'index'])->name('event-management.index');
         Route::put('events/update', [CmsEventController::class, 'update'])->name('event.update');
+        Route::put('events/broadcast', [CmsEventController::class, 'broadcast'])->name('event.broadcast');
         Route::put('programs/update', [ProgramController::class, 'update'])->name('program.update');
     });
 

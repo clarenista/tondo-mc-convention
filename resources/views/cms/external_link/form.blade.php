@@ -8,11 +8,11 @@ Add External Link
 @section('content')
 <style>
     .input-group>span {
-        width: 120px;
+        width: 150px;
     }
 
     .input-group>span>span {
-        width: 120px;
+        width: 150px;
     }
 </style>
 <div class="col-md-12">
@@ -34,13 +34,13 @@ Add External Link
                 @isset($asset->id)
                 {{ method_field('PUT') }}
                 @endisset
-                
+
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}"> <!-- added hidden to get user_id -->
                 <input type="hidden" name="type" value="external_link">
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-prepend">
-                            <span class="input-group-text">Name</span>
+                            <span class="input-group-text">Hotspot Name</span>
                         </span>
                         <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
                             value="{{ old('name', $asset->name) }}">
@@ -54,7 +54,7 @@ Add External Link
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-prepend">
-                            <span class="input-group-text">Url</span>
+                            <span class="input-group-text">External Link</span>
                         </span>
                         <input type="text" class="form-control" name="url" placeholder="Url" aria-label="Url"
                             value="{{ old('url', $asset->url) }}">
@@ -65,7 +65,7 @@ Add External Link
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                
+
                 <div class="form-group">
                     <button class="btn btn-info btn-block">&#10004; {{isset($asset->id) ? 'UPDATE EXTERNAL LINK' : 'ADD EXTERNAL LINK'}}</button>
                 </div>

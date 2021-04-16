@@ -63,6 +63,9 @@ class AssetController extends Controller
                 ])
             );
             $hotspot->assets()->attach($asset);
+            if(in_array($hotspot->name,['brochures','gallery'])){
+                $this->uploadFile($asset, 'url', 'url');
+            }
             $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');
         });
 
@@ -106,6 +109,9 @@ class AssetController extends Controller
                 ])
             );
             // $hotspot->assets()->attach($asset);
+            if (in_array($hotspot->name, ['brochures', 'gallery'])) {
+                $this->uploadFile($asset, 'url', 'url');
+            }
             $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');
         });
 

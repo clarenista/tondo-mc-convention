@@ -21,7 +21,6 @@ Assets
 
 <div class="row">
     <div class="col-sm col-lg">
-
         @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -33,9 +32,10 @@ Assets
             <thead>
                 <tr>
                     <th class="text-center">Name</th>
-                    <th class="text-center">Type</th>
-                    <th class="text-center">Category</th>
-                    <th class="text-center">Path</th>
+                    {{-- <th class="text-center">Type</th> --}}
+                    {{-- <th class="text-center">Category</th> --}}
+                    <th class="text-center">File</th>
+                    <th class="text-center">Thumbnail</th>
                     <th class="text-center">By</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -44,9 +44,10 @@ Assets
                 @foreach($assets as $asset)
                 <tr>
                     <td>{{ $asset->name }}</td>
-                    <td>{{ $asset->type }}</td>
-                    <td>{{ $asset->category }}</td>
+                    {{-- <td>{{ $asset->type }}</td> --}}
+                    {{-- <td>{{ $asset->category }}</td> --}}
                     <td><a href="{{$asset->url }}">{{ basename($asset->url)}}</a></td>
+                    <td><a href="{{$asset->thumbnail_url }}">{{ basename($asset->thumbnail_url)}}</a></td>
                     <td>{{ $asset->user_id }}</td>
                     <td>
                         <form id="delete"

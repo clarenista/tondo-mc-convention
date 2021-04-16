@@ -17,7 +17,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-success bg-success sticky-top">
-    <a class="navbar-brand text-white" href="{{ url('/cms') }}">Virtual Machine</a>
+    <a class="navbar-brand text-white" href="{{ url('/cms') }}">Booth Maintenance</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -26,30 +26,29 @@
         <ul class="navbar-nav mr-auto">
             @hasrole('sponsor')
 
-                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['external-link','contact-us']) as $hotspot)
-
+                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['quiz', 'external-link','contact-us']) as $hotspot)
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->name }}</a>
+                        <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->caption }}</a>
                     </li>
                 @endforeach
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.edit',1) }}">External Links</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.edit',1) }}">External Link</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.contacts.edit',1) }}">Contact</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.questions.index', 'questionnaire_id='. auth()->user()->booth->questionnaire->id) }}">Quiz</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.visitors.index',1) }}">Visitors</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.visitors.index',1) }}">Booth Visitors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.events.index',1) }}">Events</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.events.index',1) }}">Booth Visitor Activities</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.messages.index',1) }}">Messages</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.messages.index',1) }}">Booth Visitor Messages</a>
                 </li>
             @endhasrole
 

@@ -14,6 +14,8 @@ import 'pannellum'
 import CoolLightBox from 'vue-cool-lightbox'
 import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
+import Echo from "laravel-echo"
+
 require('pannellum/build/pannellum.css')
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -25,7 +27,6 @@ require('pannellum/build/pannellum.css')
 // Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
-
 Vue.mixin(Permissions);
 Vue.mixin(SendEvent);
 Vue.use(VueAxios, axios);
@@ -56,3 +57,25 @@ const app = new Vue({
     router,
 });
 
+
+// WEBSOCKET PUSH EXAMPLE
+
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'wedev',
+    cluster: 'manila',
+    wsHost: 'psp.com',
+    wsPort: 6001,
+    wssPort: 6001,
+    disableStats: true,
+    encrypted: false,
+});
+
+window.Echo.channel('Announcement').listen('AnnouncementEvent', (e) => {
+    // CALL ANNOUNCEMENT CODE HERE
+    console.log(e);
+});
+
+// WEBSOCKET PUSH EXAMPLE END

@@ -40,8 +40,13 @@ Add Booth
                 <input type="hidden" name="category" value="{{$hotspot->name}}"> <!-- added hidden to get user_id -->
                 <?php $model = $asset; ?>
                 @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
-                @include('cms.include.input-text', ['key' => 'url', 'label' => 'URL'])
-                @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'Thumbnail'])
+                @if(in_array($hotspot->name,['brochures','gallery']))
+                    @include('cms.include.input-file', ['key' => 'url', 'label' => 'Brochure'])
+                    @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'Thumbnail'])
+                @else
+                    @include('cms.include.input-text', ['key' => 'url', 'label' => 'URL'])
+                    @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'Thumbnail'])
+                @endif
                 <div class="form-group">
                     <button class="btn btn-success btn-block">ADD NEW BOOTH</button>
                 </div>
