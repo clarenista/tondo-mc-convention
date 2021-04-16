@@ -21,13 +21,11 @@
                       <div class="row p-1 text-center">
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                            You are about to be redirected to a new internet site: <u class="text-primary">{{selectedHotspot.assets[0].url}}</u>.</h3>
+                            You are about to be redirected to a new internet site: 
+                            <a :href="selectedHotspot.assets[0].url"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
-                          <small>Click <span class="badge badge-primary">PROCEED</span> if you wish to continue.</small>
-                        </div>
-                        <div class="col-12 mt-3">
-                          <a class="btn btn-primary btn-block" :href="selectedHotspot.assets[0].url" target="_blank">PROCEED</a>
+                          <small>Click <span class="badge badge-primary">link</span> if you wish to continue.</small>
                         </div>
                       </div>
                     
