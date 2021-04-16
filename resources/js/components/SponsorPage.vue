@@ -6,6 +6,11 @@
 
         <Modal :value="value" v-if="selectedHotspot != null">
             <template v-slot:title >
+              <CoolLightBox 
+                :items="selectedHotspot.assets" 
+                :index="indexSelected"
+                @close="indexSelected = null">
+              </CoolLightBox>
                 <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
             <template v-slot:body >
@@ -64,14 +69,10 @@
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
-                    <div class="col-6" v-for="(item, index) in selectedHotspot.assets" :key="index">
-                      <div class="card" >
-                        <a :href="item.url" target="_blank">
-                          <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
-                          <div class="card-img-overlay">
-                            {{item.name}}
-                          </div>
-                        </a>   
+                    <div class="col-4" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
+                       <div class="card ">
+                        <p class="card-header">{{item.name}}</p>
+                        <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
                       </div>
                     </div>
                     </template>
@@ -135,21 +136,21 @@ export default {
     },
     data() {
         return {
-            booth_details: null,
-            modalShow: false,
-            selectedHotspot: null,
-            value: false,
-            // contact-us field
-            subject: '',
-            name: '',
-            affiliation: '',
-            mobile_number: '',
-            email: '',
-            interest: '',
-            message: '',
-            successMessage: false,
-
-            data: '',
+          booth_details: null,
+          modalShow: false,
+          selectedHotspot: null,
+          value: false,
+          // contact-us field
+          subject: '',
+          name: '',
+          affiliation: '',
+          mobile_number: '',
+          email: '',
+          interest: '',
+          message: '',
+          successMessage: false,
+          data: '',
+          indexSelected: null
         }
     },
     methods:{
@@ -195,6 +196,9 @@ export default {
         },
         handleSelectHotspot(hotspot){
           this.value = true
+          for(let i in hotspot.assets){
+            hotspot.assets[i]['src'] = hotspot.assets[i].url
+          }
           this.selectedHotspot = hotspot
           this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
@@ -243,6 +247,10 @@ export default {
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         },
 
+        handleSelectAssetIndex(assetIndex){
+          // this.value = false
+          this.indexSelected=assetIndex
+        }
 
     }
 
