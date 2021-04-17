@@ -18,6 +18,7 @@ export default new Vuex.Store({
     currentScene: 'lobby',
     bgmStart: true,
     booth_details: null,
+    announcement: null,
 
     scene_hotSpots: [
 
@@ -187,6 +188,10 @@ export default new Vuex.Store({
     changeBoothDetails(state, booth_details) {
       state.booth_details = booth_details
     },
+    changeAnnouncement(state, announcement){
+      state.announcement = announcement
+
+    }
   },
   getters: {
     pois: state => state.pois,
@@ -201,5 +206,6 @@ export default new Vuex.Store({
     scene_hotSpots: state => state.scene_hotSpots,
     bgmStart: state => state.bgmStart,
     booth_details: state => state.booth_details,
+    announcement: state => state.announcement,
   }
 })

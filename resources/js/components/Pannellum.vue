@@ -101,7 +101,7 @@
         </template>
       </Modal>
 
-      <marquee v-if="announcement != null" direction="left"> Announcement: {{announcement}}</marquee>
+      <marquee style="background-color:#fff; color: #00008b;" class="text-uppercase" v-if="$store.getters.announcement != null" direction="left"> {{$store.getters.announcement.payload.title}}: {{$store.getters.announcement.payload.message}}</marquee>
 
     </div>
 </template>

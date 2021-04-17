@@ -75,7 +75,14 @@ window.Echo = new Echo({
 
 window.Echo.channel('Announcement').listen('AnnouncementEvent', (e) => {
     // CALL ANNOUNCEMENT CODE HERE
-    console.log(e);
+    if(e.payload.title == null){
+
+        store.commit('changeAnnouncement', null)
+    }else{
+        store.commit('changeAnnouncement', e)
+
+    }
+
 });
 
 // WEBSOCKET PUSH EXAMPLE END
