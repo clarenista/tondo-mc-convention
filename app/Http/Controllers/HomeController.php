@@ -85,8 +85,8 @@ class HomeController extends Controller
                     ]
 
                 );
-                $user->assignRole('guest');
 
+                // $user->assignRole('guest');
                 return response()->json([
                     'status' => 'ok',
                     'user' => $user,
