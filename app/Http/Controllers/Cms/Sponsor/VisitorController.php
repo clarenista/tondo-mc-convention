@@ -17,4 +17,8 @@ class VisitorController extends Controller
         \Log::info($category);
         return view("cms.sponsor.visitor.index", compact('category'));
     }
+
+    public function exportToSpreadsheet(){
+
+    }
 }

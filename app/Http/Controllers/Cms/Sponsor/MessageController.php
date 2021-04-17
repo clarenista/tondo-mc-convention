@@ -14,4 +14,8 @@ class MessageController extends Controller
 
         return view("cms.sponsor.message.index", compact('messages'));
     }
+    public function exportToSpreadsheet(){
+
+
+    }
 }

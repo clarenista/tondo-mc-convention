@@ -55,16 +55,24 @@ Route::name('cms.')->group(function () {
     Route::middleware(['role:sponsor'])->group(function () {
 
         Route::name('sponsor.')->group(function () {
+
             Route::resource('assets', SponsorAssetController::class);
             Route::resource('links', ExternalLinkController::class);
             Route::resource('contacts', ContactController::class);
-            Route::get('events', [EventController::class, 'index'])->name('events.index');
-            Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
-            Route::get('visitors', [VisitorController::class, 'index'])->name('visitors.index');
-            Route::resource('contacts', ContactController::class);
+            Route::name('events.')->prefix('events')->group(function () {
+                Route::get('', [EventController::class, 'index'])->name('index');
+                Route::get('export/spreadsheet', [EventController::class, 'index'])->name('export.spreadsheet');
+            });
+            Route::name('messages.')->prefix('messages')->group(function () {
+                Route::get('', [MessageController::class, 'index'])->name('index');
+                Route::get('export/spreadsheet', [MessageController::class, 'index'])->name('export.spreadsheet');
+            });
+            Route::name('visitors.')->prefix('visitors')->group(function () {
+                Route::get('', [VisitorController::class, 'index'])->name('index');
+                Route::get('export/spreadsheet', [VisitorController::class, 'index'])->name('export.spreadsheet');
+            });
         });
         Route::resource('banners', BannerController::class);
     });
-
     Route::resource('questions', QuestionController::class);
 });

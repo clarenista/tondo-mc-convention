@@ -5,7 +5,7 @@ export default {
         zoomBtn.style.display = "none";
         this.getZoomType(vue).then((result) => {
             let program = result.data;
-            if (program.enabled || (program.type == 'all' && userType == 'Resident')) {
+            if (program.enabled || (program.type == 'all' && userType == 'Diplomate')) {
                 zoomBtn.style.display = "";
                 zoomBtn.addEventListener("click", () => {
                     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

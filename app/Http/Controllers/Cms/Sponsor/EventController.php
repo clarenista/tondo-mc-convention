@@ -18,4 +18,8 @@ class EventController extends Controller
         }])->first();
         return view("cms.sponsor.event.index", compact('category'));
     }
+
+    public function exportToSpreadsheet(){
+
+    }
 }
