@@ -9,10 +9,14 @@ use Illuminate\Http\Request;
 class ProgramController extends Controller
 {
 
-    public function update(){
+    public function update()
+    {
 
-
-        $input = request()->validate([
+        $input = request()->merge([
+            'enabled' => filter_var(request()->enabled, FILTER_VALIDATE_BOOLEAN),
+        ])->validate([
+            'enabled' => 'required',
+            'type' => 'required|in:all,private',
             'start_at' => 'required',
             'end_at' => 'required',
             'title' => 'nullable',

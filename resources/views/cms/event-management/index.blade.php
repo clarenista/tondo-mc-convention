@@ -65,26 +65,48 @@ Event Management
             @php
                 $model = $program;
             @endphp
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-prepend">
-                    <span class="input-group-text">Start At</span>
-                </span>
-                <input type="datetime-local" name="start_at"
-                    class="form-control"
-                    value="{{ old('start_at', Carbon\Carbon::parse($program->start_at)->format('Y-m-d\TH:i')) }}">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <span class="input-group-text">Start At</span>
+                    </span>
+                    <input type="datetime-local" name="start_at"
+                        class="form-control"
+                        value="{{ old('start_at', Carbon\Carbon::parse($program->start_at)->format('Y-m-d\TH:i')) }}">
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-prepend">
-                    <span class="input-group-text">End At</span>
-                </span>
-                <input type="datetime-local" name="end_at"
-                    class="form-control"
-                    value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <span class="input-group-text">End At</span>
+                    </span>
+                    <input type="datetime-local" name="end_at"
+                        class="form-control"
+                        value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <span class="input-group-text">Enabled</span>
+                    </span>
+                    <select class="custom-select" required name="enabled">
+                        <option value="true" {{ $program->enabled ? 'selected' : ''}}>True</option>
+                        <option value="false" {{ !$program->enabled ? 'selected' : ''}}>False</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <span class="input-group-text">Type</span>
+                    </span>
+                    <select class="custom-select" required name="type">
+                        <option value="all" {{ $program->type == 'all' ? 'selected' : ''}}>All</option>
+                        <option value="private" {{ $program->type == 'private' ? 'selected' : ''}}>Private</option>
+                    </select>
+                </div>
+            </div>
             @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
             @include('cms.include.input-text', ['key' => 'description', 'label' => 'description'])
             @include('cms.include.input-text', ['key' => 'video_url', 'label' => 'Zoom Link'])

@@ -45,5 +45,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(EventAndProgramSeeder::class);
         $this->call(BoothSeeder::class);
+        $this->call(StandeeSeeder::class);
     }
 }

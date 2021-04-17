@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddClassificationInUsersTable extends Migration
+class AddEnabledToProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddClassificationInUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('classification')->nullable()->after('password');
+        Schema::table('programs', function (Blueprint $table) {
+            $table->boolean('enabled')->nullable()->after('id');
         });
     }
 
@@ -25,8 +25,8 @@ class AddClassificationInUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['classification']);
+        Schema::table('programs', function (Blueprint $table) {
+            $table->dropColumn(['enabled']);
         });
     }
 }
