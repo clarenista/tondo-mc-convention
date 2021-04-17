@@ -5,6 +5,7 @@
 /public/js/app.js
 /public/css/app.css
 /storage/*.key
+/storage/*.xlxs
 /vendor
 .env
 .env.backup

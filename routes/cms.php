@@ -13,6 +13,7 @@ use App\Http\Controllers\Cms\QuestionnaireController;
 use App\Http\Controllers\Cms\Sponsor\AssetController as SponsorAssetController;
 use App\Http\Controllers\Cms\Sponsor\EventController;
 use App\Http\Controllers\Cms\Sponsor\MessageController;
+use App\Http\Controllers\Cms\Sponsor\QuestionnaireController as SponsorQuestionnaireController;
 use App\Http\Controllers\Cms\Sponsor\VisitorController;
 use App\Http\Controllers\Cms\StandeeController;
 use App\Http\Controllers\HomeController;
@@ -61,15 +62,19 @@ Route::name('cms.')->group(function () {
             Route::resource('contacts', ContactController::class);
             Route::name('events.')->prefix('events')->group(function () {
                 Route::get('', [EventController::class, 'index'])->name('index');
-                Route::get('export/spreadsheet', [EventController::class, 'index'])->name('export.spreadsheet');
+                Route::get('export/spreadsheet', [EventController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
             });
             Route::name('messages.')->prefix('messages')->group(function () {
                 Route::get('', [MessageController::class, 'index'])->name('index');
-                Route::get('export/spreadsheet', [MessageController::class, 'index'])->name('export.spreadsheet');
+                Route::get('export/spreadsheet', [MessageController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
             });
             Route::name('visitors.')->prefix('visitors')->group(function () {
                 Route::get('', [VisitorController::class, 'index'])->name('index');
-                Route::get('export/spreadsheet', [VisitorController::class, 'index'])->name('export.spreadsheet');
+                Route::get('export/spreadsheet', [VisitorController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
+            });
+            Route::name('questionnaires.')->prefix('questionnaires')->group(function () {
+                Route::get('', [SponsorQuestionnaireController::class, 'index'])->name('index');
+                Route::get('export/spreadsheet', [SponsorQuestionnaireController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
             });
         });
         Route::resource('banners', BannerController::class);

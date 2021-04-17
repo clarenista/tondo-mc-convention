@@ -15,7 +15,7 @@ Assets
         </nav>
     </div>
     <div class="d-flex p-3" style="padding-top: 0px !important; padding-right: 0px !important;">
-        <a href="{{ route('cms.sponsor.visitors.export.spreadsheet') }}" class="btn btn-primary">Export</a>
+        <a href="{{ route('cms.sponsor.events.export.spreadsheet') }}" class="btn btn-primary">Export</a>
     </div>
 </div>
 

@@ -37,7 +37,7 @@ class HomeController extends Controller
                     'access_token' => $user->api_token
                 ]);
             }else{
-    
+
                 return response()->json([
                     'status' => 'failed',
                 ]);
@@ -54,7 +54,7 @@ class HomeController extends Controller
                 ],
             ]);
             // return json_decode((string) $token->getBody(), true)['access_token'];
-    
+
             $response = $guzzle->post(config('app.domain').'/api/user', [
                 'headers' => [
                     'Accept' => 'application/json',
@@ -67,7 +67,7 @@ class HomeController extends Controller
             ]);
             $result =json_decode((string) $response->getBody(), true);
             if($result){
-    
+
                 $user = User::firstOrCreate(
                     [
                         'registrant_id' => $result['user']['id']
@@ -83,23 +83,25 @@ class HomeController extends Controller
                         'password' => $result['user']['password'],
                         'classification' => $result['user']['classification'],
                     ]
-    
+
                 );
+                $user->assignRole('guest');
+
                 return response()->json([
                     'status' => 'ok',
                     'user' => $user,
                     'access_token' => $user->api_token
                 ]);
             }else{
-                
+
                     return response()->json([
                         'status' => 'failed',
                     ]);
             }
         }
-        
 
-       
+
+
 
         // $user = User::where('email', $request->email)->first();
         // if($user){
