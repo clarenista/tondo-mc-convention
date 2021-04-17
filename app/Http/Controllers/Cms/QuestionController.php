@@ -22,9 +22,10 @@ class QuestionController extends Controller
             $input['questionnaire_id'] = $user->booth->questionnaire->id;
         }
 
-        $questions = Questionnaire::find($input['questionnaire_id'])->questions;
+        $questionnaire = Questionnaire::find($input['questionnaire_id']);
+        $questions = $questionnaire->questions;
 
-        return view('cms.questionnaire.question.index', compact('questions'));
+        return view('cms.questionnaire.question.index', compact('questions', 'questionnaire'));
     }
 
     public function create()

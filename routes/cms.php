@@ -31,32 +31,24 @@ use Illuminate\Support\Facades\Route;
 Route::name('cms.')->group(function () {
     Route::view('/booth', 'booth');
     Route::get('/login', [AuthController::class, 'loginView'])->name('login');
-
     Route::get('/logout', [AuthController::class, 'logoutUser']);
     Route::post('/login', [AuthController::class, 'loginUser']);
-
     Route::get('/', [HomeController::class, 'index'])->middleware('auth');
-
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('guests', UserController::class);
         Route::resource('booths', BoothController::class);
         Route::resource('standees', StandeeController::class);
         Route::resource('questionnaires', QuestionnaireController::class);
-
         Route::post('booths/{id}/hotspots', [BoothController::class, 'storeHotspot'])->name('hotspotStore');
         Route::post('booths/{id}/destroyHotspot', [BoothController::class, 'destroyHotspot'])->name('hotspotDestroy');
-
         Route::get('event-management', [EventManagementController::class, 'index'])->name('event-management.index');
         Route::put('events/update', [CmsEventController::class, 'update'])->name('event.update');
         Route::put('events/broadcast', [CmsEventController::class, 'broadcast'])->name('event.broadcast');
         Route::put('programs/update', [ProgramController::class, 'update'])->name('program.update');
     });
-
     Route::middleware(['role:sponsor'])->group(function () {
-
-        Route::name('sponsor.')->group(function () {
-
+        Route::name('sponsor.')->prefix('sponsor')->group(function () {
             Route::resource('assets', SponsorAssetController::class);
             Route::resource('links', ExternalLinkController::class);
             Route::resource('contacts', ContactController::class);
@@ -75,6 +67,7 @@ Route::name('cms.')->group(function () {
             Route::name('questionnaires.')->prefix('questionnaires')->group(function () {
                 Route::get('', [SponsorQuestionnaireController::class, 'index'])->name('index');
                 Route::get('export/spreadsheet', [SponsorQuestionnaireController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
+                Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
             });
         });
         Route::resource('banners', BannerController::class);

@@ -33,7 +33,7 @@
                 @endforeach
 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.edit',1) }}">External Link</a>
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.links.edit', 1) }}">External Link</a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.contacts.edit',1) }}">Contact</a>

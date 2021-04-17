@@ -27,7 +27,7 @@ class AuthController extends Controller
                 return redirect()->intended('/cms/users');
 
             }else{
-                return redirect()->intended('/cms/assets');
+                return redirect()->intended('/cms/');
 
             }
         }

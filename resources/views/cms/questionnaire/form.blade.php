@@ -38,6 +38,8 @@ Add Booth
                     $model = $questionnaire;
                 @endphp
                 <input type="hidden" name="questionnaire_id" value="1">
+                @include('cms.include.input-text', ['key' => 'instruction', 'label' => 'Instruction'])
+                @include('cms.include.input-text', ['key' => 'ending_message', 'label' => 'Ending Message'])
                 @include('cms.include.input-text', ['key' => 'name', 'label' => 'Name'])
                 @include('cms.include.input-text', ['key' => 'description', 'label' => 'Description'])
                 <input type="hidden" name="category" value="quiz">

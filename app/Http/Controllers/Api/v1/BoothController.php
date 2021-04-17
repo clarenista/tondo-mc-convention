@@ -62,8 +62,10 @@ class BoothController extends Controller
             );
     }
 
-    public function showQuestionnaire(Booth $booth)
+    public function showQuestionnaire($booth_id)
     {
+
+        $booth = Booth::find($booth_id);
 
         return $booth->questionnaire()->with('questions')->first();
     }

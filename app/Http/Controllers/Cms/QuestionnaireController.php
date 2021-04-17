@@ -49,11 +49,24 @@ class QuestionnaireController extends Controller
 
         $questionnaire->update($request->validate([
             'name' => 'required|string',
+            'instruction' => 'nullable|string',
+            'ending_message' => 'nullable|string',
             'description' => 'nullable|string',
             'category' => 'nullable|in:quiz',
         ]));
 
         return redirect()->route('cms.questionnaires.index');
+    }
+
+    public function quickUpdate(Request $request, Questionnaire $questionnaire)
+    {
+
+        $questionnaire->update($request->validate([
+            'instruction' => 'nullable|string',
+            'ending_message' => 'nullable|string',
+        ]));
+
+        return redirect()->route('cms.questions.index', 'questionnaire_id=' . $questionnaire->id);
     }
 
     public function destroy(Questionnaire $questionnaire)
