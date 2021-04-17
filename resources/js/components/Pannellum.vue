@@ -7,7 +7,7 @@
 
       <div id="booth_visits" class="bg-light text-dark table-responsive">
         <h3 class="display-4">Booth Tracker</h3>
-        <hr>
+        <!-- <hr> -->
         <div>
           <table class="table table-light table-striped table-bordered">
             <thead>
@@ -363,13 +363,15 @@ export default {
       },
       handleBoothClicked(booth){
         const label = booth.name+" booth"
+        this.$router.push('sponsors/'+booth.id)
+        this.$sendGuestEvent('click', label, booth)
         
-        if(booth.type == 'standee'){
-          alert(label + booth.url)
-        } else {
-          this.$router.push('sponsors/'+booth.id)
-          this.$sendGuestEvent('click', label, booth)
-        }
+        // if(booth.type == 'standee'){
+        //   alert(label + booth.url)
+        // } else {
+        //   this.$router.push('sponsors/'+booth.id)
+        //   this.$sendGuestEvent('click', label, booth)
+        // }
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
@@ -569,6 +571,12 @@ export default {
     width: 35%;
     height: 75%;
   }
+
+   #booth_visits h3 {
+    /* background: url('/images/modal_header.jpg');
+    background-position: center;
+    background-repeat: no-repeat; */
+   }
 
   marquee {
     position: fixed;
