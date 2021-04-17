@@ -409,9 +409,9 @@ export default {
       countDownStart(){
                 
           let now = new Date().getTime();
-          if(now > this.start_at){
-              this.isOpen = true
-          }
+          // if(now > this.start_at){
+          //     this.isOpen = true
+          // }
           this.distance = this.countDownEndTime - now;
 
           // Time calculations for days, hours, minutes and seconds
