@@ -486,11 +486,6 @@ export default {
     background-image: url('/images/icons/right_arrow-min.png');
     background-size: cover;
   }
-
-  div >>> .standee{
-    background-image: url('/images/icons/standee.png');
-    background-size: cover;
-  }
   @-webkit-keyframes pulse {
     0% {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
