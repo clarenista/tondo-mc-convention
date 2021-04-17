@@ -31,7 +31,7 @@
       <!-- BOOTH TRACKER -->
 
       <!-- ZOOM TIMER -->
-      <div id="zoom_countdown" v-if="isOpen">
+      <div id="zoom_countdown" v-if="enabled">
         <div class="col-12">
           <div  class="row">
             <div class="col p-1" id="box">
@@ -72,7 +72,7 @@
           </div>
 
           <div class="row">
-            <div class="col text-center intro"><small>Zoom meeting starts after countdown</small></div>                                                       
+            <div class="col text-center intro" style="color: red;"><small><b>{{zoom_title}}</b></small></div>                                                       
           </div>
           
         </div>
@@ -134,11 +134,12 @@ export default {
         minutes: '',
         seconds: '',
         start_at: null,
-        isOpen: false,
+        enabled: null,
         sponsor_booth: null,
         visited_booths: null,
 
-        announcement: 'All participants, kindly go to the meeting hall now.',
+        announcement: null,
+        zoom_title: null,
       }
     },
     mounted() {
@@ -390,12 +391,14 @@ export default {
       async loadTimer(){
         let {data} = await axios.get('/api/v1/program?api_token='+localStorage.getItem('access_token'))
         this.start_at = data.start_at_
+        this.zoom_title = data.title
+        this.enabled = data.enabled
 
         // disable display
         let now = new Date()
         let start_at_ = data.start_at_
-        if(now < start_at_){
-            this.isOpen = true
+        if(now > start_at_){
+            this.enabled = null
         }
 
         this.countDownEndTime =  this.start_at;
