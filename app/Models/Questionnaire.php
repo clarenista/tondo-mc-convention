@@ -10,6 +10,8 @@ class Questionnaire extends Model
     use HasFactory;
 
     protected $fillable = [
+        'instruction',
+        'ending_message',
         'name',
         'description',
         'category',

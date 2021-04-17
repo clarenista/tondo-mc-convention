@@ -11,7 +11,7 @@ class ProgramController extends Controller
     public function get()
     {
 
-        $event = Program::select('start_at', 'video_url')->first();
+        $event = Program::select('start_at', 'video_url', 'type','enabled')->first();
         $event->start_at_ = strtotime($event->start_at) * 1000;
 
         return $event;

@@ -19,71 +19,72 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // RIGHT
-                ['MINDRAY', -2.26, 42.28, 'gold', "{$aws_booth_endpoint}1618606706-Mindray-BG.png", "{$aws_booth_endpoint}1618606709-Mindray+Booth.png"],
-                // ['B', -2.00, 129.05, 'gold', '', ''],
+                ['MINDRAY', -2.26, 42.28, 'gold', "1618606706-Mindray-BG.png", "1618606709-Mindray+Booth.png"],
+                // UPDATE BOOTH
+                // ['Marsman Drysdale', -2.00, 129.05, 'gold', "BG", "BOOTH"],
                 // LEFT
-                // ['C', -1.74, -41.12, 'gold', '', ''],
-                // ['D', -1.94, -127.23, 'gold', '', ''],
+                ['Lifeline Diagnostics', -1.74, -41.12, 'gold', "LIFELINE BOOTH BG.png", "	LIFELINE BOOTH.png"],
+                ['ARKRAY', -1.94, -127.23, 'gold', "Arkray BOOTH BG.png", "Arkray BOOTH.png"],
             ],
 
             'Hall A' => [
                 // RIGHT
-                ['Ortho Clinical Diagnostics', -0.19, 25.83, 'gold', "{$aws_booth_endpoint}Ortho-Clinical-BOOTH-BG.png", "{$aws_booth_endpoint}Ortho-Clinical-BOOTH.png"],
-                // ['AB', -1.54, 52.11, 'silver'],
-                // ['AC', -2.27, 90.40, 'bronze'],
-                // ['AD', -1.31, 125.97, 'silver'],
-                // ['AE', -1.78, 154.53, 'bronze'],
+                ['Ortho Clinical Diagnostics', -0.19, 25.83, 'gold', "Ortho-Clinical-BOOTH-BG.png", "Ortho-Clinical-BOOTH.png"],
+                // ['AB', -1.54, 52.11, 'silver', "BG", "BOOTH"], // VACANT
+                ['BioSystems', -2.27, 90.40, 'bronze', "BIOSYSTEM BOOTH BG.png", "BIOSYSTEM BOOTH.png"],
+                // ['AD', -1.31, 125.97, 'silver', "BG", "BOOTH"], // VACANT
+                // ['AE', -1.78, 154.53, 'bronze', "BG", "BOOTH"], // VACANT
                 // LEFT
-                ['ABBOTT', -0.22, -23.34, 'gold', "{$aws_booth_endpoint}Abbot-BOOTH-BG.png", "{$aws_booth_endpoint}Abbot-BOOTH.png"],
-                // ['AG', -1.17, -51.66, 'silver'],
-                ['SIEMENS Healthineers', -2.08, -89.27, 'bronze', "{$aws_booth_endpoint}Siemens-BOOTH-BG.png", "{$aws_booth_endpoint}Siemens-BOOTH.png"],
-                // ['AJ', -1.35, -125.36, 'silver'],
-                // ['AK', -1.35, -153.34, 'bronze'],
+                ['ABBOTT', -0.22, -23.34, 'gold', "Abbot-BOOTH-BG.png", "Abbot-BOOTH.png"],
+                // ['AG', -1.17, -51.66, 'silver, "BG", "BOOTH"], // VACANT
+                ['SIEMENS Healthineers', -2.08, -89.27, 'bronze', "Siemens-BOOTH-BG.png", "Siemens-BOOTH.png"],
+                // ['AJ', -1.35, -125.36, 'silver, "BG", "BOOTH"], // VACANT
+                ['Alliend Hospital', -1.35, -153.34, 'bronze', "Allied Hospital BOOTH BG.png", "Allied Hospital BOOTH.png"],
             ],
 
             'Hall B' => [
                 // RIGHT
-                ['MMJ Biosystems', -0.19, 25.83, 'gold', "{$aws_booth_endpoint}MMJ BOOTH BG.png", "{$aws_booth_endpoint}MMJ BOOTH.png"],
-                // ['BB', -1.54, 52.11, 'silver'],
-                // ['BC', -2.27, 90.40, 'bronze'],
-                // ['BD', -1.31, 125.97, 'silver'],
-                // ['BE', -1.78, 154.53, 'bronze'],
+                ['MMJ Biosystems', -0.19, 25.83, 'gold', "MMJ BOOTH BG.png", "MMJ BOOTH.png"],
+                // ['BB', -1.54, 52.11, 'silver, "BG", "BOOTH"], // VACANT
+                ['MRL Cybertec', -2.27, 90.40, 'bronze', "MRL BOOTH BG.png", "MRL BOOTH.png"],
+                // ['BD', -1.31, 125.97, 'silver, "BG", "BOOTH"], // VACANT
+                // ['BE', -1.78, 154.53, 'bronze, "BG", "BOOTH"], // VACANT
                 // LEFT
-                ['MEDTEK', -0.22, -23.34, 'gold', "{$aws_booth_endpoint}MEDTEK BOOTH BG.png", "{$aws_booth_endpoint}MEDTEK BOOTH.png"],
-                // ['BG', -1.17, -51.66, 'silver'],
-                // ['BH', -2.08, -89.27, 'bronze'],
-                // ['BJ', -1.35, -125.36, 'silver'],
-                // ['BK', -1.35, -153.34, 'bronze'],
+                ['MEDTEK', -0.22, -23.34, 'gold', "MEDTEK BOOTH BG.png", "MEDTEK BOOTH.png"],
+                // ['BG', -1.17, -51.66, 'silver, "BG", "BOOTH"], // VACANT
+                ['Zafire Distributors', -2.08, -89.27, 'bronze', "ZAFIRE BOOTH BG.png", "ZAFIRE BOOTH.png"],
+                // ['BJ', -1.35, -125.36, 'silver, "BG", "BOOTH"], // VACANT
+                // ['BK', -1.35, -153.34, 'bronze, "BG", "BOOTH"], // VACANT
             ],
 
             'Hall C' => [
                 // RIGHT
-                // ['CA', -0.19, 25.83, 'gold'],
-                // ['CB', -1.54, 52.11, 'silver'],
-                // ['CC', -2.27, 90.40, 'bronze'],
-                // ['CD', -1.31, 125.97, 'silver'],
-                // ['CE', -1.78, 154.53, 'bronze'],
+                // ['CA', -0.19, 25.83, 'gold, "BG", "BOOTH"],
+                // ['CB', -1.54, 52.11, 'silver, "BG", "BOOTH"],
+                // ['CC', -2.27, 90.40, 'bronze, "BG", "BOOTH"],
+                // ['CD', -1.31, 125.97, 'silver, "BG", "BOOTH"],
+                // ['CE', -1.78, 154.53, 'bronze, "BG", "BOOTH"],
                 // LEFT
-                // ['CF', -0.22, -23.34, 'gold'],
-                // ['CG', -1.17, -51.66, 'silver'],
-                // ['CH', -2.08, -89.27, 'bronze'],
-                // ['CJ', -1.35, -125.36, 'silver'],
-                // ['CK', -1.35, -153.34, 'bronze'],
+                // ['CF', -0.22, -23.34, 'gold, "BG", "BOOTH"],
+                // ['CG', -1.17, -51.66, 'silver, "BG", "BOOTH"],
+                // ['CH', -2.08, -89.27, 'bronze, "BG", "BOOTH"],
+                // ['CJ', -1.35, -125.36, 'silver, "BG", "BOOTH"],
+                // ['CK', -1.35, -153.34, 'bronze, "BG", "BOOTH"],
             ],
 
             'Hall D' => [
                 // RIGHT
-                // ['DA', -0.19, 25.83, 'gold'],
-                // ['DB', -1.54, 52.11, 'silver'],
-                // ['DC', -2.27, 90.40, 'bronze'],
-                // ['DD', -1.31, 125.97, 'silver'],
-                // ['DE', -1.78, 154.53, 'bronze'],
+                // ['DA', -0.19, 25.83, 'gold, "BG", "BOOTH"], // VACANT
+                // ['DB', -1.54, 52.11, 'silver, "BG", "BOOTH"], // VACANT
+                // ['DC', -2.27, 90.40, 'bronze, "BG", "BOOTH"], // VACANT
+                // ['DD', -1.31, 125.97, 'silver, "BG", "BOOTH"], // VACANT
+                // ['DE', -1.78, 154.53, 'bronze, "BG", "BOOTH"], // VACANT
                 // LEFT
-                // ['DF', -0.22, -23.34, 'gold'],
-                // ['DG', -1.17, -51.66, 'silver'],
-                // ['DH', -2.08, -89.27, 'bronze'],
-                // ['DJ', -1.35, -125.36, 'silver'],
-                // ['DK', -1.35, -153.34, 'bronze'],
+                // ['DF', -0.22, -23.34, 'gold, "BG", "BOOTH"], // VACANT
+                // ['DG', -1.17, -51.66, 'silver, "BG", "BOOTH"], // VACANT
+                // ['DH', -2.08, -89.27, 'bronze, "BG", "BOOTH"], // VACANT
+                // ['DJ', -1.35, -125.36, 'silver, "BG", "BOOTH"], // VACANT
+                // ['DK', -1.35, -153.34, 'bronze, "BG", "BOOTH"], // VACANT
             ],
         ];
 
@@ -107,6 +108,7 @@ class BoothSeeder extends Seeder
     private function seedBooth($user, $booth, $location)
     {
 
+        $aws_booth_endpoint = "https://psp-s3bucket.s3-ap-southeast-1.amazonaws.com/Booth/";
         try {
             (new BoothController)->store(new Request([
                 'user_id' => $user->id,
@@ -117,10 +119,10 @@ class BoothSeeder extends Seeder
                 'type' => $booth[3],
             ]));
             if (isset($booth[4])) {
-                $user->booth->assets()->whereCategory('background')->first()->update(['url' => $booth[4]]);
+                $user->booth->assets()->whereCategory('background')->first()->update(['url' => "{$aws_booth_endpoint}$booth[4]"]);
             }
             if (isset($booth[5])) {
-                $user->booth->assets()->whereCategory('booth')->first()->update(['url' => $booth[5]]);
+                $user->booth->assets()->whereCategory('booth')->first()->update(['url' => "{$aws_booth_endpoint}$booth[5]"]);
             }
             $user->assignRole('sponsor');
         } catch (\Throwable $th) {

@@ -43,7 +43,12 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('sponsor');
 
+        Role::create([
+            'name' => 'guest'
+        ]);
+
         $this->call(EventAndProgramSeeder::class);
         $this->call(BoothSeeder::class);
+        $this->call(StandeeSeeder::class);
     }
 }

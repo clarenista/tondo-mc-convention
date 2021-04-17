@@ -10,6 +10,7 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
+        'enabled',
         'start_at',
         'end_at',
         'group',

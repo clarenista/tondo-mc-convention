@@ -94,6 +94,11 @@ class User extends Authenticatable
 
         return $this->hasMany(UserEvent::class);
     }
+    public function answers()
+    {
+
+        return $this->hasMany(QuestionAnswer::class);
+    }
 
 
 }
