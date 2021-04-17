@@ -363,8 +363,13 @@ export default {
       },
       handleBoothClicked(booth){
         const label = booth.name+" booth"
-        this.$router.push('sponsors/'+booth.id)
-        this.$sendGuestEvent('click', label, booth)
+        
+        if(booth.type == 'standee'){
+          alert(label + booth.url)
+        } else {
+          this.$router.push('sponsors/'+booth.id)
+          this.$sendGuestEvent('click', label, booth)
+        }
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
@@ -479,6 +484,11 @@ export default {
   }
   div >>> .right_arrow{
     background-image: url('/images/icons/right_arrow-min.png');
+    background-size: cover;
+  }
+
+  div >>> .standee{
+    background-image: url('/images/icons/standee.png');
     background-size: cover;
   }
   @-webkit-keyframes pulse {

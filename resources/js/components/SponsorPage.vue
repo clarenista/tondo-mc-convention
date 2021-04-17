@@ -12,7 +12,8 @@
                 :index="indexSelected"
                 @close="indexSelected = null">
               </CoolLightBox>
-                <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
+                <h1 class="text-light" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
+                <h1 class="text-light" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
             <template v-slot:body >
                 <div class="row px-4">
@@ -21,7 +22,7 @@
                       <div class="row p-1 text-center">
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                            You are about to be redirected to a new internet site: 
+                            You are about to leave the 69<sup>th</sup> PSP virtual convention site and will be redirected to: 
                             <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
