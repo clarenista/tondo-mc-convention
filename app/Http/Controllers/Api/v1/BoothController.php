@@ -37,7 +37,7 @@ class BoothController extends Controller
         foreach ($booth->hotspots as $hotspot) {
             $return['hotspots'][$hotspot->name] = $hotspot;
             $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions;
-            $return['hotspots'][$hotspot->name]['quiz_taken'] = QuestionAnswer::with('question')->where('user_id', request()->user()->id)->get();
+            $return['hotspots'][$hotspot->name]['quiz_taken'] = $booth->questionnaire->answers()->with('question')->get();
         }
 
         return $return;
@@ -76,6 +76,7 @@ class BoothController extends Controller
 
     public function storeQuestionnaireAnswerSubmit($booth_id)
     {
+
         $sent_at = date("Y-m-d H:i:s");
 
         request()->validate([
@@ -90,10 +91,11 @@ class BoothController extends Controller
                 'answer' => $answer,
                 'correct' => $question['answer'] == $answer ? 1 : 0,
                 'sent_at' => $sent_at,
+                'questionnaire_id' => $question->questionnaire->id,
             ]);
         }
 
-        $answers = QuestionAnswer::with('question')->where('user_id', request()->user()->id)->get();
+        $answers = Booth::find($booth_id)->questionnaire->answers()->with('question')->get();
 
         return response(['answers' =>$answers], 201);
     }

@@ -72,6 +72,7 @@
                     <!-- QUIZ  -->
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                     <div class="col-12 p-1">
+                      
                       <div v-if="selectedHotspot.quiz_taken  != ''">
                         <p class=" float-right">Total correct answer: {{renderTotal}}</p>
                         <ol>
