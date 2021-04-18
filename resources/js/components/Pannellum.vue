@@ -77,11 +77,11 @@
           
         </div>
       </div>
-      {{standee_index}}
-      <div v-if="this.standees">
+      <div v-if="this.standee_dtls">
        <CoolLightBox
-          :items="standees" 
+          :items="standee_dtls" 
           :index="standee_index"
+          :useZoomBar="true"
           @close="standee_index = null">
         </CoolLightBox>
       </div>
@@ -166,7 +166,7 @@ export default {
         zoom_title: null,
 
         show_standee: false,
-        standee_dtls: null,
+        standee_dtls: [],
         standee_index: null,
         standees: null,
       }
@@ -401,18 +401,18 @@ export default {
         this.$store.commit('updateIsWelcomed', false)
       },
       handleBoothClicked(booth){
+        this.standee_dtls = []
         const label = booth.name+" booth"
         
         if(booth.type == 'standee'){
           
-          console.log(this.booths)
-
           booth['src'] = booth.url
           
-          this.standee_index = this.standees.findIndex(x => x.id === booth.id);
      
           this.show_standee = true
-          this.standee_dtls = booth
+          this.standee_dtls.push(booth)
+          this.standee_index = 0;
+          console.log(this.standee_index)
           
         } else {
           this.$router.push('sponsors/'+booth.id)
@@ -425,10 +425,8 @@ export default {
       },
       handleBgmPlayToggle(){
         if(this.$store.getters.bgmStart){
-          localStorage.setItem("bgmStart", false)
           this.$store.commit('updateBgmStart', false)
         }else{
-          localStorage.setItem("bgmStart", true)
           this.$store.commit('updateBgmStart', true)
           
         }
