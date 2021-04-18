@@ -75,7 +75,7 @@
                     <div class="col-12 p-1">
                       
                       <div v-if="selectedHotspot.quiz_taken  != ''">
-                        <p class=" float-right">Total correct answer: {{renderTotal}}</p>
+                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Total correct answers: {{renderTotal}}</legend>
                         <ol>
                           <li v-for="(taken, takenIndex) in selectedHotspot.quiz_taken" :key="takenIndex">
                             <p>{{taken.question.question}}</p>
@@ -87,8 +87,7 @@
                         <div class="col-12 p-1" v-if="page == assetIndex" v-for="(item, assetIndex) in selectedHotspot.questions" :key="assetIndex" >
                           <div class="row"  >
                             <div class="col">
-                              <legend>Question {{assetIndex+1}}</legend>
-                              <p class="lead text-center border rounded p-5">{{item.question}}</p>
+                              <legend>Question {{assetIndex+1}}: &nbsp;{{item.question}}?</legend>
                               <div class="form-group">
                                 <div class="custom-control custom-radio" v-for="(choice, index) in item.choices" :key="index">
                                   <input type="radio" :id="'customRadio'+index+assetIndex" v-model="answers[item.id]"  :value="choice"  class="custom-control-input">
@@ -105,7 +104,7 @@
                     </div>
                     </template>
                     <!-- QUIZ  --> 
-                    
+
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
