@@ -11,7 +11,9 @@ class StandeeSeeder extends Seeder
 
     public function run()
     {
+
         $aws_booth_endpoint = "https://psp-s3bucket.s3-ap-southeast-1.amazonaws.com/Booth/";
+
         // , "{$aws_booth_endpoint}BG", "{$aws_booth_endpoint}BOOTH"],
         $locations = [
 

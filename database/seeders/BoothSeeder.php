@@ -21,7 +21,7 @@ class BoothSeeder extends Seeder
                 // RIGHT
                 ['MINDRAY', -2.26, 42.28, 'gold', "1618606706-Mindray-BG.png", "1618606709-Mindray+Booth.png"],
                 // UPDATE BOOTH
-                // ['Marsman Drysdale', -2.00, 129.05, 'gold', "BG", "BOOTH"],
+                ['Marsman Drysdale', -2.00, 129.05, 'gold', "BGpng", "BOOTHpng"],
                 // LEFT
                 ['Lifeline Diagnostics', -1.74, -41.12, 'gold', "LIFELINE BOOTH BG.png", "	LIFELINE BOOTH.png"],
                 ['ARKRAY', -1.94, -127.23, 'gold', "Arkray BOOTH BG.png", "Arkray BOOTH.png"],
@@ -59,15 +59,15 @@ class BoothSeeder extends Seeder
 
             'Hall C' => [
                 // RIGHT
-                // ['CA', -0.19, 25.83, 'gold, "BG", "BOOTH"],
+                ['Vazyme', -0.19, 25.83, 'gold', "Vazyme BOOTH BG.png", "Vazyme BOOTH.png"],
                 // ['CB', -1.54, 52.11, 'silver, "BG", "BOOTH"],
-                // ['CC', -2.27, 90.40, 'bronze, "BG", "BOOTH"],
+                ['Omnibus', -2.27, 90.40, 'bronze', "Omnibus BOOTH BG.png", "Omnibus BOOTH.png"],
                 // ['CD', -1.31, 125.97, 'silver, "BG", "BOOTH"],
                 // ['CE', -1.78, 154.53, 'bronze, "BG", "BOOTH"],
                 // LEFT
-                // ['CF', -0.22, -23.34, 'gold, "BG", "BOOTH"],
+                ['Biosite', -0.22, -23.34, 'gold', "Biosite BOOTH BG.png", "Biosite BOOTH.png"],
                 // ['CG', -1.17, -51.66, 'silver, "BG", "BOOTH"],
-                // ['CH', -2.08, -89.27, 'bronze, "BG", "BOOTH"],
+                ['SYSMEX', -2.08, -89.27, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png"],
                 // ['CJ', -1.35, -125.36, 'silver, "BG", "BOOTH"],
                 // ['CK', -1.35, -153.34, 'bronze, "BG", "BOOTH"],
             ],
