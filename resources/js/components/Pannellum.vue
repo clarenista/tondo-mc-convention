@@ -7,7 +7,7 @@
 
       <div id="booth_visits" class="bg-light text-dark table-responsive">
         <h3 class="display-4">Booth Tracker</h3>
-        <hr>
+        <!-- <hr> -->
         <div>
           <table class="table table-light table-striped table-bordered">
             <thead>
@@ -31,7 +31,7 @@
       <!-- BOOTH TRACKER -->
 
       <!-- ZOOM TIMER -->
-      <div id="zoom_countdown" v-if="isOpen">
+      <div id="zoom_countdown" v-if="enabled">
         <div class="col-12">
           <div  class="row">
             <div class="col p-1" id="box">
@@ -72,7 +72,7 @@
           </div>
 
           <div class="row">
-            <div class="col text-center intro"><small>Zoom meeting starts after countdown</small></div>                                                       
+            <div class="col text-center intro" style="color: red;"><small><b>{{zoom_title}}</b></small></div>                                                       
           </div>
           
         </div>
@@ -134,11 +134,12 @@ export default {
         minutes: '',
         seconds: '',
         start_at: null,
-        isOpen: false,
+        enabled: null,
         sponsor_booth: null,
         visited_booths: null,
 
-        announcement: 'All participants, kindly go to the meeting hall now.',
+        announcement: null,
+        zoom_title: null,
       }
     },
     mounted() {
@@ -365,6 +366,13 @@ export default {
         const label = booth.name+" booth"
         this.$router.push('sponsors/'+booth.id)
         this.$sendGuestEvent('click', label, booth)
+        
+        // if(booth.type == 'standee'){
+        //   alert(label + booth.url)
+        // } else {
+        //   this.$router.push('sponsors/'+booth.id)
+        //   this.$sendGuestEvent('click', label, booth)
+        // }
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"
@@ -372,8 +380,10 @@ export default {
       },
       handleBgmPlayToggle(){
         if(this.$store.getters.bgmStart){
+          localStorage.setItem("bgmStart", false)
           this.$store.commit('updateBgmStart', false)
         }else{
+          localStorage.setItem("bgmStart", true)
           this.$store.commit('updateBgmStart', true)
           
         }
@@ -383,12 +393,14 @@ export default {
       async loadTimer(){
         let {data} = await axios.get('/api/v1/program?api_token='+localStorage.getItem('access_token'))
         this.start_at = data.start_at_
+        this.zoom_title = data.title
+        this.enabled = data.enabled
 
         // disable display
         let now = new Date()
         let start_at_ = data.start_at_
-        if(now < start_at_){
-            this.isOpen = true
+        if(now > start_at_){
+            this.enabled = null
         }
 
         this.countDownEndTime =  this.start_at;
@@ -404,9 +416,9 @@ export default {
       countDownStart(){
                 
           let now = new Date().getTime();
-          if(now > this.start_at){
-              this.isOpen = true
-          }
+          // if(now > this.start_at){
+          //     this.isOpen = true
+          // }
           this.distance = this.countDownEndTime - now;
 
           // Time calculations for days, hours, minutes and seconds
@@ -564,6 +576,12 @@ export default {
     width: 35%;
     height: 75%;
   }
+
+   #booth_visits h3 {
+    /* background: url('/images/modal_header.jpg');
+    background-position: center;
+    background-repeat: no-repeat; */
+   }
 
   marquee {
     position: fixed;

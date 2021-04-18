@@ -15,8 +15,9 @@ class Question extends Model
         'choices',
         'answer',
     ];
-
+    
     protected $hidden = [
+        'answer',
         'created_at',
         'updated_at',
     ];

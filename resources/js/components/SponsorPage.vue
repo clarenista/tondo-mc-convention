@@ -12,8 +12,10 @@
                 :index="indexSelected"
                 @close="indexSelected = null">
               </CoolLightBox>
-                <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
+                <h1 class="text-light" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
+                <h1 class="text-light" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
+            
             <template v-slot:body >
                 <div class="row px-4">
                   <!-- External link -->
@@ -21,7 +23,7 @@
                       <div class="row p-1 text-center">
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                            You are about to be redirected to a new internet site: 
+                            You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to: 
                             <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
@@ -67,7 +69,41 @@
                       </div>
                     </template>
                     <!-- CONTACT US FORM -->
-
+                    <!-- QUIZ  -->
+                    <template v-else-if="selectedHotspot.name == 'quiz'">
+                    <div class="col-12 p-1">
+                      
+                      <div v-if="selectedHotspot.quiz_taken  != ''">
+                        <p class=" float-right">Total correct answer: {{renderTotal}}</p>
+                        <ol>
+                          <li v-for="(taken, takenIndex) in selectedHotspot.quiz_taken" :key="takenIndex">
+                            <p>{{taken.question.question}}</p>
+                            <p :class="taken.correct == 1 ? 'text-success' : 'text-danger'">Your Answer: {{taken.answer}} <i class="fa" :class="taken.correct == 1 ? 'fa-check' : 'fa-times'"></i></p>
+                          </li>
+                        </ol>
+                      </div>
+                      <div v-else>
+                        <div class="col-12 p-1" v-if="page == assetIndex" v-for="(item, assetIndex) in selectedHotspot.questions" :key="assetIndex" >
+                          <div class="row"  >
+                            <div class="col">
+                              <legend>Question {{assetIndex+1}}</legend>
+                              <p class="lead text-center border rounded p-5">{{item.question}}</p>
+                              <div class="form-group">
+                                <div class="custom-control custom-radio" v-for="(choice, index) in item.choices" :key="index">
+                                  <input type="radio" :id="'customRadio'+index+assetIndex" v-model="answers[item.id]"  :value="choice"  class="custom-control-input">
+                                  <label class="custom-control-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
+                                </div>
+                              </div>
+                              <button class="btn btn-danger float-left" type="button" v-show="!start" @click="handlePrev">Prev</button>
+                              <button class="btn btn-primary float-right" type="button" v-if="!end" @click="handleNext">Next</button>
+                              <button class="btn btn-primary float-right" type="button" v-else @click="handleSubmitAnswer">Submit</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </template>
+                    <!-- QUIZ  --> 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
@@ -131,7 +167,7 @@
             </template>
         </Modal>
 
-        <div class="booth-container">
+        <div class="booth-container" v-if="booth_details">
             <img class="centered" :src="booth_details.background">
             <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
         </div>
@@ -155,11 +191,16 @@
 <script>
 import Modal from './Modal.vue'
 export default {
+    watch:{
+      answers(e){
+          console.log(e)
+      }
+    },
     components:{
         Modal
     },
     props:['id'],
-    mounted() {
+    created() {
       
      this.init()
 
@@ -188,7 +229,18 @@ export default {
           successMessage: false,
           data: '',
           indexSelected: null,
+          answers: {},
+          page: 0,
+          end: false,
+          start: true,
+          answersS: []
         }
+    },
+    computed:{
+      renderTotal(){
+        
+        return _.sumBy(this.selectedHotspot.quiz_taken, function(o) { return o.correct; });
+      }
     },
     methods:{
         async init(){
@@ -238,9 +290,19 @@ export default {
             hotspot.assets[i]['src'] = hotspot.assets[i].url
           }
           this.selectedHotspot = hotspot
+          if(hotspot.name == 'videos'){
+            if(localStorage.getItem("bgmStart")){
+              this.$store.commit('updateBgmStart', false)
+            }
+          }
           this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
         handleCloseModal(){
+          if(this.selectedHotspot.name == 'videos'){
+            if(localStorage.getItem("bgmStart")){
+              this.$store.commit('updateBgmStart', true)
+            }
+          }
             this.selectedHotspot = null
             this.value = false
         },
@@ -288,6 +350,43 @@ export default {
         handleSelectAssetIndex(assetIndex){
           // this.value = false
           this.indexSelected=assetIndex
+        },
+        handleNext(){
+          this.start = false
+          let count = this.selectedHotspot.questions.length - 1
+          if(count > this.page){
+            this.page = this.page + 1
+            if(count == this.page){
+              this.end = true
+              this.start = false
+            }
+          }else{
+            this.end = true
+            this.start = false
+          }
+        },
+        handlePrev(){
+          this.end = false
+          let count = this.selectedHotspot.questions.length
+          if(0 < this.page){
+            this.page = this.page - 1
+            if(0<this.page){
+
+            this.end = false
+            this.start = true
+            }
+          }else{
+          }
+        },
+        async handleSubmitAnswer(){
+          let fd = new FormData()
+          fd.append('answers', JSON.stringify(this.answers))
+          let {data} = await axios.post('/api/v1/booths/'+this.id+'/questionnaire/answer/submit?api_token='+localStorage.getItem('access_token'), fd)
+          this.selectedHotspot.quiz_taken = data.answers
+        },        
+        async showQuestionnaire(){
+          let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
+          console.log(data)
         }
 
     }
@@ -334,7 +433,6 @@ div#container{
 
 
 body div {
-  display: flex;
 }
 
 .hotspots--wrapper {
@@ -472,29 +570,39 @@ body div {
 /* ICONS */
 .hotspots--wrapper a img {
   width: 75px;
+  animation: pulse 2s infinite;
+  border-radius: 50%;
 }
 
 .hotspots--wrapper a img:hover {
-  opacity: 1;
-	-webkit-animation: flash 1.5s;
-	animation: flash 1.5s;
+  animation: none;
+  box-shadow: 0 3px 18px #000;
 }
-@-webkit-keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
-}
+ @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 183, 255, 0.9);
+    }
+    70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(61, 200, 255, 0.9);
+      box-shadow: 0 0 0 0 rgba(151, 226, 255, 0.9);
+    }
+    70% {
+      -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
 
 @media screen and (max-width: 1024px) {
   .hotspots--wrapper a img {
@@ -533,5 +641,9 @@ body div {
   font-size: 2.2rem;
   font-weight:300;
   line-height:1;
+}
+
+.pulse{
+  animation: pulse 2s infinite;
 }
 </style>

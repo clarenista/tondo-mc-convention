@@ -20,6 +20,9 @@
               <i class="fa" :class="dropdown.icon"></i> {{dropdown.name}}</a>
         </div>
     </div>
+    <a href="javascript:void(0)" @click="handleVote">
+        <i class="fa fa-hand-o-up" ></i> Vote
+    </a>
     <a href="javascript:void(0)" @click="handleLogout">
         <i class="fa fa-sign-out" ></i> Logout
     </a>
@@ -72,6 +75,10 @@ export default {
 
             // redirect to login
             this.$router.push('/login')
+        },
+        handleVote(){
+             // redirect to vote
+            this.$router.push('/vote')
         }
     }
 }
