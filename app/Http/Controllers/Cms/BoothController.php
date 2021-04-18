@@ -82,7 +82,7 @@ class BoothController extends Controller
                 'description' => $booth->name,
             ]);
 
-            if ($booth['type'] = 'gold') {
+            if ($booth['type'] == 'gold') {
                 $hotpots = [
                     ['External Link', 55, 16, 'https://localhost'],
                     ['Contact Us', 69, 10, ''],
@@ -93,7 +93,7 @@ class BoothController extends Controller
                 ];
             }
 
-            if ($booth['type'] = 'silver') {
+            if ($booth['type'] == 'silver') {
                 $hotpots = [
                     ['External Link', 55, 16, 'https://localhost'],
                     ['Contact Us', 69, 10, ''],
@@ -104,7 +104,7 @@ class BoothController extends Controller
                 ];
             }
 
-            if ($booth['type'] = 'bronze') {
+            if ($booth['type'] == 'bronze') {
                 $hotpots = [
                     ['External Link', 54, 22, 'https://localhost'],
                     ['Contact Us', 62, 55, ''],
