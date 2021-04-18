@@ -178,7 +178,7 @@ export default new Vuex.Store({
     updateBgmStart(state, start) {
       state.bgmStart = start
       const bgm = document.getElementById('bgm');
-      bgm.volume =0.4
+      bgm.volume =0.1
       if(!start){
         bgm.pause()
         // bgm.currentTime = 0;

@@ -380,8 +380,10 @@ export default {
       },
       handleBgmPlayToggle(){
         if(this.$store.getters.bgmStart){
+          localStorage.setItem("bgmStart", false)
           this.$store.commit('updateBgmStart', false)
         }else{
+          localStorage.setItem("bgmStart", true)
           this.$store.commit('updateBgmStart', true)
           
         }

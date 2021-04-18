@@ -290,9 +290,19 @@ export default {
             hotspot.assets[i]['src'] = hotspot.assets[i].url
           }
           this.selectedHotspot = hotspot
+          if(hotspot.name == 'videos'){
+            if(localStorage.getItem("bgmStart")){
+              this.$store.commit('updateBgmStart', false)
+            }
+          }
           this.sendBoothGuestEvent(this.booth_details, hotspot)
         },
         handleCloseModal(){
+          if(this.selectedHotspot.name == 'videos'){
+            if(localStorage.getItem("bgmStart")){
+              this.$store.commit('updateBgmStart', true)
+            }
+          }
             this.selectedHotspot = null
             this.value = false
         },
