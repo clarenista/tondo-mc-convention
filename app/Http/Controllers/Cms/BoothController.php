@@ -106,12 +106,12 @@ class BoothController extends Controller
 
             if ($booth['type'] = 'bronze') {
                 $hotpots = [
-                    ['External Link', 55, 16, 'https://localhost'],
-                    ['Contact Us', 69, 10, ''],
-                    ['Quiz', 60, 82, ''],
-                    ['Brochures', 69, 19, ''],
-                    ['Videos', 42, 72, ''],
-                    ['Gallery', 47, 38, ''],
+                    ['External Link', 54, 22, 'https://localhost'],
+                    ['Contact Us', 62, 55, ''],
+                    ['Quiz', 14, 63, ''],
+                    ['Brochures', 62, 66, ''],
+                    ['Videos', 36, 63, ''],
+                    ['Gallery', 42, 43, ''],
                 ];
             }
 

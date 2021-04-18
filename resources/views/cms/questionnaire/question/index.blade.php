@@ -3,9 +3,33 @@
 @section('title')
 Assets
 @stop
+<style>
+    .input-group>span {
+        width: 150px;
+    }
+
+    .input-group>span>span {
+        width: 150px;
+    }
+</style>
 
 @section('content')
 
+@role('sponsor')
+<div>
+    <form action="{{ route('cms.sponsor.questionnaires.quick.update', request()->questionnaire_id) }}" method="post">
+        @csrf
+        @php
+            $model = $questionnaire;
+        @endphp
+        @include('cms.include.input-text', ['key' => 'instruction', 'label' => 'Instruction'])
+        @include('cms.include.input-text', ['key' => 'ending_message', 'label' => 'Ending Message'])
+        <div class="form-group">
+            <button class="btn btn-success btn-block">UPDATE </button>
+        </div>
+    </form>
+</div>
+@endrole
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         @role('admin')

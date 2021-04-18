@@ -12,8 +12,10 @@
                 :index="indexSelected"
                 @close="indexSelected = null">
               </CoolLightBox>
-                <h1 class="text-light">{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
+                <h1 class="text-light" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
+                <h1 class="text-light" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
+            
             <template v-slot:body >
                 <div class="row px-4">
                   <!-- External link -->
@@ -21,7 +23,7 @@
                       <div class="row p-1 text-center">
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                            You are about to be redirected to a new internet site: 
+                            You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to: 
                             <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
@@ -557,29 +559,39 @@ body div {
 /* ICONS */
 .hotspots--wrapper a img {
   width: 75px;
+  animation: pulse 2s infinite;
+  border-radius: 50%;
 }
 
 .hotspots--wrapper a img:hover {
-  opacity: 1;
-	-webkit-animation: flash 1.5s;
-	animation: flash 1.5s;
+  animation: none;
+  box-shadow: 0 3px 18px #000;
 }
-@-webkit-keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
-}
-@keyframes flash {
-	0% {
-		opacity: .4;
-	}
-	100% {
-		opacity: 1;
-	}
-}
+ @-webkit-keyframes pulse {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 183, 255, 0.9);
+    }
+    70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+  @keyframes pulse {
+    0% {
+      -moz-box-shadow: 0 0 0 0 rgba(61, 200, 255, 0.9);
+      box-shadow: 0 0 0 0 rgba(151, 226, 255, 0.9);
+    }
+    70% {
+      -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+      -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
 
 @media screen and (max-width: 1024px) {
   .hotspots--wrapper a img {
@@ -618,5 +630,9 @@ body div {
   font-size: 2.2rem;
   font-weight:300;
   line-height:1;
+}
+
+.pulse{
+  animation: pulse 2s infinite;
 }
 </style>
