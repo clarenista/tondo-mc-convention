@@ -75,7 +75,7 @@
                     <div class="col-12 p-1">
                       
                       <div v-if="selectedHotspot.quiz_taken  != ''">
-                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Total correct answers: {{renderTotal}}</legend>
+                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}}</legend>
                         <ol>
                           <li v-for="(taken, takenIndex) in selectedHotspot.quiz_taken" :key="takenIndex">
                             <p>{{taken.question.question}}</p>
@@ -646,5 +646,14 @@ body div {
 
 .pulse{
   animation: pulse 2s infinite;
+}
+
+.custom-control {
+  padding: 2% 0 0 2%;
+  margin-left: 10%;
+}
+
+.form-group .custom-control{
+  
 }
 </style>
