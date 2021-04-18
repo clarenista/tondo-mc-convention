@@ -77,6 +77,29 @@
           
         </div>
       </div>
+      {{standee_index}}
+      <div v-if="this.standees">
+       <CoolLightBox
+          :items="standees" 
+          :index="standee_index"
+          @close="standee_index = null">
+        </CoolLightBox>
+      </div>
+
+       <!-- <Modal :value="show_standee">
+        <template v-slot:title >
+            <h3 class="display-4 mt-3">{{standee_dtls.name}}</h3>
+        </template>
+        <template v-slot:body>
+            <iframe :src="standee_dtls.url" frameborder="0"></iframe>
+        </template>
+        <template v-slot:footer >
+            <button class="btn btn-primary" type="button" @click="show_standee = false">
+                Done
+            </button>
+        </template>
+      </Modal> -->
+
 
       <div id="panorama">
         <div id="controls">
@@ -109,6 +132,7 @@
 import Sidebar from './Sidebar'
 import Modal from './Modal'
 import MeetingHall from './MeetingHall/MeetingHall.js'
+
 export default {
   components:{
     Sidebar, Modal
@@ -117,7 +141,7 @@ export default {
 
     data() {
       return {
-        booths: null,
+        booths: [],
         viewer: null,
         panorama_details: null,
         lobby_booths: null,
@@ -140,6 +164,11 @@ export default {
 
         announcement: null,
         zoom_title: null,
+
+        show_standee: false,
+        standee_dtls: null,
+        standee_index: null,
+        standees: null,
       }
     },
     mounted() {
@@ -156,8 +185,17 @@ export default {
         // auth:api
         let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
         // let {data} = await axios.get('api/v1/booths')
+
+        for(let i in data){
+          data[i]['src'] = data[i].url
+        }
+
         this.$store.commit('updateBooths', data)
-        this.booths = this.$store.getters.booths
+        this.booths = data
+
+        this.standees = _.filter(this.booths, ['type', 'standee'])
+        // console.log(this.booths)
+
 
         this.panorama_details = {
             "default": {
@@ -364,15 +402,22 @@ export default {
       },
       handleBoothClicked(booth){
         const label = booth.name+" booth"
-        this.$router.push('sponsors/'+booth.id)
-        this.$sendGuestEvent('click', label, booth)
         
-        // if(booth.type == 'standee'){
-        //   alert(label + booth.url)
-        // } else {
-        //   this.$router.push('sponsors/'+booth.id)
-        //   this.$sendGuestEvent('click', label, booth)
-        // }
+        if(booth.type == 'standee'){
+          
+          console.log(this.booths)
+
+          booth['src'] = booth.url
+          
+          this.standee_index = this.standees.findIndex(x => x.id === booth.id);
+     
+          this.show_standee = true
+          this.standee_dtls = booth
+          
+        } else {
+          this.$router.push('sponsors/'+booth.id)
+          this.$sendGuestEvent('click', label, booth)
+        }
       },
       handleHotspotClicked(scene){
         const label = scene+" hotspot"

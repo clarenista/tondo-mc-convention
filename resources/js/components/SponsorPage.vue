@@ -69,6 +69,7 @@
                       </div>
                     </template>
                     <!-- CONTACT US FORM -->
+
                     <!-- QUIZ  -->
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                     <div class="col-12 p-1">
@@ -104,6 +105,7 @@
                     </div>
                     </template>
                     <!-- QUIZ  --> 
+                    
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
