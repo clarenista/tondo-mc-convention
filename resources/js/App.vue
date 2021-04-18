@@ -1,6 +1,6 @@
 <template>
     <div>
-        <audio src="/bgm/bgm.mp3" loop :autoplay="$store.getters.bgmStart" :muted="$store.getters.bgmStart"  id="bgm"></audio>
+        <audio src="/bgm/bgm.mp3" loop id="bgm"></audio>
         <router-view></router-view>
     </div>
 </template>

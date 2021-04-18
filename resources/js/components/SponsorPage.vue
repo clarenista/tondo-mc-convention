@@ -1,5 +1,7 @@
 <template>
-    <div id="container" >
+  <div> 
+    <Loader v-if="isLoading"></Loader>
+    <div id="container">
       
         <div class="alert alert-success" role="alert" v-if="successMessage">
             Message sent.
@@ -170,7 +172,7 @@
         </Modal>
 
         <div class="booth-container" v-if="booth_details">
-            <img class="centered" :src="booth_details.background">
+            <img class="centered" :src="booth_details.background" @load="imageLoad">
             <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
         </div>
 
@@ -189,9 +191,11 @@
         </section>
 
     </div>
+  </div>
 </template>
 <script>
 import Modal from './Modal.vue'
+import Loader from './Loader.vue'
 export default {
     watch:{
       answers(e){
@@ -199,12 +203,11 @@ export default {
       }
     },
     components:{
-        Modal
+        Modal, Loader
     },
     props:['id'],
-    created() {
-      
-     this.init()
+    mounted() {
+      this.init()
 
     // axios.get("/images/lt.mp4")
     //   .then(res => console.log(res.headers))
@@ -235,7 +238,9 @@ export default {
           page: 0,
           end: false,
           start: true,
-          answersS: []
+          answersS: [],
+          isLoading: true,
+          bgmStart: null
         }
     },
     computed:{
@@ -293,7 +298,8 @@ export default {
           }
           this.selectedHotspot = hotspot
           if(hotspot.name == 'videos'){
-            if(localStorage.getItem("bgmStart")){
+            if(this.$store.getters.bgmStart){
+              this.bgmStart = true
               this.$store.commit('updateBgmStart', false)
             }
           }
@@ -301,8 +307,11 @@ export default {
         },
         handleCloseModal(){
           if(this.selectedHotspot.name == 'videos'){
-            if(localStorage.getItem("bgmStart")){
+            if(this.bgmStart){
               this.$store.commit('updateBgmStart', true)
+            }else{
+              this.$store.commit('updateBgmStart', false)
+
             }
           }
             this.selectedHotspot = null
@@ -389,6 +398,9 @@ export default {
         async showQuestionnaire(){
           let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
           console.log(data)
+        },
+        imageLoad(){
+          this.isLoading = false
         }
 
     }
