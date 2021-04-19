@@ -15,7 +15,6 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "pusher-js": "^5.1.1",
         "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.12"
     },
@@ -26,6 +25,7 @@
         "npm": "^7.6.1",
         "pannellum": "^2.5.6",
         "panolens": "^0.12.1",
+        "pusher-js": "^7.0.3",
         "three": "^0.126.1",
         "vue": "^2.6.12",
         "vue-axios": "^3.2.4",
