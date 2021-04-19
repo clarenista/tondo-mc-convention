@@ -211,7 +211,7 @@ export default {
                 "lobby": {
                     "type": "multires",
                     "multiRes": {
-                      "basePath": "/images/multires/lobby1",
+                      "basePath": "/images/multires/lobby",
                       "path": "/%l/%s%y_%x",
                       "fallbackPath": "/fallback/%s",
                       "extension": "jpg",
