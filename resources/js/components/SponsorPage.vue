@@ -90,12 +90,20 @@
                           <div class="row"  >
                             <div class="col">
                               <legend>Question {{assetIndex+1}}: &nbsp;{{item.question}}?</legend>
+
+                              <div class="form-check mb-3" v-for="(choice, index) in item.choices" :key="index">
+                                <input class="form-check-input" :id="'customRadio'+index+assetIndex" type="radio" v-model="answers[item.id]"  :value="choice">
+                                <label class="form-check-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
+                              </div>
+
+                              <!-- 
                               <div class="form-group">
                                 <div class="custom-control custom-radio" v-for="(choice, index) in item.choices" :key="index">
                                   <input type="radio" :id="'customRadio'+index+assetIndex" v-model="answers[item.id]"  :value="choice"  class="custom-control-input">
                                   <label class="custom-control-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
                                 </div>
-                              </div>
+                              </div> -->
+                              
                               <button class="btn btn-danger float-left" type="button" v-show="!start" @click="handlePrev">Prev</button>
                               <button class="btn btn-primary float-right" type="button" v-if="!end" @click="handleNext">Next</button>
                               <button class="btn btn-primary float-right" type="button" v-else @click="handleSubmitAnswer">Submit</button>
@@ -665,7 +673,19 @@ body div {
   margin-left: 10%;
 }
 
-.form-group .custom-control{
-  
+/* quiz form */
+.form-check {
+  padding: 1% 1% 1% 8%;
+  border:1px solid #1b9e93;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.form-check:hover {
+   background: #beebd7;
+}
+
+input[type="radio"]:checked {
+   background: #beebd7;
 }
 </style>
