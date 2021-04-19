@@ -5,6 +5,7 @@ export default {
         zoomBtn.style.display = "none";
         this.getZoomType(vue).then((result) => {
             let program = result.data;
+            console.log(program.enabled, program.type, userType);
             if (
                 program.enabled == 1 &&
                 (program.type == "all" ||
