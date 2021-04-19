@@ -21,8 +21,8 @@ class GuestController extends Controller
 
         foreach ($booths as $booth) {
             $return[$booth->id] = [
-                'name' => $booth->name,
-                'visited' => boolval($boothTracks->where('user_event_category_id', $booth->categorizable->id)->count()),
+                'name' => $booth->description,
+                'visited' => boolval($boothTracks->where('user_event_category_id', $booth->id)->count()),
             ];
         }
 
