@@ -82,38 +82,41 @@ class BoothController extends Controller
                 'description' => $booth->name,
             ]);
 
-            // if ($booth['type'] == 'gold') {
-            //     $hotpots = [
-            //         ['External Link', 58, 13, 'https://localhost'],
-            //         ['Contact Us', 81, 19, ''],
-            //         ['Quiz', 42, 72, ''],
-            //         ['Brochures', 81, 8, ''],
-            //         ['Videos', 58, 72, ''],
-            //         ['Gallery', 47, 38, ''],
-            //     ];
-            // }
+            if ($booth['type'] == 'gold') {
+                $hotpots = [
+                    ['External Link', 58, 13, 'https://localhost'],
+                    ['Contact Us', 81, 19, ''],
+                    ['Quiz', 42, 72, ''],
+                    ['Brochures', 81, 8, ''],
+                    ['Videos', 58, 72, ''],
+                    ['Gallery', 47, 38, ''],
+                ];
+            }
 
-            // if ($booth['type'] == 'silver') {
-            //     $hotpots = [
-            //         ['External Link', 55, 16, 'https://localhost'],
-            //         ['Contact Us', 69, 10, ''],
-            //         ['Quiz', 60, 82, ''],
-            //         ['Brochures', 69, 19, ''],
-            //         ['Videos', 42, 72, ''],
-            //         ['Gallery', 47, 38, ''],
-            //     ];
-            // }
+            if ($booth['type'] == 'silver') {
+                $hotpots = [
+                    ['External Link', 55, 16, 'https://localhost'],
+                    ['Contact Us', 69, 10, ''],
+                    ['Quiz', 60, 82, ''],
+                    ['Brochures', 69, 19, ''],
+                    ['Videos', 42, 72, ''],
+                    ['Gallery', 47, 38, ''],
+                ];
+            }
 
-            // if ($booth['type'] == 'bronze') {
-            //     $hotpots = [
-            //         ['External Link', 54, 22, 'https://localhost'],
-            //         ['Contact Us', 84, 75, ''],
-            //         ['Quiz', 25, 64, ''],
-            //         ['Brochures', 73, 75, ''],
-            //         ['Videos', 40, 64, ''],
-            //         ['Gallery', 42, 43, ''],
-            //     ];
-            // }
+            if ($booth['type'] == 'bronze') {
+                $hotpots = [
+                    ['External Link', 54, 22, 'https://localhost'],
+                    ['Contact Us', 84, 75, ''],
+                    ['Quiz', 25, 64, ''],
+                    ['Brochures', 73, 75, ''],
+                    ['Videos', 40, 64, ''],
+                    ['Gallery', 42, 43, ''],
+                ];
+            }
+
+            if($request->has('hotspots'))
+                $hotpots = $request->hotspots;
 
             foreach ($hotpots as $hotpot) {
                 $booth->hotspots()->create([

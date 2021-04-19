@@ -29,9 +29,9 @@ class BoothSeeder extends Seeder
                         ['Gallery','47','40',''],
                     ]
                 ],
-                    
+
                 // UPDATE BOOTH
-                ['Marsman Drysdale', -2.00, 129.05, 'gold', "BGpng", "BOOTHpng", 
+                ['Marsman Drysdale', -2.00, 129.05, 'gold', "BGpng", "BOOTHpng",
                     [
                         ['External Link','58','13','https://localhost'],
                         ['Contact Us','81','19',''],
@@ -272,6 +272,7 @@ class BoothSeeder extends Seeder
                 'yaw' => $booth[2],
                 'panorama_location' => Str::snake($location),
                 'type' => $booth[3],
+                'hotspots' => $booth[6],
             ]));
             if (isset($booth[4])) {
                 $user->booth->assets()->whereCategory('background')->first()->update(['url' => "{$aws_booth_endpoint}$booth[4]"]);
