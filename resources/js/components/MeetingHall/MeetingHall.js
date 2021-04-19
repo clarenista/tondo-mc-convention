@@ -14,13 +14,22 @@ export default {
                 zoomBtn.style.display = "";
                 zoomBtn.addEventListener("click", () => {
                     if (
-                        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-                            navigator.userAgent
-                        )
+                        program.enabled == 1 &&
+                        (program.type == "all" ||
+                            (program.type == "private" &&
+                                userType == "Diplomate"))
                     ) {
-                        this.openZoomMobile(vue);
+                        if (
+                            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                                navigator.userAgent
+                            )
+                        ) {
+                            this.openZoomMobile(vue);
+                        } else {
+                            window.location = "/meeting-hall";
+                        }
                     } else {
-                        window.location = "/meeting-hall";
+                        zoomBtn.style.display = "none";
                     }
                 });
             }
