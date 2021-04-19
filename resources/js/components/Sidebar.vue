@@ -2,7 +2,7 @@
 <div>
     <div id="mySidenav" class="sidenav">
         <div class="text-center"><img id="psp_logo" src="images/PSP_LOGO.png" width="240px" alt="psp_logo" srcset=""></div>
-    <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a>
+    <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
     <a 
         href="javascript:void(0)" 
         v-if="item.type=='nav-item'" 
@@ -139,4 +139,8 @@ button.open-btn{
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }  
+
+.closebtn {
+    font-size: 1.2rem !important;
+}
 </style>
