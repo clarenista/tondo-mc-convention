@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\ApiTokenController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -31,6 +32,7 @@ class HomeController extends Controller
         if($user){
             if(Hash::check($request->password, $user->password)){
                 $user->update(['api_token' => hash('sha256', Str::random(80))]);
+                Auth::login($user);
                 return response()->json([
                     'status' => 'ok',
                     'user' => $user,
