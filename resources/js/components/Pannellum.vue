@@ -223,8 +223,8 @@ export default {
                       {
                         "clickHandlerFunc": ()=>{this.$router.push('/vote')},
                         "scene": 'lobby',
-                        "pitch": 22,
-                        "yaw": 0,
+                        "pitch": -2,
+                        "yaw": 10,
                         "cssClass": "custom-hotspot vote",
                         "id": "vote"
                       },
@@ -318,45 +318,44 @@ export default {
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
           this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
           this.viewer.removeHotSpot('vote')
+          this.viewer.removeHotSpot('zoom_meeting')
           this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
           this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
           this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
           this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
 
-        }else{
-
-          this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
-          this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
-          this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
-          this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
-          this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
-          for(let i in this.$store.getters.scene_hotSpots){
-            this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
-          }
-          this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
-          this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
-
-          this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
-
-          this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-          this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
-
-          this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-          this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
-
-          this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-          this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
-
-          this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-          this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
-
-          this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
-          // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
-          // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
-          this.viewer.on('scenechange', this.handleSceneChange)
-          this.viewer.on('load', this.handleSceneLoad);
-          this.reSize()
+        this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
+        this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
+        this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
+        this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
+        this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+        for(let i in this.$store.getters.scene_hotSpots){
+          this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+        }
+        this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
+        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+
+        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+
+        this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+        this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
+
+        this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+        this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
+
+        this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+        this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
+
+        this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
+        this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
+
+        this.viewer= pannellum.viewer('panorama', this.panorama_details );
+        // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
+        // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
+        this.viewer.on('scenechange', this.handleSceneChange)
+        this.viewer.on('load', this.handleSceneLoad);
+        this.reSize()
 
         
       },
@@ -506,8 +505,6 @@ export default {
     border-radius: 50%;
   }
   div >>> .vote{
-    height: 50px;
-    width: 50px;
     background-image: url('/images/icons/vote.png');
     background-size: cover;
   }  

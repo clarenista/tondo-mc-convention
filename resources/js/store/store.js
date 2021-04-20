@@ -99,6 +99,7 @@ export default new Vuex.Store({
         "text": "Lobby",
       },
       {
+        "id": 'zoom_meeting',
         "scene": 'meeting_hall',
         "pitch": 3.8,
         "yaw": 0,

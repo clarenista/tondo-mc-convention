@@ -77,11 +77,12 @@
                     <div class="col-12 p-1">
                       
                       <div v-if="selectedHotspot.quiz_taken  != ''">
-                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}}</legend>
+                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}} / {{selectedHotspot.questions.length}}</legend>
                         <ol>
-                          <li v-for="(taken, takenIndex) in selectedHotspot.quiz_taken" :key="takenIndex">
-                            <p>{{taken.question.question}}</p>
-                            <p :class="taken.correct == 1 ? 'text-success' : 'text-danger'">Your Answer: {{taken.answer}} <i class="fa" :class="taken.correct == 1 ? 'fa-check' : 'fa-times'"></i></p>
+                          <li v-for="(question, questionIndex) in selectedHotspot.questions" :key="questionIndex">
+                            <p>{{question.question}}</p>
+                            <p v-if="question.answers[0]" :class="question.answers[0].correct == 1 ? 'text-success' : 'text-danger'">Your Answer: {{question.answers[0].answer}} <i class="fa" :class="question.answers[0].correct == 1 ? 'fa-check' : 'fa-times'"></i></p>
+                            <p v-else class="text-danger">No Answer <i class="fa fa-times" ></i></p>
                           </li>
                         </ol>
                       </div>
@@ -194,6 +195,9 @@
                 <img class="pulse" src="/images/icons/quiz.png" alt="quiz" srcset="" v-if="index == 'quiz'">
                 <img class="pulse" src="/images/icons/video.png" alt="videos" srcset="" v-if="index == 'videos'">
             </a>
+            <a  :href="'/cms/login?email='+this.$store.getters.user.email" target="_blank" class="hotspot" style="right: 25%; top: 20%;" v-if="this.$store.getters.user.classification ==='sponsor'">
+              <img class="pulse" src="/images/icons/booth-icon-min.png" alt="cms">
+            </a>
 
         </section>
 
@@ -206,7 +210,6 @@ import Loader from './Loader.vue'
 export default {
     watch:{
       answers(e){
-          console.log(e)
       }
     },
     components:{
@@ -388,12 +391,15 @@ export default {
           let count = this.selectedHotspot.questions.length
           if(0 < this.page){
             this.page = this.page - 1
-            if(0<this.page){
+            console.log(this.page)
+            if(0>this.page){
 
             this.end = false
             this.start = true
             }
           }else{
+            this.end = false
+            this.start = true
           }
         },
         async handleSubmitAnswer(){
@@ -401,6 +407,7 @@ export default {
           fd.append('answers', JSON.stringify(this.answers))
           let {data} = await axios.post('/api/v1/booths/'+this.id+'/questionnaire/answer/submit?api_token='+localStorage.getItem('access_token'), fd)
           this.selectedHotspot.quiz_taken = data.answers
+          this.selectedHotspot.questions = data.questions
         },        
         async showQuestionnaire(){
           let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))

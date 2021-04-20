@@ -139,34 +139,34 @@ router.beforeEach((to, from, next) => {
                 name: 'login'
             })
         } else {
-            if(to.matched.some(record => record.meta.isSponsor)){
-                if(store.getters.user){
-                    next()
+            // if(to.matched.some(record => record.meta.isSponsor)){
+            //     if(store.getters.user){
+            //         next()
                     
-                }else{
-                    next({
-                        name: 'home'
-                    })
+            //     }else{
+            //         next({
+            //             name: 'home'
+            //         })
 
-                }
-            }
-            // if (to.matched.some(record => record.meta.requireCanCreateUser)) {
-            //     if (store.getters.permissions.includes('manage user')) {
-            //         next()
-            //     } else {
-            //         next({
-            //             name: 'notFound'
-            //         })
-            //     }
-            // } else if (to.matched.some(record => record.meta.requireCanManageBooth)) {
-            //     if (store.getters.permissions.includes('manage booth')) {
-            //         next()
-            //     } else {
-            //         next({
-            //             name: 'notFound'
-            //         })
             //     }
             // }
+            if (to.matched.some(record => record.meta.requireCanCreateUser)) {
+                if (store.getters.permissions.includes('manage user')) {
+                    next()
+                } else {
+                    next({
+                        name: 'notFound'
+                    })
+                }
+            } else if (to.matched.some(record => record.meta.requireCanManageBooth)) {
+                if (store.getters.permissions.includes('manage booth')) {
+                    next()
+                } else {
+                    next({
+                        name: 'notFound'
+                    })
+                }
+            }
 
             else {
                 next()

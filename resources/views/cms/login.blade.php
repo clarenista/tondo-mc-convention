@@ -20,6 +20,7 @@
                     <div class="col">
                         <div class="form-group">
                             <input
+                                id="email"
                                 type="text"
                                 class="form-control"
                                 placeholder="Email Address *"
@@ -54,4 +55,18 @@
 </div>
 
 
+@stop
+
+@section('js')
+    <script>
+        $(function(){
+            const params = new URLSearchParams(window.location.search)
+            let email = $('#email')
+            if(params.has('email')){
+                email.val(params.get('email'))
+            }else{
+                email.val('')
+            }
+        })
+    </script>
 @stop
