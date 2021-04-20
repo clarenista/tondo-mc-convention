@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col p-1" id="box">
                 <div class="card card-primary bg-dark text-light">
                     <div class="card-body text-center">
@@ -68,18 +68,18 @@
                         <p class="lead m-0 text-light text-uppercase">secs</p>
                     </div>
                 </div>
-            </div>  
+            </div>
           </div>
 
           <div class="row">
-            <div class="col text-center intro" style="color: red;"><small><b>{{zoom_title}}</b></small></div>                                                       
+            <div class="col text-center intro" style="color: red;"><small><b>{{zoom_title}}</b></small></div>
           </div>
-          
+
         </div>
       </div>
       <div v-if="this.standee_dtls">
        <CoolLightBox
-          :items="standee_dtls" 
+          :items="standee_dtls"
           :index="standee_index"
           :useZoomBar="true"
           @close="standee_index = null">
@@ -124,6 +124,18 @@
         </template>
       </Modal>
 
+      <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
+        <template v-slot:title >
+            <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
+        </template>
+        <template v-slot:body>
+            <p class="text-center lead text-success mt-3 mb-3"><strong> The meeting has not started yet. Please comeback later.</strong></p>
+        </template>
+        <template v-slot:footer >
+            <button class="btn btn-primary" type="button" @click="handleIsNotAllowedClose">
+              <i class="fa fa-caret-right"></i> Ok</button>
+        </template>
+      </Modal>
       <marquee style="background-color:#fff; color: #00008b;" class="text-uppercase" v-if="$store.getters.announcement != null" direction="left"> {{$store.getters.announcement.payload.title}}: {{$store.getters.announcement.payload.message}}</marquee>
 
     </div>
@@ -149,7 +161,7 @@ export default {
         hall_b_booths: null,
         hall_c_booths: null,
         hall_d_booths: null,
-        
+
         countDownStartTime: '',
         countDownEndTime: '',
         counDownDistance: '',
@@ -357,7 +369,10 @@ export default {
         this.viewer.on('load', this.handleSceneLoad);
         this.reSize()
 
-        
+
+      },
+      handleIsNotAllowedClose(){
+          this.$store.commit('updateIsAllowed', false);
       },
       handleSceneLoad(){
           if(this.viewer.getScene()=="meeting_hall"){
@@ -402,17 +417,17 @@ export default {
       handleBoothClicked(booth){
         this.standee_dtls = []
         const label = booth.name+" booth"
-        
+
         if(booth.type == 'standee'){
-          
+
           booth['src'] = booth.url
-          
-     
+
+
           this.show_standee = true
           this.standee_dtls.push(booth)
           this.standee_index = 0;
           console.log(this.standee_index)
-          
+
         } else {
           this.$router.push('sponsors/'+booth.id)
           this.$sendGuestEvent('click', label, booth)
@@ -427,7 +442,7 @@ export default {
           this.$store.commit('updateBgmStart', false)
         }else{
           this.$store.commit('updateBgmStart', true)
-          
+
         }
       },
 
@@ -456,7 +471,7 @@ export default {
         }, 1000)
       },
       countDownStart(){
-                
+
           let now = new Date().getTime();
           // if(now > this.start_at){
           //     this.isOpen = true
@@ -479,7 +494,7 @@ export default {
 
       // BOOTH TRACKER
       handleBoothTracker(){
-       
+
          var x = document.getElementById("booth_visits");
           if (x.style.display === "none") {
             x.style.display = "block";
@@ -507,8 +522,8 @@ export default {
   div >>> .vote{
     background-image: url('/images/icons/vote.png');
     background-size: cover;
-  }  
-  
+  }
+
   div >>> .meeting_hall{
     background-image: url('/images/icons/meeting-hall-icon-min.png');
     background-size: cover;
@@ -516,7 +531,7 @@ export default {
   div >>> .zoom{
     background-image: url('/images/icons/zoom.png');
     background-size: cover;
-  }  
+  }
   div >>> .exhibit_hall{
     background-image: url('/images/icons/exhibit-hall-icon-min.png');
     background-size: cover;
@@ -597,7 +612,7 @@ export default {
     .ctrl:hover {
         background: rgba(200, 200, 200, 1);
     }
-  
+
   .booth_tracker {
     position: fixed;
     top: 0.1em;
@@ -650,7 +665,7 @@ export default {
       font-size: 0.5rem;
   }
   #box .card-body {
-      padding: 0.5rem !important; 
+      padding: 0.5rem !important;
   }
 
   @media screen and (max-width: 750px) {
@@ -664,7 +679,7 @@ export default {
         font-size: 0.6em;
     }
     #box .card-body {
-        padding: 0.6rem !important; 
+        padding: 0.6rem !important;
     }
 
     #booth_visits{
@@ -683,7 +698,7 @@ export default {
     marquee {
         width: 90%;
     }
-    
+
   }
 
   @media screen and (max-width: 320px) {
@@ -691,7 +706,7 @@ export default {
       #zoom_countdown .display-4 {
           font-size: 0.6rem;
       }
-    
+
   }
 
   @media screen and (max-width: 360px) {
@@ -705,7 +720,7 @@ export default {
         font-size: 0.6em;
       }
       #box .card-body {
-          padding: 0.6rem !important; 
+          padding: 0.6rem !important;
       }
 
       #booth_visits{
@@ -737,7 +752,7 @@ export default {
         font-size: 0.4em;
       }
       #box .card-body {
-          padding: 0.4rem !important; 
+          padding: 0.4rem !important;
       }
       #booth_visits{
         width: 95%;
@@ -768,8 +783,8 @@ export default {
       }
 
 }
- 
 
-  
+
+
 
 </style>
