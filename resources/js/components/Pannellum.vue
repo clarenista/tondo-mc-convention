@@ -116,7 +116,7 @@
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong> Welcome to First PSP Virtual Event.</strong></p>
+            <p class="text-center lead text-success mt-3 mb-3"><strong> Welcome to the First PSP Virutal Event</strong></p>
         </template>
         <template v-slot:footer >
             <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">
@@ -129,7 +129,7 @@
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong> The meeting has not started yet. Please comeback later.</strong></p>
+            <p class="text-center lead text-success mt-3 mb-3"><strong> The Business Meeting is for Diplomates and Fellows only</strong></p>
         </template>
         <template v-slot:footer >
             <button class="btn btn-primary" type="button" @click="handleIsNotAllowedClose">
