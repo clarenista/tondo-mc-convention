@@ -1,6 +1,7 @@
 export default {
     init(vue) {
         let zoomBtn = vue.$el.querySelector(".open-zoom-meeting");
+        let userType = vue.$store.getters.user.classification;
         zoomBtn.style.display = "none";
         this.isAllowed(vue).then((result) => {
             if (result) {
