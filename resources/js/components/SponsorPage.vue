@@ -195,7 +195,7 @@
                 <img class="pulse" src="/images/icons/quiz.png" alt="quiz" srcset="" v-if="index == 'quiz'">
                 <img class="pulse" src="/images/icons/video.png" alt="videos" srcset="" v-if="index == 'videos'">
             </a>
-            <a  :href="'/cms/login?email='+this.$store.getters.user.email" target="_blank" class="hotspot" style="right: 25%; top: 20%;" v-if="this.$store.getters.user.classification ==='sponsor'">
+            <a  :href="'/cms/login?email='+this.$store.getters.user.email" target="_blank" class="hotspot" style="right: 25%; top: 20%;" v-if="renderNavigateToCmsHotspot">
               <img class="pulse" src="/images/icons/booth-icon-min.png" alt="cms">
             </a>
 
@@ -257,6 +257,16 @@ export default {
       renderTotal(){
         
         return _.sumBy(this.selectedHotspot.quiz_taken, function(o) { return o.correct; });
+      },
+      renderNavigateToCmsHotspot(){
+        if(this.$store.getters.user.classification === 'sponsor'){
+          if(this.$store.getters.user.booth.id === this.booth_details.id){
+            return true
+          }else{
+            return false
+
+          }
+        }
       }
     },
     methods:{
