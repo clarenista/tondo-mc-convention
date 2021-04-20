@@ -1,7 +1,6 @@
 export default {
     init(vue) {
         let zoomBtn = vue.$el.querySelector(".open-zoom-meeting");
-        let userType = vue.$store.getters.user.classification;
         zoomBtn.style.display = "none";
         this.isAllowed(vue).then((result) => {
             if (result) {
@@ -28,6 +27,7 @@ export default {
         window.open(data, "_blank");
     },
     async isAllowed(vue) {
+        let userType = vue.$store.getters.user.classification;
         let { data } = await vue.axios.get(`/api/v1/program?api_token=${localStorage.getItem("access_token")}`);
         let program = data;
         console.log(program);
