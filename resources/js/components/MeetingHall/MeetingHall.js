@@ -9,7 +9,7 @@ export default {
             if (
                 program.enabled == 1 &&
                 (program.type == "all" ||
-                    (program.type == "private" && userType == "Diplomate"))
+                    (program.type == "private" && (userType == "Diplomate" || userType == "Fellow")))
             ) {
                 zoomBtn.style.display = "";
                 zoomBtn.addEventListener("click", () => {
