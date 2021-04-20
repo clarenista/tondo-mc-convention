@@ -14,6 +14,7 @@ export default {
                                 window.location = "/meeting-hall";
                             }
                         } else {
+                            alert('Please comeback later.')
                             zoomBtn.style.display = "none";
                         }
                     });
