@@ -98,7 +98,7 @@
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
-            <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
+            <h3 class="display-4 mt-3" style="">Hello {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
             <p class="text-center lead text-success mt-3 mb-3"><strong> Welcome to the First PSP Virtual Event</strong></p>

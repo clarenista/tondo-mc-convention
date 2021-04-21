@@ -492,7 +492,6 @@ div.full{
 .clause {
     font-size: 17px !important;
     text-align: justify;
-    font-weight: lighter;
 }
 
 
@@ -500,7 +499,6 @@ div.full{
     padding-left: 5%;
     font-size: 17px !important;
     text-align: justify;
-    font-weight: lighter;
 }
 
 @media screen and (max-width: 750px) {
