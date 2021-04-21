@@ -233,7 +233,9 @@ export default {
                     },
                     "hotSpots": [
                       {
-                        "clickHandlerFunc": ()=>{this.$router.push('/vote')},
+                        "clickHandlerFunc": ()=>{
+                          window.open('https://vote.psp.com.ph/cast-vote?username='+this.$store.getters.user.email, '_blank');
+                        },
                         "scene": 'lobby',
                         "pitch": -2,
                         "yaw": 10,
