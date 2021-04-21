@@ -29,7 +29,8 @@ class GuestController extends Controller
         return $return;
     }
 
-    public function zoomJoinMobile(){
+    public function zoomJoinMobile()
+    {
 
         $program = Program::first();
 
@@ -41,14 +42,14 @@ class GuestController extends Controller
 
         $program = Program::first();
         $meetingNumber = $program->unique_id;
-
         $apiKey = '9srj55u0SxGqM9F2dUU1nA';
         $secret = 'GRa14V4N2ukM2Ci6yu8NSnzLmftWJnOf97BB';
         $passWord = $program->unique_code;
         $user = request()->user();
         $signature = $this->zoomSignature($apiKey, $secret, $meetingNumber);
         $userName = $user->first_name . " " . $user->last_name;
-        $userEmail = $user->email . '@gmail.com';
+        $userEmail = strpos($user->email, '@') ? $user->email : $user->email . '@gmail.com';
+
         return compact('signature', 'meetingNumber', 'userName', 'apiKey', 'userEmail', 'passWord');
     }
 
