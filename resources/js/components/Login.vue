@@ -27,6 +27,7 @@
 
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading display-3 text-light">Sign In</h3>
+
                         <div class="row register-form justify-content-center align-items-center">
                             <div class="col-lg-10 col-sm-12">
                                 <form method="POST" @submit.prevent="handleSubmit">
@@ -54,12 +55,23 @@
                                             </div>
                                         </div>
                                         <div class="form-group align-middle">
-                                            <button class="btn btn-light btn-lg btn-block text-success">
-                                                <i class="fa fa-user"></i> Login</button>
+                                            <button :class="agree ? 'btn btn-light btn-lg btn-block text-success' : 'btn btn-light btn-lg btn-block text-secondary'" :disabled="agree == false">
+                                                <i class="fa fa-chevron-right"></i> proceed</button>
                                         </div>
                                 </form>
                             </div>
                         </div>
+                        
+                        <div class="d-flex justify-content-center">
+                            <div class="data_use_clause">
+                                <p class="clause text-light" v-html="privacy_clause"></p>
+                                <p class="check_agree text-light">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="agree">
+                                    <label class="form-check-label" for="exampleCheck1">{{agreement}}</label>
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -89,6 +101,10 @@
                 isSeePassword: false,
                 isOpen: false,
                 start_at: null,
+
+                privacy_clause: "Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=' text-success'><i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i></banner> icon on the booth.",
+                agreement: "I am aware that when I visit the booths inside the virtual venue my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
+                agree: false,
             }
         } ,
         watch:{
@@ -208,8 +224,10 @@ div.full{
     text-shadow: 0 0 2px #000;
 }
 .register .register-form{
-    padding: 10%;
+    padding: 7% 5% 1% 5%;
     margin-top: 10%;
+    
+    /* border: 1px solid green; */
 }
 .btnRegister{
     float: right;
@@ -251,7 +269,7 @@ div.full{
 }
 .register-heading{
     text-align: center;
-    margin-top: 25%;
+    margin-top: 15%;
     margin-bottom: -15%;
     color: #495057;
 }
@@ -288,6 +306,10 @@ div.full{
         font-weight:normal;
     }
 
+    .clause {
+        font-size: 11px;
+    }
+
 }
 
 @media screen and (max-width: 280px) {
@@ -296,7 +318,7 @@ div.full{
         top: 99%;
     }
     .register-left img {
-        margin-top: 5%;
+        /* margin-top: 5%; */
         margin-bottom: 1%;
         width: 80%;
     }
@@ -310,6 +332,98 @@ div.full{
         padding-left: 62px;
     }
 
+    .clause {
+        font-size: 9px !important;
+    }
+
 }
+
+/* data use clause */
+.data_use_clause {
+    padding: 0 5%;
+    width: 90%;
+    align-items: center;
+}
+
+.btn_holder {
+    /* border: 1px solid red; */
+    width: 50%;
+
+}
+
+.clause {
+    font-size: 16px !important;
+    text-align: justify;
+}
+
+
+.check_agree {
+    padding-left: 5%;
+    font-size: 16px !important;
+    text-align: justify;
+}
+
+@media screen and (max-width: 750px) {
+    .data_use_clause .clause {
+        font-size: 11px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 11px !important;
+    }
+
+    .register-left img{
+        /* margin-top: 5%; */
+        /* margin-bottom: 5%; */
+        width:39%;
+    }
+
+    .register-left p {
+        font-size: 0.5rem;
+    }
+
+  }
+
+  @media screen and (max-width: 320px) {
+
+    .register-left img{
+        /* margin-top: 5%; */
+        /* margin-bottom: 5%; */
+        width: 0;
+    }
+    .register-left p {
+        display: none;
+    }
+
+    .data_use_clause .clause {
+        font-size: 9px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 9px !important;
+    }
+
+  }
+
+  @media screen and (max-width: 360px) {
+    .data_use_clause .clause {
+        font-size: 9px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 9px !important;
+    }
+    
+  }
+
+@media screen and (max-width: 280px) {
+  .register-left img{
+        /* margin-top: 5%; */
+        /* margin-bottom: 5%; */
+        width:59%;
+    }
+}
+
+
 
 </style>

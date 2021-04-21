@@ -1,23 +1,23 @@
 <template>
-  <div> 
+  <div>
     <Loader v-if="isLoading"></Loader>
     <div id="container">
-      
+
         <div class="alert alert-success" role="alert" v-if="successMessage">
             Message sent.
         </div>
 
         <Modal :value="value" v-if="selectedHotspot != null">
             <template v-slot:title >
-              <CoolLightBox 
-                :items="selectedHotspot.assets" 
+              <CoolLightBox
+                :items="selectedHotspot.assets"
                 :index="indexSelected"
                 @close="indexSelected = null">
               </CoolLightBox>
                 <h1 class="text-light" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
                 <h1 class="text-light" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
             </template>
-            
+
             <template v-slot:body >
                 <div class="row px-4">
                   <!-- External link -->
@@ -25,14 +25,14 @@
                       <div class="row p-1 text-center">
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                            You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to: 
+                            You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to:
                             <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
                           <small>Click the <u class="text-primary">link</u> if you wish to continue.</small>
                         </div>
                       </div>
-                    
+
                     </template>
                     <!-- External link -->
 
@@ -75,13 +75,14 @@
                     <!-- QUIZ  -->
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                     <div class="col-12 p-1">
-                      
+
                       <div v-if="selectedHotspot.quiz_taken  != ''">
-                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}}</legend>
+                        <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}} / {{selectedHotspot.questions.length}}</legend>
                         <ol>
-                          <li v-for="(taken, takenIndex) in selectedHotspot.quiz_taken" :key="takenIndex">
-                            <p>{{taken.question.question}}</p>
-                            <p :class="taken.correct == 1 ? 'text-success' : 'text-danger'">Your Answer: {{taken.answer}} <i class="fa" :class="taken.correct == 1 ? 'fa-check' : 'fa-times'"></i></p>
+                          <li v-for="(question, questionIndex) in selectedHotspot.questions" :key="questionIndex">
+                            <p>{{question.question}}</p>
+                            <p v-if="question.answers[0]" :class="question.answers[0].correct == 1 ? 'text-success' : 'text-danger'">Your Answer: {{question.answers[0].answer}} <i class="fa" :class="question.answers[0].correct == 1 ? 'fa-check' : 'fa-times'"></i></p>
+                            <p v-else class="text-danger">No Answer <i class="fa fa-times" ></i></p>
                           </li>
                         </ol>
                       </div>
@@ -96,14 +97,14 @@
                                 <label class="form-check-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
                               </div>
 
-                              <!-- 
+                              <!--
                               <div class="form-group">
                                 <div class="custom-control custom-radio" v-for="(choice, index) in item.choices" :key="index">
                                   <input type="radio" :id="'customRadio'+index+assetIndex" v-model="answers[item.id]"  :value="choice"  class="custom-control-input">
                                   <label class="custom-control-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
                                 </div>
                               </div> -->
-                              
+
                               <button class="btn btn-danger float-left" type="button" v-show="!start" @click="handlePrev">Prev</button>
                               <button class="btn btn-primary float-right" type="button" v-if="!end" @click="handleNext">Next</button>
                               <button class="btn btn-primary float-right" type="button" v-else @click="handleSubmitAnswer">Submit</button>
@@ -113,7 +114,7 @@
                       </div>
                     </div>
                     </template>
-                    <!-- QUIZ  --> 
+                    <!-- QUIZ  -->
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
@@ -124,8 +125,8 @@
                       </div>
                     </div>
                     </template>
-                    <!-- GALLERY  -->  
-                    
+                    <!-- GALLERY  -->
+
                     <!-- VIDEO -->
                     <template v-else-if="selectedHotspot.name == 'videos'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
@@ -146,7 +147,7 @@
 
                     <!-- BROCHURES -->
                     <template v-else-if="selectedHotspot.name == 'brochures'">
-                    <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">  
+                    <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
                       <div class="card text-center" style="cursor:pointer;">
                         <img :src="item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
@@ -169,7 +170,7 @@
                             <img src="/images/logo.png" class="img-fluid" alt="" srcset="">
                           </a>
                       </div>
-                    </div>                        
+                    </div>
 
                 </div>
             </template>
@@ -180,7 +181,7 @@
 
         <div class="booth-container" v-if="booth_details">
             <img class="centered" :src="booth_details.background" @load="imageLoad">
-            <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
+            <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
         </div>
 
         <section class="hotspots--wrapper" v-if="booth_details != null">
@@ -194,6 +195,9 @@
                 <img class="pulse" src="/images/icons/quiz.png" alt="quiz" srcset="" v-if="index == 'quiz'">
                 <img class="pulse" src="/images/icons/video.png" alt="videos" srcset="" v-if="index == 'videos'">
             </a>
+            <a  href="/cms" target="_blank" class="hotspot" style="right: 25%; top: 20%;" v-if="renderNavigateToCmsHotspot">
+              <img class="pulse" src="/images/icons/booth-icon-min.png" alt="cms">
+            </a>
 
         </section>
 
@@ -206,7 +210,6 @@ import Loader from './Loader.vue'
 export default {
     watch:{
       answers(e){
-          console.log(e)
       }
     },
     components:{
@@ -252,8 +255,18 @@ export default {
     },
     computed:{
       renderTotal(){
-        
+
         return _.sumBy(this.selectedHotspot.quiz_taken, function(o) { return o.correct; });
+      },
+      renderNavigateToCmsHotspot(){
+        if(this.$store.getters.user.classification === 'sponsor'){
+          if(this.$store.getters.user.booth.id === this.booth_details.id){
+            return true
+          }else{
+            return false
+
+          }
+        }
       }
     },
     methods:{
@@ -289,7 +302,7 @@ export default {
             return {right: item.y+'%', top: item.x+'%'}
         },
         handleBackToLobby(){
-          
+
           if(this.$store.getters.user.classification === 'sponsor'){
 
             this.$router.push({ name: 'home'})
@@ -388,12 +401,15 @@ export default {
           let count = this.selectedHotspot.questions.length
           if(0 < this.page){
             this.page = this.page - 1
-            if(0<this.page){
+            console.log(this.page)
+            if(0>this.page){
 
             this.end = false
             this.start = true
             }
           }else{
+            this.end = false
+            this.start = true
           }
         },
         async handleSubmitAnswer(){
@@ -401,7 +417,8 @@ export default {
           fd.append('answers', JSON.stringify(this.answers))
           let {data} = await axios.post('/api/v1/booths/'+this.id+'/questionnaire/answer/submit?api_token='+localStorage.getItem('access_token'), fd)
           this.selectedHotspot.quiz_taken = data.answers
-        },        
+          this.selectedHotspot.questions = data.questions
+        },
         async showQuestionnaire(){
           let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
           console.log(data)
@@ -420,14 +437,14 @@ export default {
     .booth-container {
         height: 100vw;
     }
-    
+
     .centered {
         width: 310%;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-51.5%, -50%);
-        
+
     }
 }
 
@@ -635,7 +652,7 @@ body div {
     .hotspots--wrapper a img {
       width: 20px;
     }
-    
+
   }
 
   @media screen and (max-width: 320px) {
@@ -643,7 +660,7 @@ body div {
     .hotspots--wrapper a img {
       width: 17px;
     }
-    
+
   }
 
   @media screen and (max-width: 360px) {
