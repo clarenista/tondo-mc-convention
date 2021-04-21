@@ -26,7 +26,7 @@
                         <div class="col-12">
                           <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
                             You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to:
-                            <a :href="'https://'+selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
+                            <a :href="selectedHotspot.assets[0].url" target="_blank"><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></a>.</h3>
                         </div>
                         <div class="col-12 mt-3">
                           <small>Click the <u class="text-primary">link</u> if you wish to continue.</small>
