@@ -285,7 +285,7 @@ div.full{
     padding-left: 70px;
 }
 
-@media screen and (max-height: 587px) {
+@media screen and (max-height: 600px) {
     .register-heading{
         text-align: center;
         margin-top: 3%;
