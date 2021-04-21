@@ -15,7 +15,7 @@ class GuestController extends Controller
 
         $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->get();
 
-        $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereLabel('visit')->get();
+        $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereUserId(request()->user()->id)->whereLabel('visit')->get();
 
         $return = [];
 
