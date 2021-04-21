@@ -285,6 +285,37 @@ div.full{
     padding-left: 70px;
 }
 
+@media screen and (max-height: 587px) {
+    .register-heading{
+        text-align: center;
+        margin-top: 3%;
+        margin-bottom: -15%;
+        color: #495057;
+        font-size: 2.9rem;
+    }
+
+    .data_use_clause .clause {
+        font-size: 11px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 11px !important;
+    }
+
+    .register {
+        padding: 5% 1% 3%;
+    }
+
+     .register-left img {
+        margin-top: 3%;
+        margin-bottom: 1%;
+        width: 60%;
+    }
+    .register-left p {
+        font-size: medium;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .register-left {
         position: absolute;
