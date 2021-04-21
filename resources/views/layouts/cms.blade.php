@@ -27,7 +27,7 @@
         <ul class="navbar-nav mr-auto">
             @hasrole('sponsor')
 
-                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['quiz', 'external-link','contact-us']) as $hotspot)
+                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['quiz', 'video', 'videos', 'external-link','contact-us']) as $hotspot)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->caption }}</a>
                     </li>
