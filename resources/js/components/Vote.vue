@@ -1,6 +1,6 @@
 <template >
   <div class="embed-responsive embed-responsive-16by9 background full">
-    <iframe class="embed-responsive-item" src="https://vote.psp.com.ph" allowfullscreen></iframe>
+    <iframe class="embed-responsive-item" :src="'https://vote.psp.com.ph/cast-vote?username='+$store.getters.user.email" allowfullscreen></iframe>
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100"> 
   </div>
 </template>

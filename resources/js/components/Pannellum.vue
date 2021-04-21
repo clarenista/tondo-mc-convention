@@ -86,21 +86,6 @@
         </CoolLightBox>
       </div>
 
-       <!-- <Modal :value="show_standee">
-        <template v-slot:title >
-            <h3 class="display-4 mt-3">{{standee_dtls.name}}</h3>
-        </template>
-        <template v-slot:body>
-            <iframe :src="standee_dtls.url" frameborder="0"></iframe>
-        </template>
-        <template v-slot:footer >
-            <button class="btn btn-primary" type="button" @click="show_standee = false">
-                Done
-            </button>
-        </template>
-      </Modal> -->
-
-
       <div id="panorama">
         <div id="controls">
           <div class="ctrl" @click="handleBgmPlayToggle">
@@ -233,7 +218,9 @@ export default {
                     },
                     "hotSpots": [
                       {
-                        "clickHandlerFunc": ()=>{this.$router.push('/vote')},
+                        "clickHandlerFunc": ()=>{
+                          window.open('https://vote.psp.com.ph/cast-vote?username='+this.$store.getters.user.email, '_blank');
+                        },
                         "scene": 'lobby',
                         "pitch": -2,
                         "yaw": 10,
@@ -466,7 +453,7 @@ export default {
             this.countDownStart()
             if(this.distance < 0){
                 clearInterval(x)
-                this.handleTimerEnd()
+                this.enabled = false
             }
         }, 1000)
       },
@@ -483,9 +470,6 @@ export default {
           this.hours = Math.floor((this.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
           this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
           this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
-      },
-      handleTimerEnd(){
-        this.isOpen = false
       },
       zeroPad(num){
           return String(num).padStart(2, '0');

@@ -35,7 +35,10 @@ class HomeController extends Controller
                 if (!$user) {
                     $user = $user2;
                 }
-                $user->update(['api_token' => hash('sha256', Str::random(80))]);
+                if(!$user->api_token){
+
+                    $user->update(['api_token' => hash('sha256', Str::random(80))]);
+                }
                 Auth::login($user);
                 return response()->json([
                     'status' => 'ok',
