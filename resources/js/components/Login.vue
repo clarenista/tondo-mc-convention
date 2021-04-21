@@ -269,7 +269,7 @@ div.full{
 }
 .register-heading{
     text-align: center;
-    margin-top: 15%;
+    margin-top: 5%;
     margin-bottom: -15%;
     color: #495057;
 }
@@ -285,13 +285,23 @@ div.full{
     padding-left: 70px;
 }
 
-@media screen and (max-height: 600px) {
+.register-form input[type=text] {
+    font-size: medium;
+}
+.register-form input[type=password]{
+    font-size: medium;
+}
+.register-form button {
+    font-size: medium;
+}
+
+@media screen and (max-height: 900px) {
     .register-heading{
         text-align: center;
         margin-top: 3%;
         margin-bottom: -15%;
         color: #495057;
-        font-size: 2.9rem;
+        font-size: 2.7rem;
     }
 
     .data_use_clause .clause {
@@ -309,10 +319,104 @@ div.full{
      .register-left img {
         margin-top: 3%;
         margin-bottom: 1%;
-        width: 60%;
+        width: 55%;
     }
     .register-left p {
-        font-size: medium;
+        font-size: small;
+    }
+
+    .register-form input[type=text] {
+        font-size: small;
+    }
+    .register-form input[type=password]{
+        font-size: small;
+    }
+    .register-form button {
+        font-size: small;
+    }
+}
+
+@media screen and (max-height: 800px) {
+    .register-heading{
+        text-align: center;
+        margin-top: 3%;
+        margin-bottom: -15%;
+        color: #495057;
+        font-size: 2.5rem;
+    }
+
+    .data_use_clause .clause {
+        font-size: 10px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 10px !important;
+    }
+
+    .register {
+        padding: 3% 1% 3%;
+    }
+
+     .register-left img {
+        margin-top: 3%;
+        margin-bottom: 1%;
+        width: 50%;
+    }
+    .register-left p {
+        font-size: small;
+    }
+
+     .register-form input[type=text] {
+        font-size: small;
+    }
+    .register-form input[type=password]{
+        font-size: small;
+    }
+    .register-form button {
+        font-size: small;
+    }
+}
+
+
+
+@media screen and (max-height: 500px) {
+    .register-heading{
+        text-align: center;
+        margin-top: 3%;
+        margin-bottom: -15%;
+        color: #495057;
+        font-size: 2rem;
+    }
+
+    .data_use_clause .clause {
+        font-size: 9px !important;
+    }
+
+    .data_use_clause .check_agree {
+        font-size: 9px !important;
+    }
+
+    .register {
+        padding: 3% 1% 3%;
+    }
+
+     .register-left img {
+        margin-top: 3%;
+        margin-bottom: 1%;
+        width: 50%;
+    }
+    .register-left p {
+        font-size: small;
+    }
+
+    .register-form input[type=text] {
+        font-size: small;
+    }
+    .register-form input[type=password]{
+        font-size: small;
+    }
+    .register-form button {
+        font-size: small;
     }
 }
 
@@ -383,14 +487,14 @@ div.full{
 }
 
 .clause {
-    font-size: 16px !important;
+    font-size: 12px !important;
     text-align: justify;
 }
 
 
 .check_agree {
     padding-left: 5%;
-    font-size: 16px !important;
+    font-size: 12px !important;
     text-align: justify;
 }
 
