@@ -487,14 +487,14 @@ div.full{
 }
 
 .clause {
-    font-size: 12px !important;
+    font-size: 13px !important;
     text-align: justify;
 }
 
 
 .check_agree {
     padding-left: 5%;
-    font-size: 12px !important;
+    font-size: 13px !important;
     text-align: justify;
 }
 
