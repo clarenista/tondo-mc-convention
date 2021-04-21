@@ -26,8 +26,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             @hasrole('sponsor')
-
-                @foreach (Auth::user()->booth->hotspots->whereNotIn('name',['quiz', 'video', 'videos', 'external-link','contact-us']) as $hotspot)
+                @php
+                    $skip = ['quiz', 'video', 'videos', 'external-link','contact-us'];
+                    if(\request()->showVideo){
+                        $skip = ['quiz', 'external-link','contact-us'];
+                    }
+                @endphp
+                @foreach (Auth::user()->booth->hotspots->whereNotIn('name', $skip) as $hotspot)
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->caption }}</a>
                     </li>
