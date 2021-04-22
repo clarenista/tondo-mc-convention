@@ -188,14 +188,14 @@
                         <img :src="item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
 
-                            <div style="width: 100%;overflow: hidden;height: 8rem;">
+                            <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex;">
                           <!-- use to have a clickable image on the card -->
-                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
-                         <img v-else src="/images/pdf-icon.png" width="98%" alt="" srcset="">
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
+                         <img v-else src="/images/pdf-icon.png" width="100%" alt="" srcset="">
                             </div>
                         </div>
                         <div class="card-footer">
-                          <div class="lead text-dark" style="align-items: center;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
                         </div>
                       </div>
                     </div>
