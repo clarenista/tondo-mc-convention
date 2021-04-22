@@ -758,15 +758,15 @@ input[type="radio"]:checked {
 
 /* send us a message - default */
 .input-group .input-group-text {
-  font-size: 14px;
+  font-size: 15px;
 }
 input[type="text"]{
-  font-size: 14px;
+  font-size: 15px;
 }
 input[type="email"]{
-  font-size: 14px;
+  font-size: 15px;
 }
 textarea{
-  font-size: 14px;
+  font-size: 15px;
 }
 </style>
