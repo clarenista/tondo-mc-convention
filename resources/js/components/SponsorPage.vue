@@ -156,7 +156,7 @@
                         </div>
                         <div class="card-footer">
 
-                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">&nbsp;{{item.name}}</div>
+                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">{{item.name}}</div>
                         </div>
                       </div>
                     </div>
@@ -195,7 +195,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">{{item.name}}</div>
                         </div>
                       </div>
                     </div>
