@@ -85,6 +85,18 @@ Event Management
                         value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
                 </div>
             </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                        <span class="input-group-text">Embedded</span>
+                    </span>
+                    <select class="custom-select" required name="group">
+                        <option value="true" {{ $program->group ? 'selected' : ''}}>True</option>
+                        <option value="false" {{ !$program->group ? 'selected' : ''}}>False</option>
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-prepend">

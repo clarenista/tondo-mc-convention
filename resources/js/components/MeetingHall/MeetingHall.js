@@ -1,6 +1,7 @@
 export default {
     init(vue) {
         let zoomBtn = vue.$el.querySelector(".open-zoom-meeting");
+        this.embedded = 'true';
         zoomBtn.style.display = "none";
         this.isAllowed(vue).then((result) => {
             if (result) {
@@ -8,7 +9,7 @@ export default {
                 zoomBtn.addEventListener("click", () => {
                     this.isAllowed(vue).then((result) => {
                         if (result) {
-                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || this.embedded == 'false') {
                                 this.openZoomMobile(vue);
                             } else {
                                 window.location = "/meeting-hall";
@@ -30,7 +31,7 @@ export default {
         let userType = vue.$store.getters.user.classification;
         let { data } = await vue.axios.get(`/api/v1/program?api_token=${localStorage.getItem("access_token")}`);
         let program = data;
-        console.log(program);
+        this.embedded = program.embedded;
         if(Date.now() < program.start_at_){
             vue.$store.commit('updateIsNotAllowedMessage', 'The Meeting has not started yet');
             return false;

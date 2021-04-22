@@ -20,6 +20,7 @@ class ProgramController extends Controller
             'start_at' => 'required',
             'end_at' => 'required',
             'title' => 'nullable',
+            'group' => 'required',
             'description' => 'nullable',
             'video_url' => 'nullable',
             'video_thumbnail_url' => 'nullable',
