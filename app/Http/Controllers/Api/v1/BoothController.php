@@ -53,6 +53,9 @@ class BoothController extends Controller
             ->create(
                 \request()->merge([
                     'booth_id' => $booth_id,
+                    'affiliation' => request()->user()->affiliation,
+                    'mobile_number' => request()->user()->mobile_number,
+                    'email' => request()->user()->email_address,
                 ])->validate([
                     'booth_id' => 'required',
                     'subject' => 'nullable',

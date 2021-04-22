@@ -2,10 +2,17 @@
   <div>
     <Loader v-if="isLoading"></Loader>
     <div id="container">
-
-        <div class="alert alert-success" role="alert" v-if="successMessage">
-            Message sent.
-        </div>
+        
+        <!-- show after message sent -->
+        <Modal :value="showSuccessModal">
+          <template v-slot:title >
+            <h3 class="display-4 mt-3 text-light" style="font-size: 2em;">SUCCESS</h3></template>
+          <template v-slot:body >
+            <p class="text-center lead text-success mt-3 mb-3"><strong>Thank you for sending your message!</strong></p></template>
+          <template v-slot:footer>
+            <button class="btn btn-secondary" type="button" @click="showSuccessModal = false">Close</button>
+          </template>
+        </Modal>
 
         <Modal :value="value" v-if="selectedHotspot != null">
             <template v-slot:title >
@@ -40,32 +47,6 @@
 
                     <!-- CONTACT US FORM -->
                     <template v-else-if="selectedHotspot.name == 'contact-us'">
-                      <div class="col-12 mb-3">
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">Affiliation</span>
-                            </span>
-                            <input type="text" class="form-control" v-model="affiliation" placeholder="Affiliation" aria-label="">
-                        </div>
-                      </div>
-
-                      <div class="col-12 mb-3">
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            </span>
-                            <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
-                        </div>
-                      </div>
-
-                      <div class="col-12 mb-3">
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">Mobile #&nbsp;&nbsp;</span>
-                            </span>
-                            <input type="text" class="form-control" v-model="mobile_number" placeholder="Mobile #" aria-label="">
-                        </div>
-                      </div>
 
                       <div class="col-12 mb-3">
                         <div class="input-group">
@@ -144,7 +125,7 @@
                         <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
                       </div> -->
 
-                       <div class="card text-center" style="cursor:pointer;">
+                       <div class="card text-center" style="cursor:pointer;" @click.prevent="sendVisitedAssets(item, selectedHotspot.name)">
                         <!-- <img :src="item.url" width="100%" alt="" srcset=""> -->
                         <div class="card-body bg-dark">
                           <!-- use to have a clickable image on the card -->
@@ -162,7 +143,7 @@
                     <!-- VIDEO -->
                     <template v-else-if="selectedHotspot.name == 'videos'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
-                      <div class="card text-center" style="cursor:pointer;">
+                      <div class="card text-center" style="cursor:pointer;" @click.prevent="sendVisitedAssets(item, selectedHotspot.name)">
                         <img :src="'https://www.youtube.com/embed/'+item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
                           <!-- use to have a clickable image on the card -->
@@ -180,7 +161,7 @@
                     <!-- BROCHURES -->
                     <template v-else-if="selectedHotspot.name == 'brochures'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
-                      <div class="card text-center" style="cursor:pointer;">
+                      <div class="card text-center" style="cursor:pointer;" @click.prevent="sendVisitedAssets(item, selectedHotspot.name)">
                         <img :src="item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
                           <!-- use to have a clickable image on the card -->
@@ -268,9 +249,9 @@ export default {
           // contact-us field
           subject: '',
           name: '',
-          affiliation: this.$store.getters.user.affiliation,
-          mobile_number: this.$store.getters.user.mobile_number,
-          email: this.$store.getters.user.email,
+          affiliation: '',
+          mobile_number: '',
+          email: '',
           interest: '',
           message: '',
           successMessage: false,
@@ -282,7 +263,9 @@ export default {
           start: true,
           answersS: [],
           isLoading: true,
-          bgmStart: null
+          bgmStart: null,
+
+          showSuccessModal: false,
         }
     },
     computed:{
@@ -372,8 +355,6 @@ export default {
         async handleSendMessage(){
           let url = '/api/v1/booths/'+this.id+'/message?api_token='+localStorage.getItem('access_token')
 
-
-
           // append text fields
           let fd = new FormData()
           fd.append('subject', this.subject)
@@ -394,6 +375,10 @@ export default {
             this.email = ''
             this.interest = ''
             this.message = ''
+
+            // show modal after insert
+            this.showSuccessModal = true
+
           } catch (error) {
             alert(JSON.stringify(error.message))
             this.value = true
@@ -408,6 +393,18 @@ export default {
           fd.append('type', 'event')
           fd.append('category', booth.name)
           fd.append('label', hotspot == null ? 'visit' : 'click '+hotspot.name+" hotspot")
+
+          // alert(hotspot.assets)
+
+          let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
+        },
+
+        async sendVisitedAssets(assets, hotspot){
+
+          let fd = new FormData()
+          fd.append('type', 'event')
+          fd.append('category', this.booth_details.name)
+          fd.append('label', 'click '+assets.name+ ' at ' +hotspot+ ' hotspot')
 
           let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
         },
