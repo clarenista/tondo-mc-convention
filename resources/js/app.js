@@ -32,6 +32,8 @@ Vue.mixin(SendEvent);
 Vue.use(VueAxios, axios);
 Vue.use(CoolLightBox)
 
+Vue.config.productionTip = false
+
 const app = new Vue({
     el: '#app',
     store,
