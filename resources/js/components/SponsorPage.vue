@@ -171,8 +171,8 @@
                         <div class="card-body bg-dark">
 
                             <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;">
-                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
-                         <img v-else src="https://media.tenor.com/images/2c2d6329835b0cc59bb8368b66e423df/tenor.gif" width="98%" alt="" srcset="">
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
+                         <img v-else src="https://media.tenor.com/images/2c2d6329835b0cc59bb8368b66e423df/tenor.gif" width="100%" alt="" srcset="">
                             </div>
                         </div>
                         <div class="card-footer bg-danger">
