@@ -41,26 +41,6 @@
                     <!-- CONTACT US FORM -->
                     <template v-else-if="selectedHotspot.name == 'contact-us'">
                       <div class="col-12 mb-3">
-                        {{$store.getters.user.classification}}
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">Subject&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            </span>
-                            <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
-                        </div>
-                      </div>
-
-                      <div class="col-12 mb-3">
-                        <div class="input-group">
-                            <span class="input-group-prepend">
-                                <span class="input-group-text">Interest&nbsp;&nbsp;&nbsp;</span>
-                            </span>
-                            <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
-                        </div>
-                      </div>
-
-
-                      <div class="col-12 mb-3">
                         <div class="input-group">
                             <span class="input-group-prepend">
                                 <span class="input-group-text">Affiliation</span>
@@ -75,6 +55,33 @@
                                 <span class="input-group-text">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
+                        </div>
+                      </div>
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Mobile #&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="mobile_number" placeholder="Mobile #" aria-label="">
+                        </div>
+                      </div>
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Subject&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
+                        </div>
+                      </div>
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Interest&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
                         </div>
                       </div>
 
@@ -249,9 +256,9 @@ export default {
           // contact-us field
           subject: '',
           name: '',
-          affiliation: '',
-          mobile_number: '',
-          email: '',
+          affiliation: this.$store.getters.user.affiliation,
+          mobile_number: this.$store.getters.user.mobile_number,
+          email: this.$store.getters.user.email,
           interest: '',
           message: '',
           successMessage: false,
@@ -360,7 +367,7 @@ export default {
           fd.append('subject', this.subject)
           // fd.append('name', this.name)
           fd.append('affiliation', this.affiliation)
-          // fd.append('mobile_number', this.mobile_number)
+          fd.append('mobile_number', this.mobile_number)
           fd.append('email', this.email)
           fd.append('interest', this.interest)
           fd.append('message', this.message)
@@ -661,11 +668,26 @@ body div {
   .hotspots--wrapper a img {
     width: 40px;
   }
+
+
 }
 
 @media screen and (max-width: 750px) {
     .hotspots--wrapper a img {
       width: 20px;
+    }
+
+     .input-group .input-group-text {
+      font-size: 11px !important;
+    }
+    input[type="text"]{
+      font-size: 12px !important;
+    }
+    input[type="email"]{
+      font-size: 12px !important;
+    }
+    textarea{
+      font-size: 12px !important;
     }
 
   }
@@ -681,6 +703,19 @@ body div {
   @media screen and (max-width: 360px) {
     .hotspots--wrapper a img {
       width: 20px;
+    }
+
+    .input-group .input-group-text {
+      font-size: 11px !important;
+    }
+    input[type="text"]{
+      font-size: 11px !important;
+    }
+    input[type="email"]{
+      font-size: 11px !important;
+    }
+    textarea{
+      font-size: 11px !important;
     }
   }
 
@@ -719,5 +754,19 @@ body div {
 
 input[type="radio"]:checked {
    background: #beebd7;
+}
+
+/* send us a message - default */
+.input-group .input-group-text {
+  font-size: 14px;
+}
+input[type="text"]{
+  font-size: 14px;
+}
+input[type="email"]{
+  font-size: 14px;
+}
+textarea{
+  font-size: 14px;
 }
 </style>
