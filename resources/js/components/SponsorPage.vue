@@ -139,9 +139,21 @@
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                     <div class="col-6 p-1" v-for="(item, assetIndex) in selectedHotspot.assets" :key="assetIndex" @click="handleSelectAssetIndex(assetIndex)">
-                       <div class="card" style="cursor:pointer;">
+                      <!-- <div class="card" style="cursor:pointer;">
                         <div class="card-img-overlay text-white"><small>{{item.name}}</small></div>
                         <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
+                      </div> -->
+
+                       <div class="card text-center" style="cursor:pointer;">
+                        <!-- <img :src="item.url" width="100%" alt="" srcset=""> -->
+                        <div class="card-body bg-dark">
+                          <!-- use to have a clickable image on the card -->
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
+                         <img v-else :src="item.url" width="98%" alt="" srcset="">
+                        </div>
+                        <div class="card-footer">
+                          <div class="lead text-dark" style="align-items: center;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                        </div>
                       </div>
                     </div>
                     </template>
