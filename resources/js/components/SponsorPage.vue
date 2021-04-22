@@ -149,7 +149,7 @@
                         <div class="card-body bg-dark">
                           <!-- use to have a clickable image on the card -->
 
-                            <div style="width: 100%;overflow: hidden;height: 8rem;">
+                            <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex;">
                          <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
                          <img v-else :src="item.url" width="100%" alt="" srcset="">
                             </div>
