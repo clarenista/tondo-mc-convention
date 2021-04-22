@@ -35,17 +35,16 @@
                           <small>Click the <u class="text-primary">link</u> if you wish to continue.</small>
                         </div>
                       </div>
-
                     </template>
                     <!-- External link -->
-
 
                     <!-- CONTACT US FORM -->
                     <template v-else-if="selectedHotspot.name == 'contact-us'">
                       <div class="col-12 mb-3">
+                        {{$store.getters.user.classification}}
                         <div class="input-group">
                             <span class="input-group-prepend">
-                                <span class="input-group-text">Subject&nbsp;&nbsp;</span>
+                                <span class="input-group-text">Subject&nbsp;&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input type="text" class="form-control" v-model="subject" placeholder="Subject" aria-label="">
                         </div>
@@ -54,16 +53,35 @@
                       <div class="col-12 mb-3">
                         <div class="input-group">
                             <span class="input-group-prepend">
-                                <span class="input-group-text">Interest&nbsp;&nbsp;</span>
+                                <span class="input-group-text">Interest&nbsp;&nbsp;&nbsp;</span>
                             </span>
                             <input type="text" class="form-control" v-model="interest" placeholder="Interest" aria-label="">
+                        </div>
+                      </div>
+
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Affiliation</span>
+                            </span>
+                            <input type="text" class="form-control" v-model="affiliation" placeholder="Affiliation" aria-label="">
                         </div>
                       </div>
 
                       <div class="col-12 mb-3">
                         <div class="input-group">
                             <span class="input-group-prepend">
-                                <span class="input-group-text">Message</span>
+                                <span class="input-group-text">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </span>
+                            <input type="email" class="form-control" v-model="email" placeholder="Email" aria-label="">
+                        </div>
+                      </div>
+
+                      <div class="col-12 mb-3">
+                        <div class="input-group">
+                            <span class="input-group-prepend">
+                                <span class="input-group-text">Message&nbsp;</span>
                             </span>
                             <textarea class="form-control" v-model="message" placeholder="Message" aria-label=""></textarea>
                         </div>
@@ -99,14 +117,6 @@
                                 <input class="form-check-input" :id="'customRadio'+index+assetIndex" type="radio" v-model="answers[item.id]"  :value="choice">
                                 <label class="form-check-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
                               </div>
-
-                              <!--
-                              <div class="form-group">
-                                <div class="custom-control custom-radio" v-for="(choice, index) in item.choices" :key="index">
-                                  <input type="radio" :id="'customRadio'+index+assetIndex" v-model="answers[item.id]"  :value="choice"  class="custom-control-input">
-                                  <label class="custom-control-label" :for="'customRadio'+index+assetIndex">{{choice}}</label>
-                                </div>
-                              </div> -->
 
                               <button class="btn btn-danger float-left" type="button" v-show="!start" @click="handlePrev">Prev</button>
                               <button class="btn btn-primary float-right" type="button" v-if="!end" @click="handleNext">Next</button>
@@ -349,9 +359,9 @@ export default {
           let fd = new FormData()
           fd.append('subject', this.subject)
           // fd.append('name', this.name)
-          // fd.append('affiliation', this.affiliation)
+          fd.append('affiliation', this.affiliation)
           // fd.append('mobile_number', this.mobile_number)
-          // fd.append('email', this.email)
+          fd.append('email', this.email)
           fd.append('interest', this.interest)
           fd.append('message', this.message)
 
@@ -361,6 +371,8 @@ export default {
             this.value = false
 
             this.subject = ''
+            this.affiliation = ''
+            this.email = ''
             this.interest = ''
             this.message = ''
           } catch (error) {
