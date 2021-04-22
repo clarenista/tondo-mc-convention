@@ -12,7 +12,7 @@
 
                 <img src="/images/logo.png" alt=""/>
                 <!-- <h3 class="lead text-white">Welcome</h3> -->
-                <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGIST, INC. <br>VIRTUAL EVENT</p>
+                <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGISTS, INC. <br>VIRTUAL EVENT</p>
             </div>
 
             <div class="register-right col-md-6" v-if="start_at">
@@ -61,7 +61,7 @@
                                 </form>
                             </div>
                         </div>
-                        
+
                         <div class="d-flex justify-content-center">
                             <div class="data_use_clause">
                                 <p class="clause text-light" v-html="privacy_clause"></p>
@@ -229,7 +229,7 @@ div.full{
 .register .register-form{
     padding: 7% 5% 1% 5%;
     margin-top: 10%;
-    
+
     /* border: 1px solid green; */
 }
 .btnRegister{
@@ -551,7 +551,7 @@ div.full{
     .data_use_clause .check_agree {
         font-size: 9px !important;
     }
-    
+
   }
 
 @media screen and (max-width: 280px) {
