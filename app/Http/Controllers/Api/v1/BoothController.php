@@ -98,8 +98,9 @@ class BoothController extends Controller
             ]);
         }
 
-        $questions = $booth->questionnaire->questions()->with('answers')->get();
-        $answers = $booth->questionnaire->answers()->with('question')->get();
+        $questions = $booth->questionnaire->questions()->with(['answers'=>function($q) {
+            $q->whereUserId(\request()->user()->id)->groupBy('question_id');
+        $answers = request()->user()->answers()->with('question')->whereQuestionnaireId($booth->questionnaire->id)->groupBy('question_id')->get();
 
         return response(['answers' =>$answers, 'questions' => $questions], 201);
     }
