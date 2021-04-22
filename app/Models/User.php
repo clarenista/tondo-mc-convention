@@ -28,6 +28,8 @@ class User extends Authenticatable
         'last_name',
         'mobile_number',
         'email',
+        'email_address',
+        'affiliation',
         'password',
         'login_code',
         'classification',
