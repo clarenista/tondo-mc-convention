@@ -25,7 +25,7 @@ class BoothController extends Controller
 
         $return = [
             'id' => $booth->id,
-            
+
             'name' => $booth->name,
             'panorama_location' => $booth->panorama_location,
         ];
@@ -36,8 +36,10 @@ class BoothController extends Controller
 
         foreach ($booth->hotspots as $hotspot) {
             $return['hotspots'][$hotspot->name] = $hotspot;
-            $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions()->with('answers')->get();
-            $return['hotspots'][$hotspot->name]['quiz_taken'] = $booth->questionnaire->answers()->with('question')->get();
+            $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions()->with(['answers'=>function($q) {
+                $q->whereUserId(\request()->user()->id)->groupBy('question_id');
+            }])->get();
+            $return['hotspots'][$hotspot->name]['quiz_taken'] = request()->user()->answers()->with('question')->whereQuestionnaireId($booth->questionnaire->id)->groupBy('question_id')->get();
         }
 
         return $return;
@@ -80,7 +82,7 @@ class BoothController extends Controller
     public function storeQuestionnaireAnswerSubmit($booth_id)
     {
         $booth = Booth::find($booth_id);
-        
+
         $sent_at = date("Y-m-d H:i:s");
 
         request()->validate([
@@ -99,8 +101,11 @@ class BoothController extends Controller
             ]);
         }
 
-        $questions = $booth->questionnaire->questions()->with('answers')->get();
-        $answers = $booth->questionnaire->answers()->with('question')->get();
+        $questions = $booth->questionnaire->questions()->with(['answers'=>function($q) {
+            $q->whereUserId(\request()->user()->id)->groupBy('question_id');
+
+        }])->get();
+        $answers = request()->user()->answers()->with('question')->whereQuestionnaireId($booth->questionnaire->id)->groupBy('question_id')->get();
 
         return response(['answers' =>$answers, 'questions' => $questions], 201);
     }

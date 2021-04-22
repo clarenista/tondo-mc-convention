@@ -27,7 +27,8 @@ Assets
                 <tr>
                     <th class="text-center">Name</th>
                     <th class="text-center">Mobile Number</th>
-                    <th class="text-center">Email</th>
+                    <th class="text-center">Email Address</th>
+                    <th class="text-center">Affiliation</th>
                     <th class="text-center">Classification</th>
                     <th class="text-center">Score</th>
                 </tr>
@@ -37,7 +38,8 @@ Assets
                 <tr>
                     <td>{{ $answer->user->first_name . $answer->user->last_name }}</td>
                     <td>{{ $answer->user->mobile_number }}</td>
-                    <td>{{ $answer->user->email }}</td>
+                    <td>{{ $answer->user->email_address }}</td>
+                    <td>{{ $answer->user->affiliation }}</td>
                     <td>{{ $answer->user->classification }}</td>
                     <td>{{ $answer->score }}</td>
                 </tr>

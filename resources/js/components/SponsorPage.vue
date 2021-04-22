@@ -129,11 +129,15 @@
                         <!-- <img :src="item.url" width="100%" alt="" srcset=""> -->
                         <div class="card-body bg-dark">
                           <!-- use to have a clickable image on the card -->
-                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
-                         <img v-else :src="item.url" width="98%" alt="" srcset="">
+
+                            <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;">
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
+                         <img v-else :src="item.url" width="100%" alt="" srcset="">
+                            </div>
                         </div>
                         <div class="card-footer">
-                          <div class="lead text-dark" style="align-items: center;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+
+                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">{{item.name}}</div>
                         </div>
                       </div>
                     </div>
@@ -146,12 +150,14 @@
                       <div class="card text-center" style="cursor:pointer;" @click.prevent="sendVisitedAssets(item, selectedHotspot.name)">
                         <img :src="'https://www.youtube.com/embed/'+item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
-                          <!-- use to have a clickable image on the card -->
-                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
-                         <img v-else src="https://media.tenor.com/images/2c2d6329835b0cc59bb8368b66e423df/tenor.gif" width="98%" alt="" srcset="">
+
+                            <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;">
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
+                         <img v-else src="https://media.tenor.com/images/2c2d6329835b0cc59bb8368b66e423df/tenor.gif" width="100%" alt="" srcset="">
+                            </div>
                         </div>
                         <div class="card-footer bg-danger">
-                          <div class="lead text-white" style="align-items: center;"><i class="fa fa-file-video-o" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                          <div class="lead text-white" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">{{item.name}}</div>
                         </div>
                       </div>
                     </div>
@@ -164,12 +170,15 @@
                       <div class="card text-center" style="cursor:pointer;" @click.prevent="sendVisitedAssets(item, selectedHotspot.name)">
                         <img :src="item.url" width="100%" alt="" srcset="">
                         <div class="card-body bg-dark">
+
+                            <div style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;">
                           <!-- use to have a clickable image on the card -->
-                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="98%" alt="" srcset="">
-                         <img v-else src="/images/pdf-icon.png" width="98%" alt="" srcset="">
+                         <img v-if="item.thumbnail_url != null" :src="item.thumbnail_url" width="100%" alt="" srcset="">
+                         <img v-else src="/images/pdf-icon.png" width="100%" alt="" srcset="">
+                            </div>
                         </div>
                         <div class="card-footer">
-                          <div class="lead text-dark" style="align-items: center;"><i class="fa fa-file-pdf-o text-danger" aria-hidden="true"></i>&nbsp;{{item.name}}</div>
+                          <div class="lead text-dark" style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;">{{item.name}}</div>
                         </div>
                       </div>
                     </div>
@@ -777,5 +786,8 @@ input[type="email"]{
 }
 textarea{
   font-size: 15px;
+}
+.card-body {
+    padding: .5rem;
 }
 </style>

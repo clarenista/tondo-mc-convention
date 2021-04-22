@@ -26,7 +26,7 @@ class VisitorController extends Controller
     {
 
         $this->newSpreadsheet(auth()->user()->name . " - Visitors", 'Visitors', [
-            'First Name', 'Last Name', 'Mobile Number', 'Email', 'Classification',
+            'First Name', 'Last Name', 'Mobile Number', 'Email Address', 'Affiliation', 'Classification',
         ]);
         $i = 2;
         foreach (UserEvent::with('user')->whereLabel('visit')->groupBy('user_id')->get() as $visitor) {
@@ -35,7 +35,8 @@ class VisitorController extends Controller
                     $visitor->user->first_name,
                     $visitor->user->last_name,
                     $visitor->user->mobile_number,
-                    $visitor->user->email,
+                    $visitor->user->email_address,
+                    $visitor->user->affiliation,
                     $visitor->user->classification,
                 ],
                 $i++

@@ -26,8 +26,10 @@ Assets
                 <tr>
                     <th class="text-center">First Name</th>
                     <th class="text-center">Last Name</th>
-                    <th class="text-center">Description</th>
-                    <th class="text-center">Date/Time of visit</th>
+                    <th class="text-center">Mobile Number</th>
+                    <th class="text-center">Email Address</th>
+                    <th class="text-center">Affiliation</th>
+                    <th class="text-center">Classification</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,8 +37,10 @@ Assets
                 <tr>
                     <td>{{ $event->user->first_name }}</td>
                     <td>{{ $event->user->last_name }}</td>
-                    <td>{{ $event->user->email }}</td>
-                    <td>{{ date('F d, Y - g:i:s A', strtotime($event->sent_at)) }}</td>
+                    <td>{{ $event->user->mobile_number }}</td>
+                    <td>{{ $event->user->email_address }}</td>
+                    <td>{{ $event->user->affiliation }}</td>
+                    <td>{{ $event->user->classification }}</td>
                 </tr>
                 @endforeach
             </tbody>
