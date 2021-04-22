@@ -36,6 +36,7 @@ class BoothController extends Controller
 
         foreach ($booth->hotspots as $hotspot) {
             $return['hotspots'][$hotspot->name] = $hotspot;
+            $return['hotspots'][$hotspot->name]['questionnaire'] = $booth->questionnaire;
             $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions()->with(['answers'=>function($q) {
                 $q->whereUserId(\request()->user()->id)->groupBy('question_id');
             }])->get();
