@@ -368,9 +368,9 @@ export default {
           let fd = new FormData()
           fd.append('subject', this.subject)
           // fd.append('name', this.name)
-          fd.append('affiliation', this.affiliation)
-          fd.append('mobile_number', this.mobile_number)
-          fd.append('email', this.email)
+          // fd.append('affiliation', this.affiliation)
+          // fd.append('mobile_number', this.mobile_number)
+          // fd.append('email', this.email)
           fd.append('interest', this.interest)
           fd.append('message', this.message)
 
