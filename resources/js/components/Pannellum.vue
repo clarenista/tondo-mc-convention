@@ -114,7 +114,7 @@
             <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong> The Business Meeting is for Diplomates and Fellows only</strong></p>
+            <p class="text-center lead text-success mt-3 mb-3"><strong> {{$store.getters.isNotAllowedMessage}}</strong></p>
         </template>
         <template v-slot:footer >
             <button class="btn btn-primary" type="button" @click="handleIsNotAllowedClose">

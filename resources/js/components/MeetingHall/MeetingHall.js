@@ -31,12 +31,17 @@ export default {
         let { data } = await vue.axios.get(`/api/v1/program?api_token=${localStorage.getItem("access_token")}`);
         let program = data;
         console.log(program);
+        if(Date.now() < program.start_at_){
+            vue.$store.commit('updateIsNotAllowedMessage', 'The Meeting has not started yet');
+            return false;
+        }
         if (program.enabled == 1) {
             if (program.type == "all")
                 return true;
             if (program.type == "private" && (userType == "Diplomate" || userType == "Fellow"))
                 return true;
         }
+        vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
         return false;
     },
     getZoomType(vue) {

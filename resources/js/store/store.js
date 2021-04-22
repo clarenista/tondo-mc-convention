@@ -20,7 +20,7 @@ export default new Vuex.Store({
     booth_details: null,
     announcement: null,
     isNotAllowed: null,
-
+    isNotAllowedMessage: '',
     scene_hotSpots: [
 
       {
@@ -165,6 +165,9 @@ export default new Vuex.Store({
     // change(state, flavor) {
     //   state.flavor = flavor
     // }
+    updateIsNotAllowedMessage(state, isNotAllowedMessage){
+        state.isNotAllowedMessage = isNotAllowedMessage;
+    },
     updateIsAllowed(state, isNotAllowed){
         state.isNotAllowed = isNotAllowed;
     },
@@ -214,5 +217,6 @@ export default new Vuex.Store({
     booth_details: state => state.booth_details,
     announcement: state => state.announcement,
     isNotAllowed: state => state.isNotAllowed,
+    isNotAllowedMessage: state => state.isNotAllowedMessage,
   }
 })
