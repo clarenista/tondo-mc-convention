@@ -119,6 +119,7 @@ class HomeController extends Controller
                         'mobile_number' => $result['user']['contact'],
                         'email' => $result['user']['username'],
                         'email_address' => $result['user']['email'],
+                        'affiliation' => $result['user']['affiliation'],
                         'password' => $result['user']['password'],
                         'classification' => $result['user']['classification'],
                         'login_code' =>  $password2[\strtoupper($result['user']['first_name'][0])],
