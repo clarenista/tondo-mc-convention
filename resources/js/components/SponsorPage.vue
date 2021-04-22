@@ -84,9 +84,12 @@
                     <!-- QUIZ  -->
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                     <div class="col-12 p-1">
-
                       <div v-if="selectedHotspot.quiz_taken  != ''">
                         <legend class="text-center text-primary mb-3"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp;Your total score: {{renderTotal}} / {{selectedHotspot.questions.length}}</legend>
+                        <div>
+                            <h3 class="text-center end_message">{{selectedHotspot.questionnaire.ending_message}}</h3>
+                        </div>
+
                         <ol>
                           <li v-for="(question, questionIndex) in selectedHotspot.questions" :key="questionIndex">
                             <p>{{question.question}}</p>
@@ -95,10 +98,16 @@
                           </li>
                         </ol>
                       </div>
+
                       <div v-else>
+                        <div>
+                            <h3 class="instruction">{{selectedHotspot.questionnaire.instruction}}</h3>
+                        </div>
+                        
                         <div class="col-12 p-1" v-if="page == assetIndex" v-for="(item, assetIndex) in selectedHotspot.questions" :key="assetIndex" >
                           <div class="row"  >
-                            <div class="col">
+                            <div class="col">  
+                              
                               <legend>Question {{assetIndex+1}}: &nbsp;{{item.question}}?</legend>
 
                               <div class="form-check mb-3" v-for="(choice, index) in item.choices" :key="index">
@@ -772,6 +781,25 @@ body div {
 
 input[type="radio"]:checked {
    background: #beebd7;
+}
+
+.instruction {
+  font-weight: 400;
+  color:  #1b9e93 !important;
+  font-size: 1.2em;
+  background: #beebd7;
+  border: 1px solid #1b9e93;
+  border-radius: 5px;
+  padding: 2%;
+}
+.end_message {
+  font-weight: 400;
+  color:  #1b9e93 !important;
+  font-size: 1.2em;
+  background: #beebd7;
+  border: 1px solid #1b9e93;
+  border-radius: 5px;
+  padding: 2%;
 }
 
 /* send us a message - default */
