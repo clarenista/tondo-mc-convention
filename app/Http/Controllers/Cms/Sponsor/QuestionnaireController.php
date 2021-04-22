@@ -33,7 +33,7 @@ class QuestionnaireController extends Controller
             $q->whereIn('question_id', $questionnaire->questions->pluck('id'));
         })->get();
         $headers = [
-            'First Name', 'Last Name', 'Mobile Number', 'Email', 'Classification',
+            'First Name', 'Last Name', 'Mobile Number', 'Email Address', 'Affiliation', 'Classification',
         ];
         $headers = array_merge($headers, $questionnaire->questions->pluck('question')->toArray());
         $this->newSpreadsheet(auth()->user()->name . " - Quizzes", 'Quizzes', $headers);
@@ -43,7 +43,8 @@ class QuestionnaireController extends Controller
                 $guest->first_name,
                 $guest->last_name,
                 $guest->mobile_number,
-                $guest->email,
+                $guest->email_address,
+                $guest->affiliation,
                 $guest->classification,
             ];
             foreach ($guest->answers as $answer) {
