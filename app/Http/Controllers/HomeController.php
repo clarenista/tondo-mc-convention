@@ -75,7 +75,7 @@ class HomeController extends Controller
                 ]);
                 $result = json_decode((string) $response->getBody(), true);
             } catch (\Throwable $th) {
-                Log::error($th);
+                Log::error($th->getMessage());
                 return response()->json([
                     'status' => 'failed',
                 ]);
