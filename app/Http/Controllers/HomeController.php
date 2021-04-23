@@ -66,8 +66,8 @@ class HomeController extends Controller
                     'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
                 ],
                 'form_params' => [
-                    'email' => 'Neal',
-                    'password' => 'N1400',
+                    'email' => $request->email,
+                    'password' => $request->password,
                 ],
             ]);
             $result = json_decode((string) $response->getBody(), true);
