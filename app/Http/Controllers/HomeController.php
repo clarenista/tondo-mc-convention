@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class HomeController extends Controller
@@ -74,6 +75,7 @@ class HomeController extends Controller
                 ]);
                 $result = json_decode((string) $response->getBody(), true);
             } catch (\Throwable $th) {
+                Log::error($th);
                 return response()->json([
                     'status' => 'failed',
                 ]);
