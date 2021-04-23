@@ -60,19 +60,18 @@ class HomeController extends Controller
                     'scope' => '*',
                 ],
             ]);
-            Log::info("" . $request->email);
+            $response = $guzzle->post(config('app.domain') . '/api/user', [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+                ],
+                'form_params' => [
+                    'email' => 'Neal',
+                    'password' => 'N1400',
+                ],
+            ]);
+            $result = json_decode((string) $response->getBody(), true);
             try {
-                $response = $guzzle->post(config('app.domain') . '/api/user', [
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
-                    ],
-                    'form_params' => [
-                        'email' => $request->email,
-                        'password' => $request->password,
-                    ],
-                ]);
-                $result = json_decode((string) $response->getBody(), true);
             } catch (\Throwable $th) {
                 Log::info("INVALID USER: " . $request->email);
                 Log::error($th->getMessage());
@@ -111,25 +110,31 @@ class HomeController extends Controller
                     'Y' => 'Y2500',
                     'Z' => 'Z2600',
                 ];
-                $user = User::firstOrCreate(
-                    [
-                        'registrant_id' => $result['user']['id'],
-                    ],
-                    [
-                        'registrant_id' => $result['user']['id'],
-                        'api_token' => hash('sha256', Str::random(80)),
-                        'name' => $result['user']['first_name'] . " " . $result['user']['last_name'],
-                        'first_name' => $result['user']['first_name'],
-                        'last_name' => $result['user']['last_name'],
-                        'mobile_number' => $result['user']['contact'],
-                        'email' => $result['user']['username'],
-                        'email_address' => $result['user']['email'],
-                        'affiliation' => $result['user']['affiliation'],
-                        'password' => $result['user']['password'],
-                        'classification' => $result['user']['classification'],
-                        'login_code' => $password2[\strtoupper($result['user']['first_name'][0])],
-                    ]
-                );
+                try {
+                    $user = User::firstOrCreate(
+                        [
+                            'registrant_id' => $result['user']['id'],
+                        ],
+                        [
+                            'registrant_id' => $result['user']['id'],
+                            'api_token' => hash('sha256', Str::random(80)),
+                            'name' => $result['user']['first_name'] . " " . $result['user']['last_name'],
+                            'first_name' => $result['user']['first_name'],
+                            'last_name' => $result['user']['last_name'],
+                            'mobile_number' => $result['user']['contact'],
+                            'email' => $result['user']['username'],
+                            'email_address' => $result['user']['email'],
+                            'affiliation' => $result['user']['affiliation'],
+                            'password' => $result['user']['password'],
+                            'classification' => $result['user']['classification'],
+                            'login_code' => $password2[\strtoupper($result['user']['first_name'][0])],
+                        ]
+                    );
+                } catch (\Throwable $th) {
+                    return response()->json([
+                        'status' => 'failed',
+                    ]);
+                }
 
                 // $user->assignRole('guest');
                 return response()->json([
