@@ -60,7 +60,7 @@ class HomeController extends Controller
                     'scope' => '*',
                 ],
             ]);
-            Log::info($request->email);
+            Log::info("" . $request->email);
             try {
                 $response = $guzzle->post(config('app.domain') . '/api/user', [
                     'headers' => [
@@ -74,6 +74,7 @@ class HomeController extends Controller
                 ]);
                 $result = json_decode((string) $response->getBody(), true);
             } catch (\Throwable $th) {
+                Log::info("INVALID USER: " . $request->email);
                 Log::error($th->getMessage());
                 return response()->json([
                     'status' => 'failed',
