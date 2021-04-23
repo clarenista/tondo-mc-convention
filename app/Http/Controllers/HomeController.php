@@ -131,6 +131,8 @@ class HomeController extends Controller
                         ]
                     );
                 } catch (\Throwable $th) {
+                    Log::info("UNPAID USER: " . $request->email);
+                    Log::error($th->getMessage());
                     return response()->json([
                         'status' => 'failed',
                     ]);
