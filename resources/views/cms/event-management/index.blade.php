@@ -92,8 +92,8 @@ Event Management
                         <span class="input-group-text">Embedded</span>
                     </span>
                     <select class="custom-select" required name="group">
-                        <option value="true" {{ $program->group ? 'selected' : ''}}>True</option>
-                        <option value="false" {{ !$program->group ? 'selected' : ''}}>False</option>
+                        <option value="true" {{ $program->group == "true" ? 'selected' : ''}}>True</option>
+                        <option value="false" {{ !$program->group == "false" ? 'selected' : ''}}>False</option>
                     </select>
                 </div>
             </div>
