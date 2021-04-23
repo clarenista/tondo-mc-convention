@@ -93,7 +93,7 @@ Event Management
                     </span>
                     <select class="custom-select" required name="group">
                         <option value="true" {{ $program->group == "true" ? 'selected' : ''}}>True</option>
-                        <option value="false" {{ !$program->group == "false" ? 'selected' : ''}}>False</option>
+                        <option value="false" {{ $program->group == "false" ? 'selected' : ''}}>False</option>
                     </select>
                 </div>
             </div>
