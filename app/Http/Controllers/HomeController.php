@@ -53,7 +53,6 @@ class HomeController extends Controller
             }
         } else {
             $guzzle = new \GuzzleHttp\Client;
-
             $token = $guzzle->post(config('app.domain') . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => config('app.passport.grant_type'),
@@ -62,19 +61,23 @@ class HomeController extends Controller
                     'scope' => '*',
                 ],
             ]);
-            // return json_decode((string) $token->getBody(), true)['access_token'];
-
-            $response = $guzzle->post(config('app.domain') . '/api/user', [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
-                ],
-                'form_params' => [
-                    'email' => $request->email,
-                    'password' => $request->password,
-                ],
-            ]);
-            $result = json_decode((string) $response->getBody(), true);
+            try {
+                $response = $guzzle->post(config('app.domain') . '/api/user', [
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+                    ],
+                    'form_params' => [
+                        'email' => 'jay_wedeva',
+                        'password' => '123123131',
+                    ],
+                ]);
+                $result = json_decode((string) $response->getBody(), true);
+            } catch (\Throwable $th) {
+                return response()->json([
+                    'status' => 'failed',
+                ]);
+            }
             if ($result) {
 
                 $password2 =
