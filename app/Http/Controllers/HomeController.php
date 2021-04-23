@@ -36,8 +36,7 @@ class HomeController extends Controller
                 if (!$user) {
                     $user = $user2;
                 }
-                if(!$user->api_token){
-
+                if (!$user->api_token) {
                     $user->update(['api_token' => hash('sha256', Str::random(80))]);
                 }
                 Auth::login($user);
@@ -47,7 +46,6 @@ class HomeController extends Controller
                     'access_token' => $user->api_token,
                 ]);
             } else {
-
                 return response()->json([
                     'status' => 'failed',
                 ]);
@@ -69,12 +67,13 @@ class HomeController extends Controller
                         'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
                     ],
                     'form_params' => [
-                        'email' => 'jay_wedeva',
-                        'password' => '123123131',
+                        'email' => $request->email,
+                        'password' => $request->password,
                     ],
                 ]);
                 $result = json_decode((string) $response->getBody(), true);
             } catch (\Throwable $th) {
+                Log::info($request->email);
                 Log::error($th->getMessage());
                 return response()->json([
                     'status' => 'failed',
@@ -127,7 +126,7 @@ class HomeController extends Controller
                         'affiliation' => $result['user']['affiliation'],
                         'password' => $result['user']['password'],
                         'classification' => $result['user']['classification'],
-                        'login_code' =>  $password2[\strtoupper($result['user']['first_name'][0])],
+                        'login_code' => $password2[\strtoupper($result['user']['first_name'][0])],
                     ]
                 );
 
