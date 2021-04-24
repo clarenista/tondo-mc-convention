@@ -58,6 +58,7 @@ class HomeController extends Controller
         }
         if ($result) {
             if ($result['status'] == "failed") {
+                Log::info("UNPAID USER: " . $request->email);
                 return response()->json([
                     'status' => 'failed',
                     'message' => 'Payment not verified.',
@@ -85,6 +86,7 @@ class HomeController extends Controller
                 'access_token' => $user->api_token,
             ]);
         }
+        Log::info("INVALID USER PASSWORD: " . $request->email);
         return response()->json([
             'status' => 'failed',
             'message' => 'Invalid credentials.',
