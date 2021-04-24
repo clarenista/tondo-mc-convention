@@ -22,7 +22,7 @@
                         Login successs.
                     </div>
                     <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
-                        Login failed. E-mail or password not found.
+                        {{ loginMessage }}
                     </div>
 
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -95,6 +95,7 @@
         data(){
 
             return{
+                loginMessage: null,
                 text_email: "",
                 text_password: "",
                 isLoginSuccess: null,
@@ -140,7 +141,8 @@
                     ;
                     this.$router.push('/')
                 }else{
-                    this.isLoginSuccess = false
+                    this.isLoginSuccess = false;
+                    this.loginMessage = data.message;
                 }
             },
             toggleSeePassword(){

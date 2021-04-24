@@ -53,7 +53,7 @@ class HomeController extends Controller
             Log::error($th->getMessage());
             return response()->json([
                 'status' => 'failed',
-                'message' => 'Invalid Credentials.',
+                'message' => 'Username does not exists.',
             ]);
         }
         if ($result) {
@@ -87,7 +87,7 @@ class HomeController extends Controller
         }
         return response()->json([
             'status' => 'failed',
-            'message' => 'Username not found.',
+            'message' => 'Invalid credentials.',
         ]);
     }
 
