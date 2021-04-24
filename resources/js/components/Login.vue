@@ -54,7 +54,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group align-middle">
+                                        
+                                        <div class="form-group">
+                                            <a href="https://eventsv2.psp.com.ph/password-remind" target="_blank" class=" text-light ">Forgot Password?</a>
+                                        </div>
+
+                                        <div class="form-group align-middle mt-2">
                                             <button :class="agree ? 'btn btn-light btn-lg btn-block text-success' : 'btn btn-light btn-lg btn-block text-secondary'" :disabled="agree == false">
                                                 <i class="fa fa-chevron-right"></i> proceed</button>
                                         </div>
