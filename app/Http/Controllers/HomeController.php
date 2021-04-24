@@ -27,6 +27,7 @@ class HomeController extends Controller
 
     public function login(Request $request)
     {
+
         $guzzle = new \GuzzleHttp\Client;
         $token = $guzzle->post(config('app.domain') . '/oauth/token', [
             'form_params' => [
@@ -49,24 +50,11 @@ class HomeController extends Controller
         $result = json_decode((string) $response->getBody(), true);
         if ($result) {
             if ($result['status'] == "failed") {
-                if (isset($result['message'])) {
-                    Log::info("USER ERROR: " . $result['message'] . " : " . $request->email);
-                    return response()->json([
-                        'status' => 'failed',
-                        'message' => $result['message'],
-                    ]);
-                }
-                Log::info("USER ERROR: " . "PAYMENT ERROR" . " : " . $request->email);
+                $message = isset($result['message']) ? $result['message'] : "Payment not verified.";
+                Log::info("USER ERROR: " . $message . " : " . $request->email);
                 return response()->json([
                     'status' => 'failed',
-                    'message' => "Payment not verified.",
-                ]);
-            }
-            if ($result['status'] == "failed") {
-                Log::info("UNPAID USER: " . $request->email);
-                return response()->json([
-                    'status' => 'failed',
-                    'message' => 'Payment not verified.',
+                    'message' => $message,
                 ]);
             }
             $user = User::firstOrCreate([
@@ -93,7 +81,7 @@ class HomeController extends Controller
         }
         return response()->json([
             'status' => 'failed',
-            'message' => 'Invalid credentials.',
+            'message' => 'Error, please try again.',
         ]);
     }
 
