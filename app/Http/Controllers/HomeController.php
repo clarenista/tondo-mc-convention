@@ -36,27 +36,32 @@ class HomeController extends Controller
                 'scope' => '*',
             ],
         ]);
-        try {
-            $response = $guzzle->post(config('app.domain') . '/api/user', [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
-                ],
-                'form_params' => [
-                    'email' => $request->email,
-                    'password' => $request->password,
-                ],
-            ]);
-            $result = json_decode((string) $response->getBody(), true);
-        } catch (\Throwable $th) {
-            Log::info("INVALID USER: " . $request->email);
-            Log::error($th->getMessage());
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Username does not exists.',
-            ]);
-        }
+        $response = $guzzle->post(config('app.domain') . '/api/user', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+            ],
+            'form_params' => [
+                'email' => $request->email,
+                'password' => $request->password,
+            ],
+        ]);
+        $result = json_decode((string) $response->getBody(), true);
         if ($result) {
+            if ($result['status'] == "failed") {
+                if (isset($result['message'])) {
+                    Log::info("USER ERROR: " . $result['message'] . " : " . $request->email);
+                    return response()->json([
+                        'status' => 'failed',
+                        'message' => $result['message'],
+                    ]);
+                }
+                Log::info("USER ERROR: " . "PAYMENT ERROR" . " : " . $request->email);
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => "Payment not verified.",
+                ]);
+            }
             if ($result['status'] == "failed") {
                 Log::info("UNPAID USER: " . $request->email);
                 return response()->json([
@@ -86,7 +91,6 @@ class HomeController extends Controller
                 'access_token' => $user->api_token,
             ]);
         }
-        Log::info("INVALID USER PASSWORD: " . $request->email);
         return response()->json([
             'status' => 'failed',
             'message' => 'Invalid credentials.',
