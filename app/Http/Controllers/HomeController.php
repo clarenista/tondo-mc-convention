@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -28,13 +29,9 @@ class HomeController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        $user = User::with('booth')->where('email', $request->email)->first();
-        $user2 = User::with('booth')->where('email', $request->email)->whereLoginCode($request->password)->first();
+        $user = User::with('booth')->where('email', $request->email)->whereClassification('sponsor')->first();
         if ($user) {
-            if (Hash::check($request->password, $user->password) || $user2) {
-                if (!$user) {
-                    $user = $user2;
-                }
+            if (Hash::check($request->password, $user->password)) {
                 if (!$user->api_token) {
                     $user->update(['api_token' => hash('sha256', Str::random(80))]);
                 }
@@ -44,71 +41,63 @@ class HomeController extends Controller
                     'user' => $user,
                     'access_token' => $user->api_token,
                 ]);
-            } else {
+            }
+        }
+        $guzzle = new \GuzzleHttp\Client;
+        $token = $guzzle->post(config('app.domain') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => config('app.passport.grant_type'),
+                'client_id' => config('app.passport.client_id'),
+                'client_secret' => config('app.passport.client_secret'),
+                'scope' => '*',
+            ],
+        ]);
+        $response = $guzzle->post(config('app.domain') . '/api/user', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+            ],
+            'form_params' => [
+                'email' => $request->email,
+                'password' => $request->password,
+            ],
+        ]);
+        $result = json_decode((string) $response->getBody(), true);
+        if ($result) {
+            if ($result['status'] == "failed") {
+                $message = isset($result['message']) ? $result['message'] : "Payment not verified.";
+                Log::info("USER ERROR: " . $message . " : " . $request->email);
                 return response()->json([
                     'status' => 'failed',
-                    'message' => 'Invalid credentials.',
+                    'message' => $message,
                 ]);
             }
-        } else {
-
-            $guzzle = new \GuzzleHttp\Client;
-            $token = $guzzle->post(config('app.domain') . '/oauth/token', [
-                'form_params' => [
-                    'grant_type' => config('app.passport.grant_type'),
-                    'client_id' => config('app.passport.client_id'),
-                    'client_secret' => config('app.passport.client_secret'),
-                    'scope' => '*',
-                ],
+            $user = User::firstOrCreate([
+                'registrant_id' => $result['user']['id'],
+            ], [
+                'registrant_id' => $result['user']['id'],
+                'api_token' => hash('sha256', Str::random(80)),
+                'name' => $result['user']['first_name'] . " " . $result['user']['last_name'],
+                'first_name' => $result['user']['first_name'],
+                'last_name' => $result['user']['last_name'],
+                'mobile_number' => $result['user']['contact'],
+                'email' => $result['user']['username'],
+                'email_address' => $result['user']['email'],
+                'affiliation' => $result['user']['affiliation'],
+                'password' => $result['user']['password'],
+                'classification' => $result['user']['classification'],
+                'login_code' => $this->getPassword2($result['user']['first_name']),
             ]);
-            $response = $guzzle->post(config('app.domain') . '/api/user', [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
-                ],
-                'form_params' => [
-                    'email' => $request->email,
-                    'password' => $request->password,
-                ],
-            ]);
-            $result = json_decode((string) $response->getBody(), true);
-            if ($result) {
-                if ($result['status'] == "failed") {
-                    $message = isset($result['message']) ? $result['message'] : "Payment not verified.";
-                    Log::info("USER ERROR: " . $message . " : " . $request->email);
-                    return response()->json([
-                        'status' => 'failed',
-                        'message' => $message,
-                    ]);
-                }
-                $user = User::firstOrCreate([
-                    'registrant_id' => $result['user']['id'],
-                ], [
-                    'registrant_id' => $result['user']['id'],
-                    'api_token' => hash('sha256', Str::random(80)),
-                    'name' => $result['user']['first_name'] . " " . $result['user']['last_name'],
-                    'first_name' => $result['user']['first_name'],
-                    'last_name' => $result['user']['last_name'],
-                    'mobile_number' => $result['user']['contact'],
-                    'email' => $result['user']['username'],
-                    'email_address' => $result['user']['email'],
-                    'affiliation' => $result['user']['affiliation'],
-                    'password' => $result['user']['password'],
-                    'classification' => $result['user']['classification'],
-                    'login_code' => $this->getPassword2($result['user']['first_name']),
-                ]);
-                return response()->json([
-                    'status' => 'ok',
-                    'user' => $user,
-                    'access_token' => $user->api_token,
-                ]);
-            }
             return response()->json([
-                'status' => 'failed',
-                'message' => 'Error, please try again.',
+                'status' => 'ok',
+                'user' => $user,
+                'access_token' => $user->api_token,
             ]);
         }
-
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Error, please try again.',
+        ]);
     }
 
     private function getPassword2($first_name)
