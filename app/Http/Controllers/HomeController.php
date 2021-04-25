@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        $user = User::with('booth')->where('email', $request->email)->whereClassification('sponsor')->first();
+        $user = User::with('booth')->where('email', $request->email)->whereIn('classification', ['sponsor', 'wedev'])->first();
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 if (!$user->api_token) {
