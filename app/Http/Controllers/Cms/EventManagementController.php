@@ -31,6 +31,6 @@ class EventManagementController extends Controller
         $command = sprintf('mysqldump -h %s -u %s -p\'%s\' %s > %s', $host, $username, $password, $database, $file);
         exec($command);
 
-        return response()->download(\storage_path($file));
+        return response()->download($file);
     }
 }
