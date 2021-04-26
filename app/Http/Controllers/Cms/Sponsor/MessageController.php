@@ -26,7 +26,7 @@ class MessageController extends Controller
             'First Name', 'Last Name', 'Mobile Number', 'Email Address', 'Affiliation', 'Classification', 'Subject', 'Interest', 'Message',
         ]);
         $i = 2;
-        foreach (UserMessage::with('user')->get() as $message) {
+        foreach (request()->user()->booth->messages()->with('user')->get() as $message) {
             $this->setRows(
                 [
                     $message->user->first_name,
