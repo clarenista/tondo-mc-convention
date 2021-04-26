@@ -29,7 +29,8 @@ class VisitorController extends Controller
             'First Name', 'Last Name', 'Mobile Number', 'Email Address', 'Affiliation', 'Classification',
         ]);
         $i = 2;
-        foreach (UserEvent::with('user')->whereLabel('visit')->groupBy('user_id')->get() as $visitor) {
+        $eid = request()->user()->booth->eventCategory()->first()->id;
+        foreach (UserEvent::with('user')->whereLabel('visit')->whereUserEventCategoryId($eid)->groupBy('user_id')->get() as $visitor) {
             $this->setRows(
                 [
                     $visitor->user->first_name,
