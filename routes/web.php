@@ -25,6 +25,6 @@ Route::get('/meeting-hall', function(){
 });
 Route::get('{any}', function () {
     return view('layouts.app');
-})->where('any', '.*');
+})->where('any', '^(?!storage).*$');
 
 
