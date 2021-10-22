@@ -182,6 +182,7 @@ export default {
         // auth:api
         let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
         // let {data} = await axios.get('api/v1/booths')
+        console.log(data)
 
         for(let i in data){
           data[i]['src'] = data[i].url
@@ -196,115 +197,125 @@ export default {
 
         this.panorama_details = {
             "default": {
-                "firstScene": this.sceneId ? this.sceneId : "lobby",
+                "firstScene": this.sceneId ? this.sceneId : "landing",
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                // "hotSpotDebug": true,
+                "hotSpotDebug": true,
             },
 
             "scenes": {
-                "lobby": {
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/lobby",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
+              "landing": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/1_OUTSIDE - 180.png",
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -90,
+                'maxYaw':90,   
+              },
+              "main_entrance": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/2_FRONT VIEW - 180.png",
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -90,
+                'maxYaw':90,   
+              },
+              "lobby": {
+                  "type": "equirectangular",
+                  "panorama": "/images/multires/3_LOBBY - 360.png",
+                  // prod
+                  // "type": "multires",
+                  // "multiRes": {
+                  //   "basePath": "/images/multires/lobby",
+                  //   "path": "/%l/%s%y_%x",
+                  //   "fallbackPath": "/fallback/%s",
+                  //   "extension": "jpg",
+                  //   "tileResolution": 512,
+                  //   // "maxLevel": 6,
+                  //   "cubeResolution": 8432,
+                  // },
+                  "hotSpots": [
+                    {
+                      // "clickHandlerFunc": ()=>{
+                      //   this.$router.push('/vote');
+                      // },
+                      // "scene": 'lobby',
+                      // "pitch": -2,
+                      // "yaw": 10,
+                      // "cssClass": "custom-hotspot vote",
+                      // "id": "vote"
                     },
-                    "hotSpots": [
-                      {
-                        "clickHandlerFunc": ()=>{
-                          this.$router.push('/vote');
-                        },
-                        "scene": 'lobby',
-                        "pitch": -2,
-                        "yaw": 10,
-                        "cssClass": "custom-hotspot vote",
-                        "id": "vote"
-                      },
-                    ]
-                },
+                  ],
+                   
+              },
+              "hall": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/4_HALL  - 180.png",
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
+              },
 
-                "meeting_hall": {
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/stage",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
+              "hall_a" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/5_BOOTH A  - 360.png",
+                "hotSpots": [
+                  {
+                    "clickHandlerFunc": ()=>{
+                      this.$router.push('/sponsors/7');
                     },
-                    "hotSpots": [
+                    "scene": 'lobby',
+                    "pitch": 1.5,
+                    "yaw": -89.6,
+                    "cssClass": "custom-hotspot vote",
+                    "id": "vote"
+                  }                  
 
-                    ]
-                },
-                "hall_a" :{
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/hall_a",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
-                    },
-                    "hotSpots": [
+                ]
+              },  
+              "hall_a_silver" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/A-Silver.png",
+                "hotSpots": [
 
-                    ]
-                },
-                "hall_b" :{
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/hall_b",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
-                    },
-                    "hotSpots": [
+                ],
+                'minPitch' :-20,
+                'maxPitch' :20,
+                'minYaw': -50,
+                'maxYaw':50, 
+              },  
+              "hall_b" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/6_BOOTH B - 360.png",
+                "hotSpots": [
+                ]
+              }, 
+              "hall_c" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/7_BOOTH C - 360.png",
+                "hotSpots": [
+                ]
+              },           
+              "hall_d" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/8_BOOTH D - 360.png",
+                "hotSpots": [
+                ]
+              },            
 
-                    ]
-                },
-                "hall_c" :{
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/hall_c",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
-                    },
-                    "hotSpots": [
-
-                    ]
-                },
-                "hall_d" :{
-                    "type": "multires",
-                    "multiRes": {
-                      "basePath": "/images/multires/hall_d",
-                      "path": "/%l/%s%y_%x",
-                      "fallbackPath": "/fallback/%s",
-                      "extension": "jpg",
-                      "tileResolution": 512,
-                      "maxLevel": 3,
-                      "cubeResolution": 1904
-                    },
-                    "hotSpots": [
-
-                    ]
-                }
+                
             }
         }
         for(let i in this.booths){
@@ -332,22 +343,27 @@ export default {
         for(let i in this.$store.getters.scene_hotSpots){
           this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
         }
+        this.panorama_details.scenes.landing.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'landing']))
+        // this.panorama_details.scenes.landing.hotSpots.push(...this.lobby_booths)
+
+        this.panorama_details.scenes.main_entrance.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'main_entrance']))
         this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
-        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+        this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
+        // this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
 
-        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+        // this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
-        this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
+        this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
+        // this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
 
-        this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
+        this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_b']))
+        // this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
 
-        this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
+        this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_c']))
+        // this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
 
-        this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'exhibit_hall']))
-        this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
+        this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
+        // this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
         this.viewer= pannellum.viewer('panorama', this.panorama_details );
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
