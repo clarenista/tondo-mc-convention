@@ -13,12 +13,22 @@ import Gallery from './components/Gallery.vue';
 import NotFound from './components/NotFound.vue';
 import SponsorPage from './components/SponsorPage.vue';
 import Meeting from './components/Meeting.vue';
+import PhotoBooth from './components/PhotoBooth.vue';
 // import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
 
 Vue.use(VueRouter);
 
 
 export const routes = [
+    {
+        name: 'test',
+        path: '/photobooth',
+        component: PhotoBooth,
+        props: true,
+        meta: {
+            requiresAuth: true,
+        }
+    },
     {
         name: 'home',
         path: '/',

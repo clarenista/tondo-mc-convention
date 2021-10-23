@@ -87,11 +87,12 @@
       </div>
 
       <div id="panorama">
-        <div id="controls">
-          <div class="ctrl" @click="handleBgmPlayToggle">
-            <i class="fa fa-volume-up" v-if="$store.getters.bgmStart"></i>
-            <i class="fa fa-volume-off" v-else></i>
+        <div id="controls" v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d' ">
+          <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
           </div>
+          <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
+          <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
+          <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
         </div>
       </div>
 
@@ -279,8 +280,7 @@ export default {
                     "scene": 'lobby',
                     "pitch": 1.5,
                     "yaw": -89.6,
-                    "cssClass": "custom-hotspot vote",
-                    "id": "vote"
+                    "cssClass": "custom-hotspot enter",
                   }                  
 
                 ]
@@ -384,6 +384,7 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
+        
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
       },
       reSize() {
@@ -506,8 +507,9 @@ export default {
       async handleLoadBoothTracker(){
         let {data} = await axios.get('api/v1/guests/booths/tracker?api_token='+localStorage.getItem('access_token'))
         this.visited_booths = data
-      }
+      },
       // BOOTH TRACKER
+
     }
 }
 
@@ -540,6 +542,30 @@ export default {
     background-image: url('/images/icons/booth-icon-min.png');
     background-size: cover;
   }
+  div >>> .arrow_left{
+    background-image: url('/images/multires/ICONS/Arrow.png');
+    background-size: cover;
+  }  
+  div >>> .enter{
+    background-image: url('/images/multires/ICONS/Enter.png');
+    background-size: cover;
+  } 
+  div >>> .hall_a{
+    background-image: url('/images/multires/ICONS/A.png');
+    background-size: cover;
+  } 
+  div >>> .hall_b{
+    background-image: url('/images/multires/ICONS/B.png');
+    background-size: cover;
+  } 
+  div >>> .hall_c{
+    background-image: url('/images/multires/ICONS/C.png');
+    background-size: cover;
+  } 
+  div >>> .hall_d{
+    background-image: url('/images/multires/ICONS/D.png');
+    background-size: cover;
+  }          
   div >>> .left_arrow{
     background-image: url('/images/icons/left_arrow-min.png');
     background-size: cover;
@@ -602,7 +628,6 @@ export default {
         padding-bottom: 3px;
     }
     .ctrl {
-        padding: 8px 5px;
         width: 30px;
         text-align: center;
         background: rgba(200, 200, 200, 0.8);

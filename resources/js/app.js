@@ -16,6 +16,8 @@ import 'vue-cool-lightbox/dist/vue-cool-lightbox.min.css'
 
 import Echo from "laravel-echo"
 
+import VueHtml2Canvas from 'vue-html2canvas';
+
 require('pannellum/build/pannellum.css')
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
@@ -30,7 +32,8 @@ require('pannellum/build/pannellum.css')
 Vue.mixin(Permissions);
 Vue.mixin(SendEvent);
 Vue.use(VueAxios, axios);
-Vue.use(CoolLightBox)
+Vue.use(CoolLightBox);
+Vue.use(VueHtml2Canvas);
 
 Vue.config.productionTip = false
 
