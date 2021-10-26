@@ -208,8 +208,16 @@ export default {
 
             "scenes": {
               "landing": {
-                "type": "equirectangular",
-                "panorama": "/images/multires/1_OUTSIDE - 180.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/landing",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
@@ -219,8 +227,16 @@ export default {
                 'maxYaw':90,   
               },
               "main_entrance": {
-                "type": "equirectangular",
-                "panorama": "/images/multires/2_FRONT VIEW - 180.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/main_entrance",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
@@ -230,19 +246,16 @@ export default {
                 'maxYaw':90,   
               },
               "lobby": {
-                  "type": "equirectangular",
-                  "panorama": "/images/multires/3_LOBBY - 360.png",
-                  // prod
-                  // "type": "multires",
-                  // "multiRes": {
-                  //   "basePath": "/images/multires/lobby",
-                  //   "path": "/%l/%s%y_%x",
-                  //   "fallbackPath": "/fallback/%s",
-                  //   "extension": "jpg",
-                  //   "tileResolution": 512,
-                  //   // "maxLevel": 6,
-                  //   "cubeResolution": 8432,
-                  // },
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/lobby",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                   "hotSpots": [
                     {
                       // "clickHandlerFunc": ()=>{
@@ -258,8 +271,16 @@ export default {
                    
               },
               "hall": {
-                "type": "equirectangular",
-                "panorama": "/images/multires/4_HALL  - 180.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/hall",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
@@ -270,8 +291,16 @@ export default {
               },
 
               "hall_a" :{
-                "type": "equirectangular",
-                "panorama": "/images/multires/5_BOOTH A  - 360.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/hall_a",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                   {
                     "clickHandlerFunc": ()=>{
@@ -297,20 +326,44 @@ export default {
                 'maxYaw':50, 
               },  
               "hall_b" :{
-                "type": "equirectangular",
-                "panorama": "/images/multires/6_BOOTH B - 360.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/hall_b",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ]
               }, 
               "hall_c" :{
-                "type": "equirectangular",
-                "panorama": "/images/multires/7_BOOTH C - 360.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/hall_c",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ]
               },           
               "hall_d" :{
-                "type": "equirectangular",
-                "panorama": "/images/multires/8_BOOTH D - 360.png",
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/hall_d",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
                 "hotSpots": [
                 ]
               },            
