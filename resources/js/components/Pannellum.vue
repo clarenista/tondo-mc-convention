@@ -289,6 +289,83 @@ export default {
                 // 'minYaw': -90,
                 // 'maxYaw':90,   
               },
+              "secondf_meeting_hall": {
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/secondf_meeting_hall",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
+              },
+              "meeting_hall": {
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/meeting_hall",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
+              },
+              "pool_area": {
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/pool_area",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
+              },
+              "secondf_photobooth": {
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/secondf_photobooth",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                // 180 view | 360 view = 180 view x 2
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
+              },
+
 
               "hall_a" :{
                 "type": "multires",
@@ -377,17 +454,17 @@ export default {
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
         }
-        if(this.$store.getters.user.classification ==='sponsor'){
-          this.viewer= pannellum.viewer('panorama', this.panorama_details );
-          this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
-          this.viewer.removeHotSpot('vote')
-          this.viewer.removeHotSpot('zoom_meeting')
-          this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
-          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
-          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
-          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
+        // if(this.$store.getters.user.classification ==='sponsor'){
+        //   this.viewer= pannellum.viewer('panorama', this.panorama_details );
+        //   this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
+        //   this.viewer.removeHotSpot('vote')
+        //   this.viewer.removeHotSpot('zoom_meeting')
+        //   this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
+        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
+        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
+        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
 
-        }
+        // }
         this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
         this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
         this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
@@ -404,7 +481,7 @@ export default {
         this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
         // this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
 
-        // this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
         this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
         // this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
@@ -418,6 +495,8 @@ export default {
         this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
         // this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
+        this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
+        this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
         this.viewer= pannellum.viewer('panorama', this.panorama_details );
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
         // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
@@ -599,6 +678,10 @@ export default {
     background-image: url('/images/multires/ICONS/Arrow.png');
     background-size: cover;
   }  
+  div >>> .arrow_right{
+    background-image: url('/images/multires/ICONS/Arrow_Right.png');
+    background-size: cover;
+  }    
   div >>> .enter{
     background-image: url('/images/multires/ICONS/Enter.png');
     background-size: cover;
