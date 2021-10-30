@@ -16,9 +16,10 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-image: linear-gradient(to right, #9cf0c8, #4c748c);
+
+        background-image:  url("/images/login_bg.jpg");
+        background-repeat: no-repeat;
         background-size: cover;
-        background: url("/images/login_bg.jpg") no-repeat;
         background-position: center;
         background-attachment: fixed;
       }

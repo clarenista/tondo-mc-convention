@@ -2,20 +2,7 @@
 <div class="background full">
     <div class="register">
 
-        <button class="btn btn-primary btn-sm" @click="handleToggleBgMusic" type="button" style="position: fixed; top: 0; left: 0; margin:1em;">
-            <i class="fa fa-volume-up" v-if="!$store.getters.bgmStart"></i>
-            <i class="fa fa-volume-off" v-else></i>
-        </button>
-
-        <div class="row col-10">
-            <div class="register-left col-md-6 ">
-
-                <img src="/images/logo.png" alt=""/>
-                <!-- <h3 class="lead text-white">Welcome</h3> -->
-                <p class="text-white">PHILIPPINE SOCIETY OF PATHOLOGISTS, INC. <br>VIRTUAL EVENT</p>
-            </div>
-
-            <div class="register-right col-md-6" v-if="start_at">
+            <div class="register-right col-md-4" v-if="start_at">
                 <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
                 <div v-else  class="tab-content" id="myTabContent">
                     <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
@@ -25,11 +12,11 @@
                         {{ loginMessage }}
                     </div>
 
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading display-3 text-light">Sign In</h3>
+                 <img src="images/70_logo.png" alt="center-image" width="50%" height="50%">
 
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row register-form justify-content-center align-items-center">
-                            <div class="col-lg-10 col-sm-12">
+                            <div class="col-lg-12 col-sm-12">
                                 <form method="POST" @submit.prevent="handleSubmit">
                                         <div class="form-group">
                                             <input
@@ -54,28 +41,34 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        <div class="form-group">
-                                            <a href="https://eventsv2.psp.com.ph/password-remind" target="_blank" class=" text-light ">Forgot Password?</a>
-                                        </div>
 
+                    <div class="d-flex justify-content-center">
+                        <div class="data_use_clause">
+                            <p class="check_agree text-light">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="agree">
+                                <label class="form-check-label" for="exampleCheck1">{{agreement}}</label>
+                            </p>
+                        </div>
+                    </div>
+                                
+                                        <br>
                                         <div class="form-group align-middle mt-2">
-                                            <button :class="agree ? 'btn btn-light btn-lg btn-block text-success' : 'btn btn-light btn-lg btn-block text-secondary'" :disabled="agree == false">
-                                                <i class="fa fa-chevron-right"></i> proceed</button>
+                                            <button :class="agree ? 'rounded-0 btn btn-success btn-lg btn-block' : 'rounded-0 btn btn-success btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; color:">
+                                            LOGIN</button>
+
+                                        <div class="form-group">
+                                            <a href="https://eventsv2.psp.com.ph/password-remind" target="_blank" class=" text-light" style="font-style: italic; opacity: 0.4;">Forgot Password?</a>
+                                        </div>
                                         </div>
                                 </form>
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-center">
-                            <div class="data_use_clause">
-                                <p class="clause text-light" v-html="privacy_clause"></p>
-                                <p class="check_agree text-light">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="agree">
-                                    <label class="form-check-label" for="exampleCheck1">{{agreement}}</label>
-                                </p>
-                            </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="data_use_clause">
+                            <p class="clause text-light" v-html="privacy_clause"></p>                       
                         </div>
+                    </div>
 
                     </div>
 
@@ -208,8 +201,9 @@ div.full{
 .register-right{
     text-align: center;
     align-items: center;
-    background: rgba(230, 230, 230, 0.2);
+    background: rgba(27, 27, 27, 0.3);
     margin-bottom: 3%;
+    border: 3px solid #1a361b;
 
     /* border: 1px solid blue; */
 }
@@ -234,8 +228,8 @@ div.full{
     text-shadow: 0 0 2px #000;
 }
 .register .register-form{
-    padding: 7% 5% 1% 5%;
-    margin-top: 10%;
+    padding: 1% 1% 1% 1%;
+    margin-top: 1%;
 
     /* border: 1px solid green; */
 }
@@ -485,7 +479,7 @@ div.full{
 
 /* data use clause */
 .data_use_clause {
-    padding: 0 5%;
+
     width: 90%;
     align-items: center;
 }
@@ -503,7 +497,6 @@ div.full{
 
 
 .check_agree {
-    padding-left: 5%;
     font-size: 17px !important;
     text-align: justify;
 }
