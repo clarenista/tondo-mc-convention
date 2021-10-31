@@ -38,8 +38,8 @@
     <div class="card-body" id="onTakeContainer">
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <video class="input_video" width="300" height="220" style="display:none"></video>
-          <canvas class="output_canvas" width="300" height="220"> </canvas>
+          <video class="input_video"  style="display:none"></video>
+          <canvas class="output_canvas" width="1280px" height="720px"> </canvas>
           
         </div>
         <div class="col-md-6 col-sm">
@@ -73,7 +73,7 @@
     <div class="card-body" id="takenContainer" style="display:none;">
       <div class="row">
         <div class="col-md-6 col-sm-12">
-          <canvas  id="photoTaken" ref="canvas" width="300" height="220"></canvas>
+          <canvas  id="photoTaken" ref="canvas" width="1280px" height="720px"></canvas>
           <div class="">
             <a id="downloadPhoto" download="Selfie.jpg" class="btn btn-success" role="button">
                 <i class="fa fa-download"></i> Download
@@ -129,7 +129,7 @@ function photoTaken(){
     takenContainer.style.display = "block"
     const photoTaken = document.getElementById('photoTaken');
     const photoTakenCtx = photoTaken.getContext('2d');
-    photoTakenCtx.drawImage(canvasElement, 0, 0, 300, 220);
+    photoTakenCtx.drawImage(canvasElement, 0, 0, 1280, 720);
 
     const download = document.getElementById("downloadPhoto");
       
@@ -167,8 +167,9 @@ const camera = new Camera(videoElement, {
   onFrame: async () => {
     await selfieSegmentation.send({image: videoElement});
   },
-  width: 300,
-  height: 220
+  width: 1280,
+  height: 720,
+
 });
 camera.start();
 </script>
