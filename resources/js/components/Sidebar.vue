@@ -1,7 +1,7 @@
 <template >
 <div>
     <div id="mySidenav" class="sidenav">
-        <div class="text-center"><img id="psp_logo" src="images/PSP_LOGO.png" width="240px" alt="psp_logo" srcset=""></div>
+        <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div>
     <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
     <a 
         href="javascript:void(0)" 
@@ -92,8 +92,8 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-image: linear-gradient(90deg, #4c748c, #80b1cf);
-    border: #4c748c;
+    background-image: linear-gradient(90deg, #072b0e, #075e20);
+    border: #125f21;
     /* border-radius: 15%;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px; */
@@ -110,8 +110,10 @@ button.open-btn{
   transition: 0.5s;
   padding-top: 60px;
 
-  background-image: linear-gradient(180deg, #4c748c, #9cf0c8);
+  background-image: linear-gradient(180deg, #030d05, #0a431a);
   /* transparent css */
+
+  /* pattern */
 }
 
 .sidenav a {
@@ -124,7 +126,7 @@ button.open-btn{
 }
 
 .sidenav a:hover {
-  color: #416dff;
+  color: #b0d94d;
 }
 
 .sidenav .closebtn {

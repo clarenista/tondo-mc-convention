@@ -53,10 +53,10 @@
                                 
                                         <br>
                                         <div class="form-group align-middle mt-2">
-                                            <button :class="agree ? 'rounded-0 btn btn-success btn-lg btn-block' : 'rounded-0 btn btn-success btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; color:">
+                                            <button :class="agree ? 'rounded-0 btn btn-lg btn-block' : 'rounded-0 btn btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; background-color: #b0d94d; color: #FFF;">
                                             LOGIN</button>
 
-                                        <div class="form-group">
+                                        <div class="form-group float-right">
                                             <a href="https://eventsv2.psp.com.ph/password-remind" target="_blank" class=" text-light" style="font-style: italic; opacity: 0.4;">Forgot Password?</a>
                                         </div>
                                         </div>
@@ -204,7 +204,8 @@ div.full{
     background: rgba(27, 27, 27, 0.3);
     margin-bottom: 3%;
     border: 3px solid #1a361b;
-
+    border-radius: .8em;
+    padding: 1% 2%;
     /* border: 1px solid blue; */
 }
 .register-left img{
