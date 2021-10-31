@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
@@ -33,58 +34,60 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row d-flex justify-content-center ">
-      <div class="col-md col-sm-12 ">
-        <div class="card d-flex align-items-center">
-            <div class="card-body" id="onTakeContainer">
-              <video class="input_video" style="display:none"></video>
-              <canvas class="output_canvas" width="450" height="337.5"></canvas>
-              <p class="text-center lead">Select Background</p>
-              <div class="row">
-                  <img id="img0" src="{{asset('images/70_logo.png')}}" width="100" height="100" style="display:none">  
-                  <div class="col-md">
-                      <img id="img1" src="{{asset('images/70_logo.png')}}" width="100" height="100" onclick="img0.src=this.src;">
-                  </div>
-                  <div class="col-md">
-                      <img id="img2" src="{{asset('images/login_bg.jpg')}}" width="100" height="100" onclick="img0.src=this.src;">
-                  </div>
-                  <div class="col-md">
-                  
-                      <img id="img3" src="{{asset('images/main_entrance.jpg')}}" width="100" height="100" onclick="img0.src=this.src;">
-                    </div>
-                    <div class="col-md">
-                      <img id="img4" src="{{asset('images/lobby.jpg')}}" width="100" height="100" onclick="img0.src=this.src;">
-                  </div>
-              </div>
-              <br>
-              <div class="d-flex justify-content-center">
-
-                <button class="btn btn-lg btn-primary" type="button" onclick="photoTaken()">
-                  <i class="fa fa-camera fa-lg text-light"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body" id="takenContainer" style="display:none;">
-              <div id="capture">
-
-                  <canvas  id="photoTaken" ref="canvas" width="450" height="337.5"></canvas>
-              </div>
-              <div class="">
-                <a id="downloadPhoto" download="Selfie.jpg" class="btn btn-success" role="button">
-                    <i class="fa fa-download"></i> Download
-                </a>
-                <button class="btn btn-info float-right" type="button" onclick="newSelfie()"> 
-                  <i class="fa fa-repeat"></i> New
-                </button>
-              </div>
-            </div>
-              
-          </div>
+  <div class="card">
+    <div class="card-body" id="onTakeContainer">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <video class="input_video" width="300" height="220" style="display:none"></video>
+          <canvas class="output_canvas" width="300" height="220"> </canvas>
           
+        </div>
+        <div class="col-md-6 col-sm">
+          <p class="text-center lead">Select Background</p>
+          <div class="row">
+              <img id="img0" src="{{asset('images/70_logo.png')}}" class="img-fluid" style="display:none">  
+              <div class="col-md col-sm col-3">
+                  <img id="img1" src="{{asset('images/70_logo.png')}}" class="img-fluid" onclick="img0.src=this.src;">
+              </div>
+              <div class="col-md col-sm col-3">
+                  <img id="img2" src="{{asset('images/login_bg.jpg')}}" class="img-fluid" onclick="img0.src=this.src;">
+              </div>
+              <div class="col-md col-sm col-3">
+              
+                  <img id="img3" src="{{asset('images/main_entrance.jpg')}}" class="img-fluid" onclick="img0.src=this.src;">
+                </div>
+                <div class="col-md col-sm col-3">
+                  <img id="img4" src="{{asset('images/lobby.jpg')}}" class="img-fluid" onclick="img0.src=this.src;">
+              </div>
+          </div>
+          <br>
+          <div class="d-flex justify-content-center ">
+
+            <button class="btn btn-lg btn-primary" type="button" onclick="photoTaken()">
+              <i class="fa fa-camera fa-lg text-light"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="card-body" id="takenContainer" style="display:none;">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+          <canvas  id="photoTaken" ref="canvas" width="300" height="220"></canvas>
+          <div class="">
+            <a id="downloadPhoto" download="Selfie.jpg" class="btn btn-success" role="button">
+                <i class="fa fa-download"></i> Download
+            </a>
+            <button class="btn btn-info float-right" type="button" onclick="newSelfie()"> 
+              <i class="fa fa-repeat"></i> New
+            </button>
+        </div>
+      </div>
+      </div>
+    </div>
+        
   </div>
+
   
 </body>
 </html>
@@ -126,7 +129,7 @@ function photoTaken(){
     takenContainer.style.display = "block"
     const photoTaken = document.getElementById('photoTaken');
     const photoTakenCtx = photoTaken.getContext('2d');
-    photoTakenCtx.drawImage(canvasElement, 0, 0, 450, 337.5);
+    photoTakenCtx.drawImage(canvasElement, 0, 0, 300, 220);
 
     const download = document.getElementById("downloadPhoto");
       
