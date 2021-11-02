@@ -102,7 +102,7 @@
             <h3 class="display-4 mt-3 text-light" style="font-size: 2em;">Hello {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong> Welcome to the First PSP Virtual Event</strong></p>
+            <p class="text-center lead text-success mt-3 mb-3"><strong>{{welcomeMessage}}</strong></p>
         </template>
         <template v-slot:footer >
             <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">
@@ -167,6 +167,8 @@ export default {
         standee_dtls: [],
         standee_index: null,
         standees: null,
+
+        welcomeMessage: 'Welcome to the Second PSP Virtual Event',
       }
     },
     mounted() {
@@ -778,7 +780,6 @@ export default {
     position: fixed;
     top: 0.1em;
     right: 0.5em;
-    /* background-color: rgba(0,0,0,0.5); */
     z-index: 2;
     cursor: pointer;
   }
