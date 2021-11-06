@@ -481,21 +481,21 @@ export default {
         this.panorama_details.scenes.main_entrance.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'main_entrance']))
         this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
         this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
-        // this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
 
         this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
         this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
-        // this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
+        this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
 
         this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_b']))
-        // this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
+        this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
 
         this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_c']))
-        // this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
+        this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
 
         this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
-        // this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
+        this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
         this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
         this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
@@ -673,7 +673,7 @@ export default {
     background-size: cover;
   }
   div >>> .booth{
-    background-image: url('/images/icons/booth-icon-min.png');
+    background-image: url('/images/multires/ICONS/enter.png');
     background-size: cover;
   }
   div >>> .arrow_left{
