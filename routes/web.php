@@ -23,6 +23,9 @@ Route::get('/api/v1/event', [EventController::class, 'get'])->middleware([]);
 Route::get('/meeting-hall', function(){
     return view('app.plugins.zoom');
 });
+Route::get('/pb', function(){
+    return view('photobooth');
+});
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '^(?!storage).*$');
