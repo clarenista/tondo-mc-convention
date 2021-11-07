@@ -262,6 +262,7 @@ export default {
             'maxPitch' :20,
             'minYaw': -50,
             'maxYaw': 50,   
+            "preview": "/images/multires/loading.png"
           },
         }
       }
@@ -273,8 +274,8 @@ export default {
             this.$router.push({ name: 'home'})
           }else{
 
-            // this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
-            this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
+            // this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
           }
     },
     handleSelectHotspot(hotspot){
@@ -505,5 +506,15 @@ export default {
       -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }    
+  } 
+  div >>> .pnlm-load-box{
+    background-image: url('/images/multires/loading.png');
+    background-size: cover;
+  }
+  div >>> .pnlm-load-box p{
+    display:none !important;
+  } 
+  div >>> .pnlm-load-box .pnlm-lbar{
+    display:none !important;
+  }     
 </style>
