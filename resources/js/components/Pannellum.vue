@@ -381,15 +381,7 @@ export default {
                   "cubeResolution": 1904,
                 },
                 "hotSpots": [
-                  {
-                    "clickHandlerFunc": ()=>{
-                      this.$router.push('/sponsors/7');
-                    },
-                    "scene": 'lobby',
-                    "pitch": 1.5,
-                    "yaw": -89.6,
-                    "cssClass": "custom-hotspot enter",
-                  }                  
+                                   
 
                 ]
               },  

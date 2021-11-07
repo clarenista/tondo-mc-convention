@@ -105,7 +105,6 @@ Add Booth
                 @include('cms.include.input-select', ['key' => 'panorama_location', 'label' => 'Location'])
                 @include('cms.include.input-select-type', ['key' => 'type', 'label' => 'Booth Type'])
                 @include('cms.include.input-file', ['key' => 'background', 'label' => 'Background'])
-                @include('cms.include.input-file', ['key' => 'booth', 'label' => 'Booth'])
                 <br>
 
                 @foreach ($booth->hotspots as $i => $hotspot)
