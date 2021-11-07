@@ -103,7 +103,7 @@ class BoothSeeder extends Seeder
 
 
                 // LEFT SPONSOR_L1
-                ['ABBOTT', -0.68, -137.79, 'gold', "Abbot-BOOTH-BG.png", "Abbot-BOOTH.png",
+                ['ABBOTT', -0.43, 138.71, 'gold', "Abbot-BOOTH-BG.png", "Abbot-BOOTH.png",
                     [
                         ['External Link','-16.32','18.84','https://localhost'],
                         ['Contact Us','-9.43','23.21',''],
@@ -125,7 +125,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L3
-                ['Alliend Hospital', -1.35, -153.34, 'bronze', "Allied Hospital BOOTH BG.png", "Allied Hospital BOOTH.png",
+                ['Alliend Hospital', 0.4, 44.86, 'bronze', "Allied Hospital BOOTH BG.png", "Allied Hospital BOOTH.png",
                     [
                         ['External Link','-16.28','28.31','https://localhost'],
                         ['Contact Us','-10.12','31.33',''],
@@ -176,7 +176,7 @@ class BoothSeeder extends Seeder
                 // ['BE', -1.78, 154.53, 'bronze, "BG", "BOOTH"], // VACANT
 
                 // LEFT SPONSOR_L1 
-                ['MEDTEK', 0.435, -41.3, 'gold', "MEDTEK BOOTH BG.png", "MEDTEK BOOTH.png",
+                ['MEDTEK', -0.19, -44.25, 'gold', "MEDTEK BOOTH BG.png", "MEDTEK BOOTH.png",
                     [
                         ['External Link','-15.41','18.27','https://localhost'],
                         ['Contact Us','-10.52','23.71',''],
@@ -198,7 +198,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L3
-                ['SPONSOR_L3', -0.19, 25.83, 'silver', "Vazyme BOOTH BG.png", "Vazyme BOOTH.png",
+                ['SPONSOR_L3', -0.01, -136.18, 'silver', "Vazyme BOOTH BG.png", "Vazyme BOOTH.png",
                     [
                         ['External Link','-15.57','18.87','https://localhost'],
                         ['Contact Us','-10.09','23.15',''],
@@ -312,7 +312,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['SPONSOR_R3', -0.03, 138.75, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_R3', -1.40, 136.23, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
                     [
                         ['External Link','-15.56','21.05','https://localhost'],
                         ['Contact Us','-10.19','25.46',''],
