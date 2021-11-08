@@ -99,26 +99,29 @@
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
-            <h3 class="display-4 mt-3 text-light" style="font-size: 2em;">Hello {{$store.getters.user.first_name}},</h3>
+            <img src="/images/welcome_logo.png" alt="" class="center_logo">
+            <h3 class="display-4 mt-3 text-light" style="font-size: 2em; text-align: center;">Hi {{$store.getters.user.first_name}},</h3>
+          <br>
         </template>
+          <br>
         <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong>{{welcomeMessage}}</strong></p>
+            <p class="text-center lead mt-3 mb-30" style="color: #0f4c05; font-weight: 500"><strong>{{welcomeMessage}}</strong></p>
         </template>
         <template v-slot:footer >
-            <button class="btn btn-primary" type="button" @click="handleUpdateIsWelcomed">
-              <i class="fa fa-caret-right"></i> proceed</button>
+            <button class="btnletsgo" type="button" @click="handleUpdateIsWelcomed">
+              <i class="fa fa-arrow-right"></i> okay, lets go</button>
         </template>
       </Modal>
 
       <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
         <template v-slot:title >
-            <h3 class="display-4 mt-3">Hello {{$store.getters.user.first_name}},</h3>
+            <h3 class="display-4 mt-3">Hi {{$store.getters.user.first_name}},</h3>
         </template>
         <template v-slot:body>
             <p class="text-center lead text-success mt-3 mb-3"><strong> {{$store.getters.isNotAllowedMessage}}</strong></p>
         </template>
         <template v-slot:footer >
-            <button class="btn btn-primary" type="button" @click="handleIsNotAllowedClose">
+            <button class="btn btn-success" type="button" @click="handleIsNotAllowedClose">
               <i class="fa fa-caret-right"></i> Ok</button>
         </template>
       </Modal>
@@ -168,7 +171,7 @@ export default {
         standee_index: null,
         standees: null,
 
-        welcomeMessage: 'Welcome to the Second PSP Virtual Event',
+        welcomeMessage: 'Welcome to our PSP 70th Platinum Year Virtual Convention Event',
       }
     },
     mounted() {
@@ -776,6 +779,25 @@ export default {
         background: rgba(200, 200, 200, 1);
     }
 
+    .center_logo {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+      }
+
+    .btnletsgo {
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #1e471f;
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+      }
   .booth_tracker {
     position: fixed;
     top: 0.1em;
