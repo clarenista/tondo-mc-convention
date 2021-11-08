@@ -1,7 +1,7 @@
 <template lang="">
 
   <div class="background full">
-    <Modal :value="showModal" v-if="selectedHotspot != null">
+    <Modal :value="value" v-if="selectedHotspot != null">
         <template v-slot:title >
           <CoolLightBox
             :items="selectedHotspot.assets"
@@ -193,7 +193,7 @@
             </div>
         </template>
         <template v-slot:footer >
-            <button class="btn btn-secondary" type="button" @click="showModal = false">Close</button>
+            <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
@@ -203,6 +203,7 @@
 <script>
 import Modal from './Modal'
 export default {
+  props:['id'],
   components:{
     Modal
   },
@@ -210,25 +211,41 @@ export default {
     this.init()  
   },
   methods:{
-    init(){
-      const image = "/images/multires/A-Silver.png";
-      const hs = [
-        {name:'brochures', pitch: 0, yaw: 0, cssClass: 'custom-hotspot brochures', id: 'brochure'},
-        {name:'videos', pitch: 5, yaw: 5, cssClass: 'custom-hotspot videos', id: 'video'},
-        {name:'external-links', pitch: 10, yaw: 10, cssClass: 'custom-hotspot external-links', id: 'external-links'},
-      ]
+    async init(){
+      const wrapper = document.querySelector('.hotspots--wrapper');
+      let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
+      this.booth_details = data
+      this.$store.commit('changeBoothDetails', data)
+      this.sendBoothGuestEvent(data)
+      const image = data.background
+      let hs = data.hotspots
+      hs = Object.values(hs)
+      // console.log(hs)
+      // const image = "/images/multires/A-Silver.png";
+      // const hs = [
+      //   {name:'brochures', pitch: 0, yaw: 0, cssClass: 'custom-hotspot brochures', id: 'brochure'},
+      //   {name:'videos', pitch: 5, yaw: 5, cssClass: 'custom-hotspot videos', id: 'video'},
+      //   {name:'external-links', pitch: 10, yaw: 10, cssClass: 'custom-hotspot external-links', id: 'external-links'},
+      // ]
       for(let i in hs){
+        hs[i].name = hs[i].name
+        hs[i].pitch = hs[i].x
+        hs[i].yaw = hs[i].y
+        hs[i].cssClass = 'custom-hotspot '+hs[i].name
         hs[i].clickHandlerFunc = ()=>{
-          this.showModal = true
+          this.handleSelectHotspot(hs[i])
+          // this.showModal = true
           this.selectedHotspot = hs[i]
         }
       }
+      console.log(hs)
       this.panorama_details = {
         "default": {
             "firstScene": "landing",
             "sceneFadeDuration": 500,
             "autoLoad": true,
             "showControls": false,
+            "hotSpots": hs,
             // uncomment the code below to get the PITCH and YAW of hotspot - console
             // "hotSpotDebug": true,
             'mouseZoom' :false,
@@ -239,12 +256,13 @@ export default {
           "landing": {
             "type": "equirectangular",
             "panorama": image,
-            "hotSpots": hs,
+            // "hotSpots": hs,
             // 180 view | 360 view = 180 view x 2
             'minPitch' :-20,
             'maxPitch' :20,
             'minYaw': -50,
             'maxYaw': 50,   
+            "preview": "/images/multires/loading.png"
           },
         }
       }
@@ -256,17 +274,168 @@ export default {
             this.$router.push({ name: 'home'})
           }else{
 
-            // this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
-            this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
+            // this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
           }
-    }
+    },
+    handleSelectHotspot(hotspot){
+      this.value = true
+      for(let i in hotspot.assets){
+        hotspot.assets[i]['src'] = hotspot.assets[i].url
+      }
+      this.selectedHotspot = hotspot
+      if(hotspot.name == 'videos'){
+        if(this.$store.getters.bgmStart){
+          this.bgmStart = true
+          this.$store.commit('updateBgmStart', false)
+        }
+      }
+      this.sendBoothGuestEvent(this.booth_details, hotspot)
+    },  
+    handleCloseModal(){
+      if(this.selectedHotspot.name == 'videos'){
+        if(this.bgmStart){
+          this.$store.commit('updateBgmStart', true)
+        }else{
+          this.$store.commit('updateBgmStart', false)
+
+        }
+      }
+          this.selectedHotspot = null
+          this.value = false
+      },      
+      async handleSendMessage(){
+        let url = '/api/v1/booths/'+this.id+'/message?api_token='+localStorage.getItem('access_token')
+
+        // append text fields
+        let fd = new FormData()
+        fd.append('subject', this.subject)
+        // fd.append('name', this.name)
+        // fd.append('affiliation', this.affiliation)
+        // fd.append('mobile_number', this.mobile_number)
+        // fd.append('email', this.email)
+        fd.append('interest', this.interest)
+        fd.append('message', this.message)
+
+        try {
+          let {data} = await axios.post(url, fd)
+          this.selectedHotspot = null
+          this.value = false
+
+          this.subject = ''
+          this.affiliation = ''
+          this.email = ''
+          this.interest = ''
+          this.message = ''
+
+          // show modal after insert
+          this.showSuccessModal = true
+
+        } catch (error) {
+          alert(JSON.stringify(error.message))
+          this.value = true
+        }
+
+      },
+      async sendBoothGuestEvent(booth = null, hotspot=null){
+        // category: lobby,
+        // label: click Astra Zeneca Booth
+        let fd = new FormData()
+
+        fd.append('type', 'event')
+        fd.append('category', booth.name)
+        fd.append('label', hotspot == null ? 'visit' : 'click '+hotspot.name+" hotspot")
+
+        // alert(hotspot.assets)
+
+        let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
+      },
+
+      async sendVisitedAssets(assets, hotspot){
+
+        let fd = new FormData()
+        fd.append('type', 'event')
+        fd.append('category', this.booth_details.name)
+        fd.append('label', 'click '+assets.name+ ' at ' +hotspot+ ' hotspot')
+
+        let {data} = await axios.post('/api/v1/guests/event/push?api_token='+localStorage.getItem('access_token'), fd);
+      },
+
+      handleSelectAssetIndex(assetIndex){
+        // this.value = false
+        this.indexSelected=assetIndex
+      },
+      handleNext(){
+        this.start = false
+        let count = this.selectedHotspot.questions.length - 1
+        if(count > this.page){
+          this.page = this.page + 1
+          if(count == this.page){
+            this.end = true
+            this.start = false
+          }
+        }else{
+          this.end = true
+          this.start = false
+        }
+      },
+      handlePrev(){
+        this.end = false
+        let count = this.selectedHotspot.questions.length
+        if(0 < this.page){
+          this.page = this.page - 1
+          console.log(this.page)
+          if(0>this.page){
+
+          this.end = false
+          this.start = true
+          }
+        }else{
+          this.end = false
+          this.start = true
+        }
+      },
+      async handleSubmitAnswer(){
+        let fd = new FormData()
+        fd.append('answers', JSON.stringify(this.answers))
+        let {data} = await axios.post('/api/v1/booths/'+this.id+'/questionnaire/answer/submit?api_token='+localStorage.getItem('access_token'), fd)
+        this.selectedHotspot.quiz_taken = data.answers
+        this.selectedHotspot.questions = data.questions
+      },
+      async showQuestionnaire(){
+        let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
+        console.log(data)
+      },
+      imageLoad(){
+        this.isLoading = false
+      }
   },
   data() {
-    return {
-      selectedHotspot: null,
-      panorama_details : null,
-      viewer : null,
-      showModal: false
+       return {
+          booth_details: null,
+          modalShow: false,
+          selectedHotspot: null,
+          value: false,
+          // contact-us field
+          subject: '',
+          name: '',
+          affiliation: '',
+          mobile_number: '',
+          email: '',
+          interest: '',
+          message: '',
+          successMessage: false,
+          data: '',
+          indexSelected: null,
+          answers: {},
+          page: 0,
+          end: false,
+          start: true,
+          answersS: [],
+          isLoading: true,
+          bgmStart: null,
+
+          showSuccessModal: false,
     }
   },
 }
@@ -300,7 +469,7 @@ export default {
     background-image: url('/images/icons/contact.png');
     background-size: cover;
   } 
-  div >>> .external-links{
+  div >>> .external-link{
     background-image: url('/images/icons/link.png');
     background-size: cover;
   } 
@@ -337,5 +506,15 @@ export default {
       -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }    
+  } 
+  div >>> .pnlm-load-box{
+    background-image: url('/images/multires/loading.png');
+    background-size: cover;
+  }
+  div >>> .pnlm-load-box p{
+    display:none !important;
+  } 
+  div >>> .pnlm-load-box .pnlm-lbar{
+    display:none !important;
+  }     
 </style>
