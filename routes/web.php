@@ -26,6 +26,9 @@ Route::get('/meeting-hall', function(){
 Route::get('/pb', function(){
     return view('photobooth');
 });
+Route::get('/fortune-wheel', function(){
+    return view('fortuneWheel');
+});
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '^(?!storage).*$');
