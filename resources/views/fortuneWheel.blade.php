@@ -77,7 +77,19 @@
                 'textFontSize'    : 24,         // Set default font size for the segments.
                 'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
                 'textAlignment'   : 'outer',    // Align text to outside of wheel.
-                n
+                'numSegments'     : 9,         // Specify number of segments.
+                'segments'        :             // Define segments including colour and text.
+                [                               // font size and test colour overridden on backrupt segments.
+                   {'fillStyle' : '#ee1c24', 'text' : '1000'},
+                   {'fillStyle' : '#f6989d', 'text' : '500'},
+                   {'fillStyle' : '#f26522', 'text' : '400'},
+                   {'fillStyle' : '#3cb878', 'text' : '900'},
+                   {'fillStyle' : '#000000', 'text' : 'BANKRUPT', 'textFontSize' : 16, 'textFillStyle' : '#ffffff'},
+                   {'fillStyle' : '#a186be', 'text' : '600'},
+                   {'fillStyle' : '#fff200', 'text' : '700'},
+                   {'fillStyle' : '#00aef0', 'text' : '800'},
+                   {'fillStyle' : '#ffffff', 'text' : 'LOOSE TURN', 'textFontSize' : 12}
+                ],
                 'animation' :           // Specify the animation to use.
                 {
                     'type'     : 'spinToStop',
