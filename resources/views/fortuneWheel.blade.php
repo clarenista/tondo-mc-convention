@@ -29,7 +29,7 @@
         <title>Winning Wheel</title>
         <link rel="stylesheet" href="{{asset('/css/main.css')}}" type="text/css" />
         <script type="text/javascript" src="{{asset('/js/Winwheel.min.js')}}"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     </head>
     <body>
         <div align="center">
