@@ -5,7 +5,7 @@
         <h1><i class="fa fa-address-card text-dark" type="button" @click="handleBoothTracker" title="View My Activity" aria-hidden="true" ></i></h1>
       </div>
 
-      <Modal :value="camera">
+      <Modal :value="camera" v-if="camera">
         <template v-slot:title >
             <img src="/images/welcome_logo.png" alt="" class="center_logo">
           <br>
@@ -21,7 +21,7 @@
       </Modal>
       <!-- Selfie -->
       <div class="selfie">
-        <h1><i class="fa fa-camera text-dark" type="button" @click="handleSelfie" title="View My Activity" aria-hidden="true" ></i></h1>
+        <h1><i class="fa fa-camera text-dark" type="button" @click="handleSelfie" title="Take selfie here" aria-hidden="true" ></i></h1>
       </div>
 
       <div id="booth_visits" class="bg-light text-dark table-responsive">
