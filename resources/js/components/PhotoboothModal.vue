@@ -147,6 +147,25 @@ export default {
         background-color: blue;
         width: 100%;
         height: auto;
+        
+    } 
+    @media only screen and (max-width: 1200px){
+    /*Tablets [601px -> 1200px]*/
+        canvas {
+            background-color: blue;
+            width: 100%;
+            height: auto;
+            
+        }    
+    }
+    @media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
+        canvas {
+            background-color: blue;
+            
+            max-width: 300px;
+        
+        }
     }
     div.card{
         background: rgba(255, 255, 255, 0.1);
