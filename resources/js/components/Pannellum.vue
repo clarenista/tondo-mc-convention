@@ -5,6 +5,25 @@
         <h1><i class="fa fa-address-card text-dark" type="button" @click="handleBoothTracker" title="View My Activity" aria-hidden="true" ></i></h1>
       </div>
 
+      <Modal :value="camera">
+        <template v-slot:title >
+            <img src="/images/welcome_logo.png" alt="" class="center_logo">
+          <br>
+        </template>
+          <br>
+        <template v-slot:body>
+          <PhotoboothModal :image="imageRendered" />
+        </template>
+        <template v-slot:footer >
+            <button class="btnletsgo" type="button" @click="camera = false">
+              <i class="fa fa-arrow-right"></i> DONE</button>
+        </template>
+      </Modal>
+      <!-- Selfie -->
+      <div class="selfie">
+        <h1><i class="fa fa-camera text-dark" type="button" @click="handleSelfie" title="View My Activity" aria-hidden="true" ></i></h1>
+      </div>
+
       <div id="booth_visits" class="bg-light text-dark table-responsive">
         <h3 class="display-4">Booth Tracker</h3>
         <!-- <hr> -->
@@ -95,7 +114,7 @@
           <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
         </div>
       </div>
-
+      
       <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
       <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
@@ -132,16 +151,19 @@
 <script>
 import Sidebar from './Sidebar'
 import Modal from './Modal'
+import PhotoboothModal from './PhotoboothModal'
 import MeetingHall from './MeetingHall/MeetingHall.js'
 
 export default {
   components:{
-    Sidebar, Modal
+    Sidebar, Modal, PhotoboothModal
   },
   props:['sceneId'],
 
     data() {
       return {
+        imageRendered: null,
+        camera: false,
         booths: [],
         viewer: null,
         panorama_details: null,
@@ -208,7 +230,7 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                "hotSpotDebug": true,
+                // "hotSpotDebug": true,
             },
 
             "scenes": {
@@ -224,6 +246,7 @@ export default {
                   "cubeResolution": 1904,
                 },
                 "hotSpots": [
+                  
                 ],
                 // 180 view | 360 view = 180 view x 2
                 'minPitch' :-45,
@@ -262,16 +285,7 @@ export default {
                   "cubeResolution": 1904,
                 },
                   "hotSpots": [
-                    {
-                      // "clickHandlerFunc": ()=>{
-                      //   this.$router.push('/vote');
-                      // },
-                      // "scene": 'lobby',
-                      // "pitch": -2,
-                      // "yaw": 10,
-                      // "cssClass": "custom-hotspot vote",
-                      // "id": "vote"
-                    },
+                    
                   ],
                    
               },
@@ -495,6 +509,9 @@ export default {
         this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
         this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
         this.viewer= pannellum.viewer('panorama', this.panorama_details );
+        
+
+          
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
         // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
         this.viewer.on('scenechange', this.handleSceneChange)
@@ -633,10 +650,81 @@ export default {
           }
       },
 
+      handleSelfie(){
+        this.camera = true
+        const renderer = this.viewer.getRenderer();
+        
+        if(this.viewer.isLoaded()){
+
+          const i = renderer.render(
+              this.viewer.getPitch() / 180 * Math.PI,
+              this.viewer.getYaw() / 180 * Math.PI,
+              this.viewer.getHfov() / 180 * Math.PI,
+              { returnImage: true },
+            );
+
+            this.imageRendered = i
+
+            
+            console.log(urlencode(i))
+
+            
+            // const byteCharacters = atob(i);
+            // const blob = b64toBlob(i, contentType);
+            // fetch(i)
+            // .then(res => res.blob())
+            // .then(data => {
+            //   // console.log(data)
+            //   // const blob = new Blob(i);
+              
+            // const blobUrl = URL.createObjectURL(data);
+            // console.log(blobUrl)
+            // })
+            // const blob = new Blob(i);
+            
+        }        
+      },
+
+      b64toBlob (b64Data, contentType='', sliceSize=512){
+        const byteCharacters = atob(b64Data);
+        const byteArrays = [];
+
+        for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+          const byteNumbers = new Array(slice.length);
+          for (let i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+
+          const byteArray = new Uint8Array(byteNumbers);
+          byteArrays.push(byteArray);
+        }
+
+        const blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+      },
+
       async handleLoadBoothTracker(){
         let {data} = await axios.get('api/v1/guests/booths/tracker?api_token='+localStorage.getItem('access_token'))
         this.visited_booths = data
       },
+
+      testScreenshot(){
+        const renderer = this.viewer.getRenderer();
+        renderer.resize();
+        if(this.viewer.isLoaded()){
+
+          const i = renderer.render(
+              this.viewer.getPitch() / 180 * Math.PI,
+              this.viewer.getYaw() / 180 * Math.PI,
+              this.viewer.getHfov() / 180 * Math.PI,
+              { returnImage: true },
+            );
+
+            console.log(i)
+        }
+      }
       // BOOTH TRACKER
 
     }
@@ -797,6 +885,15 @@ export default {
     z-index: 2;
     cursor: pointer;
   }
+
+  .selfie{
+    position: fixed;
+    bottom: 0.1em;
+    right: 0.5em;
+    z-index: 2;
+    cursor: pointer;    
+  }
+
 
   #booth_visits{
     padding: 1%;
