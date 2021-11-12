@@ -2,13 +2,13 @@
 <div>
     <div id="mySidenav" class="sidenav">
         <!-- <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div> -->
-        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <!-- <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> -->
         <a 
             href="javascript:void(0)" 
             v-if="item.type=='nav-item'" 
             v-for="(item, index) in navItems" 
             :key="index"
-            
+            @click="handleNavigateTo(item)"
         >
             <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
         </a>
@@ -30,7 +30,7 @@
         </a>
     </div>
 
-    <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button> -->
+    <!-- <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button> -->
    
 </div>
 </template>
@@ -83,7 +83,12 @@ export default {
              // redirect to vote
             this.$router.push('/vote')
         }
-    }
+    },
+
+    mounted() {
+        // console.log(this.$store.getters.user)
+        this.openNav()
+    },
 }
 </script>
 <style scoped>
