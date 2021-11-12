@@ -35,6 +35,7 @@
 
 <body>
   <div class="card">
+    <p>{{request()->image}}</p>
     <div class="card-body" id="onTakeContainer">
       <div class="row">
         <div class="col-md-6 col-sm-12">

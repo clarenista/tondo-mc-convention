@@ -1,7 +1,7 @@
 <template lang="">
     <div class="row d-flex justify-content-center">
         <div class="card">
-
+          
           <div class="card-body">
             <h5 class="card-title">PhotoBooth</h5>
             <button type="button" class="button is-rounded" :class="{ 'is-primary' : !isCameraOpen, 'is-danger' : isCameraOpen}" @click="toggleCamera">
