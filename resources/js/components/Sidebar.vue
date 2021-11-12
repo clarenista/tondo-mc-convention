@@ -1,34 +1,37 @@
 <template >
 <div>
     <div id="mySidenav" class="sidenav">
-        <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div>
-    <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-    <a 
-        href="javascript:void(0)" 
-        v-if="item.type=='nav-item'" 
-        v-for="(item, index) in navItems" 
-        :key="index"
-        @click="handleNavigateTo(item)"
-    >
-        <i class="fa" :class="item.icon"></i> {{item.name}}
-    </a>
-    <div class="nav-item dropdown " :class="showDropdown ? 'show' : ''" v-else>
-        <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-            <i class="fa" :class="item.icon"></i> {{item.name}}</a>
-        <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="width:100%; background-color: #44948c; color: #f6f6f6;">
-          <a class="dropdown-item" @click="handleNavigateTo(dropdown)" style="padding-left: 80px;" href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
-              <i class="fa" :class="dropdown.icon"></i> {{dropdown.name}}</a>
+        <!-- <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div> -->
+        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <a 
+            href="javascript:void(0)" 
+            v-if="item.type=='nav-item'" 
+            v-for="(item, index) in navItems" 
+            :key="index"
+            
+        >
+            <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
+        </a>
+        
+        <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
+            <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
+            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 80px;">
+                <a class="dropdown-item bg-dark" style="border-bottom: 1px solid #F6F6F6;"  @click="handleNavigateTo(dropdown)" 
+                    href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
+                <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
+            </div>
         </div>
-    </div>
-    <a href="javascript:void(0)" @click="handleVote">
-        <i class="fa fa-hand-o-up" ></i> Vote
-    </a>
-    <a href="javascript:void(0)" @click="handleLogout">
-        <i class="fa fa-sign-out" ></i> Logout
-    </a>
+        <a href="javascript:void(0)" @click="handleVote">
+            <span class="badge badge-dark"><i class="fa fa-hand-o-up" ></i></span> <!-- Vote -->
+        </a>
+        <a href="javascript:void(0)" @click="handleLogout">
+            <span class="badge badge-dark"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
+        </a>
     </div>
 
-    <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
+    <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button> -->
+   
 </div>
 </template>
 <script>
@@ -110,23 +113,27 @@ button.open-btn{
   transition: 0.5s;
   padding-top: 60px;
 
-  background-image: linear-gradient(180deg, #030d05, #0a431a);
+  /* border: 1px solid red; */
+
+  /* background-image: linear-gradient(180deg, #030d05, #0a431a); */
   /* transparent css */
 
   /* pattern */
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 42px;
+  padding: 10px;
   text-decoration: none;
   font-size: 24px;
-  color: #f1f1f1;
+  /* color: #f1f1f1; */
   display: block;
   transition: 0.3s;
+
+  /* border: 1px solid blue; */
 }
 
 .sidenav a:hover {
-  color: #b0d94d;
+  color: #fa7000;
 }
 
 .sidenav .closebtn {
