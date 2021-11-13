@@ -100,7 +100,6 @@ export default {
                 onFrame: async () => {
                     await selfieSegmentation.send({ image: this.inputVideo });
                 },
-                width: 1280,
                 height: 720,                
             });
             camera.start();            
