@@ -15,6 +15,7 @@ use App\Http\Controllers\Cms\Sponsor\EventController;
 use App\Http\Controllers\Cms\Sponsor\MessageController;
 use App\Http\Controllers\Cms\Sponsor\QuestionnaireController as SponsorQuestionnaireController;
 use App\Http\Controllers\Cms\Sponsor\VisitorController;
+use App\Http\Controllers\Cms\Sponsor\WheelController;
 use App\Http\Controllers\Cms\StandeeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -53,6 +54,7 @@ Route::name('cms.')->group(function () {
             Route::resource('assets', SponsorAssetController::class);
             Route::resource('links', ExternalLinkController::class);
             Route::resource('contacts', ContactController::class);
+            Route::resource('wheels', WheelController::class);
             Route::name('events.')->prefix('events')->group(function () {
                 Route::get('', [EventController::class, 'index'])->name('index');
                 Route::get('export/spreadsheet', [EventController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
