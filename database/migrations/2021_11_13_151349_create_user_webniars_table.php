@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserWebinarsTable extends Migration
+class CreateUserWebniarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserWebinarsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_webinars', function (Blueprint $table) {
+        Schema::create('user_webniars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->string('registrant_id');
@@ -32,6 +32,6 @@ class CreateUserWebinarsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_webinars');
+        Schema::dropIfExists('user_webniars');
     }
 }
