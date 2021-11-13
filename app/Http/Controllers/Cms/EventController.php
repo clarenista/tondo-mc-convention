@@ -19,7 +19,6 @@ class EventController extends Controller
             'title' => 'nullable',
             'description' => 'nullable',
         ]);
-
         $event = Event::first();
         $event->update($input);
 

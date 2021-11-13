@@ -9,11 +9,13 @@ export default {
                 zoomBtn.addEventListener("click", () => {
                     this.isAllowed(vue).then((result) => {
                         if (result) {
-                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || this.embedded == 'false') {
-                                this.openZoomMobile(vue);
-                            } else {
-                                window.location = "/meeting-hall";
-                            }
+
+                            this.openZoomMobile(vue);
+                            // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || this.embedded == 'false') {
+                            //     this.openZoomMobile(vue);
+                            // } else {
+                            //     window.location = "/meeting-hall";
+                            // }
                         } else {
                             vue.$store.commit('updateIsAllowed', true);
                             // zoomBtn.style.display = "none";

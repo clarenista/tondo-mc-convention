@@ -13,9 +13,11 @@ class EventManagementController extends Controller
     {
 
         $event = Event::first();
-        $program = Program::first();
+        $program1 = Program::find(1);
+        $program2 = Program::find(2);
+        $program3 = Program::find(3);
 
-        return view('cms.event-management.index', compact('event', 'program'));
+        return view('cms.event-management.index', compact('event', 'program1', 'program2', 'program3'));
     }
 
     public function downloadDb()
