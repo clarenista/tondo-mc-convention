@@ -18,7 +18,9 @@
         <div class="col-sm col-lg">
             <form action="{{ route('cms.sponsor.wheels.store') . ($wheel->id ? '/' . $wheel->id : '') }}?hotspot_id={{ \request()->hotspot_id }}" method="post">
                 @csrf
+                @if(isset($wheel->id))
                 {{ method_field('PUT') }}
+                @endif
                 @for ($i = 0; $i <= 10; $i++)
                     <div class="form-group">
                         <div class="input-group">

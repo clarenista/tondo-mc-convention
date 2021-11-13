@@ -14,6 +14,8 @@
 
         <template v-slot:body >
             <div class="row px-4">
+
+
               <!-- External link -->
                 <template v-if="selectedHotspot.name == 'external-link'">
                   <div class="row p-1 text-center">
@@ -31,6 +33,15 @@
                   </div>
                 </template>
                 <!-- External link -->
+                <!-- WHEEL  -->
+                <template v-else-if="selectedHotspot.name == 'wheels'">
+                <div class="col-12 p-1">
+                  <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" :src="'/sponsor/'+id+'/fortune-wheel/token/'+token" allowfullscreen></iframe>
+                  </div>                  
+                </div>
+                </template>
+                <!-- WHEEL  -->                
 
                 <!-- CONTACT US FORM -->
                 <template v-else-if="selectedHotspot.name == 'contact-us'">
@@ -112,6 +123,7 @@
                 </div>
                 </template>
                 <!-- QUIZ  -->
+
 
                 <!-- GALLERY  -->
                 <template v-else-if="selectedHotspot.name == 'gallery'">
@@ -436,6 +448,7 @@ export default {
           bgmStart: null,
 
           showSuccessModal: false,
+          token: localStorage.getItem('access_token')
     }
   },
 }
@@ -480,7 +493,11 @@ export default {
   div >>> .quiz{
     background-image: url('/images/icons/quiz.png');
     background-size: cover;
-  }         
+  }    
+  div >>> .wheels{
+    background-image: url('/images/icons/zoom.png');
+    background-size: cover; 
+  }        
 
   @-webkit-keyframes pulse {
     0% {

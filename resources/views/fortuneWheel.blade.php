@@ -29,12 +29,11 @@
         <title>Winning Wheel</title>
         <link rel="stylesheet" href="{{asset('/css/main.css')}}" type="text/css" />
         <script type="text/javascript" src="{{asset('/js/Winwheel.min.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+        <script src="{{asset('/js/TweenMax.min.js')}}"></script>
     </head>
     <body>
         <div align="center">
-            <h1>Winwheel.js example wheel - wheel of fortune</h1>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae temporibus saepe sequi nostrum, dolore nihil quam ipsum exercitationem distinctio sapiente explicabo unde eligendi maxime dignissimos a atque debitis, quod doloremque?</p>
+            <h1>Welcome to Fortune Wheel</h1>
             <br />
             <table cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -59,17 +58,52 @@
                         <br />
                         <img id="spin_button" src="{{asset('/images/spin_off.png')}}" alt="Spin" onClick="startSpin();" />
                         <br /><br />
-                        &nbsp;&nbsp;<a href="#" onClick="resetWheel(); return false;">Play Again</a><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(reset)
                     </div>
                 </td>
                 <td width="438" height="582" class="the_wheel" align="center" valign="center">
-                    <canvas id="canvas" width="434" height="434">
+                    <canvas id="canvas" width="434" height="434" 
+                        data-responsiveMinWidth="180"
+                        data-responsiveScaleHeight="true"  
+                        data-responsiveMargin="50">
                         <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
                     </canvas>
                 </td>
             </tr>
         </table>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
+            var result = null
+            window.onload = function(){
+                $.get('/api/v1/booths/{{request()->id}}/wheel?api_token={{request()->token}}', function(data){
+                    ajaxCallBack(data)
+                })
+                // console.log(result)
+            }
+            function ajaxCallBack(data){
+                const segments  = data.data
+                // The draw method of the wheel object must be called in order for the changes
+                // to be rendered.
+                // Call function to remove a segment from the wheel, by default the last one will be
+                // removed; you can pass in the number of the segment to delete if desired.
+                
+                for(let i in segments){
+                    if(segments[i].text != ''){
+
+                        theWheel.addSegment({
+                            'text' : segments[i].text,
+                            'fillStyle' : segments[i].fillStyle,
+                        });
+                    }
+                }
+                // theWheel.numSegments = 3
+                theWheel.draw();
+                theWheel.deleteSegment(1);
+ 
+                // The draw method of the wheel object must be called to render the changes.
+                theWheel.draw();
+                console.log(data)
+            }
+
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
                 'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
@@ -77,18 +111,7 @@
                 'textFontSize'    : 24,         // Set default font size for the segments.
                 'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
                 'textAlignment'   : 'outer',    // Align text to outside of wheel.
-                'numSegments'     : 9,         // Specify number of segments.
-                'segments'        :             // Define segments including colour and text.
-                [                               // font size and test colour overridden on backrupt segments.
-                   {'fillStyle' : '#ee1c24', 'text' : '1000'},
-                   {'fillStyle' : '#f6989d', 'text' : '500'},
-                   {'fillStyle' : '#f26522', 'text' : '400'},
-                   {'fillStyle' : '#3cb878', 'text' : '900'},
-                   {'fillStyle' : '#000000', 'text' : 'BANKRUPT', 'textFontSize' : 16, 'textFillStyle' : '#ffffff'},
-                   {'fillStyle' : '#a186be', 'text' : '600'},
-                   {'fillStyle' : '#fff200', 'text' : '700'},
-                   {'fillStyle' : '#00aef0', 'text' : '800'},
-                   {'fillStyle' : '#ffffff', 'text' : 'LOOSE TURN', 'textFontSize' : 12}
+                'segments'        : [
                 ],
                 'animation' :           // Specify the animation to use.
                 {
@@ -104,6 +127,7 @@
                     'number'     : 24,
                     'fillStyle'  : 'silver',
                     'outerRadius': 4,
+                    'responsive' : true,
                 }
             });
 
@@ -212,13 +236,10 @@
             {
                 // Just alert to the user what happened.
                 // In a real project probably want to do something more interesting than this with the result.
-                if (indicatedSegment.text == 'LOOSE TURN') {
-                    alert('Sorry but you loose a turn.');
-                } else if (indicatedSegment.text == 'BANKRUPT') {
-                    alert('Oh no, you have gone BANKRUPT!');
-                } else {
+                $.post('/api/v1/booths/{{request()->id}}/wheel?api_token={{request()->token}}&value='+indicatedSegment.text, function(data){
                     alert("You have won " + indicatedSegment.text);
-                }
+
+                })
             }
         </script>
     </body>

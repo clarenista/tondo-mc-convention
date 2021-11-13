@@ -14,6 +14,7 @@ import NotFound from './components/NotFound.vue';
 import SponsorPage from './components/SponsorPage.vue';
 import Meeting from './components/Meeting.vue';
 import PhotoBooth from './components/PhotoBooth.vue';
+import FortuneWheel from './components/FortuneWheel.vue';
 // import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
 
 Vue.use(VueRouter);
@@ -131,6 +132,11 @@ export const routes = [
         name: 'notFound',
         path: '/404',
         component: NotFound,
+    },
+    {
+        name: 'fortuneWheel',
+        path: '/fortuneWheel',
+        component: FortuneWheel,
     },
 
 
