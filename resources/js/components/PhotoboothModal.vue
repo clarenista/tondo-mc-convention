@@ -113,8 +113,8 @@ export default {
                 results.segmentationMask,
                 0,
                 0,
-                results.image.width,
-                results.image.height
+                this.canvasElement.width,
+                this.canvasElement.height
             );
              // Only overwrite missing pixels.
             this.ctx.globalCompositeOperation = 'source-out';
