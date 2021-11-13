@@ -48,7 +48,6 @@ class GuestController extends Controller
 
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
     {
-
         $user = request()->user();
         $webinar = Program::whereEnabled(1)->first();
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
@@ -56,7 +55,7 @@ class GuestController extends Controller
             $registered = $this->checkRegistrants($user->email, $webinar);
             if (!$registered) {
                 // // DISABLE AUTO REGISTER
-                // return false;
+                return "0";
                 $registered = $this->registerToWebinar($webinar, $user);
                 $registered['id'] = $registered['registrant_id'];
             }
