@@ -36,7 +36,7 @@
                 <!-- WHEEL  -->
                 <template v-else-if="selectedHotspot.name == 'wheels'">
                 <div class="col-12 p-1">
-                  <div class="embed-responsive embed-responsive-4by3">
+                  <div class="embed-responsive embed-responsive-21by9">
                     <iframe class="embed-responsive-item" :src="'/sponsor/'+id+'/fortune-wheel/token/'+token" allowfullscreen></iframe>
                   </div>                  
                 </div>

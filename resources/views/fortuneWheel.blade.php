@@ -38,29 +38,8 @@
             <table cellpadding="0" cellspacing="0" border="0">
             <tr>
                 <td>
-                    <div class="power_controls">
-                        <br />
-                        <br />
-                        <table class="power" cellpadding="10" cellspacing="0">
-                            <tr>
-                                <th align="center">Power</th>
-                            </tr>
-                            <tr>
-                                <td width="78" align="center" id="pw3" onClick="powerSelected(3);">High</td>
-                            </tr>
-                            <tr>
-                                <td align="center" id="pw2" onClick="powerSelected(2);">Med</td>
-                            </tr>
-                            <tr>
-                                <td align="center" id="pw1" onClick="powerSelected(1);">Low</td>
-                            </tr>
-                        </table>
-                        <br />
-                        <img id="spin_button" src="{{asset('/images/spin_off.png')}}" alt="Spin" onClick="startSpin();" />
-                        <br /><br />
-                    </div>
                 </td>
-                <td width="438" height="582" class="the_wheel" align="center" valign="center">
+                <td width="438" onClick="startSpin();" height="582" class="the_wheel" align="center" valign="center" style="cursor:pointer;">
                     <canvas id="canvas" width="434" height="434" 
                         data-responsiveMinWidth="180"
                         data-responsiveScaleHeight="true"  
@@ -101,7 +80,6 @@
  
                 // The draw method of the wheel object must be called to render the changes.
                 theWheel.draw();
-                console.log(data)
             }
 
             // Create new wheel object specifying the parameters at creation time.
@@ -111,6 +89,7 @@
                 'textFontSize'    : 24,         // Set default font size for the segments.
                 'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
                 'textAlignment'   : 'outer',    // Align text to outside of wheel.
+                'responsive'   : true,  // This wheel is responsive!
                 'segments'        : [
                 ],
                 'animation' :           // Specify the animation to use.
@@ -192,17 +171,8 @@
                 if (wheelSpinning == false) {
                     // Based on the power level selected adjust the number of spins for the wheel, the more times is has
                     // to rotate with the duration of the animation the quicker the wheel spins.
-                    if (wheelPower == 1) {
-                        theWheel.animation.spins = 3;
-                    } else if (wheelPower == 2) {
-                        theWheel.animation.spins = 6;
-                    } else if (wheelPower == 3) {
-                        theWheel.animation.spins = 10;
-                    }
+                    theWheel.animation.spins = 10;
 
-                    // Disable the spin button so can't click again while wheel is spinning.
-                    document.getElementById('spin_button').src       = "{{asset('images/spin_off.png')}}";
-                    document.getElementById('spin_button').className = "";
 
                     // Begin the spin animation by calling startAnimation on the wheel object.
                     theWheel.startAnimation();
