@@ -16,7 +16,7 @@
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
             <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
-            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 80px;">
+            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 80px; margin-bottom: 50px; !important">
                 <a class="dropdown-item bg-dark" style="border-bottom: 1px solid #F6F6F6;"  @click="handleNavigateTo(dropdown)" 
                     href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
                 <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
@@ -40,6 +40,7 @@ export default {
         return {
             showDropdown: false,
             navItems: [
+                {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item'},
                 {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item'},
                 {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item'},
                 {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown', 
@@ -62,7 +63,7 @@ export default {
         },
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
-            this.closeNav()
+            // this.closeNav()
             this.showDropdown = false
         },
         handleLogout(){
@@ -116,7 +117,7 @@ button.open-btn{
   left: 0;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  /* padding-top: 60px; */
 
   /* border: 1px solid red; */
 
