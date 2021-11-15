@@ -16,7 +16,7 @@
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
             <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
-            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 80px; margin-bottom: 50px; !important">
+            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 90px; top: 8px; !important">
                 <a class="dropdown-item bg-dark" style="border-bottom: 1px solid #F6F6F6;"  @click="handleNavigateTo(dropdown)" 
                     href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
                 <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
@@ -63,7 +63,7 @@ export default {
         },
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
-            // this.closeNav()
+            this.closeNav()
             this.showDropdown = false
         },
         handleLogout(){
@@ -123,7 +123,7 @@ button.open-btn{
 
   /* background-image: linear-gradient(180deg, #030d05, #0a431a); */
   /* transparent css */
-
+  opacity: 0.9;
   /* pattern */
 }
 
