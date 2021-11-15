@@ -9,11 +9,16 @@ export default {
                 zoomBtn.addEventListener("click", () => {
                     this.isAllowed(vue).then((result) => {
                         if (result) {
-                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || this.embedded == 'false') {
-                                this.openZoomMobile(vue);
-                            } else {
-                                window.location = "/meeting-hall";
-                            }
+                            this.openZoomMobile(vue).then((ret)=>{
+                                if (!ret) {
+                                    vue.$store.commit('updateIsAllowed', true);
+                                }
+                            });
+                            // if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || this.embedded == 'false') {
+                            //     this.openZoomMobile(vue);
+                            // } else {
+                            //     window.location = "/meeting-hall";
+                            // }
                         } else {
                             vue.$store.commit('updateIsAllowed', true);
                             // zoomBtn.style.display = "none";
@@ -25,7 +30,15 @@ export default {
     },
     async openZoomMobile(vue) {
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/mobile?api_token=${localStorage.getItem("access_token")}`);
-        window.open(data, "_blank");
+        console.log(data)
+        if(data == 0){
+            vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
+            return false;
+        }else{
+            window.open(data, "_blank");
+            return true;
+        }
+        return false;
     },
     async isAllowed(vue) {
         let userType = vue.$store.getters.user.classification;

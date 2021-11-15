@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Program;
 use App\Models\UserEvent;
 use App\Models\UserEventCategory;
+use Illuminate\Support\Facades\Http;
 
 class GuestController extends Controller
 {
@@ -15,7 +16,7 @@ class GuestController extends Controller
 
         $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->get();
 
-        $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereUserId(request()->user()->id)->whereLabel('visit')->where('created_at','>','2021-04-23 02:33:00')->get();
+        $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereUserId(request()->user()->id)->whereLabel('visit')->where('created_at', '>', '2021-04-23 02:33:00')->get();
 
         $return = [];
 
@@ -29,12 +30,60 @@ class GuestController extends Controller
         return $return;
     }
 
-    public function zoomJoinMobile()
+
+    private function checkRegistrants($email, $webinar)
+    {
+        $bearer = "Bearer ";
+        $bearer .= $webinar->description;
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+
+        $regs = collect($registrants);
+
+        return $regs->firstWhere('email', $email);
+    }
+
+    public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
+    {
+        $user = request()->user();
+        $webinar = Program::whereEnabled(1)->first();
+        $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
+        if (!$reg) {
+            $registered = $this->checkRegistrants($user->email, $webinar);
+            if (!$registered) {
+                // // DISABLE AUTO REGISTER
+                return "0";
+                $registered = $this->registerToWebinar($webinar, $user);
+                $registered['id'] = $registered['registrant_id'];
+            }
+            $reg = $user->webinars()->create([
+                "registrant_id" => $registered['id'],
+                "webinar_id" => $webinar->unique_id,
+                "topic" => $webinar->title,
+                "join_url" => $registered['join_url'],
+                'registered' => true,
+            ]);
+        }
+        return $reg->join_url;
+    }
+
+    private function registerToWebinar($webinar, $user)
     {
 
-        $program = Program::first();
-
-        return $program->video_url;
+        $bearer = "Bearer ";
+        $bearer .= $webinar->description;
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
+        $post = [
+            'email' => $user->email,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+        ];
+        $response = $client->post($registrants_api, $post);
+        return $response->json();
     }
 
     public function zoomJoin($meetingNumber = "78803086236")

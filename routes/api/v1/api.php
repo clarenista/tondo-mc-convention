@@ -30,6 +30,10 @@ Route::get('booths/{booth_id}/questionnaire', [BoothController::class, 'showQues
 Route::post('booths/{booth_id}/message', [BoothController::class, 'storeMessage']);
 Route::post('booths/{booth_id}/questionnaire/answer/submit', [BoothController::class, 'storeQuestionnaireAnswerSubmit']);
 
+
+Route::get('booths/{booth_id}/wheel', [BoothController::class, 'wheel']);
+Route::post('booths/{booth_id}/wheel', [BoothController::class, 'wheelSubmit']);
+
 Route::get('/guests/zoom/join/config', [GuestController::class, 'zoomJoin']);
 Route::get('/guests/zoom/join/mobile', [GuestController::class, 'zoomJoinMobile']);
 Route::get('/guests/booths/tracker', [GuestController::class, 'boothTracker']);

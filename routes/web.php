@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\EventController;
+use App\Http\Controllers\FortuneWheelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,9 +27,7 @@ Route::get('/meeting-hall', function(){
 Route::get('/pb', function(){
     return view('photobooth');
 });
-Route::get('/fortune-wheel', function(){
-    return view('fortuneWheel');
-});
+Route::get('/sponsor/{id}/fortune-wheel/token/{token}',[FortuneWheelController::class, 'index']);
 Route::get('{any}', function () {
     return view('layouts.app');
 })->where('any', '^(?!storage).*$');

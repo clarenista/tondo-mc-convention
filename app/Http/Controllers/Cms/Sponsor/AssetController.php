@@ -19,6 +19,12 @@ class AssetController extends Controller
         $assets = Asset::whereHas('hotspots', function ($q) {
             $q->whereBoothHotspotId(\request()->hotspot_id);
         })->get();
+        $hotspot = BoothHotspot::find(\request()->hotspot_id);
+
+        if ($hotspot->name == "wheels") {
+
+            return (new WheelController)->index();
+        }
 
         return view("cms.sponsor.asset.index", compact('assets'));
     }
@@ -63,7 +69,7 @@ class AssetController extends Controller
                 ])
             );
             $hotspot->assets()->attach($asset);
-            if(in_array($hotspot->name,['brochures','gallery'])){
+            if (in_array($hotspot->name, ['brochures', 'gallery'])) {
                 $this->uploadFile($asset, 'url', 'url');
             }
             $this->uploadFile($asset, 'thumbnail_url', 'thumbnail_url');

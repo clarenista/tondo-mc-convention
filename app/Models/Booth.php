@@ -57,4 +57,9 @@ class Booth extends Model
 
         return $this->morphOne(UserEventCategory::class, 'categorizable');
     }
+
+    public function wheel(){
+
+        return $this->hasOne(BoothWheel::class);
+    }
 }

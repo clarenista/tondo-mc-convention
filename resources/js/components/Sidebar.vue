@@ -1,6 +1,6 @@
 <template >
 <div>
-    <div id="mySidenav" class="sidenav">
+    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:90px;'">
         <!-- <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div> -->
         <!-- <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> -->
         <a 
@@ -54,16 +54,8 @@ export default {
         }
     },
     methods:{
-        openNav(){
-            document.getElementById("mySidenav").style.width = "300px";
-        },
-        closeNav(){
-            document.getElementById("mySidenav").style.width = "0";
-
-        },
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
-            this.closeNav()
             this.showDropdown = false
         },
         handleLogout(){
@@ -87,8 +79,6 @@ export default {
     },
 
     mounted() {
-        // console.log(this.$store.getters.user)
-        this.openNav()
     },
 }
 </script>

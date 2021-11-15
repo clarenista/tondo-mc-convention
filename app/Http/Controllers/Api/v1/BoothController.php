@@ -20,12 +20,11 @@ class BoothController extends Controller
     {
 
         $booth = Booth::whereId($booth_id)
-            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire'])
+            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel'])
             ->first();
 
         $return = [
             'id' => $booth->id,
-
             'name' => $booth->name,
             'panorama_location' => $booth->panorama_location,
         ];
@@ -38,14 +37,13 @@ class BoothController extends Controller
             $return['hotspots'][$hotspot->name] = $hotspot;
             $return['hotspots'][$hotspot->name]['name'] = $hotspot->name;
             $return['hotspots'][$hotspot->name]['questionnaire'] = $booth->questionnaire;
-            $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions()->with(['answers'=>function($q) {
+            $return['hotspots'][$hotspot->name]['questions'] = $booth->questionnaire->questions()->with(['answers' => function ($q) {
                 $q->whereUserId(\request()->user()->id)->groupBy('question_id');
             }])->get();
             $return['hotspots'][$hotspot->name]['quiz_taken'] = request()->user()->answers()->with('question')->whereQuestionnaireId($booth->questionnaire->id)->groupBy('question_id')->get();
         }
 
         return $return;
-
     }
 
     public function storeMessage($booth_id)
@@ -103,13 +101,44 @@ class BoothController extends Controller
             ]);
         }
 
-        $questions = $booth->questionnaire->questions()->with(['answers'=>function($q) {
+        $questions = $booth->questionnaire->questions()->with(['answers' => function ($q) {
             $q->whereUserId(\request()->user()->id)->groupBy('question_id');
-
         }])->get();
         $answers = request()->user()->answers()->with('question')->whereQuestionnaireId($booth->questionnaire->id)->groupBy('question_id')->get();
 
-        return response(['answers' =>$answers, 'questions' => $questions], 201);
+        return response(['answers' => $answers, 'questions' => $questions], 201);
     }
 
+    public function wheel($booth_id)
+    {
+
+        $booth = Booth::find($booth_id);
+        if ($booth->wheel) {
+            return response([
+                'success' => true,
+                'data' => $booth->wheel->segments
+            ]);
+        }
+        return response([
+            'success' => false,
+            'data' => [],
+        ]);
+    }
+
+    public function wheelSubmit($booth_id){
+
+        $booth = Booth::find($booth_id);
+        $wheel = $booth->wheel;
+
+        $input = request()->validate([
+            'value' => 'required',
+        ]);
+
+        $input['user_id'] =  request()->user()->id;
+        $wheel->submits()->create($input);
+
+        return response([
+            'success' => true,
+        ]);
+    }
 }
