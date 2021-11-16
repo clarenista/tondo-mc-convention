@@ -17,6 +17,8 @@ export default new Vuex.Store({
     users:null,
     currentScene: 'lobby',
     bgmStart: true,
+    bgm: null,
+    audio: new Audio('/bgm/landing.weba'),
     booth_details: null,
     announcement: null,
     isNotAllowed: null,
@@ -33,16 +35,16 @@ export default new Vuex.Store({
       {
         "scene": 'main_entrance',
         "type": "scene",
-        "pitch": -2.5,
-        "yaw": -4.8,
+        "pitch": -4.9,
+        "yaw": -4.1,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
       {
         "scene": 'main_entrance',
         "type": "scene",
-        "pitch": -2.5,
-        "yaw": 5,
+        "pitch": -4.9,
+        "yaw": 4.1,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
@@ -164,7 +166,7 @@ export default new Vuex.Store({
         "pitch": 19.0,
         "yaw": -138.1,
         "cssClass": "custom-hotspot arrow_right",
-        "sceneId": "meeting_hall",
+        "sceneId": "secondf_meeting_hall",
       },
       {
         "scene": 'hall_a',
@@ -200,14 +202,14 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot hall_d",
         "sceneId": "hall_d",
       },
-      {
-        "scene": 'hall_c',
-        "type": "scene",
-        "pitch": 8.7,
-        "yaw": -181.0,
-        "cssClass": "custom-hotspot arrow_left",
-        "sceneId": "secondf_photobooth",
-      },
+      // {
+      //   "scene": 'hall_c',
+      //   "type": "scene",
+      //   "pitch": 8.7,
+      //   "yaw": -181.0,
+      //   "cssClass": "custom-hotspot arrow_left",
+      //   "sceneId": "secondf_photobooth",
+      // },
       {
         "scene": 'hall_c',
         "type": "scene",
@@ -378,14 +380,15 @@ export default new Vuex.Store({
       state.currentScene = scene
     },
     updateBgmStart(state, start) {
+      
+
+      // console.log(state.audio)
       state.bgmStart = start
-      const bgm = document.getElementById('bgm');
-      bgm.volume =0.1
       if(!start){
-        bgm.pause()
+        state.audio.pause()
         // bgm.currentTime = 0;
       }else{
-        bgm.play()
+        state.audio.play()
       }
     },
     changeBoothDetails(state, booth_details) {
@@ -394,6 +397,13 @@ export default new Vuex.Store({
     changeAnnouncement(state, announcement){
       state.announcement = announcement
 
+    },
+    updateAudioSource(state, src){
+      state.audio.pause()
+      state.audio.currentTime = 0
+      state.audio = new Audio(src)
+      state.audio.loop = true
+      state.audio.play()
     }
   },
   getters: {
@@ -412,5 +422,14 @@ export default new Vuex.Store({
     announcement: state => state.announcement,
     isNotAllowed: state => state.isNotAllowed,
     isNotAllowedMessage: state => state.isNotAllowedMessage,
+    audio: state => state.audio,
+  },
+  actions:{
+    getBgm({commit}){
+      // alert('test')
+      
+      
+      commit('updateBgmStart', true)
+    }
   }
 })

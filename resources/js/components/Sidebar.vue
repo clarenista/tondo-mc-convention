@@ -22,8 +22,8 @@
                 <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
             </div>
         </div>
-        <a href="javascript:void(0)" @click="handleVote">
-            <span class="badge badge-dark"><i class="fa fa-hand-o-up" ></i></span> <!-- Vote -->
+        <a href="javascript:void(0)" @click="handleBgmPlayToggle">
+            <span class="badge badge-dark"><i class="fa fa-volume-up" ></i></span> <!-- Vote -->
         </a>
         <a href="javascript:void(0)" @click="handleLogout">
             <span class="badge badge-dark"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
@@ -57,6 +57,9 @@ export default {
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
             this.showDropdown = false
+        },
+        handleBgmPlayToggle(){
+            this.$emit('handleBgmPlayToggle');
         },
         handleLogout(){
             // remove user details in store

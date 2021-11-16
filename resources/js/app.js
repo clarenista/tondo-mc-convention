@@ -44,12 +44,13 @@ const app = new Vue({
         if(localStorage.getItem('access_token') != null){
             this.getUser()
         }
-        if(localStorage.getItem('bgmStart')){
-            this.$store.commit('updateBgmStart', true)
-        }else{
-            this.$store.commit('updateBgmStart', false)
+        this.$store.dispatch("getBgm");  
+        // if(localStorage.getItem('bgmStart')){
+        //     this.$store.commit('updateBgmStart', true)
+        // }else{
+        //     this.$store.commit('updateBgmStart', false)
 
-        }
+        // }
     },
     render: h => h(App),
     methods: {

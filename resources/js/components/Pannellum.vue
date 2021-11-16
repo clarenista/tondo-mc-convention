@@ -115,7 +115,7 @@
         </div>
       </div>
       
-      <Sidebar @handleNavigateTo="handleNavigateTo"></Sidebar>
+      <Sidebar @handleNavigateTo="handleNavigateTo" @handleBgmPlayToggle="handleBgmPlayToggle"></Sidebar>
       <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
         <template v-slot:title >
             <img src="/images/welcome_logo.png" alt="" class="center_logo">
@@ -210,7 +210,6 @@ export default {
         // auth:api
         let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
         // let {data} = await axios.get('api/v1/booths')
-        console.log(data)
 
         for(let i in data){
           data[i]['src'] = data[i].url
@@ -220,7 +219,6 @@ export default {
         this.booths = data
 
         this.standees = _.filter(this.booths, ['type', 'standee'])
-        // console.log(this.booths)
 
 
         this.panorama_details = {
@@ -251,8 +249,8 @@ export default {
                 // 180 view | 360 view = 180 view x 2
                 'minPitch' :-45,
                 'maxPitch' :45,
-                'minYaw': -90,
-                'maxYaw':90,   
+                'minYaw': -120,
+                'maxYaw':120,   
               },
               "main_entrance": {
                 "type": "multires",
@@ -268,10 +266,10 @@ export default {
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
-                'minPitch' :-45,
-                'maxPitch' :45,
-                'minYaw': -90,
-                'maxYaw':90,   
+                // 'minPitch' :-45,
+                // 'maxPitch' :45,
+                // 'minYaw': -90,
+                // 'maxYaw':90,   
               },
               "lobby": {
                 "type": "multires",
@@ -303,10 +301,10 @@ export default {
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,   
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -90,
+                'maxYaw':90,   
               },
               "secondf_meeting_hall": {
                 "type": "multires",
@@ -532,6 +530,39 @@ export default {
         this.reSize()
         
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
+        switch(this.viewer.getScene()) {
+          case 'lobby':
+            this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
+            break;
+          case 'hall':
+            this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
+            break;            
+          case 'hall_a':
+            this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
+            break;
+          case 'hall_b':
+            this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
+            break;
+          case 'hall_c':
+            this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
+            break;
+          case 'hall_d':
+            this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
+            break;
+          case 'pool_area':
+            this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
+            break;
+          case 'meeting_hall':
+            this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
+            this.$store.getters.audio.volume = 0.1
+            break;
+          case 'secondf_meeting_hall':
+            this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
+            break;
+          default:
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            // code block
+        }
       },
       reSize() {
         // Get screen size (inner/outerWidth, inner/outerHeight)
@@ -576,7 +607,6 @@ export default {
           this.show_standee = true
           this.standee_dtls.push(booth)
           this.standee_index = 0;
-          console.log(this.standee_index)
 
         } else {
           this.$router.push('sponsors/'+booth.id)
@@ -664,24 +694,6 @@ export default {
             );
 
             this.imageRendered = i
-
-            
-            console.log(urlencode(i))
-
-            
-            // const byteCharacters = atob(i);
-            // const blob = b64toBlob(i, contentType);
-            // fetch(i)
-            // .then(res => res.blob())
-            // .then(data => {
-            //   // console.log(data)
-            //   // const blob = new Blob(i);
-              
-            // const blobUrl = URL.createObjectURL(data);
-            // console.log(blobUrl)
-            // })
-            // const blob = new Blob(i);
-            
         }        
       },
 
@@ -722,7 +734,6 @@ export default {
               { returnImage: true },
             );
 
-            console.log(i)
         }
       }
       // BOOTH TRACKER

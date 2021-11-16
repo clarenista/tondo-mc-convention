@@ -396,7 +396,6 @@ export default {
         let count = this.selectedHotspot.questions.length
         if(0 < this.page){
           this.page = this.page - 1
-          console.log(this.page)
           if(0>this.page){
 
           this.end = false
@@ -524,14 +523,5 @@ export default {
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
   } 
-  div >>> .pnlm-load-box{
-    background-image: url('/images/multires/loading.png');
-    background-size: cover;
-  }
-  div >>> .pnlm-load-box p{
-    display:none !important;
-  } 
-  div >>> .pnlm-load-box .pnlm-lbar{
-    display:none !important;
-  }     
+
 </style>
