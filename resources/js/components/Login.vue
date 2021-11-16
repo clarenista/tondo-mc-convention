@@ -134,7 +134,7 @@
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
-                    this.$store.commit('updateBgmStart', true)
+                    this.$store.commit('updateAudioSource', true)
                     localStorage.setItem("access_token", data.access_token);
                     ;
                     this.$router.push('/')
