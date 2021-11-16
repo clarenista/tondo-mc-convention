@@ -539,22 +539,26 @@ export default {
             break;            
           case 'hall_a':
             this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
+            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_b':
             this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
+            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_c':
             this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
+            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_d':
             this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
+            this.$store.getters.audio.volume = 0.5
             break;
           case 'pool_area':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
-            this.$store.getters.audio.volume = 0.1
+            this.$store.getters.audio.volume = 0.3
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
