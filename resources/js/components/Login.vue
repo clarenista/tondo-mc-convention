@@ -134,7 +134,7 @@
                     this.isLoginSuccess = true
                     this.$emit('isLoginSuccess', this.isLoginSuccess);
                     this.$store.commit('changeUser', data.user)
-                    this.$store.commit('updateAudioSource', true)
+                    this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
                     localStorage.setItem("access_token", data.access_token);
                     ;
                     this.$router.push('/')
@@ -150,7 +150,7 @@
                 this.isOpen = e
             },
             handleToggleBgMusic(){
-                this.$store.commit('updateBgmStart')
+                this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
             }
         }
 
