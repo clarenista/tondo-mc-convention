@@ -32,23 +32,31 @@
         <script src="{{asset('/js/TweenMax.min.js')}}"></script>
     </head>
     <body>
-        <div align="center">
-            <h1>Welcome to Fortune Wheel</h1>
-            <br />
-            <table cellpadding="0" cellspacing="0" border="0">
-            <tr>
-                <td>
-                </td>
-                <td width="438" onClick="startSpin();" height="582" class="the_wheel" align="center" valign="center" style="cursor:pointer;">
-                    <canvas id="canvas" width="434" height="434" 
-                        data-responsiveMinWidth="180"
-                        data-responsiveScaleHeight="true"  
-                        data-responsiveMargin="50">
-                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
-                    </canvas>
-                </td>
-            </tr>
-        </table>
+        <div class="col" align="center"> 
+            <!-- <h1>Welcome to Fortune Wheel</h1>
+            <br /> -->
+            <!-- <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td onClick="startSpin();" class="the_wheel" align="center" valign="center" style="cursor:pointer;">
+                        <canvas id="canvas" width="174" height="170" 
+                            data-responsiveMinWidth="180"
+                            data-responsiveScaleHeight="true"  
+                            data-responsiveMargin="50">
+                            <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                        </canvas>
+                    </td>
+                </tr>
+            </table> -->
+
+            <div onClick="startSpin();" class="the_wheel" align="center" valign="center" style="cursor:pointer;">
+                <canvas id="canvas" width="174" height="170" 
+                    data-responsiveMinWidth="180"
+                    data-responsiveScaleHeight="true"  
+                    data-responsiveMargin="50">
+                    <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                </canvas>
+            </div>
+            
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             var result = null
@@ -84,9 +92,9 @@
 
             // Create new wheel object specifying the parameters at creation time.
             let theWheel = new Winwheel({
-                'outerRadius'     : 212,        // Set outer radius so wheel fits inside the background.
-                'innerRadius'     : 75,         // Make wheel hollow so segments don't go all way to center.
-                'textFontSize'    : 24,         // Set default font size for the segments.
+                'outerRadius'     : 84,        // Set outer radius so wheel fits inside the background.
+                'innerRadius'     : 15,         // Make wheel hollow so segments don't go all way to center.
+                'textFontSize'    : 12,         // Set default font size for the segments.
                 'textOrientation' : 'vertical', // Make text vertial so goes down from the outside of wheel.
                 'textAlignment'   : 'outer',    // Align text to outside of wheel.
                 'responsive'   : true,  // This wheel is responsive!
@@ -105,7 +113,7 @@
                 {
                     'number'     : 24,
                     'fillStyle'  : 'silver',
-                    'outerRadius': 4,
+                    'outerRadius': 2,
                     'responsive' : true,
                 }
             });
