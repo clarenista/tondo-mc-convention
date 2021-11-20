@@ -26,6 +26,7 @@
 </template>
 <script>
     export default {
+        props: ['sponsor_id'],
         data() {
             return {
                 modal: {
@@ -35,7 +36,7 @@
                 collapsed: false,
                 channel: null,
                 rooms: [],
-                currentRoom: null,
+                room: null,
                 messages: [],
                 newMessage: null,
             }
@@ -43,6 +44,9 @@
         computed: {
            username() {
                 return "client"
+           },
+           sponsorId(){
+               return this.sponsor_id
            }
         },
         mounted() {
@@ -50,11 +54,22 @@
         },
         methods: {
             init(){
+                this.getRoom()
                 this.getMessages()
+            },
+            async getRoom(){
+                const fd = new FormData()
+                fd.append('sponsor_id', this.sponsorId)
+                try{
+                    const {data} = await axios.post('/api/v1/chat/get-room?api_token='+localStorage.getItem('access_token'), fd)
+                    this.room = data
+                }catch({response}){
+                    alert(response.statusText)
+                }
             },
             async getMessages(){
                 try{
-                    const {data} = await axios.get('/api/v1/chat/rooms/1/messages?api_token='+localStorage.getItem('access_token'));
+                    const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
                     console.log(data)
                 }catch({response}){
@@ -65,7 +80,7 @@
                 const fd = new FormData()
                 fd.append('newMessage', this.newMessage)
                 try{
-                    const {data} = await axios.post('/api/v1/chat/rooms/1/messages?api_token='+localStorage.getItem('access_token'), fd)
+                    const {data} = await axios.post('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'), fd)
                     this.messages.push(data)
                     this.newMessage = ''
 

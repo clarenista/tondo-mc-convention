@@ -208,7 +208,7 @@
             <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
-    <Chat />
+    <Chat :sponsor_id="id" />
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
     <div id="panorama"></div>
   </div>

@@ -26,4 +26,15 @@ class ChatController extends Controller
         $newMessage = \request()->user()->chat_messages()->create(\request()->all());
         return \request()->all();
     }
+
+    public function getRoom(){
+        // room_sponsor_id-user_id
+        // rm_1-1
+        $room_name = 'rm_'.\request()->sponsor_id."-".\request()->user()->id;
+        $room = ChatRoom::where('name', $room_name)->first();
+        if(isset($room->id)){
+            return $room;
+        }
+        return ChatRoom::create(['name' => $room_name]);
+    }
 }

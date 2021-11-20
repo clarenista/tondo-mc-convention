@@ -45,4 +45,5 @@ Route::get('/event', [EventController::class, 'get']);
 
 Route::get('/chat/rooms', [ChatController::class, 'rooms']);
 Route::get('/chat/rooms/{id}/messages', [ChatController::class, 'messages']);
+Route::post('/chat/get-room', [ChatController::class, 'getRoom']);
 Route::post('/chat/rooms/{id}/messages', [ChatController::class, 'newMessage']);

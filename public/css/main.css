@@ -112,6 +112,11 @@ td.pw3
 }
 #chat .c-chat-widget-body {
     padding: 10px 15px; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    overflow-y: scroll;
+    height: 250px;
+    white-space: nowrap;
 }
 #chat .c-chat-widget-footer {
     padding: 10px 15px; 
