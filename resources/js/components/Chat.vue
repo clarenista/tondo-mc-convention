@@ -50,12 +50,23 @@
            }
         },
         mounted() {
+            
             this.init()
         },
         methods: {
+            
             init(){
                 this.getRoom()
                 this.getMessages()
+            },
+            connect(){
+                let vm = this
+                this.getMessages();
+                console.log(vm.room.id)
+                window.Echo.private("chat."+vm.room.id)
+                .listen('.message.new', e =>{
+                     vm.getMessages();
+                })
             },
             async getRoom(){
                 const fd = new FormData()
@@ -63,6 +74,7 @@
                 try{
                     const {data} = await axios.post('/api/v1/chat/get-room?api_token='+localStorage.getItem('access_token'), fd)
                     this.room = data
+                    this.connect()
                 }catch({response}){
                     alert(response.statusText)
                 }
@@ -71,6 +83,7 @@
                 try{
                     const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
+                    // this.connect()
                     console.log(data)
                 }catch({response}){
                     alert(response.statusText)

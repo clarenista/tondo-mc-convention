@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
+use \Auth;
 use Illuminate\Http\Request;
 use App\Models\ChatRoom;
 use App\Models\ChatMessage;
+use App\Events\NewChatMessage;
 
 
 class ChatController extends Controller
@@ -24,6 +26,8 @@ class ChatController extends Controller
     public function newMessage($roomId){
         \request()->merge(['chat_room_id' => $roomId, 'message' => \request()->newMessage, 'user' => \request()->user()]);
         $newMessage = \request()->user()->chat_messages()->create(\request()->all());
+
+        broadcast(new NewChatMessage($newMessage))->toOthers();
         return \request()->all();
     }
 
