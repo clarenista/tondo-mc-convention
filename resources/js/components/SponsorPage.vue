@@ -208,16 +208,18 @@
             <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
+    <Chat />
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
     <div id="panorama"></div>
   </div>
 </template>
 <script>
 import Modal from './Modal'
+import Chat from './Chat'
 export default {
   props:['id'],
   components:{
-    Modal
+    Modal, Chat
   },
   mounted() {
     this.init()  
