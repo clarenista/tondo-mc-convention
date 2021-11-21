@@ -26,7 +26,7 @@
 </template>
 <script>
     export default {
-        props: ['sponsor_id'],
+        props: ['sponsor_id', 'user_details'],
         data() {
             return {
                 modal: {
@@ -35,10 +35,13 @@
                 messageData: [],
                 collapsed: false,
                 channel: null,
-                rooms: [],
-                room: null,
+                rooms: null,
+                room: {
+                    id: null
+                },
                 messages: [],
                 newMessage: null,
+                userDetails: []
             }
         },
         computed: {
@@ -47,21 +50,29 @@
            },
            sponsorId(){
                return this.sponsor_id
-           }
+           },
         },
         mounted() {
 
             this.init()
         },
         methods: {
-
+            async getUserInfo(){
+                try{
+                    let {data} = await axios.get('/api/v1/user?api_token='+localStorage.getItem('access_token'));
+                    this.userDetails = data
+                }catch({response}){
+                    alert(response.statusText)
+                }
+            },
             init(){
                 // this.getRoom()
+                this.getUserInfo()
                 this.getMessages()
             },
             connect(){
                 let vm = this
-                vm.room.id = this.sponsorId+"-"+this.$store.getters.user.id
+                vm.room.id = this.sponsorId+"-"+this.userDetails.id
                 this.getMessages();
                 window.Echo.channel("chat."+vm.room.id)
                 .listen('.message.new', e =>{
@@ -80,18 +91,19 @@
                 }
             },
             async getMessages(){
-                this.room.id = this.sponsorId+"-"+this.$store.getters.user.id
+                this.room.id = this.sponsorId+"-"+this.userDetails.id
+                // console.log(this.$store.getters.user)
                 try{
                     const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
                     // this.connect()
-                    console.log(data)
+                    // console.log(data)
                 }catch({response}){
                     alert(response.statusText)
                 }
             },
             async sendNewMessage(){
-                this.room.id = this.sponsorId+"-"+this.$store.getters.user.id
+                this.room.id = this.sponsorId+"-"+this.userDetails.id
                 const fd = new FormData()
                 fd.append('newMessage', this.newMessage)
                 try{
