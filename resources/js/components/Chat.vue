@@ -56,7 +56,7 @@
         methods: {
 
             init(){
-                this.getRoom()
+                // this.getRoom()
                 this.getMessages()
             },
             connect(){
