@@ -50,11 +50,11 @@
            }
         },
         mounted() {
-            
+
             this.init()
         },
         methods: {
-            
+
             init(){
                 this.getRoom()
                 this.getMessages()
@@ -63,7 +63,7 @@
                 let vm = this
                 vm.room.id = this.sponsorId+"-"+this.$store.getters.user.id
                 this.getMessages();
-                window.Echo.private("chat."+vm.room.id)
+                window.Echo.channel("chat."+vm.room.id)
                 .listen('.message.new', e =>{
                      vm.getMessages();
                 })
