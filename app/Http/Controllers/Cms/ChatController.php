@@ -13,9 +13,11 @@ class ChatController extends Controller
 
     public function index()
     {
-        $guests = User::whereHas('activities', function ($q) {
-            $min2ago = date("Y-m-d H:i:s", time() - 300);
-            $q->where('sent_at', '>', $min2ago);
+
+        $event_id = auth()->user()->booth->eventCategory->id;
+        $guests = User::whereHas('events', function ($q) use ($event_id) {
+            $min2ago = date("Y-m-d H:i:s", time() - 120);
+            $q->whereType('event')->whereUserEventCategoryId($event_id)->where('sent_at', '>', $min2ago);
         })->get();
 
         return view("cms.sponsor.chat.index", compact('guests'));
