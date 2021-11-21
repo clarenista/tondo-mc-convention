@@ -61,8 +61,8 @@
             },
             connect(){
                 let vm = this
+                vm.room.id = this.sponsorId+"-"+this.$store.getters.user.id
                 this.getMessages();
-                console.log(vm.room.id)
                 window.Echo.private("chat."+vm.room.id)
                 .listen('.message.new', e =>{
                      vm.getMessages();
@@ -80,6 +80,7 @@
                 }
             },
             async getMessages(){
+                this.room.id = this.sponsorId+"-"+this.$store.getters.user.id
                 try{
                     const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
@@ -90,6 +91,7 @@
                 }
             },
             async sendNewMessage(){
+                this.room.id = this.sponsorId+"-"+this.$store.getters.user.id
                 const fd = new FormData()
                 fd.append('newMessage', this.newMessage)
                 try{
