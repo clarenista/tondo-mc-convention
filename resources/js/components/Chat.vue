@@ -61,6 +61,7 @@
                 try{
                     let {data} = await axios.get('/api/v1/user?api_token='+localStorage.getItem('access_token'));
                     this.userDetails = data
+                    this.getMessages()
                 }catch({response}){
                     alert(response.statusText)
                 }
@@ -68,7 +69,7 @@
             init(){
                 // this.getRoom()
                 this.getUserInfo()
-                this.getMessages()
+                // this.getMessages()
             },
             connect(){
                 let vm = this
@@ -92,7 +93,7 @@
             },
             async getMessages(){
                 this.room.id = this.sponsorId+"-"+this.userDetails.id
-                // console.log(this.$store.getters.user)
+                console.log(this.userDetails)
                 try{
                     const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
