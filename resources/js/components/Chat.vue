@@ -50,11 +50,11 @@
            }
         },
         mounted() {
-            
+
             this.init()
         },
         methods: {
-            
+
             init(){
                 this.getRoom()
                 this.getMessages()
@@ -63,7 +63,7 @@
                 let vm = this
                 this.getMessages();
                 console.log(vm.room.id)
-                window.Echo.private("chat."+vm.room.id)
+                window.Echo.channel("chat."+vm.room.id)
                 .listen('.message.new', e =>{
                      vm.getMessages();
                 })
