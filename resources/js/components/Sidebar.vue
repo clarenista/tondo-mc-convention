@@ -44,9 +44,9 @@ export default {
                 {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item'},
                 {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item'},
                 {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item'},
-                {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-calendar', type:'nav-item'},
                 {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown', 
                     dropdowns:[
+                        {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall A", sceneId: 'hall_a', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall B", sceneId: 'hall_b', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall C", sceneId: 'hall_c', icon: 'fa-map-marker'},
