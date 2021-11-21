@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterChatRoomIdFromChatMessages extends Migration
+class AddSenderIdToChatMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AlterChatRoomIdFromChatMessages extends Migration
     public function up()
     {
         Schema::table('chat_messages', function (Blueprint $table) {
-            $table->string('chat_room_id')->nullable()->change();
-            $table->integer('chat_room__id')->nullable();
+            $table->integer('sender_id')->nullable();
         });
     }
 
@@ -26,9 +25,8 @@ class AlterChatRoomIdFromChatMessages extends Migration
      */
     public function down()
     {
-
         Schema::table('chat_messages', function (Blueprint $table) {
-            $table->integer('chat_room_id')->change();
+            $table->dropColumn(['sender_id']);
         });
     }
 }

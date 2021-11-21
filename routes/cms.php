@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BannerController;
 use App\Http\Controllers\Cms\BoothController;
+use App\Http\Controllers\Cms\ChatController;
 use App\Http\Controllers\Cms\ContactController;
 use App\Http\Controllers\Cms\EventController as CmsEventController;
 use App\Http\Controllers\Cms\EventManagementController;
@@ -71,6 +72,14 @@ Route::name('cms.')->group(function () {
                 Route::get('', [SponsorQuestionnaireController::class, 'index'])->name('index');
                 Route::get('export/spreadsheet', [SponsorQuestionnaireController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
                 Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
+            });
+
+            Route::name('chat.')->prefix('chat')->group(function () {
+                Route::get('', [ChatController::class, 'index'])->name('index');
+                Route::get('/guest/{guest}', [ChatController::class, 'guest'])->name('guest');
+                Route::post('/guest/{guest}', [ChatController::class, 'guestMessage'])->name('guest.message');
+                // Route::get('export/spreadsheet', [ChatController::class, 'index'])->name('chat.index');
+                // Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
             });
         });
         Route::resource('banners', BannerController::class);

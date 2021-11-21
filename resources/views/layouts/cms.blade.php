@@ -61,6 +61,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.questionnaires.index',1) }}">Booth Quizzes</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.chat.index',1) }}">Chat Visitors</a>
+                </li>
             @endhasrole
 
             @hasrole('admin')
