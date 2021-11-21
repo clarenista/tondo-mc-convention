@@ -45,7 +45,7 @@ class ChatController extends Controller
             ->chat_messages()
             ->create($input);
 
-        broadcast(new NewChatMessage($newMessage))->toOthers();
+        broadcast(new NewChatMessage($roomId, $newMessage));
 
         return \request()->all();
     }

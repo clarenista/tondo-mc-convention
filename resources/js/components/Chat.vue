@@ -76,9 +76,12 @@
                 let vm = this
                 vm.room.id = this.sponsorId+"-"+this.userDetails.id
                 this.getMessages();
+                console.log("connecting","chat."+vm.room.id);
                 window.Echo.channel("chat."+vm.room.id)
-                .listen('NewChatMessage', e =>{
-                     this.messages.push()
+                .listen('NewChatMessage', (e) =>{
+
+                    console.log(e);
+                    //  this.messages.push()
                 })
             },
             async getRoom(){

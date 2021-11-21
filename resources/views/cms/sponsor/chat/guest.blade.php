@@ -9,8 +9,8 @@
     <div class="d-flex">
         <div class="flex-fill">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page">Chat - {{ $guest->name }}</li>
+                <ol class="breadcrumb" >
+                    <li class="breadcrumb-item active"  style="width:100%" aria-current="page">Me <span class="pull-right">{{ $guest->name }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -51,9 +51,7 @@
             </form>
         </div>
     </div>
-
 @stop
-
 
 @section('js')
 
