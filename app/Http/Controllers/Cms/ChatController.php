@@ -13,7 +13,6 @@ class ChatController extends Controller
 
     public function index()
     {
-
         $guests = User::whereHas('activities', function ($q) {
             $min2ago = date("Y-m-d H:i:s", time() - 300);
             $q->where('sent_at', '>', $min2ago);
