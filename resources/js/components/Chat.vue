@@ -76,8 +76,10 @@
                 vm.room.id = this.sponsorId+"-"+this.userDetails.id
                 this.getMessages();
                 window.Echo.channel("chat."+vm.room.id)
-                .listen('NewChatMessage', e =>{
-                     this.messages.push()
+                .listen('NewChatMessage', (e) =>{
+
+                    console.log(e);
+                    //  this.messages.push()
                 })
             },
             async getRoom(){
