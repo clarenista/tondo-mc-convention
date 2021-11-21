@@ -79,16 +79,16 @@ window.Echo = new Echo({
     encrypted: false,
 });
 
-window.Echo.channel('Announcement').listen('AnnouncementEvent', (e) => {
-    // CALL ANNOUNCEMENT CODE HERE
-    if(e.payload.title == null){
+// window.Echo.channel('Announcement').listen('AnnouncementEvent', (e) => {
+//     // CALL ANNOUNCEMENT CODE HERE
+//     if(e.payload.title == null){
 
-        store.commit('changeAnnouncement', null)
-    }else{
-        store.commit('changeAnnouncement', e)
+//         store.commit('changeAnnouncement', null)
+//     }else{
+//         store.commit('changeAnnouncement', e)
 
-    }
+//     }
 
-});
+// });
 
 // WEBSOCKET PUSH EXAMPLE END

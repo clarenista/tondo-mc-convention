@@ -208,22 +208,33 @@
             <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
+    <Chat :sponsor_id="booth_details.sponsor_id" :user_details="user" v-if="booth_details"/>
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
     <div id="panorama"></div>
   </div>
 </template>
 <script>
 import Modal from './Modal'
+import Chat from './Chat'
 export default {
+  computed:{
+    user(){
+        return this.$store.getters.user
+    },
+    sponsorId(){
+      return this.booth_details.sponsor_id
+    }
+  },
   props:['id'],
   components:{
-    Modal
+    Modal, Chat
   },
-  mounted() {
+  created() {
     this.init()  
   },
   methods:{
     async init(){
+    
       const wrapper = document.querySelector('.hotspots--wrapper');
       let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
       this.booth_details = data
@@ -250,7 +261,7 @@ export default {
           this.selectedHotspot = hs[i]
         }
       }
-      console.log(hs)
+      // console.log(hs)
       this.panorama_details = {
         "default": {
             "firstScene": "landing",
@@ -291,6 +302,7 @@ export default {
           }
     },
     handleSelectHotspot(hotspot){
+      
       this.value = true
       for(let i in hotspot.assets){
         hotspot.assets[i]['src'] = hotspot.assets[i].url

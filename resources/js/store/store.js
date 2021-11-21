@@ -404,7 +404,8 @@ export default new Vuex.Store({
       state.audio = new Audio(src)
       state.audio.loop = true
       state.audio.play()
-    }
+    },
+    
   },
   getters: {
     pois: state => state.pois,

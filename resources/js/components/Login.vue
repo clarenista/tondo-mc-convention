@@ -83,6 +83,7 @@
 <script>
     import Timer from './Timer.vue'
     export default {
+
         components:{
             Timer
         },
