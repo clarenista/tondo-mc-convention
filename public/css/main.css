@@ -143,12 +143,20 @@ td.pw3
     width: 100%; 
 }
 #chat .c-chat-widget-bubble {
-    background: #fff;
     border-radius: 3px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
-    max-width: 96%;
+    max-width: 70%;
     padding: 10px; 
+}
+#chat .c-chat-widget-bubble-left {
+    background: #ffffff;
+    margin: auto auto auto 0;
+}
+#chat .c-chat-widget-bubble-right {
+    background: #02b875;
+    color: #fff;
+    margin: auto 0 auto auto;
 }
 #chat .c-chat-widget-bubble-icon {
     border-radius: 3px;
@@ -162,9 +170,7 @@ td.pw3
     vertical-align: middle; 
 }
 #chat .c-chat-widget-bubble-text {
-    border-left: 2px solid #aaa;
     display: block;
-    margin-top: 15px;
     padding: 10px 20px;
     vertical-align: middle; 
 }

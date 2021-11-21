@@ -6,10 +6,11 @@
                 <div class="c-chat-widget-content">
                     <div class="c-chat-widget-header">Chat With Us Admin</div>
                     <div class="c-chat-widget-body">
-                        <div class="c-chat-widget-bubble c-chat-widget-bubble-left row" v-for="(msg, index) in messages" :key="index">
-                            <div class="c-chat-widget-bubble-icon">{{msg.user.first_name}}</div>
-                            <div class="c-chat-widget-bubble-text">
-                              {{msg.message}}
+                        <div v-for="(msg, index) in messages" :key="index" class="mb-2">
+                            <div class="c-chat-widget-bubble row" :class="msg.user.id === userDetails.id ? 'c-chat-widget-bubble-right' : 'c-chat-widget-bubble-left'">
+                                <div class="c-chat-widget-bubble-text">
+                                {{msg.message}}
+                                </div>
                             </div>
                         </div>
                     </div>
