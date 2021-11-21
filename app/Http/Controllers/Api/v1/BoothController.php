@@ -126,20 +126,21 @@ class BoothController extends Controller
         ]);
     }
 
-    public function wheelSubmit($booth_id){
+
+    public function wheelSubmit($booth_id)
+    {
 
         $booth = Booth::find($booth_id);
         $wheel = $booth->wheel;
-
-        $input = request()->validate([
-            'value' => 'required',
-        ]);
-
+        $input['value'] = rand(0, 36000) / 100;
         $input['user_id'] =  request()->user()->id;
         $wheel->submits()->create($input);
 
         return response([
             'success' => true,
+            'data' => [
+                'value' => $input['value'],
+            ]
         ]);
     }
 }
