@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Cms;
 
+use App\Events\NewChatMessage;
 use App\Http\Controllers\Controller;
 use App\Models\ChatMessage;
 use App\Models\User;
@@ -37,14 +38,16 @@ class ChatController extends Controller
     {
 
         $user = auth()->user();
-        $rroom_id = "{$user->booth->id}-{$guest->id}";
+        $room_id = "{$user->booth->id}-{$guest->id}";
 
-        ChatMessage::create([
-            'chat_room_id' => $rroom_id,
+        $message = ChatMessage::create([
+            'chat_room_id' => $room_id,
             'message' => \request()->message,
             'user_id' => $guest->id,
             'sender_id' => $user->booth->id
         ]);
+
+        broadcast(new NewChatMessage($room_id, $message));
 
         return redirect()->back();
     }
