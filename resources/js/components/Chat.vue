@@ -62,6 +62,7 @@
                     let {data} = await axios.get('/api/v1/user?api_token='+localStorage.getItem('access_token'));
                     this.userDetails = data
                     this.getMessages()
+                    this.connect()
                 }catch({response}){
                     alert(response.statusText)
                 }
