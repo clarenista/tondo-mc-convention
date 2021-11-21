@@ -109,9 +109,10 @@ class User extends Authenticatable
 
         return $this->hasMany(UserWebinar::class);
     }
+
     public function chat_messages()
     {
 
         return $this->hasMany(ChatMessage::class);
-    }    
+    }
 }

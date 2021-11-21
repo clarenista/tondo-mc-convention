@@ -11,8 +11,9 @@ class ChatRoom extends Model
 
     protected $fillable = ['name'];
 
-    public function messages(){
-        return $this->hasOne('App\Models\ChatMessage');
+    public function messages()
+    {
+
+        return $this->hasOne('App\Models\ChatMessage', 'chat_room__id', 'id');
     }
-    
 }
