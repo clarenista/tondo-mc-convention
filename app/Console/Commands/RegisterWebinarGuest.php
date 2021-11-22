@@ -73,6 +73,8 @@ class RegisterWebinarGuest extends Command
         $registered_panelists = collect($registered_panelists);
         echo var_dump($response);
         $guests = User::withTrashed()->whereIn('email_address', $emails)->get();
+
+
         $panelists = [];
         foreach ($guests as $guest) {
             if (!$registered_panelists->firstWhere('email_address', $guest->email_address))
@@ -114,43 +116,47 @@ class RegisterWebinarGuest extends Command
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
-        foreach ($guests as $guest) {
-            if (strpos($guest->email_address, "@")) {
-                $registrants = collect($registrants);
-                $registered = $registrants->firstWhere('email_address', $guest->email_address);
-                if ($registered) {
-                    $response = [
-                        "registrant_id" => $registered['id'],
-                        "id" => $webinar_id,
-                        "topic" => $webinar_topic,
-                        "join_url" => $registered['join_url'],
-                        'registered' => true,
+
+        echo join(', ', $guests->pluck('email_address')->toArray());
+        if ($this->confirm('register?')) {
+            foreach ($guests as $guest) {
+                if (strpos($guest->email_address, "@")) {
+                    $registrants = collect($registrants);
+                    $registered = $registrants->firstWhere('email_address', $guest->email_address);
+                    if ($registered) {
+                        $response = [
+                            "registrant_id" => $registered['id'],
+                            "id" => $webinar_id,
+                            "topic" => $webinar_topic,
+                            "join_url" => $registered['join_url'],
+                            'registered' => true,
+                        ];
+                    } else {
+                        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
+                        $post = [
+                            'email' => $guest->email_address,
+                            'first_name' => $guest->first_name,
+                            'last_name' => $guest->last_name,
+                        ];
+                        $response = $client->post($registrants_api, $post);
+                        $response = $response->json();
+                    }
+                    if (isset($response['code']) && $response['code'] == 300) {
+                        dd($response, $guest->toArray());
+                    }
+                    $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->first();
+                    $data = [
+                        'registrant_id' => $response['registrant_id'],
+                        'webinar_id' => $response['id'],
+                        'topic' => $response['topic'],
+                        'role' => $webinar_role,
+                        'join_url' => $response['join_url'],
                     ];
-                } else {
-                    $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
-                    $post = [
-                        'email' => $guest->email_address,
-                        'first_name' => $guest->first_name,
-                        'last_name' => $guest->last_name,
-                    ];
-                    $response = $client->post($registrants_api, $post);
-                    $response = $response->json();
-                }
-                if (isset($response['code']) && $response['code'] == 300) {
-                    dd($response, $guest->toArray());
-                }
-                $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->first();
-                $data = [
-                    'registrant_id' => $response['registrant_id'],
-                    'webinar_id' => $response['id'],
-                    'topic' => $response['topic'],
-                    'role' => $webinar_role,
-                    'join_url' => $response['join_url'],
-                ];
-                if ($registered) {
-                    $registered->update($data);
-                } else {
-                    $guest->webinars()->create($data);
+                    if ($registered) {
+                        $registered->update($data);
+                    } else {
+                        $guest->webinars()->create($data);
+                    }
                 }
             }
         }
