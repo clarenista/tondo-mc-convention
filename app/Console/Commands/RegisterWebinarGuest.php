@@ -119,7 +119,7 @@ class RegisterWebinarGuest extends Command
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
 
-        echo var_dump($response);
+        echo var_dump($registrants);
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
 
         echo join(', ', $guests->pluck('email_address')->toArray());
