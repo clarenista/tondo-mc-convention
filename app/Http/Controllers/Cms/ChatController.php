@@ -39,7 +39,7 @@ class ChatController extends Controller
     {
 
         $user = auth()->user();
-        $room_id = "{$user->booth->id}-{$guest->id}";
+        $room_id = "{$user->id}-{$guest->id}";
 
         $message = ChatMessage::create([
             'chat_room_id' => $room_id,
