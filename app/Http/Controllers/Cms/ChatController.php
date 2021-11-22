@@ -27,8 +27,8 @@ class ChatController extends Controller
     {
 
         $guest->load(['chats' => function ($q) use ($guest) {
-            $booth_id = auth()->user()->booth->id;
-            $q->whereChatRoomId("{$booth_id}-{$guest->id}");
+            $user_id = auth()->user()->id;
+            $q->whereChatRoomId("{$user_id}-{$guest->id}");
         }]);
 
         return view("cms.sponsor.chat.guest", compact('guest'));
