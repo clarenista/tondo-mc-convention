@@ -9,8 +9,8 @@
     <div class="d-flex">
         <div class="flex-fill">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb" >
-                    <li class="breadcrumb-item active"  style="width:100%" aria-current="page">Me <span class="pull-right">{{ $guest->name }}</span></li>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" style="width:100%" aria-current="page">Me <span class="pull-right">{{ $guest->name }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -57,7 +57,33 @@
 
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+
+            function refreshTable() {
+                $.get('{{ route('cms.sponsor.chat.guest.chat', $guest->id) }}').done(function(r) {
+                    let chats = r.chats;
+                    let table = $('#example');
+                    let html = '';
+                    for (i in chats) {
+                        html += '<tr>';
+                        align = 'end';
+                        if (chats[i]['sender_id'] == {{ auth()->user()->booth->id }})
+                            align = 'left';
+                        html += `<td style="text-align: ${align}">`;
+                        html += `${chats[i]['message']}`
+                        html += `</td></tr>`;
+                        console.log(chats[i])
+                    }
+                    table.html(html);
+                });
+            }
+
+            function run() {
+                setTimeout(() => {
+                    refreshTable()
+                    run()
+                }, 3000);
+            }
+            run();
         });
     </script>
 

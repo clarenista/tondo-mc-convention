@@ -77,6 +77,9 @@ Route::name('cms.')->group(function () {
             Route::name('chat.')->prefix('chat')->group(function () {
                 Route::get('', [ChatController::class, 'index'])->name('index');
                 Route::get('/guest/{guest}', [ChatController::class, 'guest'])->name('guest');
+
+                Route::get('/guest/{guest}/chat', [ChatController::class, 'guestChat'])->name('guest.chat');
+
                 Route::post('/guest/{guest}', [ChatController::class, 'guestMessage'])->name('guest.message');
                 // Route::get('export/spreadsheet', [ChatController::class, 'index'])->name('chat.index');
                 // Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
