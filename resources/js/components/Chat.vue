@@ -5,8 +5,8 @@
             <div class="c-chat-widget-dialog">
                 <div class="c-chat-widget-content">
                     <div class="c-chat-widget-header">Chat With Us Admin</div>
-                    <div class="c-chat-widget-body">
-                        <div v-for="(msg, index) in messages" :key="index" class="mb-2" ref="container">
+                    <div class="c-chat-widget-body" ref="container">
+                        <div v-for="(msg, index) in messages" :key="index" class="mb-2" >
                             <div class="c-chat-widget-bubble row" :class="msg.sender_id === userDetails.id ? 'c-chat-widget-bubble-right' : 'c-chat-widget-bubble-left'">
                                 <div class="c-chat-widget-bubble-text">
                                 {{msg.message}}
