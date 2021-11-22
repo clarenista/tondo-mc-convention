@@ -81,7 +81,11 @@
                 window.Echo.channel("chat."+vm.room.id)
                 .listen('NewChatMessage', (e) =>{
                     console.log(e);
-                    //  this.messages.push()
+                    this.messages.push({
+                        'sender_id'     : e.sender_id,
+                        'chat_room_id'     : e.chat_room_id,
+                        'message'     : e.message,
+                    })
                 })
             },
             async getRoom(){
@@ -113,7 +117,7 @@
                 fd.append('newMessage', this.newMessage)
                 try{
                     const {data} = await axios.post('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'), fd)
-                    this.messages.push(data)
+                    
                     this.newMessage = ''
 
                 }catch({response}){
