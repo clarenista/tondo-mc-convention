@@ -118,6 +118,8 @@ class RegisterWebinarGuest extends Command
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
+
+        echo var_dump($response);
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
 
         echo join(', ', $guests->pluck('email_address')->toArray());
