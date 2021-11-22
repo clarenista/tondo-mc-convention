@@ -822,7 +822,7 @@ export default {
     background-size: cover;
   }    
   div >>> .enter{
-    background-image: url('/images/multires/ICONS/Enter.png');
+    background-image: url('/images/multires/ICONS/ENTER.png');
     background-size: cover;
   } 
   div >>> .hall_a{
