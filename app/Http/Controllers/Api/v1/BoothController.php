@@ -20,13 +20,14 @@ class BoothController extends Controller
     {
 
         $booth = Booth::whereId($booth_id)
-            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel'])
+            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel', 'user'])
             ->first();
 
         $return = [
             'id' => $booth->id,
             'name' => $booth->name,
             'panorama_location' => $booth->panorama_location,
+            'sponsor_id' => $booth->user->id
         ];
 
         foreach ($booth->assets as $asset) {
@@ -125,21 +126,20 @@ class BoothController extends Controller
         ]);
     }
 
-
-    public function wheelSubmit($booth_id)
-    {
+    public function wheelSubmit($booth_id){
 
         $booth = Booth::find($booth_id);
         $wheel = $booth->wheel;
-        $input['value'] = rand(0, 36000) / 100;
+
+        $input = request()->validate([
+            'value' => 'required',
+        ]);
+
         $input['user_id'] =  request()->user()->id;
         $wheel->submits()->create($input);
 
         return response([
             'success' => true,
-            'data' => [
-                'value' => $input['value'],
-            ]
         ]);
     }
 }
