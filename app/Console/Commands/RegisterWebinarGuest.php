@@ -42,9 +42,9 @@ class RegisterWebinarGuest extends Command
     {
 
         $bearer = "Bearer ";
-        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2MzczNTI2NjMsImlhdCI6MTYzNjc0Nzg2NX0.Tr1bSuwXBuzx0EGn10hQ6ln0_0XXS0s6GC7aPdLFt9w";
-        $webinar_id = "81037064653";
-        $webinar_topic = "PSP70 - DEV WEBINAR";
+        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2MzgxMzEyNTMsImlhdCI6MTYzNzUyNjQ1NH0.UhnsXSG1pGHOGQpM2twr_sDn_oeZj7QbtyDc8zJgpxE";
+        $webinar_id = "81246883543";
+        $webinar_topic = "PSP70 - STAGING WEBINAR";
 
         $panelists = [
             // 'panell@panel.com',
@@ -53,7 +53,7 @@ class RegisterWebinarGuest extends Command
             // '22@22.com',
         ];
 
-        $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
+        // $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
         $this->register_registrants($webinar_id, $webinar_topic, $bearer, $panelists);
         return 0;
     }
@@ -72,12 +72,12 @@ class RegisterWebinarGuest extends Command
         $registered_panelists = $response['panelists'];
         $registered_panelists = collect($registered_panelists);
         echo var_dump($response);
-        $guests = User::withTrashed()->whereIn('email', $emails)->get();
+        $guests = User::withTrashed()->whereIn('email_address', $emails)->get();
         $panelists = [];
         foreach ($guests as $guest) {
-            if (!$registered_panelists->firstWhere('email', $guest->email))
+            if (!$registered_panelists->firstWhere('email_address', $guest->email_address))
                 $panelists[]  = [
-                    'email' => $guest->email,
+                    'email' => $guest->email_address,
                     'name' => $guest->first_name . " " . $guest->last_name,
                 ];
         }
@@ -89,7 +89,7 @@ class RegisterWebinarGuest extends Command
         $response = $client->get($panelists_api);
         $response = $response->json();
         foreach ($response['panelists'] as $panelist) {
-            $user = User::whereEmail($panelist['email'])->first();
+            $user = User::whereEmailAddress($panelist['email'])->first();
             $webinar = [
                 'registrant_id' => $panelist['id'],
                 "webinar_id" => $webinar_id,
@@ -113,11 +113,11 @@ class RegisterWebinarGuest extends Command
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-        $guests = User::withTrashed()->whereNotIn('email', $panelists)->get();
+        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
         foreach ($guests as $guest) {
-            if (strpos($guest->email, "@")) {
+            if (strpos($guest->email_address, "@")) {
                 $registrants = collect($registrants);
-                $registered = $registrants->firstWhere('email', $guest->email);
+                $registered = $registrants->firstWhere('email_address', $guest->email_address);
                 if ($registered) {
                     $response = [
                         "registrant_id" => $registered['id'],
@@ -129,7 +129,7 @@ class RegisterWebinarGuest extends Command
                 } else {
                     $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
                     $post = [
-                        'email' => $guest->email,
+                        'email' => $guest->email_address,
                         'first_name' => $guest->first_name,
                         'last_name' => $guest->last_name,
                     ];

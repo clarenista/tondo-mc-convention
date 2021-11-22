@@ -30,7 +30,6 @@ export default {
     },
     async openZoomMobile(vue) {
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/mobile?api_token=${localStorage.getItem("access_token")}`);
-        console.log(data)
         if(data == 0){
             vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
             return false;
@@ -43,6 +42,7 @@ export default {
     async isAllowed(vue) {
         let userType = vue.$store.getters.user.classification;
         let { data } = await vue.axios.get(`/api/v1/program?api_token=${localStorage.getItem("access_token")}`);
+        // console.log(data);
         let program = data;
         this.embedded = program.embedded;
         if(Date.now() < program.start_at_){
@@ -50,10 +50,14 @@ export default {
             return false;
         }
         if (program.enabled == 1) {
-            if (program.type == "all")
-                return true;
-            if (program.type == "private" && (userType == "Diplomate" || userType == "Fellow"))
-                return true;
+            return true;
+            // if (program.type == "all")
+            //     return true;
+            // if (program.type == "private" && (userType == "Diplomate" || userType == "Fellow"))
+            //     return true;
+        }else{
+            vue.$store.commit('updateIsNotAllowedMessage', 'The session is not available.');
+            return false;
         }
         vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
         return false;
