@@ -47,13 +47,13 @@ class RegisterWebinarGuest extends Command
         $webinar_topic = "PSP70 - STAGING WEBINAR";
 
         $panelists = [
-            // 'panell@panel.com',
-            // '44444@4youtube.com',
-            // '11@11.com',
+            'coleman22@kshlerin.biz',
+            'clovis30@yahoo.com',
+            'hyatt.jeanne@lehner.com',
             // '22@22.com',
         ];
 
-        // $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
+        $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
         $this->register_registrants($webinar_id, $webinar_topic, $bearer, $panelists);
         return 0;
     }
@@ -74,35 +74,38 @@ class RegisterWebinarGuest extends Command
         echo var_dump($response);
         $guests = User::withTrashed()->whereIn('email_address', $emails)->get();
 
+        echo join(', ', $guests->pluck('email_address')->toArray());
+        if ($this->confirm('register panelists?')) {
 
-        $panelists = [];
-        foreach ($guests as $guest) {
-            if (!$registered_panelists->firstWhere('email_address', $guest->email_address))
-                $panelists[]  = [
-                    'email' => $guest->email_address,
-                    'name' => $guest->first_name . " " . $guest->last_name,
-                ];
-        }
-        if (count($panelists)) {
-            $response = $client->post($panelists_api, compact('panelists'));
+            $panelists = [];
+            foreach ($guests as $guest) {
+                if (!$registered_panelists->firstWhere('email_address', $guest->email_address))
+                    $panelists[]  = [
+                        'email' => $guest->email_address,
+                        'name' => $guest->first_name . " " . $guest->last_name,
+                    ];
+            }
+            if (count($panelists)) {
+                $response = $client->post($panelists_api, compact('panelists'));
+                $response = $response->json();
+                echo var_dump($response);
+            }
+            $response = $client->get($panelists_api);
             $response = $response->json();
-            echo var_dump($response);
-        }
-        $response = $client->get($panelists_api);
-        $response = $response->json();
-        foreach ($response['panelists'] as $panelist) {
-            $user = User::whereEmailAddress($panelist['email'])->first();
-            $webinar = [
-                'registrant_id' => $panelist['id'],
-                "webinar_id" => $webinar_id,
-                "topic" => $webinar_topic,
-                'role' => $webinar_role,
-                'join_url' => $panelist['join_url']
-            ];
-            if ($user->webinars->count()) {
-                $user->webinars()->update($webinar);
-            } else {
-                $user->webinars()->create($webinar);
+            foreach ($response['panelists'] as $panelist) {
+                $user = User::whereEmailAddress($panelist['email'])->first();
+                $webinar = [
+                    'registrant_id' => $panelist['id'],
+                    "webinar_id" => $webinar_id,
+                    "topic" => $webinar_topic,
+                    'role' => $webinar_role,
+                    'join_url' => $panelist['join_url']
+                ];
+                if ($user->webinars->count()) {
+                    $user->webinars()->update($webinar);
+                } else {
+                    $user->webinars()->create($webinar);
+                }
             }
         }
     }
@@ -115,10 +118,12 @@ class RegisterWebinarGuest extends Command
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
+
+        echo var_dump($registrants);
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
 
         echo join(', ', $guests->pluck('email_address')->toArray());
-        if ($this->confirm('register?')) {
+        if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
                     $registrants = collect($registrants);
