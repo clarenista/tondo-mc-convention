@@ -810,7 +810,7 @@ export default {
     background-size: cover;
   }
   div >>> .booth{
-    background-image: url('/images/multires/ICONS/enter.png');
+    background-image: url('/images/multires/ICONS/ENTER.png');
     background-size: cover;
   }
   div >>> .arrow_left{
