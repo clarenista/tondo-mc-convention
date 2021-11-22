@@ -20,14 +20,13 @@ class BoothController extends Controller
     {
 
         $booth = Booth::whereId($booth_id)
-            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel', 'user'])
+            ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel'])
             ->first();
 
         $return = [
             'id' => $booth->id,
             'name' => $booth->name,
             'panorama_location' => $booth->panorama_location,
-            'sponsor_id' => $booth->user->id
         ];
 
         foreach ($booth->assets as $asset) {

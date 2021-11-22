@@ -208,7 +208,7 @@
             <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
-    <Chat :sponsor_id="booth_details.sponsor_id" :user_details="user" v-if="booth_details"/>
+    <Chat :sponsor_id="booth_details.id" :user_details="user" v-if="booth_details"/>
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
     <div id="panorama"></div>
   </div>
