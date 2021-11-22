@@ -324,14 +324,14 @@ class BoothSeeder extends Seeder
                 // ],
 
                 // SPONSOR_L1 *FACING PSP BOOTH
-                ['Philippine Society of Pathologist Inc.', 2.54, 0.28, 'bronze', "psp.png", "psp.png",
+                ['Philippine Society of Pathologist Inc.', 2.54, 0.28, 'gold', "psp.png", "psp.png",
                     [
-                        ['External Link','#','#','https://localhost'],
-                        ['Contact Us','#','#',''],
-                        ['Quiz','#','#',''],
-                        ['Brochures','#','#',''],
-                        ['Videos','#','#',''],
-                        ['Gallery','#','#',''],
+                        ['External Link','-13','4','https://localhost'],
+                        ['Contact Us','-7','32',''],
+                        ['Quiz','-5','-19',''],
+                        ['Brochures','-5','-27',''],
+                        ['Videos','-1','6',''],
+                        ['Gallery','3','-27',''],
                     ]
                 ],
 
