@@ -56,6 +56,7 @@
         mounted() {
 
             this.init()
+            this.scrollToEnd();	
         },
         methods: {
             async getUserInfo(){
@@ -86,6 +87,7 @@
                         'chat_room_id'     : chatMessage.chat_room_id,
                         'message'     : chatMessage.message,
                     })
+                    this.scrollToEnd();	
                 })
             },
             async getRoom(){
@@ -117,7 +119,7 @@
                 fd.append('newMessage', this.newMessage)
                 try{
                     const {data} = await axios.post('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'), fd)
-                    
+                    this.scrollToEnd();	
                     this.newMessage = ''
 
                 }catch({response}){
@@ -144,10 +146,7 @@
             this.scrollToEnd(); 
         },
         
-        mounted () {
-            // This will be called on load
-            this.scrollToEnd();	
-        }        
+            
         
     }
 </script>
