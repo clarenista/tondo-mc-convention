@@ -814,11 +814,11 @@ export default {
     background-size: cover;
   }
   div >>> .arrow_left{
-    background-image: url('/images/multires/ICONS/Arrow.png');
+    background-image: url('/images/multires/ICONS/ARROW.png');
     background-size: cover;
   }  
   div >>> .arrow_right{
-    background-image: url('/images/multires/ICONS/Arrow_Right.png');
+    background-image: url('/images/multires/ICONS/ARROW_RIGHT.png');
     background-size: cover;
   }    
   div >>> .enter{
