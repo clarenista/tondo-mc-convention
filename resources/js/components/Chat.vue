@@ -80,11 +80,6 @@
                 console.log("connecting","chat."+vm.room.id);
                 window.Echo.channel("chat."+vm.room.id)
                 .listen('NewChatMessage', (e) =>{
-                    this.messages.push({
-                        'sender_id'     : e.sender_id,
-                        'chat_room_id'  : e.chat_room_id,
-                        'message'       : e.message
-                    })
                     console.log(e);
                     //  this.messages.push()
                 })
