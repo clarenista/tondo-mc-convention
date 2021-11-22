@@ -79,12 +79,12 @@
                 this.getMessages();
                 console.log("connecting","chat."+vm.room.id);
                 window.Echo.channel("chat."+vm.room.id)
-                .listen('NewChatMessage', (e) =>{
-                    console.log(e);
+                .listen('NewChatMessage', ({chatMessage}) =>{
+                    console.log(chatMessage);
                     this.messages.push({
-                        'sender_id'     : e.sender_id,
-                        'chat_room_id'     : e.chat_room_id,
-                        'message'     : e.message,
+                        'sender_id'     : chatMessage.sender_id,
+                        'chat_room_id'     : chatMessage.chat_room_id,
+                        'message'     : chatMessage.message,
                     })
                 })
             },
