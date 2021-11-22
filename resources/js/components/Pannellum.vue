@@ -452,7 +452,39 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },            
+              },   
+              "secondf_outside" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/secondf_outside",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -240,
+                'maxYaw':90,
+              },             
+              "pool_area2" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/pool_area2",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ]
+              },       
 
                 
             }
@@ -506,6 +538,8 @@ export default {
 
         this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
         this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
+        this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
+        this.panorama_details.scenes.secondf_outside.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_outside']))
         this.viewer= pannellum.viewer('panorama', this.panorama_details );
         
 
