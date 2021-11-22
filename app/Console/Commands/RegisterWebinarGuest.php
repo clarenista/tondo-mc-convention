@@ -60,7 +60,6 @@ class RegisterWebinarGuest extends Command
 
     private function register_panelists($webinar_id, $webinar_topic, $bearer, $emails)
     {
-
         $webinar_role = "panelist";
         $panelists_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/panelists";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
@@ -79,12 +78,14 @@ class RegisterWebinarGuest extends Command
 
             $panelists = [];
             foreach ($guests as $guest) {
-                if (!$registered_panelists->firstWhere('email_address', $guest->email_address))
+                if (!$registered_panelists->firstWhere('email', $guest->email_address)){
                     $panelists[]  = [
                         'email' => $guest->email_address,
                         'name' => $guest->first_name . " " . $guest->last_name,
                     ];
+                }
             }
+
             if (count($panelists)) {
                 $response = $client->post($panelists_api, compact('panelists'));
                 $response = $response->json();
@@ -118,16 +119,14 @@ class RegisterWebinarGuest extends Command
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-
         echo var_dump($registrants);
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
-
         echo join(', ', $guests->pluck('email_address')->toArray());
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
                     $registrants = collect($registrants);
-                    $registered = $registrants->firstWhere('email_address', $guest->email_address);
+                    $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
                         $response = [
                             "registrant_id" => $registered['id'],
