@@ -237,7 +237,7 @@ class BoothSeeder extends Seeder
                 // ],
 
                 // SPONSOR_R3
-                ['BIOSITE', -0.20, 139.16, 'bronze', "biosite.png", "biosite.png",
+                ['BIOSITE', -0.20, 132.65, 'bronze', "biosite.png", "biosite.png",
                     [
                         ['External Link','-15','-24','https://localhost'],
                         ['Contact Us','-9','-25',''],
