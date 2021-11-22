@@ -6,7 +6,7 @@
                 <div class="c-chat-widget-content">
                     <div class="c-chat-widget-header">Chat With Us Admin</div>
                     <div class="c-chat-widget-body">
-                        <div v-for="(msg, index) in messages" :key="index" class="mb-2">
+                        <div v-for="(msg, index) in messages" :key="index" class="mb-2" ref="container">
                             <div class="c-chat-widget-bubble row" :class="msg.sender_id === userDetails.id ? 'c-chat-widget-bubble-right' : 'c-chat-widget-bubble-left'">
                                 <div class="c-chat-widget-bubble-text">
                                 {{msg.message}}
@@ -133,6 +133,21 @@
             hideModal() {
                 this.modal.show = false;
             },
-        }
+            scrollToEnd () {
+                var content = this.$refs.container;
+                content.scrollTop = content.scrollHeight;
+            }
+        },
+        updated () {
+            // This will be called when the component updates
+            // try toggling a todo
+            this.scrollToEnd(); 
+        },
+        
+        mounted () {
+            // This will be called on load
+            this.scrollToEnd();	
+        }        
+        
     }
 </script>
