@@ -52,4 +52,13 @@ class ChatController extends Controller
 
         return redirect()->back();
     }
+
+    public function guestChat(User $guest)
+    {
+
+        return $guest->load(['chats' => function ($q) use ($guest) {
+            $user_id = auth()->user()->id;
+            $q->whereChatRoomId("{$user_id}-{$guest->id}");
+        }]);
+    }
 }
