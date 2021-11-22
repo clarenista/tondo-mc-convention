@@ -452,7 +452,39 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },            
+              },   
+              "secondf_outside" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/secondf_outside",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -240,
+                'maxYaw':90,
+              },             
+              "pool_area2" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/pool_area2",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ]
+              },       
 
                 
             }
@@ -506,6 +538,8 @@ export default {
 
         this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
         this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
+        this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
+        this.panorama_details.scenes.secondf_outside.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_outside']))
         this.viewer= pannellum.viewer('panorama', this.panorama_details );
         
 
@@ -533,31 +567,31 @@ export default {
         switch(this.viewer.getScene()) {
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;            
           case 'hall_a':
             this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_b':
             this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_c':
             this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_d':
             this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'pool_area':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
@@ -565,11 +599,11 @@ export default {
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             break;
           default:
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            this.$store.getters.audio.volume = 0.25
+            this.$store.getters.audio.volume = 0.1
             // code block
         }
       },
@@ -780,11 +814,11 @@ export default {
     background-size: cover;
   }
   div >>> .arrow_left{
-    background-image: url('/images/multires/ICONS/Arrow.png');
+    background-image: url('/images/multires/ICONS/ARROW.png');
     background-size: cover;
   }  
   div >>> .arrow_right{
-    background-image: url('/images/multires/ICONS/Arrow_Right.png');
+    background-image: url('/images/multires/ICONS/ARROW_RIGHT.png');
     background-size: cover;
   }    
   div >>> .enter{

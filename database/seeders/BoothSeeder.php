@@ -19,7 +19,7 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // RIGHT SPONSOR_R1 *updated
-                ['MINDRAY', -1.94, 64.19, 'gold', "1618606706-Mindray-BG.png", "1618606709-Mindray+Booth.png",
+                ['SNIBE', -1.94, 64.19, 'gold', "snibe.png.png", "snibe.png.png",
                     [
                         ['External Link','58','13','https://localhost'],
                         ['Contact Us','81','9',''],
@@ -31,7 +31,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R2
-                ['Marsman Drysdale', -1.24, 132.97, 'gold', "BGpng", "BOOTHpng",
+                ['Thermo Fisher Scientific', -1.24, 132.97, 'gold', "thermofisher.png", "thermofisher.png",
                     [
                         ['External Link','58','13','https://localhost'],
                         ['Contact Us','81','19',''],
@@ -42,7 +42,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // LEFT SPONSOR_L1
-                ['Lifeline Diagnostics', -1.29, -46.62, 'gold', "LIFELINE BOOTH BG.png", "	LIFELINE BOOTH.png",
+                ['BIOCARE', -1.29, -46.62, 'gold', "biocare.png", "biocare.png",
                     [
                         ['External Link','61','12','https://localhost'],
                         ['Contact Us','83','9',''],
@@ -53,7 +53,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 //  SPONSOR_L2
-                ['ARKRAY', -1.56, -120.66, 'gold', "Arkray BOOTH BG.png", "Arkray BOOTH.png",
+                ['ROCHE', -1.56, -120.66, 'gold', "roche.png.png", "roche.png.png",
                     [
                         ['External Link','58','13','https://localhost'],
                         ['Contact Us','82','10',''],
@@ -67,7 +67,7 @@ class BoothSeeder extends Seeder
 
             'Hall A' => [
                 // RIGHT SPONSOR_R1 **FACING POOL AREA ENTRANCE ABOVE ELEVATOR
-                ['Ortho Clinical Diagnostics', -0.96, -140.37, 'gold', "Ortho-Clinical-BOOTH-BG.png", "Ortho-Clinical-BOOTH.png",
+                ['SPONSOR_R1', -0.96, -140.37, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
                     [
                         ['External Link','-16.06','18.78','https://localhost'],
                         ['Contact Us','-9.18','23.15',''],
@@ -78,7 +78,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_R2
-                ['BioSystems', 3.63, -89.46, 'silver', "BIOSYSTEM BOOTH BG.png", "BIOSYSTEM BOOTH.png",
+                ['SPONSOR_R2', 3.63, -89.46, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
                     [
                         ['External Link','-12.21','23.72','https://localhost'],
                         ['Contact Us','-7.95','26.82',''],
@@ -90,7 +90,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['SPONSOR_R3', -1.10, -43.86, 'bronze', "BIOSYSTEM BOOTH BG.png", "BIOSYSTEM BOOTH.png",
+                ['Allied Hospital', -1.10, -43.86, 'bronze', "allied.png", "allied.png",
                     [
                         ['External Link','-15.85','18.98','https://localhost'],
                         ['Contact Us','-9.05','23.71',''],
@@ -103,7 +103,7 @@ class BoothSeeder extends Seeder
 
 
                 // LEFT SPONSOR_L1
-                ['ABBOTT', -0.43, 138.71, 'gold', "Abbot-BOOTH-BG.png", "Abbot-BOOTH.png",
+                ['Touchstar', -0.43, 138.71, 'bronze', "touchstar.png", "touchstar.png",
                     [
                         ['External Link','-16.32','18.84','https://localhost'],
                         ['Contact Us','-9.43','23.21',''],
@@ -114,7 +114,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L2
-                ['SIEMENS Healthineers', 0.79, 90.61, 'bronze', "Siemens-BOOTH-BG.png", "Siemens-BOOTH.png",
+                ['SIEMENS Healthineers', 0.79, 90.61, 'gold', "siemens-healthineers.png", "siemens-healthineers.png",
                     [
                         ['External Link','-16.28','28.31','https://localhost'],
                         ['Contact Us','-10.12','31.33',''],
@@ -125,7 +125,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L3
-                ['Alliend Hospital', 0.4, 44.86, 'bronze', "Allied Hospital BOOTH BG.png", "Allied Hospital BOOTH.png",
+                ['SPONSOR_L1', 0.4, 44.86, 'bronze', "SPONSOR_L1.png", "SPONSOR_L1.png",
                     [
                         ['External Link','-16.28','28.31','https://localhost'],
                         ['Contact Us','-10.12','31.33',''],
@@ -139,7 +139,7 @@ class BoothSeeder extends Seeder
 
             'Hall B' => [
                 // RIGHT SPONSOR_R1 *FACING LOBBY EXIT
-                ['MMJ Biosystems', 0.10, 47.18, 'gold', "MMJ BOOTH BG.png", "MMJ BOOTH.png",
+                ['SPONSOR_R1', 0.10, 47.18, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
                     [
                         ['External Link','-16.12','19.28','https://localhost'],
                         ['Contact Us','-10.38','24.36',''],
@@ -150,7 +150,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_R2
-                ['MRL Cybertec', -0.20, 91.04, 'bronze', "MRL BOOTH BG.png", "MRL BOOTH.png",
+                ['SPONSOR_R2', -0.20, 91.04, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
                     [
                         ['External Link','-12.69','25.05','https://localhost'],
                         ['Contact Us','-8.26','27.31',''],
@@ -162,7 +162,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['SPONSOR_R3', 0.20, 137.02, 'silver', "MRL BOOTH BG.png", "MRL BOOTH.png",
+                ['RHUMBA INC.', 0.20, 137.02, 'bronze', "rhumba.png", "rhumba.png",
                     [
                         ['External Link','-16.13','19.96','https://localhost'],
                         ['Contact Us','-10.03','25',''],
@@ -176,7 +176,7 @@ class BoothSeeder extends Seeder
                 // ['BE', -1.78, 154.53, 'bronze, "BG", "BOOTH"], // VACANT
 
                 // LEFT SPONSOR_L1 
-                ['MEDTEK', -0.19, -44.25, 'gold', "MEDTEK BOOTH BG.png", "MEDTEK BOOTH.png",
+                ['MRL Cybertech', -0.19, -44.25, 'bronze', "mrl-cybertec.png", "mrl-cybertec.png",
                     [
                         ['External Link','-15.41','18.27','https://localhost'],
                         ['Contact Us','-10.52','23.71',''],
@@ -187,7 +187,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // [SPONSOR_L2
-                ['Zafire Distributors', 1.40, -90.00, 'bronze', "ZAFIRE BOOTH BG.png", "ZAFIRE BOOTH.png",
+                ['Ortho Clinical Diagnostics', 1.40, -90.00, 'gold', "ortho-clinical.png", "ortho-clinical.png",
                     [
                         ['External Link','-12.45','21.92','https://localhost'],
                         ['Contact Us','-8.73','25.37',''],
@@ -198,7 +198,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L3
-                ['SPONSOR_L3', -0.01, -136.18, 'silver', "Vazyme BOOTH BG.png", "Vazyme BOOTH.png",
+                ['SPONSOR_L3', -0.01, -136.18, 'bronze', "SPONSOR_L3.png", "SPONSOR_L3.png",
                     [
                         ['External Link','-15.57','18.87','https://localhost'],
                         ['Contact Us','-10.09','23.15',''],
@@ -214,7 +214,7 @@ class BoothSeeder extends Seeder
 
             'Hall C' => [
                 // RIGHT SPONSOR_R1 *FACING GROUP D
-                ['Vazyme', -0.02, 41.64, 'gold', "Vazyme BOOTH BG.png", "Vazyme BOOTH.png",
+                ['Biosystems', -0.02, 41.64, 'bronze', "biosystem.png", "biosystem.png",
                     [
                         ['External Link','-0.49','-10.78','https://localhost'],
                         ['Contact Us','-11.98','8.73',''],
@@ -225,7 +225,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_R2
-                ['Omnibus', 0.14, 90.17, 'bronze', "Omnibus BOOTH BG.png", "Omnibus BOOTH.png",
+                ['SPONSOR_R2', 0.14, 90.17, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
                     [
                         ['External Link','-12.48','24.83','https://localhost'],
                         ['Contact Us','-8.62','28.21',''],
@@ -237,7 +237,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['SPONSOR_R3', -0.20, 139.16, 'silver', "Omnibus BOOTH BG.png", "Omnibus BOOTH.png",
+                ['BIOSITE', -0.20, 139.16, 'bronze', "biosite.png", "biosite.png",
                     [
                         ['External Link','-15.87','20.64','https://localhost'],
                         ['Contact Us','-10.36','25.82',''],
@@ -249,7 +249,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // LEFT SPONSOR_L1
-                ['Biosite', 0.19, -42.14, 'gold', "Biosite BOOTH BG.png", "Biosite BOOTH.png",
+                ['GLOBE BUSINESS', 0.19, -42.14, 'bronze', "globe-buisiness.png", "globe-buisiness.png",
                     [
                         ['External Link','-15.55','17.87','https://localhost'],
                         ['Contact Us','-10.07','23.24',''],
@@ -260,7 +260,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L2
-                ['SPONSOR_L2', 2.65, -89.18, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['BIOREMIEUX PHILIPPINES CORPORATION', 2.65, -89.18, 'gold', "biomerieux.png", "biomerieux.png",
                     [
                         ['External Link','-12.77','21.52','https://localhost'],
                         ['Contact Us','-8.93','25.27',''],
@@ -272,7 +272,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_L3
-                ['SPONSOR_L3', 0.36, -139.26, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_L3', 0.36, -139.26, 'bronze', "SPONSOR_L3.png", "SPONSOR_L3.png",
                     [
                         ['External Link','-15.54','18.08','https://localhost'],
                         ['Contact Us','-11.39','7.31',''],
@@ -288,7 +288,7 @@ class BoothSeeder extends Seeder
 
             'Hall D' => [
                 // SPONSOR_R1 *FACING PSP BOOTH
-                ['SPONSOR_R1', 0.31, 41.76, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_R1', 0.31, 41.76, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
                     [
                         ['External Link','-15.60','20.66','https://localhost'],
                         ['Contact Us','-10.45','25.83',''],
@@ -300,7 +300,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R2
-                ['SPONSOR_R2', 0.68, 90.05, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['Grepcore Diamonde', 0.68, 90.05, 'gold', "grepcor.png", "grepcor.png",
                     [
                         ['External Link','-12.29','25.74','https://localhost'],
                         ['Contact Us','-8.75','28.90',''],
@@ -312,7 +312,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['SPONSOR_R3', -1.40, 136.23, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_R3', -1.40, 136.23, 'bronze', "SPONSOR_R3.png", "SPONSOR_R3.png",
                     [
                         ['External Link','-15.56','21.05','https://localhost'],
                         ['Contact Us','-10.19','25.46',''],
@@ -324,7 +324,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_L1 *FACING PSP BOOTH
-                ['SPONSOR_L1', -0.65, -41.11, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_L1', -0.65, -41.11, 'bronze', "SPONSOR_L1.png", "SPONSOR_L1.png",
                     [
                         ['External Link','-15.96','17.78','https://localhost'],
                         ['Contact Us','-10.34','23.62',''],
@@ -336,7 +336,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_L2
-                ['SPONSOR_L2', 1.21, -88.83, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['SPONSOR_L2', 1.21, -88.83, 'gold', "SPONSOR_L2.png", "SPONSOR_L2.png",
                     [
                         ['External Link','-12.48','21.63','https://localhost'],
                         ['Contact Us','-9.26','24.92',''],
@@ -348,7 +348,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_L3
-                ['SPONSOR_L3', -0.08, -138.18, 'bronze', "Sysmex BOOTH BG.png", "Sysmex BOOTH.png",
+                ['MUREX', -0.08, -138.18, 'bronze', "murex.png", "murex.png",
                     [
                         ['External Link','-15.76','17.78','https://localhost'],
                         ['Contact Us','-10.31','22.68',''],

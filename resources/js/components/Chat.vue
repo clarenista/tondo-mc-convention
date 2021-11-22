@@ -1,13 +1,13 @@
 <template>
     <div id="chat">
-        <button class="btn btn-primary c-chat-widget-button" ref="button" @click.prevent="toggleModal()">C</button>
+        <button class="btn btn-primary c-chat-widget-button" ref="button" @click.prevent="toggleModal()"><i class="fa fa-comments-o fa-lg" aria-hidden="true"></i></button>
         <div class="c-chat-widget" ref="modal" :class="{show: modal.show}">
             <div class="c-chat-widget-dialog">
                 <div class="c-chat-widget-content">
-                    <div class="c-chat-widget-header">Chat With Us Admin</div>
-                    <div class="c-chat-widget-body">
-                        <div v-for="(msg, index) in messages" :key="index" class="mb-2">
-                            <div class="c-chat-widget-bubble row" :class="msg.user.id === userDetails.id ? 'c-chat-widget-bubble-right' : 'c-chat-widget-bubble-left'">
+                    <div class="c-chat-widget-header">Chat With Us</div>
+                    <div class="c-chat-widget-body" ref="container">
+                        <div v-for="(msg, index) in messages" :key="index" class="mb-2" >
+                            <div class="c-chat-widget-bubble row" :class="msg.sender_id === userDetails.id ? 'c-chat-widget-bubble-right' : 'c-chat-widget-bubble-left'">
                                 <div class="c-chat-widget-bubble-text">
                                 {{msg.message}}
                                 </div>
@@ -56,6 +56,7 @@
         mounted() {
 
             this.init()
+            this.scrollToEnd();	
         },
         methods: {
             async getUserInfo(){
@@ -77,12 +78,14 @@
                 let vm = this
                 vm.room.id = this.sponsorId+"-"+this.userDetails.id
                 this.getMessages();
-                console.log("connecting","chat."+vm.room.id);
                 window.Echo.channel("chat."+vm.room.id)
-                .listen('NewChatMessage', (e) =>{
-
-                    console.log(e);
-                    //  this.messages.push()
+                .listen('NewChatMessage', ({chatMessage}) =>{
+                    this.messages.push({
+                        'sender_id'     : chatMessage.sender_id,
+                        'chat_room_id'     : chatMessage.chat_room_id,
+                        'message'     : chatMessage.message,
+                    })
+                    this.scrollToEnd();	
                 })
             },
             async getRoom(){
@@ -98,7 +101,6 @@
             },
             async getMessages(){
                 this.room.id = this.sponsorId+"-"+this.userDetails.id
-                console.log(this.userDetails)
                 try{
                     const {data} = await axios.get('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'));
                     this.messages = data
@@ -114,7 +116,7 @@
                 fd.append('newMessage', this.newMessage)
                 try{
                     const {data} = await axios.post('/api/v1/chat/rooms/'+this.room.id+'/messages?api_token='+localStorage.getItem('access_token'), fd)
-                    this.messages.push(data)
+                    this.scrollToEnd();	
                     this.newMessage = ''
 
                 }catch({response}){
@@ -130,6 +132,18 @@
             hideModal() {
                 this.modal.show = false;
             },
-        }
+            scrollToEnd () {
+                var content = this.$refs.container;
+                content.scrollTop = content.scrollHeight;
+            }
+        },
+        updated () {
+            // This will be called when the component updates
+            // try toggling a todo
+            this.scrollToEnd(); 
+        },
+        
+            
+        
     }
 </script>

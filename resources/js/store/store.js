@@ -202,14 +202,14 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot hall_d",
         "sceneId": "hall_d",
       },
-      // {
-      //   "scene": 'hall_c',
-      //   "type": "scene",
-      //   "pitch": 8.7,
-      //   "yaw": -181.0,
-      //   "cssClass": "custom-hotspot arrow_left",
-      //   "sceneId": "secondf_photobooth",
-      // },
+      {
+        "scene": 'hall_c',
+        "type": "scene",
+        "pitch": 8.7,
+        "yaw": -181.0,
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "secondf_outside",
+      },
       {
         "scene": 'hall_c',
         "type": "scene",
@@ -331,6 +331,32 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
       },
+      {
+        "scene": 'secondf_outside',
+        "pitch": -3.4,
+        "yaw": -193.5,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "hall_c",
+      },
+      {
+        "scene": 'pool_area',
+        "pitch": -2.3,
+        "yaw": 2.6,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "pool_area2",
+      },
+      {
+        "scene": 'pool_area2',
+        "pitch": -3.1,
+        "yaw": -143,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "pool_area",
+      },
+
+
     ]
 
     // sponsors:[
