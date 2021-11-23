@@ -344,7 +344,7 @@ export default new Vuex.Store({
         "pitch": -2.3,
         "yaw": 2.6,
         "type": "scene",
-        "cssClass": "custom-hotspot arrow_left",
+        "cssClass": "custom-hotspot arrow_down",
         "sceneId": "pool_area2",
       },
       {
