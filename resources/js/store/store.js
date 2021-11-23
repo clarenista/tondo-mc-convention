@@ -18,7 +18,7 @@ export default new Vuex.Store({
     currentScene: 'lobby',
     bgmStart: true,
     bgm: null,
-    audio: new Audio('/bgm/landing.weba'),
+    audio: new Audio('/bgm/landing.mp3'),
     booth_details: null,
     announcement: null,
     isNotAllowed: null,

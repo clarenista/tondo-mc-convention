@@ -495,17 +495,17 @@ export default {
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
         }
-        // if(this.$store.getters.user.classification ==='sponsor'){
-        //   this.viewer= pannellum.viewer('panorama', this.panorama_details );
-        //   this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
-        //   this.viewer.removeHotSpot('vote')
-        //   this.viewer.removeHotSpot('zoom_meeting')
-        //   this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
+        if(this.$store.getters.user.classification ==='sponsor'){
+          this.viewer= pannellum.viewer('panorama', this.panorama_details );
+          this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
+          this.viewer.removeHotSpot('vote')
+          this.viewer.removeHotSpot('zoom_meeting')
+          this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
 
-        // }
+        }
         this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
         this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
         this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])

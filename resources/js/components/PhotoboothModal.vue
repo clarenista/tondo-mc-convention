@@ -8,9 +8,10 @@
                         <canvas class="output_canvas" ref="output_canvas" width="1280px" height="720px"> </canvas>
                         <br>
                         <div class="d-flex justify-content-center align-items-center">
-                            <button class="btn btn-lg btn-primary" type="button" @click="takePhoto">
+                            <button class="btn btn-sm btn-primary " type="button" @click="takePhoto">
                                 <i class="fa fa-camera fa-lg text-light"></i>
                             </button>
+                            <button class="btn btn-primary btn-sm" type="button" @click="handleChangeFacingMode">{{facingMode}}</button>
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center">
@@ -64,7 +65,10 @@ export default {
             canvasElement: null,
             img0 : null,
             photoTaken: null,
-            photoTakenCtx: null
+            photoTakenCtx: null,
+            facingMode: 'user',
+            camera: null,
+            selfieSegmentation: null
         }
     },
     mounted() {
@@ -86,24 +90,28 @@ export default {
     },    
     methods:{
         init(){
-            const selfieSegmentation = new SelfieSegmentation({
+            this.selfieSegmentation = new SelfieSegmentation({
                 locateFile: (file) => {
                 return `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation/${file}`;
                 },
             });
-            selfieSegmentation.setOptions({
+            this.selfieSegmentation.setOptions({
             modelSelection: 1,
             });
-            selfieSegmentation.onResults(this.onResults);
-
+            this.selfieSegmentation.onResults(this.onResults);
+            this.startCamera(this.facingMode)
+                      
+        },
+        startCamera(facingMode){
             const camera = new Camera(this.inputVideo, {
                 onFrame: async () => {
-                    await selfieSegmentation.send({ image: this.inputVideo });
+                    await this.selfieSegmentation.send({ image: this.inputVideo });
                 },
-                width: 720,                
-                height: 720,                
+                width: 1280,                
+                height: 720,
+                facingMode: facingMode              
             });
-            camera.start();            
+            camera.start(facingMode);  
         },
         onResults(results) {
             this.width = results.image.width;
@@ -138,6 +146,11 @@ export default {
             this.photoTakenCtx.drawImage(this.canvasElement, 0, 0, 1280, 720);
             this.dloadSource = this.photoTaken.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream")
         },
+        handleChangeFacingMode(){
+            this.facingMode = this.facingMode == 'user' ? 'environment' : 'user'
+            this.startCamera(this.facingMode)
+
+        }
     }
     
 }
@@ -149,7 +162,7 @@ export default {
         height: auto;
         
     } 
-    @media only screen and (max-width: 1200px){
+    @media screen and (max-width: 1200px){
     /*Tablets [601px -> 1200px]*/
         canvas {
             background-color: blue;
@@ -163,7 +176,7 @@ export default {
         canvas {
             background-color: blue;
             
-            max-width: 300px;
+            max-width: 100%;
         
         }
     }
