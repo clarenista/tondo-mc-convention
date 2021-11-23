@@ -38,6 +38,7 @@ Route::name('cms.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->middleware('auth');
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
+        Route::get('sync-users', [UserController::class, 'syncUsers'])->name('syncUsers');
         Route::resource('guests', UserController::class);
         Route::resource('booths', BoothController::class);
         Route::resource('standees', StandeeController::class);

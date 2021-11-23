@@ -3,7 +3,12 @@
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Users</li>
+        <li class="breadcrumb-item active" aria-current="page">
+            <p>Users</p>
+            <form method="get" action="{{route('cms.syncUsers')}}">
+                <button class="btn btn-success btn-sm" type="submit">Sync Users</button>
+            </form>
+        </li>
     </ol>
 </nav>
 

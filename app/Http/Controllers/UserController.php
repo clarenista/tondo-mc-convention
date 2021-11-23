@@ -7,6 +7,7 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -133,5 +134,44 @@ class UserController extends Controller
 
         return \redirect()->route('cms.users.index')
             ->with('success', 'You have successfully deleted the user.');
+    }
+
+    public function syncUsers(){
+        $guzzle = new \GuzzleHttp\Client;
+        $token = $guzzle->post(config('app.domain') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => config('app.passport.grant_type'),
+                'client_id' => config('app.passport.client_id'),
+                'client_secret' => config('app.passport.client_secret'),
+                'scope' => '*',
+            ],
+        ]);
+        $response = $guzzle->get(config('app.domain') . '/api/get-users', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+            ],
+        ]);
+        $results = json_decode((string) $response->getBody(), true);
+        foreach ($results as $result) {
+            $user = User::firstOrCreate([
+                'registrant_id' => $result['id'],
+            ], [
+                'registrant_id' => $result['id'],
+                'api_token' => hash('sha256', Str::random(80)),
+                'name' => $result['first_name'] . " " . $result['last_name'],
+                'first_name' => $result['first_name'],
+                'last_name' => $result['last_name'],
+                'mobile_number' => $result['contact'],
+                'email' => $result['username'],
+                'email_address' => $result['email'],
+                'affiliation' => $result['affiliation'],
+                'password' => $result['password'],
+                'classification' => $result['classification'],
+            ]);
+        }
+        return \redirect()->route('cms.users.index')
+        ->with('success', 'Sync success');
+
     }
 }
