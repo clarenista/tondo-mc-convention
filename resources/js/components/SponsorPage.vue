@@ -237,6 +237,7 @@ export default {
     
       const wrapper = document.querySelector('.hotspots--wrapper');
       let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
+      
       this.booth_details = data
       this.$store.commit('changeBoothDetails', data)
       this.sendBoothGuestEvent(data)
@@ -261,6 +262,7 @@ export default {
           this.selectedHotspot = hs[i]
         }
       }
+      console.log(this.selectedHotspot)
       // console.log(hs)
       this.panorama_details = {
         "default": {

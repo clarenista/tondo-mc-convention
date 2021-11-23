@@ -21,46 +21,46 @@ class BoothSeeder extends Seeder
                 // RIGHT SPONSOR_R1 *updated
                 ['SNIBE', -1.94, 64.19, 'gold', "snibe.png.png", "snibe.png.png",
                     [
-                        ['External Link','58','13','https://localhost'],
-                        ['Contact Us','81','9',''],
-                        ['Quiz','42','72',''],
-                        ['Brochures','81','18',''],
-                        ['Videos','58','72',''],
-                        ['Gallery','47','40',''],
+                        ['External Link','-14','6','https://localhost'],
+                        ['Contact Us','-9','34',''],
+                        ['Quiz','-6','-18',''],
+                        ['Brochures','-5','-28',''],
+                        ['Videos','-3','7',''],
+                        ['Gallery','2','-28',''],
                     ]
                 ],
 
                 // SPONSOR_R2
-                ['Thermo Fisher Scientific', -1.24, 132.97, 'gold', "thermofisher.png", "thermofisher.png",
+                ['Thermo Fisher Scientific', -1.24, 126.80, 'gold', "thermofisher.png", "thermofisher.png",
                     [
-                        ['External Link','58','13','https://localhost'],
-                        ['Contact Us','81','19',''],
-                        ['Quiz','42','72',''],
-                        ['Brochures','81','8',''],
-                        ['Videos','58','72',''],
-                        ['Gallery','47','38',''],
+                        ['External Link','-14','-6','https://localhost'],
+                        ['Contact Us','-8','-34',''],
+                        ['Quiz','-6','17',''],
+                        ['Brochures','-5','29',''],
+                        ['Videos','-1','-7',''],
+                        ['Gallery','2','26',''],
                     ]
                 ],
                 // LEFT SPONSOR_L1
-                ['BIOCARE', -1.29, -46.62, 'gold', "biocare.png", "biocare.png",
+                ['BIOCARE', -1.29, -56.62, 'gold', "biocare.png", "biocare.png",
                     [
-                        ['External Link','61','12','https://localhost'],
-                        ['Contact Us','83','9',''],
-                        ['Quiz','30','76',''],
-                        ['Brochures','83','19',''],
-                        ['Videos','61','75',''],
-                        ['Gallery','50','34',''],
+                        ['External Link','-14','-6','https://localhost'],
+                        ['Contact Us','-8','-34',''],
+                        ['Quiz','-6','17',''],
+                        ['Brochures','-5','26',''],
+                        ['Videos','-1','-7',''],
+                        ['Gallery','1','26',''],
                     ]
                 ],
                 //  SPONSOR_L2
                 ['ROCHE', -1.56, -120.66, 'gold', "roche.png.png", "roche.png.png",
                     [
-                        ['External Link','58','13','https://localhost'],
-                        ['Contact Us','82','10',''],
-                        ['Quiz','31','73',''],
-                        ['Brochures','82','19',''],
-                        ['Videos','58','73',''],
-                        ['Gallery','47','38',''],
+                        ['External Link','-14','8','https://localhost'],
+                        ['Contact Us','-9','34',''],
+                        ['Quiz','-6','-18',''],
+                        ['Brochures','-5','-26',''],
+                        ['Videos','-3','7',''],
+                        ['Gallery','2','-26',''],
                     ]
                 ],
             ],
