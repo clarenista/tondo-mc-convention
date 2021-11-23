@@ -176,8 +176,13 @@ export default {
         canvas {
             background-color: blue;
             
-            max-width: 100%;
+            max-width: 300px;
         
+        }
+
+        video.input_video{
+            max-width: 300px;
+
         }
     }
     div.card{
