@@ -78,7 +78,7 @@ class RegisterWebinarGuest extends Command
 
             $panelists = [];
             foreach ($guests as $guest) {
-                if (!$registered_panelists->firstWhere('email', $guest->email_address)){
+                if (!$registered_panelists->firstWhere('email', $guest->email_address)) {
                     $panelists[]  = [
                         'email' => $guest->email_address,
                         'name' => $guest->first_name . " " . $guest->last_name,
@@ -95,6 +95,7 @@ class RegisterWebinarGuest extends Command
             $response = $response->json();
             foreach ($response['panelists'] as $panelist) {
                 $user = User::whereEmailAddress($panelist['email'])->first();
+                if (!$user) continue;
                 $webinar = [
                     'registrant_id' => $panelist['id'],
                     "webinar_id" => $webinar_id,
@@ -120,7 +121,7 @@ class RegisterWebinarGuest extends Command
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         echo var_dump($registrants);
-        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->get();
+        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
