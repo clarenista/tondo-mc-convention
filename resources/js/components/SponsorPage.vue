@@ -21,7 +21,7 @@
                   <div class="row p-1 text-center">
                     <div class="col-12">
                       <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                        You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to:
+                        You are about to leave the 70<sup>th</sup> PSP virtual convention site, you will be redirected to:
                       </h3>
                       <a :href="selectedHotspot.assets[0].url" target="_blank">
                         <small><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></small>
