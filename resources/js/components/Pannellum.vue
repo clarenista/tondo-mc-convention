@@ -823,6 +823,10 @@ export default {
     background-image: url('/images/multires/ICONS/ARROW_RIGHT.png');
     background-size: cover;
   }    
+  div >>> .arrow_up{
+    background-image: url('/images/multires/ICONS/ARROW_UP.png');
+    background-size: cover;
+  }     
   div >>> .arrow_down{
     background-image: url('/images/multires/ICONS/ARROW_DOWN.png');
     background-size: cover;
