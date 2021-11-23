@@ -11,7 +11,9 @@
                             <button class="btn btn-sm btn-primary " type="button" @click="takePhoto">
                                 <i class="fa fa-camera fa-lg text-light"></i>
                             </button>
+                            <!--
                             <button class="btn btn-primary btn-sm" type="button" @click="handleChangeFacingMode">{{facingMode}}</button>
+                            -->
                         </div>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center">
@@ -107,7 +109,7 @@ export default {
                 onFrame: async () => {
                     await this.selfieSegmentation.send({ image: this.inputVideo });
                 },
-                width: 1280,                
+                width: 720,                
                 height: 720,
                 facingMode: facingMode              
             });
@@ -150,6 +152,13 @@ export default {
             this.facingMode = this.facingMode == 'user' ? 'environment' : 'user'
             this.startCamera(this.facingMode)
 
+        },
+        isMobile() {
+            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                return true
+            } else {
+                return false
+            }
         }
     }
     
