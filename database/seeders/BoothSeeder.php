@@ -21,7 +21,7 @@ class BoothSeeder extends Seeder
                 // RIGHT SPONSOR_R1 *updated
                 ['SNIBE', -1.94, 64.19, 'gold', "snibe.png.png", "snibe.png.png",
                     [
-                        ['External Link','-14','6','https://localhost'],
+                        ['External Link','-14','6',''],
                         ['Contact Us','-9','34',''],
                         ['Quiz','-6','-18',''],
                         ['Brochures','-5','-28',''],
@@ -33,7 +33,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R2
                 ['Thermo Fisher Scientific', -1.24, 126.80, 'gold', "thermofisher.png", "thermofisher.png",
                     [
-                        ['External Link','-14','-6','https://localhost'],
+                        ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
                         ['Quiz','-6','17',''],
                         ['Brochures','-5','29',''],
@@ -44,7 +44,7 @@ class BoothSeeder extends Seeder
                 // LEFT SPONSOR_L1
                 ['BIOCARE', -1.29, -56.62, 'gold', "biocare.png", "biocare.png",
                     [
-                        ['External Link','-14','-6','https://localhost'],
+                        ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
                         ['Quiz','-6','17',''],
                         ['Brochures','-5','26',''],
@@ -55,7 +55,7 @@ class BoothSeeder extends Seeder
                 //  SPONSOR_L2
                 ['ROCHE', -1.56, -120.66, 'gold', "roche.png.png", "roche.png.png",
                     [
-                        ['External Link','-14','8','https://localhost'],
+                        ['External Link','-14','8',''],
                         ['Contact Us','-9','34',''],
                         ['Quiz','-6','-18',''],
                         ['Brochures','-5','-26',''],
@@ -92,7 +92,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R3
                 ['Allied Hospital', -1, -49.36, 'bronze', "allied.png", "allied.png",
                     [
-                        ['External Link','-15','-20','https://localhost'],
+                        ['External Link','-15','-20',''],
                         ['Contact Us','-9','-24',''],
                         ['Quiz','-11','12',''],
                         ['Brochures','-4','-10',''],
@@ -105,7 +105,7 @@ class BoothSeeder extends Seeder
                 // LEFT SPONSOR_L1
                 ['Touchstar', -0.43, 133.45, 'bronze', "touchstar.png", "touchstar.png",
                     [
-                        ['External Link','-15','-20','https://localhost'],
+                        ['External Link','-15','-20',''],
                         ['Contact Us','-9','-24',''],
                         ['Quiz','-11','12',''],
                         ['Brochures','-4','-10',''],
@@ -116,7 +116,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_L2
                 ['SIEMENS Healthineers', 0.79, 90.61, 'gold', "siemens-healthineers.png", "siemens-healthineers.png",
                     [
-                        ['External Link','-14','3','https://localhost'],
+                        ['External Link','-14','3',''],
                         ['Contact Us','-9','32',''],
                         ['Quiz','-7','-20',''],
                         ['Brochures','-7','-27',''],
@@ -164,7 +164,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R3
                 ['RHUMBA INC.', 0.20, 134.02, 'bronze', "rhumba.png", "rhumba.png",
                     [
-                        ['External Link','-15','-24','https://localhost'],
+                        ['External Link','-15','-24',''],
                         ['Contact Us','-9','-25',''],
                         ['Quiz','-6','-11',''],
                         ['Brochures','-7','26',''],
@@ -178,7 +178,7 @@ class BoothSeeder extends Seeder
                 // LEFT SPONSOR_L1 
                 ['MRL Cybertech', -0.19, -47.85, 'bronze', "mrl-cybertec.png", "mrl-cybertec.png",
                     [
-                        ['External Link','-16','-20','https://localhost'],
+                        ['External Link','-16','-20',''],
                         ['Contact Us','-9','-25',''],
                         ['Quiz','-11','13',''],
                         ['Brochures','-4','-10',''],
@@ -189,7 +189,7 @@ class BoothSeeder extends Seeder
                 // [SPONSOR_L2
                 ['Ortho Clinical Diagnostics', 1.40, -90.00, 'gold', "ortho-clinical.png", "ortho-clinical.png",
                     [
-                        ['External Link','-14','8','https://localhost'],
+                        ['External Link','-14','8',''],
                         ['Contact Us','-8','34',''],
                         ['Quiz','-7','-17',''],
                         ['Brochures','-7','-24',''],
@@ -216,7 +216,7 @@ class BoothSeeder extends Seeder
                 // RIGHT SPONSOR_R1 *FACING GROUP D
                 ['Biosystems', -0.02, 46, 'bronze', "biosystem.png", "biosystem.png",
                     [
-                        ['External Link','-16','20','https://localhost'],
+                        ['External Link','-16','20',''],
                         ['Contact Us','-10','24',''],
                         ['Quiz','-10','-14',''],
                         ['Brochures','-4','9',''],
@@ -239,7 +239,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R3
                 ['BIOSITE', -0.20, 132.65, 'bronze', "biosite.png", "biosite.png",
                     [
-                        ['External Link','-15','-24','https://localhost'],
+                        ['External Link','-15','-24',''],
                         ['Contact Us','-9','-25',''],
                         ['Quiz','-6','-11',''],
                         ['Brochures','-7','26',''],
@@ -251,7 +251,7 @@ class BoothSeeder extends Seeder
                 // LEFT SPONSOR_L1
                 ['GLOBE BUSINESS', 0.19, -46.14, 'bronze', "globe-buisiness.png", "globe-buisiness.png",
                     [
-                        ['External Link','-15','-24','https://localhost'],
+                        ['External Link','-15','-24',''],
                         ['Contact Us','-9','-25',''],
                         ['Quiz','-6','-11',''],
                         ['Brochures','-7','26',''],
@@ -262,7 +262,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_L2
                 ['BIOREMIEUX PHILIPPINES CORPORATION', 2.65, -89.18, 'gold', "biomerieux.png", "biomerieux.png",
                     [
-                        ['External Link','-14','5','https://localhost'],
+                        ['External Link','-14','5',''],
                         ['Contact Us','-9','32',''],
                         ['Quiz','-7','-19',''],
                         ['Brochures','-7','-27',''],
@@ -302,7 +302,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R2
                 ['Grepcore Diamonde', 0.68, 90.05, 'gold', "grepcor.png", "grepcor.png",
                     [
-                        ['External Link','-8','-1','https://localhost'],
+                        ['External Link','-8','-1',''],
                         ['Contact Us','-5','32',''],
                         ['Quiz','-8','-15',''],
                         ['Brochures','0','-1',''],
@@ -326,7 +326,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_L1 *FACING PSP BOOTH
                 ['Philippine Society of Pathologist Inc.', 2.54, 0.28, 'gold', "psp.png", "psp.png",
                     [
-                        ['External Link','-13','4','https://localhost'],
+                        ['External Link','-13','4',''],
                         ['Contact Us','-7','32',''],
                         ['Quiz','-5','-19',''],
                         ['Brochures','-5','-27',''],
@@ -336,21 +336,21 @@ class BoothSeeder extends Seeder
                 ],
 
                 // // SPONSOR_L2
-                // ['SPONSOR_L2', 1.21, -88.83, 'gold', "SPONSOR_L2.png", "SPONSOR_L2.png",
-                //     [
-                //         ['External Link','-12.48','21.63','https://localhost'],
-                //         ['Contact Us','-9.26','24.92',''],
-                //         ['Quiz','-7.89','-4.33',''],
-                //         ['Brochures','-9.75','14.81',''],
-                //         ['Videos','1.03','-11.85',''],
-                //         ['Gallery','-0.16','10.03',''],
-                //     ]
-                // ],
+                ['Pathology Residents Organization', -0.33, -46.28, 'bronze', "pro.png", "pro.png",
+                    [
+                        ['External Link','-16','-20',''],
+                        ['Contact Us','-9','-25',''],
+                        ['Quiz','-11','13',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','10',''],
+                        ['Gallery','2','-10',''],
+                    ]
+                ],
 
                 // SPONSOR_L3
                 ['MUREX', -0.08, -132.18, 'bronze', "murex.png", "murex.png",
                     [
-                        ['External Link','-16','19','https://localhost'],
+                        ['External Link','-16','19',''],
                         ['Contact Us','-10','23',''],
                         ['Quiz','-10','-15',''],
                         ['Brochures','-4','9',''],
