@@ -294,12 +294,13 @@ export default {
       this.viewer = pannellum.viewer('panorama', this.panorama_details);
     },
     handleBackToLobby(){
+      console.log(this.booth_details)
       if(this.$store.getters.user.classification === 'sponsor'){
 
             this.$router.push({ name: 'home'})
           }else{
 
-            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby', pitch :  this.booth_details.x, yaw : this.booth_details.y}})
             // this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
           }
     },

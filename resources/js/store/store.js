@@ -333,8 +333,8 @@ export default new Vuex.Store({
       },
       {
         "scene": 'secondf_outside',
-        "pitch": -3.4,
-        "yaw": -193.5,
+        "pitch": -1.6,
+        "yaw": -1.1,
         "type": "scene",
         "cssClass": "custom-hotspot arrow_left",
         "sceneId": "hall_c",
@@ -349,8 +349,8 @@ export default new Vuex.Store({
       },
       {
         "scene": 'pool_area2',
-        "pitch": -3.1,
-        "yaw": -143,
+        "pitch": -3.4,
+        "yaw": -123,
         "type": "scene",
         "cssClass": "custom-hotspot arrow_up",
         "sceneId": "pool_area",

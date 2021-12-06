@@ -229,6 +229,8 @@ export default {
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
                 // "hotSpotDebug": true,
+                   
+                
             },
 
             "scenes": {
@@ -250,7 +252,8 @@ export default {
                 'minPitch' :-45,
                 'maxPitch' :45,
                 'minYaw': -120,
-                'maxYaw':120,   
+                'maxYaw':120,
+
               },
               "main_entrance": {
                 "type": "multires",
@@ -468,8 +471,8 @@ export default {
                 ],
                 'minPitch' :-45,
                 'maxPitch' :45,
-                'minYaw': -240,
-                'maxYaw':90,
+                'minYaw': -170,
+                'maxYaw': 100,
               },             
               "pool_area2" :{
                 "type": "multires",
