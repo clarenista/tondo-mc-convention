@@ -80,6 +80,9 @@
                 this.getMessages();
                 window.Echo.channel("chat."+vm.room.id)
                 .listen('NewChatMessage', ({chatMessage}) =>{
+                    if(!this.modal.show){
+                        this.modal.show = true
+                    }
                     this.messages.push({
                         'sender_id'     : chatMessage.sender_id,
                         'chat_room_id'     : chatMessage.chat_room_id,
