@@ -58,6 +58,14 @@ export default new Vuex.Store({
       },
       {
         "scene": 'lobby',
+        "type": "info",
+        "pitch": 22.8,
+        "yaw": -195.8,
+        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
+      },
+
+      {
+        "scene": 'lobby',
         "type": "scene",
         "pitch": 2.6,
         "yaw": -21.5,
