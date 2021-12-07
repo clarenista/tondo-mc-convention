@@ -277,7 +277,6 @@ export default {
           this.selectedHotspot = hs[i]
         }
       }
-      console.log(this.selectedHotspot)
       // console.log(hs)
       this.panorama_details = {
         "default": {
@@ -309,7 +308,6 @@ export default {
       this.viewer = pannellum.viewer('panorama', this.panorama_details);
     },
     handleBackToLobby(){
-      console.log(this.booth_details)
       if(this.$store.getters.user.classification === 'sponsor'){
 
             this.$router.push({ name: 'home'})
@@ -445,7 +443,6 @@ export default {
       },
       async showQuestionnaire(){
         let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
-        console.log(data)
       },
       imageLoad(){
         this.isLoading = false

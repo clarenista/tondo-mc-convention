@@ -106,12 +106,23 @@
       </div>
 
       <div id="panorama">
-        <div id="controls" v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d' ">
-          <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
-          </div>
-          <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"></div>
+        <div v-if="sceneId">
+          <div id="controls" >
+            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
+            </div>
+            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"></div>
+          </div> 
+        </div>
+        <div v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d'">
+          <div id="controls" >
+            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
+            </div>
+            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
+          </div>        
         </div>
       </div>
       
@@ -206,6 +217,7 @@ export default {
     },
     methods:{
       async init(){
+        alert(this.sceneId)
         let vm = this
         // auth:api
         let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
@@ -593,12 +605,18 @@ export default {
           case 'pool_area':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
+          case 'pool_area2':
+            this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
+            break;            
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
             break;
+          case 'secondf_outside':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;  
           default:
             this.$store.commit('updateAudioSource', '')
             // code block
@@ -629,6 +647,7 @@ export default {
         this.panorama_details.scenes.scene.hotSpots.push(...this.booths)
       },
       handleNavigateTo(sceneId){
+        this.sceneId = null
         this.viewer.loadScene(sceneId)
         const label = sceneId+" hotspot"
         this.$sendGuestEvent('click', label)
