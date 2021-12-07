@@ -234,12 +234,27 @@ export default {
   },
   methods:{
     async init(){
-    
       const wrapper = document.querySelector('.hotspots--wrapper');
       let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
       
       this.booth_details = data
+      switch(data.panorama_location){
+        case 'hall_a':
+        this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
+        break;
+        case 'hall_b':
+        this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
+        break;
+        case 'hall_c':
+        this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
+        break;
+        case 'hall_d':
+        this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
+        break;
+      }
+      this.$store.getters.audio.volume = 0.1
       this.$store.commit('changeBoothDetails', data)
+      // this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
       this.sendBoothGuestEvent(data)
       const image = data.background
       let hs = data.hotspots

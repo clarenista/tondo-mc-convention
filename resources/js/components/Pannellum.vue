@@ -106,12 +106,12 @@
       </div>
 
       <div id="panorama">
-        <div id="controls" v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d' ">
-          <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
+        <div id="controls" v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d' ">
+          <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
           </div>
-          <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
+          <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"></div>
+          <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"></div>
+          <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"></div>
         </div>
       </div>
       
@@ -567,50 +567,43 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
-        
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
         switch(this.viewer.getScene()) {
+          case 'landing':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;          
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;            
           case 'hall_a':
             this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_b':
             this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_c':
             this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'hall_d':
             this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'pool_area':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
-            this.$store.getters.audio.volume = 0.1
             break;
           default:
-            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            this.$store.getters.audio.volume = 0.1
+            this.$store.commit('updateAudioSource', '')
             // code block
         }
+            this.$store.getters.audio.volume = 0.1
       },
       reSize() {
         // Get screen size (inner/outerWidth, inner/outerHeight)

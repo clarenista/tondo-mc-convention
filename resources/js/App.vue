@@ -1,6 +1,5 @@
 <template>
     <div>
-        <audio src="/bgm/bgm.mp3" loop id="bgm"></audio>
         <router-view></router-view>
     </div>
 </template>
