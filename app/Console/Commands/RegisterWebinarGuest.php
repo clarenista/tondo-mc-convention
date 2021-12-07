@@ -128,6 +128,7 @@ class RegisterWebinarGuest extends Command
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
+                echo $guest->id . " :: " . $guest->email_address;
                     $registrants = collect($registrants);
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
