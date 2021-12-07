@@ -122,13 +122,13 @@ class RegisterWebinarGuest extends Command
         $registrants = $response->json()['registrants'];
         echo var_dump($registrants);
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
-        // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
-        ->get();
+            // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
+            ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
-                echo $guest->id . " :: " . $guest->email_address;
+                    echo $guest->id . " :: " . $guest->email_address . PHP_EOL;
                     $registrants = collect($registrants);
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
