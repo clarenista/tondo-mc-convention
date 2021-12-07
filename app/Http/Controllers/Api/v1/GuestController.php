@@ -42,32 +42,30 @@ class GuestController extends Controller
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-        dd($registrants);
         $regs = collect($registrants);
-        $all->merge($regs);
+        $all = $all->merge($regs);
 
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=2";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         $regs = collect($registrants);
-        $all->merge($regs);
+        $all = $all->merge($regs);
 
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=3";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         $regs = collect($registrants);
-        $all->merge($regs);
+        $all = $all->merge($regs);
 
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=4";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         $regs = collect($registrants);
-        $all->merge($regs);
+        $all = $all->merge($regs);
 
-        dd($all);
         return $all->firstWhere('email', $email);
     }
 
