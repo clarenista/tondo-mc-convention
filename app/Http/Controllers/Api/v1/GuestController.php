@@ -55,7 +55,7 @@ class GuestController extends Controller
             $registered = $this->checkRegistrants($user->email, $webinar);
             if (!$registered) {
                 // // DISABLE AUTO REGISTER
-                return "0";
+                // return "0";
                 $registered = $this->registerToWebinar($webinar, $user);
                 $registered['id'] = $registered['registrant_id'];
             }
