@@ -42,18 +42,18 @@ class RegisterWebinarGuest extends Command
     {
 
         $bearer = "Bearer ";
-        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2MzgxMzEyNTMsImlhdCI6MTYzNzUyNjQ1NH0.UhnsXSG1pGHOGQpM2twr_sDn_oeZj7QbtyDc8zJgpxE";
-        $webinar_id = "81246883543";
-        $webinar_topic = "PSP70 - STAGING WEBINAR";
+        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2NDA4NzI4MDAsImlhdCI6MTYzODkxMDE0NX0.gnxE8aZozed2xbboz8230_eA8n8HYPHgcijVp-g46fE";
+        $webinar_id = "88478770661";
+        $webinar_topic = "70th (Platinum) Anniversary Midyear Convention";
 
         $panelists = [
-            'coleman22@kshlerin.biz',
-            'clovis30@yahoo.com',
-            'hyatt.jeanne@lehner.com',
+            // 'coleman22@kshlerin.biz',
+            // 'clovis30@yahoo.com',
+            // 'hyatt.jeanne@lehner.com',
             // '22@22.com',
         ];
 
-        $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
+        // $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
         $this->register_registrants($webinar_id, $webinar_topic, $bearer, $panelists);
         return 0;
     }
@@ -121,7 +121,9 @@ class RegisterWebinarGuest extends Command
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         echo var_dump($registrants);
-        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])->get();
+        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
+        // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
+        ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
