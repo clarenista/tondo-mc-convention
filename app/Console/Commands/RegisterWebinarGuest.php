@@ -130,6 +130,7 @@ class RegisterWebinarGuest extends Command
                 if (strpos($guest->email_address, "@")) {
                     echo PHP_EOL;
                     $registrants = collect($registrants);
+                    dd($registrants);
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
                         echo $guest->id . " : DB  : " . $guest->email_address;
@@ -151,10 +152,10 @@ class RegisterWebinarGuest extends Command
                         $response = $client->post($registrants_api, $post);
                         $response = $response->json();
                     }
+                    dd();
                     if (isset($response['code']) && $response['code'] == 300) {
                         dd($response, $guest->toArray());
                     }
-                    \Log::info($response);
                     $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->first();
                     $data = [
                         'registrant_id' => $response['registrant_id'],
