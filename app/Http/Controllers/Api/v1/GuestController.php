@@ -42,6 +42,7 @@ class GuestController extends Controller
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
+        dd($registrants);
         $regs = collect($registrants);
         $all->merge($regs);
 
