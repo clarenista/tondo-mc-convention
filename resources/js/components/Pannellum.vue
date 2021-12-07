@@ -217,7 +217,6 @@ export default {
     },
     methods:{
       async init(){
-        alert(this.sceneId)
         let vm = this
         // auth:api
         let {data} = await axios.get('api/v1/booths?api_token='+localStorage.getItem('access_token'))
