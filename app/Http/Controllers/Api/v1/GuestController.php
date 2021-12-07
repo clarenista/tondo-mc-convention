@@ -67,7 +67,7 @@ class GuestController extends Controller
         $all->merge($regs);
 
 
-        return $regs->firstWhere('email', $email);
+        return $all->firstWhere('email', $email);
     }
 
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
