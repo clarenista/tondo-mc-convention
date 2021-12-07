@@ -116,12 +116,16 @@ class RegisterWebinarGuest extends Command
     {
 
         $webinar_role = "registrant";
-        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
+
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=1";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-        echo var_dump($registrants);
+        $registrants = collect($registrants);
+
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
+            ->whereDoesntHave('webinars')
             // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
             ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
@@ -129,7 +133,6 @@ class RegisterWebinarGuest extends Command
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
                     echo PHP_EOL;
-                    $registrants = collect($registrants);
                     dd($registrants);
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
