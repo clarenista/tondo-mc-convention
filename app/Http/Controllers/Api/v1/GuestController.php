@@ -76,7 +76,7 @@ class GuestController extends Controller
         $webinar = Program::whereEnabled(1)->first();
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
         if (!$reg) {
-            $registered = $this->checkRegistrants($user->email, $webinar);
+            $registered = $this->checkRegistrants($user->email_address, $webinar);
             if (!$registered) {
                 // // DISABLE AUTO REGISTER
                 // return "0";
