@@ -109,7 +109,7 @@ export default {
                 onFrame: async () => {
                     await this.selfieSegmentation.send({ image: this.inputVideo });
                 },
-                width: 720,                
+                width: 1280,                
                 height: 720,
                 facingMode: facingMode              
             });
