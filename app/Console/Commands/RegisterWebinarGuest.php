@@ -126,6 +126,7 @@ class RegisterWebinarGuest extends Command
 
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
             ->whereDoesntHave('webinars')
+            ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
             ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
