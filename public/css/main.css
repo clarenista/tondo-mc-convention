@@ -132,7 +132,6 @@ td.pw3
     overflow-y: auto;
     overflow-y: scroll;
     height: 250px;
-    white-space: nowrap;
 }
 #chat .c-chat-widget-footer {
     padding: 10px 15px; 
@@ -189,4 +188,5 @@ td.pw3
     display: block;
     padding: 10px 20px;
     vertical-align: middle; 
+    overflow-wrap: anywhere;
 }
