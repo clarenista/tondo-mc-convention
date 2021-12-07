@@ -151,6 +151,7 @@ class RegisterWebinarGuest extends Command
                         $response = $client->post($registrants_api, $post);
                         $response = $response->json();
                     }
+                    \Log::info($response);
                     if (isset($response['code']) && $response['code'] == 300) {
                         dd($response, $guest->toArray());
                     }
