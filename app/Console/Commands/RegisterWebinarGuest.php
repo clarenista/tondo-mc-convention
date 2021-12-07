@@ -116,14 +116,11 @@ class RegisterWebinarGuest extends Command
     {
 
         $webinar_role = "registrant";
-
-
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=1";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
         $registrants = collect($registrants);
-
         $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
             ->whereDoesntHave('webinars')
             ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
