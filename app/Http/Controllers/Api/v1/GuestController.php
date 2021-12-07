@@ -57,6 +57,8 @@ class GuestController extends Controller
                 // // DISABLE AUTO REGISTER
                 // return "0";
                 $registered = $this->registerToWebinar($webinar, $user);
+
+                \Log::info($registered);
                 $registered['id'] = $registered['registrant_id'];
             }
             $reg = $user->webinars()->create([
@@ -82,6 +84,7 @@ class GuestController extends Controller
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
         ];
+
         $response = $client->post($registrants_api, $post);
         return $response->json();
     }
