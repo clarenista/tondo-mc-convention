@@ -285,8 +285,8 @@ export default {
             // 180 view | 360 view = 180 view x 2
             'minPitch' :-20,
             'maxPitch' :20,
-            'minYaw': -50,
-            'maxYaw': 50,   
+            'minYaw': -60,
+            'maxYaw': 60,   
             "preview": "/images/multires/loading.png"
           },
         }
