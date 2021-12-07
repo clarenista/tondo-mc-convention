@@ -58,7 +58,6 @@ class GuestController extends Controller
                 // return "0";
                 $registered = $this->registerToWebinar($webinar, $user);
 
-                \Log::info($registered);
                 $registered['id'] = $registered['registrant_id'];
             }
             $reg = $user->webinars()->create([
@@ -80,7 +79,7 @@ class GuestController extends Controller
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
         $post = [
-            'email' => $user->email,
+            'email' => $user->email_address,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
         ];
