@@ -66,7 +66,7 @@ class GuestController extends Controller
         $regs = collect($registrants);
         $all->merge($regs);
 
-
+        dd($all);
         return $all->firstWhere('email', $email);
     }
 
