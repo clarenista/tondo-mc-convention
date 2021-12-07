@@ -128,10 +128,11 @@ class RegisterWebinarGuest extends Command
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
-                    echo $guest->id . " :: " . $guest->email_address . PHP_EOL;
+                    echo PHP_EOL;
                     $registrants = collect($registrants);
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
+                        echo $guest->id . " : DB  : " . $guest->email_address;
                         $response = [
                             "registrant_id" => $registered['id'],
                             "id" => $webinar_id,
@@ -140,6 +141,7 @@ class RegisterWebinarGuest extends Command
                             'registered' => true,
                         ];
                     } else {
+                        echo $guest->id . " : API : " . $guest->email_address;
                         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
                         $post = [
                             'email' => $guest->email_address,
