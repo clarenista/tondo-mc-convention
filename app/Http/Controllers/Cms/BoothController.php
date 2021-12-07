@@ -165,6 +165,7 @@ class BoothController extends Controller
         DB::transaction(function () use ($booth) {
             $booth->update(
                 \request()->validate([
+                    'user_id' => 'required',
                     'name' => 'required|string',
                     'caption' => 'nullable|string',
                     'url' => 'nullable|string',
