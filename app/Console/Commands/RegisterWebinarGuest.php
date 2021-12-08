@@ -161,6 +161,8 @@ class RegisterWebinarGuest extends Command
             // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
             ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
+
+        echo PHP_EOL . $guests->count();
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
