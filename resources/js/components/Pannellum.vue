@@ -582,7 +582,10 @@ export default {
         switch(this.viewer.getScene()) {
           case 'landing':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            break;          
+            break;
+          case 'main_entrance':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;              
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
             break;
