@@ -106,7 +106,7 @@
       </div>
 
       <div id="panorama">
-        <div v-if="sceneId">
+        <div v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d'">
           <div id="controls" >
             <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
             </div>
