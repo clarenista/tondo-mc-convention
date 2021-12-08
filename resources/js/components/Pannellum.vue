@@ -504,7 +504,7 @@ export default {
             }
         }
         for(let i in this.booths){
-          this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : "custom-hotspot brochures"
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
@@ -876,6 +876,11 @@ export default {
     background-image: url('/images/icons/right_arrow-min.png');
     background-size: cover;
   }
+
+  div >>> .brochures{
+    background-image: url('/images/icons/brochure.png');
+    background-size: cover;
+  }    
   @-webkit-keyframes pulse {
     0% {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
