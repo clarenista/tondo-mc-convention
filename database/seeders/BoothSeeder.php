@@ -127,12 +127,12 @@ class BoothSeeder extends Seeder
                 // SPONSOR_L3
                 ['I.T. EASY SOFTWARE SOLUTIONS INC.', -0.36, 47.02, 'bronze', "it_easy.png", "it_easy.png",
                     [
-                        ['External Link','-16.28','28.31','https://localhost'],
-                        ['Contact Us','-10.12','31.33',''],
-                        ['Quiz','-9.43','-17.38',''],
-                        ['Brochures','-9.94','-4.77',''],
-                        ['Videos','1.24','-12.81',''],
-                        ['Gallery','-0.27','12.17',''],
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
                     ]
                 ],
             ],
