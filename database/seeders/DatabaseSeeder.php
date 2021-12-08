@@ -51,6 +51,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BoothSeeder::class);
         $this->call(ChatRoomSeeder::class);
         $this->call(UsersSeeder::class);
-        // $this->call(StandeeSeeder::class);
+        $this->call(StandeeSeeder::class); // added a program hotspot at line 20 - 22
     }
 }
