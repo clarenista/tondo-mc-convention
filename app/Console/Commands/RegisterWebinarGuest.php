@@ -42,18 +42,18 @@ class RegisterWebinarGuest extends Command
     {
 
         $bearer = "Bearer ";
-        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2MzgxMzEyNTMsImlhdCI6MTYzNzUyNjQ1NH0.UhnsXSG1pGHOGQpM2twr_sDn_oeZj7QbtyDc8zJgpxE";
-        $webinar_id = "81246883543";
-        $webinar_topic = "PSP70 - STAGING WEBINAR";
+        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2NDA4NzI4MDAsImlhdCI6MTYzODkxMDE0NX0.gnxE8aZozed2xbboz8230_eA8n8HYPHgcijVp-g46fE";
+        $webinar_id = "88478770661";
+        $webinar_topic = "70th (Platinum) Anniversary Midyear Convention";
 
         $panelists = [
-            'coleman22@kshlerin.biz',
-            'clovis30@yahoo.com',
-            'hyatt.jeanne@lehner.com',
+            // 'coleman22@kshlerin.biz',
+            // 'clovis30@yahoo.com',
+            // 'hyatt.jeanne@lehner.com',
             // '22@22.com',
         ];
 
-        $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
+        // $this->register_panelists($webinar_id, $webinar_topic, $bearer, $panelists);
         $this->register_registrants($webinar_id, $webinar_topic, $bearer, $panelists);
         return 0;
     }
@@ -116,19 +116,58 @@ class RegisterWebinarGuest extends Command
     {
 
         $webinar_role = "registrant";
-        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
+
+        // $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=1";
+        // $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        // $response = $client->get($registrants_api);
+        // $registrants = $response->json()['registrants'];
+        // $registrants = collect($registrants);
+
+        $all = collect([]);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=1";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-        echo var_dump($registrants);
-        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])->get();
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=2";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=3";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=4";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants = $all;
+
+        $guests = User::withTrashed()->whereNotIn('email_address', $panelists)
+            ->whereDoesntHave('webinars')
+            ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
+            // ->whereIn('id', [20, 21, 22, 23, 24, 25, 26, 27])
+            ->get();
         echo join(', ', $guests->pluck('email_address')->toArray());
         if ($this->confirm('register guests?')) {
             foreach ($guests as $guest) {
                 if (strpos($guest->email_address, "@")) {
-                    $registrants = collect($registrants);
+                    echo PHP_EOL;
                     $registered = $registrants->firstWhere('email', $guest->email_address);
                     if ($registered) {
+                        echo $guest->id . " : DB  : " . $guest->email_address;
                         $response = [
                             "registrant_id" => $registered['id'],
                             "id" => $webinar_id,
@@ -137,6 +176,7 @@ class RegisterWebinarGuest extends Command
                             'registered' => true,
                         ];
                     } else {
+                        echo $guest->id . " : API : " . $guest->email_address;
                         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
                         $post = [
                             'email' => $guest->email_address,
@@ -146,9 +186,16 @@ class RegisterWebinarGuest extends Command
                         $response = $client->post($registrants_api, $post);
                         $response = $response->json();
                     }
+
                     if (isset($response['code']) && $response['code'] == 300) {
                         dd($response, $guest->toArray());
                     }
+                    if (isset($response['code']) && $response['code'] == 3027) {
+                        \Log::info($response);
+                        continue;
+                    }
+
+
                     $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->first();
                     $data = [
                         'registrant_id' => $response['registrant_id'],

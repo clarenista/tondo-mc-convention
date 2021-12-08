@@ -36,14 +36,37 @@ class GuestController extends Controller
         $bearer = "Bearer ";
         $bearer .= $webinar->description;
 
-        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
+        $all = collect([]);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=1";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($registrants_api);
         $registrants = $response->json()['registrants'];
-
         $regs = collect($registrants);
+        $all = $all->merge($regs);
 
-        return $regs->firstWhere('email', $email);
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=2";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=3";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants?page_size=300&page_number=4";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+
+        return $all->firstWhere('email', $email);
     }
 
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
@@ -52,11 +75,12 @@ class GuestController extends Controller
         $webinar = Program::whereEnabled(1)->first();
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
         if (!$reg) {
-            $registered = $this->checkRegistrants($user->email, $webinar);
+            $registered = $this->checkRegistrants($user->email_address, $webinar);
             if (!$registered) {
                 // // DISABLE AUTO REGISTER
-                return "0";
+                // return "0";
                 $registered = $this->registerToWebinar($webinar, $user);
+
                 $registered['id'] = $registered['registrant_id'];
             }
             $reg = $user->webinars()->create([
@@ -78,10 +102,11 @@ class GuestController extends Controller
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
         $post = [
-            'email' => $user->email,
+            'email' => $user->email_address,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
         ];
+
         $response = $client->post($registrants_api, $post);
         return $response->json();
     }

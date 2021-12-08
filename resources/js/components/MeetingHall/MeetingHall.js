@@ -59,7 +59,7 @@ export default {
             vue.$store.commit('updateIsNotAllowedMessage', 'The session is not available.');
             return false;
         }
-        vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
+        vue.$store.commit('updateIsNotAllowedMessage', 'The meeting has not yet started.')
         return false;
     },
     getZoomType(vue) {
