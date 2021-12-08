@@ -106,7 +106,7 @@
       </div>
 
       <div id="panorama">
-        <div v-if="sceneId">
+        <div v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d'">
           <div id="controls" >
             <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
             </div>
@@ -504,7 +504,7 @@ export default {
             }
         }
         for(let i in this.booths){
-          this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : "custom-hotspot brochures"
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
@@ -582,7 +582,10 @@ export default {
         switch(this.viewer.getScene()) {
           case 'landing':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            break;          
+            break;
+          case 'main_entrance':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;              
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
             break;
@@ -873,6 +876,11 @@ export default {
     background-image: url('/images/icons/right_arrow-min.png');
     background-size: cover;
   }
+
+  div >>> .brochures{
+    background-image: url('/images/icons/brochure.png');
+    background-size: cover;
+  }    
   @-webkit-keyframes pulse {
     0% {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);

@@ -325,21 +325,13 @@ export default {
       }
       this.selectedHotspot = hotspot
       if(hotspot.name == 'videos'){
-        if(this.$store.getters.bgmStart){
-          this.bgmStart = true
-          this.$store.commit('updateBgmStart', false)
-        }
+        this.$store.getters.audio.pause()
       }
       this.sendBoothGuestEvent(this.booth_details, hotspot)
     },  
     handleCloseModal(){
       if(this.selectedHotspot.name == 'videos'){
-        if(this.bgmStart){
-          this.$store.commit('updateBgmStart', true)
-        }else{
-          this.$store.commit('updateBgmStart', false)
-
-        }
+        this.$store.getters.audio.play()
       }
           this.selectedHotspot = null
           this.value = false
