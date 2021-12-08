@@ -8,6 +8,7 @@ export default {
                 zoomBtn.style.display = "";
                 zoomBtn.addEventListener("click", () => {
                     this.isAllowed(vue).then((result) => {
+                        vue.$store.getters.audio.pause();
                         if (result) {
                             this.openZoomMobile(vue).then((ret)=>{
                                 if (!ret) {
