@@ -128,6 +128,7 @@ class HomeController extends Controller
             ],
             'form_params' => [
                 'email' => $request->email,
+                'domain' => $request->root(),
             ],
         ]);
         $result = json_decode((string) $response->getBody(), true);     
