@@ -110,4 +110,63 @@ class HomeController extends Controller
         ];
         return $password2[\strtoupper($first_name[0])];
     }
+
+    function passwordRemind(Request $request){
+        $guzzle = new \GuzzleHttp\Client;
+        $token = $guzzle->post(config('app.domain') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => config('app.passport.grant_type'),
+                'client_id' => config('app.passport.client_id'),
+                'client_secret' => config('app.passport.client_secret'),
+                'scope' => '*',
+            ],
+        ]);
+        $response = $guzzle->post(config('app.domain') . '/api/convention-password-remind', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+            ],
+            'form_params' => [
+                'email' => $request->email,
+            ],
+        ]);
+        $result = json_decode((string) $response->getBody(), true);     
+        if($result){
+            return response()->json([
+                'status' => 'ok',
+            ]);
+        }   
+    }
+
+    function resetPassword(Request $request){
+        $guzzle = new \GuzzleHttp\Client;
+        $token = $guzzle->post(config('app.domain') . '/oauth/token', [
+            'form_params' => [
+                'grant_type' => config('app.passport.grant_type'),
+                'client_id' => config('app.passport.client_id'),
+                'client_secret' => config('app.passport.client_secret'),
+                'scope' => '*',
+            ],
+        ]);
+        $response = $guzzle->post(config('app.domain') . '/api/reset-password', [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Authorization' => 'Bearer ' . json_decode((string) $token->getBody(), true)['access_token'],
+            ],
+            'form_params' => [
+                'password' => $request->password,
+                'reset_password_key' => $request->reset_password_key,
+            ],
+        ]);
+        $result = json_decode((string) $response->getBody(), true);  
+        // dd($result);   
+        if ($result) {
+            $user = User::where('registrant_id',$result['user']['id'])->first();
+            $user->password = $result['user']['password'];
+            $user->save();
+            return response()->json([
+                'status' => 'ok',
+            ]);
+        }
+    }
 }
