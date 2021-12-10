@@ -109,4 +109,10 @@ class User extends Authenticatable
 
         return $this->hasMany(UserWebinar::class);
     }
+
+    public function fellowships()
+    {
+
+        return $this->hasMany(UserFellowship::class);
+    }
 }
