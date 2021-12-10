@@ -54,8 +54,9 @@ class RegisterFellowshipGuest extends Command
         $fellowship_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/panelists";
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($fellowship_api);
-        $attendees = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
-        $users = User::whereIn('classification', $attendees)->where('id', '>', 999)->get();
+        // $attendees = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
+        $attendees = ['Non-Member'];
+        $users = User::whereIn('classification', $attendees)->where('id', '>', 0)->get();
         foreach ($users as $user) {
             \Log::info([$user->id, $user->email_address]);
             // if ($user->email_address == "jayfructuoso@gmail.com") {
