@@ -48,7 +48,7 @@ Add Booth
                     @include('cms.include.input-file', ['key' => 'thumbnail_url', 'label' => 'Thumbnail'])
                 @endif
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">ADD NEW BOOTH</button>
+                    <button class="btn btn-success btn-block">ADD NEW {{strtoupper($hotspot->name)}}</button>
                 </div>
             </form>
         </div>

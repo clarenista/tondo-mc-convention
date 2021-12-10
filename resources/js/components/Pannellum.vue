@@ -106,12 +106,23 @@
       </div>
 
       <div id="panorama">
-        <div id="controls" v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d' ">
-          <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
-          </div>
-          <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
-          <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
+        <div v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d'">
+          <div id="controls" >
+            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
+            </div>
+            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"></div>
+          </div> 
+        </div>
+        <div v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d'">
+          <div id="controls" >
+            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
+            </div>
+            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
+            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
+          </div>        
         </div>
       </div>
       
@@ -229,6 +240,8 @@ export default {
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
                 // "hotSpotDebug": true,
+                   
+                
             },
 
             "scenes": {
@@ -250,7 +263,8 @@ export default {
                 'minPitch' :-45,
                 'maxPitch' :45,
                 'minYaw': -120,
-                'maxYaw':120,   
+                'maxYaw':120,
+
               },
               "main_entrance": {
                 "type": "multires",
@@ -452,61 +466,97 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },            
+              },   
+              "secondf_outside" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/secondf_outside",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ],
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -170,
+                'maxYaw': 100,
+              },             
+              "pool_area2" :{
+                "type": "multires",
+                "multiRes": {
+                  "basePath": "/images/multires/pool_area2",
+                  "path": "/%l/%s%y_%x",
+                  "fallbackPath": "/fallback/%s",
+                  "extension": "jpg",
+                  "tileResolution": 512,
+                  "maxLevel": 3,
+                  "cubeResolution": 1904,
+                },
+                "hotSpots": [
+                ]
+              },       
 
                 
             }
         }
         for(let i in this.booths){
-          this.booths[i].cssClass = "custom-hotspot booth"
+          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : "custom-hotspot brochures"
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
         }
-        // if(this.$store.getters.user.classification ==='sponsor'){
-        //   this.viewer= pannellum.viewer('panorama', this.panorama_details );
-        //   this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
-        //   this.viewer.removeHotSpot('vote')
-        //   this.viewer.removeHotSpot('zoom_meeting')
-        //   this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
-        //   this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
+        if(this.$store.getters.user.classification ==='sponsor'){
+          this.viewer= pannellum.viewer('panorama', this.panorama_details );
+          this.sponsor_booth = _.filter(this.$store.getters.booths, ['id', this.$store.getters.user.booth.id])
+          this.viewer.removeHotSpot('vote')
+          this.viewer.removeHotSpot('zoom_meeting')
+          this.viewer.loadScene(this.$store.getters.user.booth.panorama_location)
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].pitch = this.$store.getters.user.booth.pitch
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].yaw = this.$store.getters.user.booth.yaw
+          this.panorama_details.scenes.[this.$store.getters.user.booth.panorama_location].hotSpots.push(...this.sponsor_booth)
 
-        // }
-        this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
-        this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
-        this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
-        this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
-        this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
-        for(let i in this.$store.getters.scene_hotSpots){
-          this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+        }else{
+
+          this.hall_a_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_a'])
+          this.hall_b_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_b'])
+          this.hall_c_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_c'])
+          this.hall_d_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'hall_d'])
+          this.lobby_booths = _.filter(this.$store.getters.booths, ['panorama_location', 'lobby'])
+          for(let i in this.$store.getters.scene_hotSpots){
+            this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
+          }
+          this.panorama_details.scenes.landing.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'landing']))
+          // this.panorama_details.scenes.landing.hotSpots.push(...this.lobby_booths)
+
+          this.panorama_details.scenes.main_entrance.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'main_entrance']))
+          this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
+          this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
+          this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+
+          this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+
+          this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
+          this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
+
+          this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_b']))
+          this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
+
+          this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_c']))
+          this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
+
+          this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
+          this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
+
+          this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
+          this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
+          this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
+          this.panorama_details.scenes.secondf_outside.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_outside']))
+          this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
-        this.panorama_details.scenes.landing.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'landing']))
-        // this.panorama_details.scenes.landing.hotSpots.push(...this.lobby_booths)
-
-        this.panorama_details.scenes.main_entrance.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'main_entrance']))
-        this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
-        this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
-        this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
-
-        this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
-
-        this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
-        this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
-
-        this.panorama_details.scenes.hall_b.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_b']))
-        this.panorama_details.scenes.hall_b.hotSpots.push(...this.hall_b_booths)
-
-        this.panorama_details.scenes.hall_c.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_c']))
-        this.panorama_details.scenes.hall_c.hotSpots.push(...this.hall_c_booths)
-
-        this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
-        this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
-
-        this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
-        this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
-        this.viewer= pannellum.viewer('panorama', this.panorama_details );
         
 
           
@@ -528,9 +578,14 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
-        
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
         switch(this.viewer.getScene()) {
+          case 'landing':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;
+          case 'main_entrance':
+            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;              
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
             break;
@@ -539,34 +594,36 @@ export default {
             break;            
           case 'hall_a':
             this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
-            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_b':
             this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
-            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_c':
             this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
-            this.$store.getters.audio.volume = 0.5
             break;
           case 'hall_d':
             this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
-            this.$store.getters.audio.volume = 0.5
             break;
           case 'pool_area':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
+          case 'pool_area2':
+            this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
+            break;            
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
-            this.$store.getters.audio.volume = 0.3
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
             break;
-          default:
+          case 'secondf_outside':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            break;  
+          default:
+            this.$store.commit('updateAudioSource', '')
             // code block
         }
+            this.$store.getters.audio.volume = 0.1
       },
       reSize() {
         // Get screen size (inner/outerWidth, inner/outerHeight)
@@ -592,6 +649,7 @@ export default {
         this.panorama_details.scenes.scene.hotSpots.push(...this.booths)
       },
       handleNavigateTo(sceneId){
+        this.sceneId = null
         this.viewer.loadScene(sceneId)
         const label = sceneId+" hotspot"
         this.$sendGuestEvent('click', label)
@@ -771,19 +829,27 @@ export default {
     background-size: cover;
   }
   div >>> .booth{
-    background-image: url('/images/multires/ICONS/enter.png');
+    background-image: url('/images/multires/ICONS/ENTER.png');
     background-size: cover;
   }
   div >>> .arrow_left{
-    background-image: url('/images/multires/ICONS/Arrow.png');
+    background-image: url('/images/multires/ICONS/ARROW.png');
     background-size: cover;
   }  
   div >>> .arrow_right{
-    background-image: url('/images/multires/ICONS/Arrow_Right.png');
+    background-image: url('/images/multires/ICONS/ARROW_RIGHT.png');
     background-size: cover;
   }    
+  div >>> .arrow_up{
+    background-image: url('/images/multires/ICONS/ARROW_UP.png');
+    background-size: cover;
+  }     
+  div >>> .arrow_down{
+    background-image: url('/images/multires/ICONS/ARROW_DOWN.png');
+    background-size: cover;
+  }     
   div >>> .enter{
-    background-image: url('/images/multires/ICONS/Enter.png');
+    background-image: url('/images/multires/ICONS/ENTER.png');
     background-size: cover;
   } 
   div >>> .hall_a{
@@ -810,6 +876,11 @@ export default {
     background-image: url('/images/icons/right_arrow-min.png');
     background-size: cover;
   }
+
+  div >>> .brochures{
+    background-image: url('/images/icons/brochure.png');
+    background-size: cover;
+  }    
   @-webkit-keyframes pulse {
     0% {
       -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);

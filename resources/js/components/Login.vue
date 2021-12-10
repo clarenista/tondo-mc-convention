@@ -57,7 +57,7 @@
                                             LOGIN</button>
 
                                         <div class="form-group float-right">
-                                            <a href="https://eventsv2.psp.com.ph/password-remind" target="_blank" class=" text-light" style="font-style: italic; opacity: 0.4;">Forgot Password?</a>
+                                            <router-link :to="'/password-remind'" class=" text-light" style="font-style: italic; opacity: 0.4;">Forgot Password?</router-link>
                                         </div>
                                         </div>
                                 </form>
@@ -83,6 +83,7 @@
 <script>
     import Timer from './Timer.vue'
     export default {
+
         components:{
             Timer
         },

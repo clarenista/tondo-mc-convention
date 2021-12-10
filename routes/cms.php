@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Cms\BannerController;
 use App\Http\Controllers\Cms\BoothController;
+use App\Http\Controllers\Cms\ChatController;
 use App\Http\Controllers\Cms\ContactController;
 use App\Http\Controllers\Cms\EventController as CmsEventController;
 use App\Http\Controllers\Cms\EventManagementController;
@@ -37,6 +38,7 @@ Route::name('cms.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->middleware('auth');
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
+        Route::get('sync-users', [UserController::class, 'syncUsers'])->name('syncUsers');
         Route::resource('guests', UserController::class);
         Route::resource('booths', BoothController::class);
         Route::resource('standees', StandeeController::class);
@@ -71,6 +73,17 @@ Route::name('cms.')->group(function () {
                 Route::get('', [SponsorQuestionnaireController::class, 'index'])->name('index');
                 Route::get('export/spreadsheet', [SponsorQuestionnaireController::class, 'exportToSpreadsheet'])->name('export.spreadsheet');
                 Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
+            });
+
+            Route::name('chat.')->prefix('chat')->group(function () {
+                Route::get('', [ChatController::class, 'index'])->name('index');
+                Route::get('/guest/{guest}', [ChatController::class, 'guest'])->name('guest');
+
+                Route::get('/guest/{guest}/chat', [ChatController::class, 'guestChat'])->name('guest.chat');
+
+                Route::post('/guest/{guest}', [ChatController::class, 'guestMessage'])->name('guest.message');
+                // Route::get('export/spreadsheet', [ChatController::class, 'index'])->name('chat.index');
+                // Route::post('update/quick/{questionnaire}', [QuestionnaireController::class, 'quickUpdate'])->name('quick.update');
             });
         });
         Route::resource('banners', BannerController::class);

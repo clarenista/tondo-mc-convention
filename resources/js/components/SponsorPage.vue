@@ -21,7 +21,7 @@
                   <div class="row p-1 text-center">
                     <div class="col-12">
                       <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                        You are about to leave the 69<sup>th</sup> PSP virtual convention site, you will be redirected to:
+                        You are about to leave the 70<sup>th</sup> PSP virtual convention site, you will be redirected to:
                       </h3>
                       <a :href="selectedHotspot.assets[0].url" target="_blank">
                         <small><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></small>
@@ -208,26 +208,53 @@
             <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
+    <Chat :sponsor_id="booth_details.sponsor_id" :user_details="user" v-if="booth_details"/>
     <img src="/images/icons/sponsor-back-btn.png " @click="handleBackToLobby" class="btn btn-sm" alt="" srcset="" style="position: fixed; top: 0; left: 0; margin:1em; z-index: 10;" width="100">
     <div id="panorama"></div>
   </div>
 </template>
 <script>
 import Modal from './Modal'
+import Chat from './Chat'
 export default {
+  computed:{
+    user(){
+        return this.$store.getters.user
+    },
+    sponsorId(){
+      return this.booth_details.sponsor_id
+    }
+  },
   props:['id'],
   components:{
-    Modal
+    Modal, Chat
   },
-  mounted() {
+  created() {
     this.init()  
   },
   methods:{
     async init(){
       const wrapper = document.querySelector('.hotspots--wrapper');
       let {data} = await axios.get('/api/v1/booths/'+this.id+'?api_token='+localStorage.getItem('access_token'));
+      
       this.booth_details = data
+      switch(data.panorama_location){
+        case 'hall_a':
+        this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
+        break;
+        case 'hall_b':
+        this.$store.commit('updateAudioSource', '/bgm/hall_b.mp3')
+        break;
+        case 'hall_c':
+        this.$store.commit('updateAudioSource', '/bgm/hall_c.mp3')
+        break;
+        case 'hall_d':
+        this.$store.commit('updateAudioSource', '/bgm/hall_d.mp3')
+        break;
+      }
+      this.$store.getters.audio.volume = 0.1
       this.$store.commit('changeBoothDetails', data)
+      // this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
       this.sendBoothGuestEvent(data)
       const image = data.background
       let hs = data.hotspots
@@ -250,7 +277,7 @@ export default {
           this.selectedHotspot = hs[i]
         }
       }
-      console.log(hs)
+      // console.log(hs)
       this.panorama_details = {
         "default": {
             "firstScene": "landing",
@@ -272,8 +299,8 @@ export default {
             // 180 view | 360 view = 180 view x 2
             'minPitch' :-20,
             'maxPitch' :20,
-            'minYaw': -50,
-            'maxYaw': 50,   
+            'minYaw': -60,
+            'maxYaw': 60,   
             "preview": "/images/multires/loading.png"
           },
         }
@@ -286,32 +313,25 @@ export default {
             this.$router.push({ name: 'home'})
           }else{
 
-            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby' }})
+            this.$router.push({ name: 'home', params: {sceneId: this.booth_details.panorama_location != 'lobby' ?  this.booth_details.panorama_location : 'lobby', pitch :  this.booth_details.x, yaw : this.booth_details.y}})
             // this.$router.push({ name: 'home', params: {sceneId: 'hall_a'}})
           }
     },
     handleSelectHotspot(hotspot){
+      
       this.value = true
       for(let i in hotspot.assets){
         hotspot.assets[i]['src'] = hotspot.assets[i].url
       }
       this.selectedHotspot = hotspot
       if(hotspot.name == 'videos'){
-        if(this.$store.getters.bgmStart){
-          this.bgmStart = true
-          this.$store.commit('updateBgmStart', false)
-        }
+        this.$store.getters.audio.pause()
       }
       this.sendBoothGuestEvent(this.booth_details, hotspot)
     },  
     handleCloseModal(){
       if(this.selectedHotspot.name == 'videos'){
-        if(this.bgmStart){
-          this.$store.commit('updateBgmStart', true)
-        }else{
-          this.$store.commit('updateBgmStart', false)
-
-        }
+        this.$store.getters.audio.play()
       }
           this.selectedHotspot = null
           this.value = false
@@ -415,7 +435,6 @@ export default {
       },
       async showQuestionnaire(){
         let {data} = await axios.get('/api/v1/booths/'+this.id+'/questionnaire?api_token='+localStorage.getItem('access_token'))
-        console.log(data)
       },
       imageLoad(){
         this.isLoading = false

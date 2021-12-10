@@ -15,6 +15,8 @@ import SponsorPage from './components/SponsorPage.vue';
 import Meeting from './components/Meeting.vue';
 import PhotoBooth from './components/PhotoBooth.vue';
 import FortuneWheel from './components/FortuneWheel.vue';
+import ForgotPassword from './components/ForgotPassword.vue';
+import ResetPassword from './components/ResetPassword.vue';
 // import ZoomMeeting from './components/MeetingHall/ZoomMeeting.vue';
 
 Vue.use(VueRouter);
@@ -38,6 +40,20 @@ export const routes = [
         meta: {
             requiresAuth: true,
         }
+    },
+    {
+        name: 'forgotPassword',
+        path: '/password-remind',
+        component: ForgotPassword,
+        props: true,
+        
+    },
+    {
+        name: 'resetPassword',
+        path: '/passwordreset/:key',
+        component: ResetPassword,
+        props: true,
+        
     },
     {
         name: 'sponsors',

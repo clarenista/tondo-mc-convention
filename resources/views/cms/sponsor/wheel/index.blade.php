@@ -28,7 +28,7 @@
                                 $segment = isset($wheel->segments[$i]) ? $wheel->segments[$i] : ['fillStyle' => '', 'text' => '', 'size' => ''];
                             @endphp
                             <span class="input-group-prepend">
-                                <input type="text" class="form-control" name="fillStyle[]" placeholder="Fill Style" aria-label="Fill Style" value="{{ $segment['fillStyle'] }}">
+                                <input type="text" class="form-control" name="fillStyle[]" placeholder="Color (Hexadecimal)" aria-label="Color (Hexadecimal)" value="{{ $segment['fillStyle'] }}">
                             </span>
                             <input type="text" class="form-control" name="text[]" placeholder="Text" aria-label="Text" value="{{ $segment['text'] }}">
                             <input type="text" class="form-control" name="size[]" placeholder="% Size" aria-label="Size %" value="{{ $segment['size'] }}">

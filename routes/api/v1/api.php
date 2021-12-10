@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\EventController;
 use App\Http\Controllers\Api\v1\GuestController;
 use App\Http\Controllers\Api\v1\GuestEventController;
 use App\Http\Controllers\Api\v1\ProgramController;
+use App\Http\Controllers\Api\v1\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +42,8 @@ Route::post('/guests/event/push', [GuestEventController::class, 'push']);
 
 Route::get('/program', [ProgramController::class, 'get']);
 Route::get('/event', [EventController::class, 'get']);
+
+Route::get('/chat/rooms', [ChatController::class, 'rooms']);
+Route::get('/chat/rooms/{id}/messages', [ChatController::class, 'messages']);
+Route::post('/chat/get-room', [ChatController::class, 'getRoom']);
+Route::post('/chat/rooms/{id}/messages', [ChatController::class, 'newMessage']);

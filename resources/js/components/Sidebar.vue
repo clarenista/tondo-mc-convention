@@ -9,6 +9,7 @@
             v-for="(item, index) in navItems" 
             :key="index"
             @click="handleNavigateTo(item)"
+            :title="item.title"
         >
             <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
         </a>
@@ -22,11 +23,11 @@
                 <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
             </div>
         </div>
-        <a href="javascript:void(0)" @click="handleBgmPlayToggle">
+        <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
             <span class="badge badge-dark"><i class="fa fa-volume-up" ></i></span> <!-- Vote -->
         </a>
-        <a href="javascript:void(0)" @click="handleLogout">
-            <span class="badge badge-dark"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
+        <a href="javascript:void(0)" @click="handleLogout" title="Logout">
+            <span class="badge badge-danger"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
         </a>
     </div>
 
@@ -40,18 +41,18 @@ export default {
         return {
             showDropdown: false,
             navItems: [
-                {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item'},
-                {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item'},
-                {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item'},
-                {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item'},
-                {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-calendar', type:'nav-item'},
-                {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown', 
+                {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item', title: 'Beach'},
+                {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
+                {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
+                {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item' , title: 'Pool Area'},
+                {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                     dropdowns:[
+                        {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall A", sceneId: 'hall_a', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall B", sceneId: 'hall_b', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall C", sceneId: 'hall_c', icon: 'fa-map-marker'},
                         {name: "Exhibit Hall D", sceneId: 'hall_d', icon: 'fa-map-marker'},
-                    ]},
+                    ], title: 'Exhibit Hall'},
             ]
         }
     },

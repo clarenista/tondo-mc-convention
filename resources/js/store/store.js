@@ -18,7 +18,7 @@ export default new Vuex.Store({
     currentScene: 'lobby',
     bgmStart: true,
     bgm: null,
-    audio: new Audio('/bgm/landing.weba'),
+    audio: new Audio('/bgm/landing.mp3'),
     booth_details: null,
     announcement: null,
     isNotAllowed: null,
@@ -35,48 +35,56 @@ export default new Vuex.Store({
       {
         "scene": 'main_entrance',
         "type": "scene",
-        "pitch": -4.9,
-        "yaw": -4.1,
+        "pitch": -7.78,
+        "yaw": -4.33,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
       {
         "scene": 'main_entrance',
         "type": "scene",
-        "pitch": -4.9,
-        "yaw": 4.1,
+        "pitch": -7.78,
+        "yaw": 3.89,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
       {
         "scene": 'lobby',
         "type": "scene",
-        "pitch": 2.6,
-        "yaw": 21.5,
+        "pitch": -1.24,
+        "yaw": -21.63,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "hall",
+      },
+      {
+        "scene": 'lobby',
+        "type": "info",
+        "pitch": 31.72,
+        "yaw": -179,
+        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
+      },
+
+      {
+        "scene": 'lobby',
+        "type": "scene",
+        "pitch": -0.93,
+        "yaw": 21.24,
         "cssClass": "custom-hotspot enter",
         "sceneId": "hall",
       },
       {
         "scene": 'lobby',
         "type": "scene",
-        "pitch": 2.6,
-        "yaw": -21.5,
-        "cssClass": "custom-hotspot enter",
-        "sceneId": "hall",
-      },
-      {
-        "scene": 'lobby',
-        "type": "scene",
-        "pitch": 11.6,
-        "yaw": -193.2,
+        "pitch": 0.36,
+        "yaw": 164.62,
         "cssClass": "custom-hotspot enter",
         "sceneId": "main_entrance",
       },
       {
         "scene": 'lobby',
         "type": "scene",
-        "pitch": 11.6,
-        "yaw": -166.3,
+        "pitch": 0.15,
+        "yaw": -164.26,
         "cssClass": "custom-hotspot enter",
         "sceneId": "main_entrance",
       },
@@ -179,8 +187,8 @@ export default new Vuex.Store({
       {
         "scene": 'pool_area',
         "type": "scene",
-        "pitch": -5.3,
-        "yaw": 262.2,
+        "pitch": -12.62,
+        "yaw": -98.01,
         "cssClass": "custom-hotspot enter",
         "sceneId": "hall_a",
       },
@@ -202,14 +210,14 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot hall_d",
         "sceneId": "hall_d",
       },
-      // {
-      //   "scene": 'hall_c',
-      //   "type": "scene",
-      //   "pitch": 8.7,
-      //   "yaw": -181.0,
-      //   "cssClass": "custom-hotspot arrow_left",
-      //   "sceneId": "secondf_photobooth",
-      // },
+      {
+        "scene": 'hall_c',
+        "type": "scene",
+        "pitch": 8.7,
+        "yaw": -181.0,
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "secondf_outside",
+      },
       {
         "scene": 'hall_c',
         "type": "scene",
@@ -217,6 +225,14 @@ export default new Vuex.Store({
         "yaw": 4.1,
         "cssClass": "custom-hotspot arrow_right",
         "sceneId": "secondf_meeting_hall",
+      },
+
+      {
+        "scene": 'hall_c',
+        "type": "info",
+        "pitch": 12.09,
+        "yaw": 174.28,
+        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
       },
       {
         "scene": 'hall',
@@ -237,18 +253,25 @@ export default new Vuex.Store({
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": 1.4,
-        "yaw": -4.0,
+        "pitch": -0.38,
+        "yaw": -28.44,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": 1.4,
-        "yaw": -28.3,
+        "pitch": -0.55,
+        "yaw": -4.15,
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
+      },
+      {
+        "scene": 'hall_b',
+        "type": "info",
+        "pitch": 12.60,
+        "yaw": -17.60,
+        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
       },
       {
         "scene": 'hall_b',
@@ -331,6 +354,32 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot meeting_hall",
         "sceneId": "meeting_hall",
       },
+      {
+        "scene": 'secondf_outside',
+        "pitch": -1.6,
+        "yaw": -1.1,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_left",
+        "sceneId": "hall_c",
+      },
+      {
+        "scene": 'pool_area',
+        "pitch": -2.3,
+        "yaw": 2.6,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_up",
+        "sceneId": "pool_area2",
+      },
+      {
+        "scene": 'pool_area2',
+        "pitch": -3.4,
+        "yaw": -123,
+        "type": "scene",
+        "cssClass": "custom-hotspot arrow_up",
+        "sceneId": "pool_area",
+      },
+
+
     ]
 
     // sponsors:[
@@ -404,7 +453,8 @@ export default new Vuex.Store({
       state.audio = new Audio(src)
       state.audio.loop = true
       state.audio.play()
-    }
+    },
+    
   },
   getters: {
     pois: state => state.pois,
