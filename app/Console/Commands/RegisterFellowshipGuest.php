@@ -55,7 +55,7 @@ class RegisterFellowshipGuest extends Command
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $response = $client->get($fellowship_api);
         $attendees = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
-        $users = User::whereIn('classification', $attendees)->where('id','>',602)->get();
+        $users = User::whereIn('classification', $attendees)->where('id', '>', 999)->get();
         foreach ($users as $user) {
             \Log::info([$user->id, $user->email_address]);
             // if ($user->email_address == "jayfructuoso@gmail.com") {
