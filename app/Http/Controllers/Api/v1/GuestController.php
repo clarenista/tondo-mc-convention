@@ -79,14 +79,12 @@ class GuestController extends Controller
 
             if ($webinar->unique_id == '88478770661') {
                 $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
-
                 if (!$reg) {
                     $registered = $this->checkRegistrants($user->email_address, $webinar);
                     if (!$registered) {
                         // // DISABLE AUTO REGISTER
                         // return "0";
                         $registered = $this->registerToWebinar($webinar, $user);
-
                         $registered['id'] = $registered['registrant_id'];
                     }
                     $reg = $user->webinars()->create([
@@ -97,19 +95,21 @@ class GuestController extends Controller
                         'registered' => true,
                     ]);
                 }
-
                 return $reg->join_url;
             }
             if ($webinar->unique_id == '88443777764') {
-                $allowed = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
-                if (!in_array($user->classification, $allowed)) {
-                    return "0";
-                }
+                // $allowed = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
+                // if (!in_array($user->classification, $allowed)) {
+                //     return "0";
+                // }
                 $reg = $user->fellowships()->where('webinar_id', $webinar->unique_id)->first();
                 if (!$reg) {
                     $registered = $this->checkRegistrants($user->email_address, $webinar);
                     if (!$registered) {
-                        return "0";
+                        // // DISABLE AUTO REGISTER
+                        // return "0";
+                        $registered = $this->registerToWebinar($webinar, $user);
+                        $registered['id'] = $registered['registrant_id'];
                     }
                     $reg = $user->webinars()->create([
                         "registrant_id" => $registered['id'],
