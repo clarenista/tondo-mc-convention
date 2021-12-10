@@ -59,26 +59,30 @@ class RegisterFellowshipGuest extends Command
         $users = User::whereIn('classification', $attendees)->where('id', '>', 0)->get();
         // dd($users->count());
         foreach ($users as $user) {
-            \Log::info([$user->id, $user->email_address]);
-            // if ($user->email_address == "jayfructuoso@gmail.com") {
-            $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
-            $post = [
-                'email' => $user->email_address,
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-            ];
-            $response = $client->post($registrants_api, $post);
-            $response = $response->json();
-            $registered = UserFellowship::whereRegistrantId($response['registrant_id'])->first();
-            $data = [
-                'registrant_id' => $response['registrant_id'],
-                'webinar_id' => $response['id'],
-                'topic' => $response['topic'],
-                'role' => $webinar_role,
-                'join_url' => $response['join_url'],
-            ];
-            $user->fellowships()->create($data);
-            // }
+            try {
+                //code...
+                \Log::info([$user->id, $user->email_address]);
+                // if ($user->email_address == "jayfructuoso@gmail.com") {
+                $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants";
+                $post = [
+                    'email' => $user->email_address,
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                ];
+                $response = $client->post($registrants_api, $post);
+                $response = $response->json();
+                $registered = UserFellowship::whereRegistrantId($response['registrant_id'])->first();
+                $data = [
+                    'registrant_id' => $response['registrant_id'],
+                    'webinar_id' => $response['id'],
+                    'topic' => $response['topic'],
+                    'role' => $webinar_role,
+                    'join_url' => $response['join_url'],
+                ];
+                $user->fellowships()->create($data);
+            } catch (\Throwable $th) {
+                \Log::info("SKIPPED :: " . $user->id . " - " . $user->email_address);
+            }
         }
 
         dd($users->toArray());
