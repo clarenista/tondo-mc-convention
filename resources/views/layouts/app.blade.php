@@ -43,7 +43,7 @@
 <body>
     <div id="app">
     </div>
-    <script src="{{ mix('js/app.js') }}?v1"></script>
+    <script src="{{ mix('js/app.js') }}?v2"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.js" integrity="sha512-wi1en5HQFr/+nc03XLj7iJohyUcclImFC3U5uOjYE+CM6FTla7scwzbuy56+Z5sIZ3sZy1KuNdjLIid4vhJMzg==" crossorigin="anonymous"></script> -->
 
 
