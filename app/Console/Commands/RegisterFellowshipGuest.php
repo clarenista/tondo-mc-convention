@@ -57,6 +57,7 @@ class RegisterFellowshipGuest extends Command
         // $attendees = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
         $attendees = ['Non-Member'];
         $users = User::whereIn('classification', $attendees)->where('id', '>', 0)->get();
+        // dd($users->count());
         foreach ($users as $user) {
             \Log::info([$user->id, $user->email_address]);
             // if ($user->email_address == "jayfructuoso@gmail.com") {
