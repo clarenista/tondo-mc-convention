@@ -76,27 +76,51 @@ class GuestController extends Controller
 
             $user = request()->user();
             $webinar = Program::whereEnabled(1)->first();
-            $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
 
-            if (!$reg) {
-                $registered = $this->checkRegistrants($user->email_address, $webinar);
-                if (!$registered) {
-                    // // DISABLE AUTO REGISTER
-                    // return "0";
-                    $registered = $this->registerToWebinar($webinar, $user);
+            if ($webinar->unique_id == '88478770661') {
+                $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
 
-                    $registered['id'] = $registered['registrant_id'];
+                if (!$reg) {
+                    $registered = $this->checkRegistrants($user->email_address, $webinar);
+                    if (!$registered) {
+                        // // DISABLE AUTO REGISTER
+                        // return "0";
+                        $registered = $this->registerToWebinar($webinar, $user);
+
+                        $registered['id'] = $registered['registrant_id'];
+                    }
+                    $reg = $user->webinars()->create([
+                        "registrant_id" => $registered['id'],
+                        "webinar_id" => $webinar->unique_id,
+                        "topic" => $webinar->title,
+                        "join_url" => $registered['join_url'],
+                        'registered' => true,
+                    ]);
                 }
-                $reg = $user->webinars()->create([
-                    "registrant_id" => $registered['id'],
-                    "webinar_id" => $webinar->unique_id,
-                    "topic" => $webinar->title,
-                    "join_url" => $registered['join_url'],
-                    'registered' => true,
-                ]);
-            }
 
-            return $reg->join_url;
+                return $reg->join_url;
+            }
+            if ($webinar->unique_id == '88443777764') {
+                $allowed = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
+                if (!in_array($user->classification, $allowed)) {
+                    return "0";
+                }
+                $reg = $user->fellowships()->where('webinar_id', $webinar->unique_id)->first();
+                if (!$reg) {
+                    $registered = $this->checkRegistrants($user->email_address, $webinar);
+                    if (!$registered) {
+                        return "0";
+                    }
+                    $reg = $user->webinars()->create([
+                        "registrant_id" => $registered['id'],
+                        "webinar_id" => $webinar->unique_id,
+                        "topic" => $webinar->title,
+                        "join_url" => $registered['join_url'],
+                        'registered' => true,
+                    ]);
+                }
+                return $reg->join_url;
+            }
         } catch (\Throwable $th) {
 
             return "https://us02web.zoom.us/w/88478770661?tk=oBShCrL2NOpFQ_ersJpWUNUfd8hP3mOQnEilJ1BcLCg.DQMAAAAUmb7l5RZGblBkVWtlalNlZU5UNTQtU2ZpZjVBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_7Pk4i4aaQj2dJlO-xafWIg";

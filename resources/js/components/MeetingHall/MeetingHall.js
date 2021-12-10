@@ -32,7 +32,7 @@ export default {
     async openZoomMobile(vue) {
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/mobile?api_token=${localStorage.getItem("access_token")}`);
         if(data == 0){
-            vue.$store.commit('updateIsNotAllowedMessage', 'The Business Meeting is for Diplomates and Fellows only')
+            vue.$store.commit('updateIsNotAllowedMessage', "PSP members' fellowship night going on.")
             return false;
         }else{
             window.open(data, "_blank");
