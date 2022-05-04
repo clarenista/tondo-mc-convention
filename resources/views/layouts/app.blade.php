@@ -12,7 +12,7 @@
     <title>Convention</title>
     <style>
       body {
-        margin: 0;
+        /* margin: 0;
         width: 100%;
         height: 100%;
         overflow: hidden;
@@ -21,7 +21,7 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        background-attachment: fixed;
+        background-attachment: fixed; */
       }
 
       a:link, a:visited{
@@ -41,6 +41,7 @@
     </style>
 </head>
 <body>
+    
     <div id="app">
     </div>
     <script src="{{ mix('js/app.js') }}?v2"></script>

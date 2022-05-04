@@ -1,7 +1,17 @@
 <template>
 <div class="background full">
-    <div class="register">
+    <div class="video-container" id="videoBG">
+      <video autoplay muted loop>
+        <source src="images/Venue.mp4" type="video/mp4" />
+      </video>
+    </div>
 
+    <div class="content">
+    <img src="images/71st_login_btn.png" @click="showLogin()" id="logo" style="cursor: pointer;" width="220px" alt="" srcset="">
+
+    <!-- Button trigger modal -->
+
+    <div class="register" v-if="visible">
             <div class="register-right col-md-4" v-if="start_at">
                 <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
                 <div v-else  class="tab-content" id="myTabContent">
@@ -12,7 +22,7 @@
                         {{ loginMessage }}
                     </div>
 
-                 <img src="images/70_logo.png" alt="center-image" width="50%" height="50%">
+                 <img src="images/71st_login_logo.png" alt="center-image" width="40%" height="40%">
 
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row register-form justify-content-center align-items-center">
@@ -53,7 +63,7 @@
                                 
                                         <br>
                                         <div class="form-group align-middle mt-2">
-                                            <button :class="agree ? 'rounded-0 btn btn-lg btn-block' : 'rounded-0 btn btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; background-color: #b0d94d; color: #FFF;">
+                                            <button :class="agree ? 'rounded-0 btn btn-lg btn-block' : 'rounded-0 btn btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; background-color: #ffd800; color: #FFF;">
                                             LOGIN</button>
 
                                         <div class="form-group float-right">
@@ -101,6 +111,8 @@
                 isSeePassword: false,
                 isOpen: false,
                 start_at: null,
+
+                visible: false,
 
                 privacy_clause: "Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=' text-success'><i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i></banner> icon on the booth.",
                 agreement: "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
@@ -152,6 +164,9 @@
             },
             handleToggleBgMusic(){
                 this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+            },
+            showLogin(){
+                this.visible = !this.visible
             }
         }
 
@@ -164,6 +179,8 @@ div >>> .register{
     display: flex;
     justify-content: center;
     align-items: center;
+
+    
 }
 div.background {
   height: 100%;
@@ -175,9 +192,9 @@ div.full{
   height: 100%;
 }
 .register{
-    overflow: visble;
+    overflow: visible;
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
-    padding: 5% 0 3%;
+    padding: 2% 0 3%;
 
 }
 .register-left{
@@ -202,12 +219,16 @@ div.full{
 .register-right{
     text-align: center;
     align-items: center;
-    background: rgba(27, 27, 27, 0.3);
+
+    background-color: #501f9c; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#2347a7, #702fa4);
+
     margin-bottom: 3%;
-    border: 3px solid #1a361b;
+    border: 3px solid #17094b;
     border-radius: .8em;
     padding: 1% 2%;
-    /* border: 1px solid blue; */
+    box-shadow: #000 0 8px 15px 2px;
+
 }
 .register-left img{
     /* margin-top: 5%; */
@@ -293,9 +314,11 @@ div.full{
 
 .register-form input[type=text] {
     font-size: medium;
+    border: 2px solid #040036;
 }
 .register-form input[type=password]{
     font-size: medium;
+    border: 2px solid #040036;
 }
 .register-form button {
     font-size: medium;
