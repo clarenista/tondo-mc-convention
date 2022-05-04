@@ -1,162 +1,302 @@
-<template >
+<template>
     <div class="background full">
-      <!-- BOOTH TRACKER -->
-      <div class="booth_tracker">
-        <h1><i class="fa fa-address-card text-dark" type="button" @click="handleBoothTracker" title="View My Activity" aria-hidden="true" ></i></h1>
-      </div>
-
-      <Modal :value="camera" v-if="camera">
-        <template v-slot:title >
-            <img src="/images/welcome_logo.png" alt="" class="center_logo">
-          <br>
-        </template>
-          <br>
-        <template v-slot:body>
-          <PhotoboothModal :image="imageRendered" />
-        </template>
-        <template v-slot:footer >
-            <button class="btnletsgo" type="button" @click="camera = false">
-              <i class="fa fa-arrow-right"></i> DONE</button>
-        </template>
-      </Modal>
-      <!-- Selfie -->
-      <div class="selfie">
-        <h1><i class="fa fa-camera text-dark" type="button" @click="handleSelfie" title="Take selfie here" aria-hidden="true" ></i></h1>
-      </div>
-
-      <div id="booth_visits" class="bg-light text-dark table-responsive">
-        <h3 class="display-4">Booth Tracker</h3>
-        <!-- <hr> -->
-        <div>
-          <table class="table table-light table-striped table-bordered">
-            <thead>
-              <th>Booth Name</th>
-              <th>Visited</th>
-              <!-- <th>Action</th> -->
-            </thead>
-            <tbody>
-              <tr v-for="(i, index) in visited_booths" :key="index">
-                <td>{{i.name}}</td>
-                <td>
-                  <i v-if="i.visited != true" class="fa fa-times text-danger"></i>
-                  <i v-else class="fa fa-check text-success"></i>
-                </td>
-                <!-- <td><a href="http://"></a></td> -->
-              </tr>
-            </tbody>
-          </table>
+        <!-- BOOTH TRACKER -->
+        <div class="booth_tracker">
+            <h1>
+                <i
+                    class="fa fa-address-card text-dark"
+                    type="button"
+                    @click="handleBoothTracker"
+                    title="View My Activity"
+                    aria-hidden="true"
+                ></i>
+            </h1>
         </div>
-      </div>
-      <!-- BOOTH TRACKER -->
 
-      <!-- ZOOM TIMER -->
-      <div id="zoom_countdown" v-if="enabled">
-        <div class="col-12">
-          <div  class="row">
-            <div class="col p-1" id="box">
-                <div class="card card-primary bg-dark text-light">
-                    <div class="card-body text-center">
-                        <p class="display-4 m-0">{{zeroPad(days)}}</p>
-                        <p class="lead m-0 text-light text-uppercase">days</p>
+        <Modal :value="camera" v-if="camera">
+            <template v-slot:title>
+                <img
+                    src="/images/welcome_logo.png"
+                    alt=""
+                    class="center_logo"
+                />
+                <br />
+            </template>
+            <br />
+            <template v-slot:body>
+                <PhotoboothModal :image="imageRendered" />
+            </template>
+            <template v-slot:footer>
+                <button class="btnletsgo" type="button" @click="camera = false">
+                    <i class="fa fa-arrow-right"></i> DONE
+                </button>
+            </template>
+        </Modal>
+        <!-- Selfie -->
+        <div class="selfie">
+            <h1>
+                <i
+                    class="fa fa-camera text-dark"
+                    type="button"
+                    @click="handleSelfie"
+                    title="Take selfie here"
+                    aria-hidden="true"
+                ></i>
+            </h1>
+        </div>
+
+        <div id="booth_visits" class="bg-light text-dark table-responsive">
+            <h3 class="display-4">Booth Tracker</h3>
+            <!-- <hr> -->
+            <div>
+                <table class="table table-light table-striped table-bordered">
+                    <thead>
+                        <th>Booth Name</th>
+                        <th>Visited</th>
+                        <!-- <th>Action</th> -->
+                    </thead>
+                    <tbody>
+                        <tr v-for="(i, index) in visited_booths" :key="index">
+                            <td>{{ i.name }}</td>
+                            <td>
+                                <i
+                                    v-if="i.visited != true"
+                                    class="fa fa-times text-danger"
+                                ></i>
+                                <i v-else class="fa fa-check text-success"></i>
+                            </td>
+                            <!-- <td><a href="http://"></a></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- BOOTH TRACKER -->
+
+        <!-- ZOOM TIMER -->
+        <div id="zoom_countdown" v-if="enabled">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col p-1" id="box">
+                        <div class="card card-primary bg-dark text-light">
+                            <div class="card-body text-center">
+                                <p class="display-4 m-0">{{ zeroPad(days) }}</p>
+                                <p class="lead m-0 text-light text-uppercase">
+                                    days
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col p-1" id="box">
+                        <div class="card card-primary bg-dark text-light">
+                            <div class="card-body text-center">
+                                <p class="display-4 m-0">
+                                    {{ zeroPad(hours) }}
+                                </p>
+                                <p class="lead m-0 text-light text-uppercase">
+                                    hrs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col p-1" id="box">
+                        <div class="card card-primary bg-dark text-light">
+                            <div class="card-body text-center">
+                                <p class="display-4 m-0">
+                                    {{ zeroPad(minutes) }}
+                                </p>
+                                <p class="lead m-0 text-light text-uppercase">
+                                    mins
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col p-1" id="box">
+                        <div class="card card-primary bg-dark text-light">
+                            <div class="card-body text-center">
+                                <p class="display-4 m-0">
+                                    {{ zeroPad(seconds) }}
+                                </p>
+                                <p class="lead m-0 text-light text-uppercase">
+                                    secs
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col text-center intro" style="color: red;">
+                        <small
+                            ><b>{{ zoom_title }}</b></small
+                        >
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-if="this.standee_dtls">
+            <CoolLightBox
+                :items="standee_dtls"
+                :index="standee_index"
+                :useZoomBar="true"
+                @close="standee_index = null"
+            >
+            </CoolLightBox>
+        </div>
 
-            <div class="col p-1" id="box">
-                <div class="card card-primary bg-dark text-light">
-                    <div class="card-body text-center">
-                        <p class="display-4 m-0">{{zeroPad(hours)}}</p>
-                        <p class="lead m-0 text-light text-uppercase">hrs</p>
-                    </div>
+        <div id="panorama">
+            <div
+                v-if="
+                    sceneId === 'hall_a' ||
+                        sceneId === 'hall_b' ||
+                        sceneId === 'hall_c' ||
+                        sceneId === 'hall_d'
+                "
+            >
+                <div id="controls">
+                    <div
+                        class="ctrl custom-hotspot hall_a"
+                        @click="handleNavigateTo('hall_a')"
+                        :style="sceneId === 'hall_a' ? 'padding:5px;' : ''"
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_b"
+                        @click="handleNavigateTo('hall_b')"
+                        :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_c"
+                        @click="handleNavigateTo('hall_c')"
+                        :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_d"
+                        @click="handleNavigateTo('hall_d')"
+                        :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"
+                    ></div>
                 </div>
             </div>
-
-            <div class="col p-1" id="box">
-                <div class="card card-primary bg-dark text-light">
-                    <div class="card-body text-center">
-                        <p class="display-4 m-0">{{zeroPad(minutes)}}</p>
-                        <p class="lead m-0 text-light text-uppercase">mins</p>
-                    </div>
+            <div
+                v-if="
+                    $store.getters.currentScene === 'hall_a' ||
+                        $store.getters.currentScene === 'hall_b' ||
+                        $store.getters.currentScene === 'hall_c' ||
+                        $store.getters.currentScene === 'hall_d'
+                "
+            >
+                <div id="controls">
+                    <div
+                        class="ctrl custom-hotspot hall_a"
+                        @click="handleNavigateTo('hall_a')"
+                        :style="
+                            $store.getters.currentScene === 'hall_a'
+                                ? 'padding:5px;'
+                                : ''
+                        "
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_b"
+                        @click="handleNavigateTo('hall_b')"
+                        :style="
+                            $store.getters.currentScene === 'hall_b'
+                                ? 'padding:5px;'
+                                : ''
+                        "
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_c"
+                        @click="handleNavigateTo('hall_c')"
+                        :style="
+                            $store.getters.currentScene === 'hall_c'
+                                ? 'padding:5px;'
+                                : ''
+                        "
+                    ></div>
+                    <div
+                        class="ctrl custom-hotspot hall_d"
+                        @click="handleNavigateTo('hall_d')"
+                        :style="
+                            $store.getters.currentScene === 'hall_d'
+                                ? 'padding:5px;'
+                                : ''
+                        "
+                    ></div>
                 </div>
             </div>
-
-            <div class="col p-1" id="box">
-                <div class="card card-primary bg-dark text-light">
-                    <div class="card-body text-center">
-                        <p class="display-4 m-0">{{zeroPad(seconds)}}</p>
-                        <p class="lead m-0 text-light text-uppercase">secs</p>
-                    </div>
-                </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col text-center intro" style="color: red;"><small><b>{{zoom_title}}</b></small></div>
-          </div>
-
         </div>
-      </div>
-      <div v-if="this.standee_dtls">
-       <CoolLightBox
-          :items="standee_dtls"
-          :index="standee_index"
-          :useZoomBar="true"
-          @close="standee_index = null">
-        </CoolLightBox>
-      </div>
 
-      <div id="panorama">
-        <div v-if="sceneId === 'hall_a' || sceneId === 'hall_b' || sceneId === 'hall_c' || sceneId === 'hall_d'">
-          <div id="controls" >
-            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="sceneId === 'hall_a' ? 'padding:5px;' : ''">
-            </div>
-            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"></div>
-            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"></div>
-            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"></div>
-          </div> 
-        </div>
-        <div v-if="$store.getters.currentScene === 'hall_a' || $store.getters.currentScene === 'hall_b' || $store.getters.currentScene === 'hall_c' || $store.getters.currentScene === 'hall_d'">
-          <div id="controls" >
-            <div class="ctrl custom-hotspot hall_a" @click="handleNavigateTo('hall_a')" :style="$store.getters.currentScene === 'hall_a' ? 'padding:5px;' : ''">
-            </div>
-            <div class="ctrl custom-hotspot hall_b" @click="handleNavigateTo('hall_b')" :style="$store.getters.currentScene === 'hall_b' ? 'padding:5px;' : ''"></div>
-            <div class="ctrl custom-hotspot hall_c" @click="handleNavigateTo('hall_c')" :style="$store.getters.currentScene === 'hall_c' ? 'padding:5px;' : ''"></div>
-            <div class="ctrl custom-hotspot hall_d" @click="handleNavigateTo('hall_d')" :style="$store.getters.currentScene === 'hall_d' ? 'padding:5px;' : ''"></div>
-          </div>        
-        </div>
-      </div>
-      
-      <Sidebar @handleNavigateTo="handleNavigateTo" @handleBgmPlayToggle="handleBgmPlayToggle"></Sidebar>
-      <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
-        <template v-slot:title >
-            <img src="/images/welcome_logo.png" alt="" class="center_logo">
-            <h3 class="display-4 mt-3 text-light" style="font-size: 2em; text-align: center;">Hi {{$store.getters.user.first_name}},</h3>
-          <br>
-        </template>
-          <br>
-        <template v-slot:body>
-            <p class="text-center lead mt-3 mb-30" style="color: #0f4c05; font-weight: 500"><strong>{{welcomeMessage}}</strong></p>
-        </template>
-        <template v-slot:footer >
-            <button class="btnletsgo" type="button" @click="handleUpdateIsWelcomed">
-              <i class="fa fa-arrow-right"></i> okay, lets go</button>
-        </template>
-      </Modal>
+        <Sidebar
+            @handleNavigateTo="handleNavigateTo"
+            @handleBgmPlayToggle="handleBgmPlayToggle"
+        ></Sidebar>
+        <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
+            <template v-slot:title>
+                <img
+                    src="/images/welcome_logo.png"
+                    alt=""
+                    class="center_logo"
+                />
+                <h3
+                    class="display-4 mt-3 text-light"
+                    style="font-size: 2em; text-align: center;"
+                >
+                    Hi {{ $store.getters.user.first_name }},
+                </h3>
+                <br />
+            </template>
+            <br />
+            <template v-slot:body>
+                <p
+                    class="text-center lead mt-3 mb-30"
+                    style="color: #0f4c05; font-weight: 500"
+                >
+                    <strong>{{ welcomeMessage }}</strong>
+                </p>
+            </template>
+            <template v-slot:footer>
+                <button
+                    class="btnletsgo"
+                    type="button"
+                    @click="handleUpdateIsWelcomed"
+                >
+                    <i class="fa fa-arrow-right"></i> okay, lets go
+                </button>
+            </template>
+        </Modal>
 
-      <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
-        <template v-slot:title >
-            <h3 class="display-4 mt-3">Hi {{$store.getters.user.first_name}},</h3>
-        </template>
-        <template v-slot:body>
-            <p class="text-center lead text-success mt-3 mb-3"><strong> {{$store.getters.isNotAllowedMessage}}</strong></p>
-        </template>
-        <template v-slot:footer >
-            <button class="btn btn-success" type="button" @click="handleIsNotAllowedClose">
-              <i class="fa fa-caret-right"></i> Ok</button>
-        </template>
-      </Modal>
-      <marquee style="background-color:#fff; color: #00008b;" class="text-uppercase" v-if="$store.getters.announcement != null" direction="left"> {{$store.getters.announcement.payload.title}}: {{$store.getters.announcement.payload.message}}</marquee>
-
+        <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
+            <template v-slot:title>
+                <h3 class="display-4 mt-3">
+                    Hi {{ $store.getters.user.first_name }},
+                </h3>
+            </template>
+            <template v-slot:body>
+                <p class="text-center lead text-success mt-3 mb-3">
+                    <strong> {{ $store.getters.isNotAllowedMessage }}</strong>
+                </p>
+            </template>
+            <template v-slot:footer>
+                <button
+                    class="btn btn-success"
+                    type="button"
+                    @click="handleIsNotAllowedClose"
+                >
+                    <i class="fa fa-caret-right"></i> Ok
+                </button>
+            </template>
+        </Modal>
+        <marquee
+            style="background-color:#fff; color: #00008b;"
+            class="text-uppercase"
+            v-if="$store.getters.announcement != null"
+            direction="left"
+        >
+            {{ $store.getters.announcement.payload.title }}:
+            {{ $store.getters.announcement.payload.message }}</marquee
+        >
     </div>
 </template>
 <script>
@@ -204,7 +344,7 @@ export default {
         standee_index: null,
         standees: null,
 
-        welcomeMessage: 'Welcome to our PSP 70th Platinum Year Virtual Convention Event',
+        welcomeMessage: 'Welcome to our PSP 71st Platinum Year Virtual Convention Event',
       }
     },
     mounted() {
@@ -240,8 +380,8 @@ export default {
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
                 // "hotSpotDebug": true,
-                   
-                
+
+
             },
 
             "scenes": {
@@ -257,7 +397,7 @@ export default {
                   "cubeResolution": 1904,
                 },
                 "hotSpots": [
-                  
+
                 ],
                 // 180 view | 360 view = 180 view x 2
                 'minPitch' :-45,
@@ -283,7 +423,7 @@ export default {
                 // 'minPitch' :-45,
                 // 'maxPitch' :45,
                 // 'minYaw': -90,
-                // 'maxYaw':90,   
+                // 'maxYaw':90,
               },
               "lobby": {
                 "type": "multires",
@@ -297,9 +437,9 @@ export default {
                   "cubeResolution": 1904,
                 },
                   "hotSpots": [
-                    
+
                   ],
-                   
+
               },
               "hall": {
                 "type": "multires",
@@ -318,7 +458,7 @@ export default {
                 'minPitch' :-45,
                 'maxPitch' :45,
                 'minYaw': -90,
-                'maxYaw':90,   
+                'maxYaw':90,
               },
               "secondf_meeting_hall": {
                 "type": "multires",
@@ -337,7 +477,7 @@ export default {
                 // 'minPitch' :-45,
                 // 'maxPitch' :45,
                 // 'minYaw': -90,
-                // 'maxYaw':90,   
+                // 'maxYaw':90,
               },
               "meeting_hall": {
                 "type": "multires",
@@ -356,7 +496,7 @@ export default {
                 // 'minPitch' :-45,
                 // 'maxPitch' :45,
                 // 'minYaw': -90,
-                // 'maxYaw':90,   
+                // 'maxYaw':90,
               },
               "pool_area": {
                 "type": "multires",
@@ -375,7 +515,7 @@ export default {
                 // 'minPitch' :-45,
                 // 'maxPitch' :45,
                 // 'minYaw': -90,
-                // 'maxYaw':90,   
+                // 'maxYaw':90,
               },
               "secondf_photobooth": {
                 "type": "multires",
@@ -394,7 +534,7 @@ export default {
                 // 'minPitch' :-45,
                 // 'maxPitch' :45,
                 // 'minYaw': -90,
-                // 'maxYaw':90,   
+                // 'maxYaw':90,
               },
 
 
@@ -410,10 +550,10 @@ export default {
                   "cubeResolution": 1904,
                 },
                 "hotSpots": [
-                                   
+
 
                 ]
-              },  
+              },
               "hall_a_silver" :{
                 "type": "equirectangular",
                 "panorama": "/images/multires/A-Silver.png",
@@ -423,8 +563,8 @@ export default {
                 'minPitch' :-20,
                 'maxPitch' :20,
                 'minYaw': -50,
-                'maxYaw':50, 
-              },  
+                'maxYaw':50,
+              },
               "hall_b" :{
                 "type": "multires",
                 "multiRes": {
@@ -438,7 +578,7 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              }, 
+              },
               "hall_c" :{
                 "type": "multires",
                 "multiRes": {
@@ -452,7 +592,7 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },           
+              },
               "hall_d" :{
                 "type": "multires",
                 "multiRes": {
@@ -466,7 +606,7 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },   
+              },
               "secondf_outside" :{
                 "type": "multires",
                 "multiRes": {
@@ -484,7 +624,7 @@ export default {
                 'maxPitch' :45,
                 'minYaw': -170,
                 'maxYaw': 100,
-              },             
+              },
               "pool_area2" :{
                 "type": "multires",
                 "multiRes": {
@@ -498,9 +638,9 @@ export default {
                 },
                 "hotSpots": [
                 ]
-              },       
+              },
 
-                
+
             }
         }
         for(let i in this.booths){
@@ -557,9 +697,9 @@ export default {
           this.panorama_details.scenes.secondf_outside.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_outside']))
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
-        
 
-          
+
+
         // this.viewer = pannellum.viewer('panorama', { 'scenes': [], 'autoLoad': true, 'showFullscreenCtrl': false, 'showZoomCtrl': false });
         // this.viewer.on('scenechange', ()=>{console.log(this.viewer.getScene())})
         this.viewer.on('scenechange', this.handleSceneChange)
@@ -585,13 +725,13 @@ export default {
             break;
           case 'main_entrance':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            break;              
+            break;
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
             break;
           case 'hall':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
-            break;            
+            break;
           case 'hall_a':
             this.$store.commit('updateAudioSource', '/bgm/hall_a.mp3')
             break;
@@ -609,7 +749,7 @@ export default {
             break;
           case 'pool_area2':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
-            break;            
+            break;
           case 'meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
             break;
@@ -618,7 +758,7 @@ export default {
             break;
           case 'secondf_outside':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            break;  
+            break;
           default:
             this.$store.commit('updateAudioSource', '')
             // code block
@@ -745,7 +885,7 @@ export default {
       handleSelfie(){
         this.camera = true
         const renderer = this.viewer.getRenderer();
-        
+
         if(this.viewer.isLoaded()){
 
           const i = renderer.render(
@@ -756,7 +896,7 @@ export default {
             );
 
             this.imageRendered = i
-        }        
+        }
       },
 
       b64toBlob (b64Data, contentType='', sliceSize=512){
@@ -802,186 +942,183 @@ export default {
 
     }
 }
-
 </script>
 <style scoped>
-  div >>> .custom-hotspot {
+div >>> .custom-hotspot {
     height: 32px;
     width: 32px;
     animation: pulse 2s infinite;
     border-radius: 50%;
-  }
-  div >>> .vote{
-    background-image: url('/images/icons/vote.png');
+}
+div >>> .vote {
+    background-image: url("/images/icons/vote.png");
     background-size: cover;
-  }
+}
 
-  div >>> .meeting_hall{
-    background-image: url('/images/icons/meeting-hall-icon-min.png');
+div >>> .meeting_hall {
+    background-image: url("/images/icons/meeting-hall-icon-min.png");
     background-size: cover;
-  }
-  div >>> .zoom{
-    background-image: url('/images/icons/zoom.png');
+}
+div >>> .zoom {
+    background-image: url("/images/icons/zoom.png");
     background-size: cover;
-  }
-  div >>> .exhibit_hall{
-    background-image: url('/images/icons/exhibit-hall-icon-min.png');
+}
+div >>> .exhibit_hall {
+    background-image: url("/images/icons/exhibit-hall-icon-min.png");
     background-size: cover;
-  }
-  div >>> .booth{
-    background-image: url('/images/multires/ICONS/ENTER.png');
+}
+div >>> .booth {
+    background-image: url("/images/multires/ICONS/ENTER.png");
     background-size: cover;
-  }
-  div >>> .arrow_left{
-    background-image: url('/images/multires/ICONS/ARROW.png');
+}
+div >>> .arrow_left {
+    background-image: url("/images/multires/ICONS/ARROW.png");
     background-size: cover;
-  }  
-  div >>> .arrow_right{
-    background-image: url('/images/multires/ICONS/ARROW_RIGHT.png');
+}
+div >>> .arrow_right {
+    background-image: url("/images/multires/ICONS/ARROW_RIGHT.png");
     background-size: cover;
-  }    
-  div >>> .arrow_up{
-    background-image: url('/images/multires/ICONS/ARROW_UP.png');
+}
+div >>> .arrow_up {
+    background-image: url("/images/multires/ICONS/ARROW_UP.png");
     background-size: cover;
-  }     
-  div >>> .arrow_down{
-    background-image: url('/images/multires/ICONS/ARROW_DOWN.png');
+}
+div >>> .arrow_down {
+    background-image: url("/images/multires/ICONS/ARROW_DOWN.png");
     background-size: cover;
-  }     
-  div >>> .enter{
-    background-image: url('/images/multires/ICONS/ENTER.png');
+}
+div >>> .enter {
+    background-image: url("/images/multires/ICONS/ENTER.png");
     background-size: cover;
-  } 
-  div >>> .hall_a{
-    background-image: url('/images/multires/ICONS/A.png');
+}
+div >>> .hall_a {
+    background-image: url("/images/multires/ICONS/A.png");
     background-size: cover;
-  } 
-  div >>> .hall_b{
-    background-image: url('/images/multires/ICONS/B.png');
+}
+div >>> .hall_b {
+    background-image: url("/images/multires/ICONS/B.png");
     background-size: cover;
-  } 
-  div >>> .hall_c{
-    background-image: url('/images/multires/ICONS/C.png');
+}
+div >>> .hall_c {
+    background-image: url("/images/multires/ICONS/C.png");
     background-size: cover;
-  } 
-  div >>> .hall_d{
-    background-image: url('/images/multires/ICONS/D.png');
+}
+div >>> .hall_d {
+    background-image: url("/images/multires/ICONS/D.png");
     background-size: cover;
-  }          
-  div >>> .left_arrow{
-    background-image: url('/images/icons/left_arrow-min.png');
+}
+div >>> .left_arrow {
+    background-image: url("/images/icons/left_arrow-min.png");
     background-size: cover;
-  }
-  div >>> .right_arrow{
-    background-image: url('/images/icons/right_arrow-min.png');
+}
+div >>> .right_arrow {
+    background-image: url("/images/icons/right_arrow-min.png");
     background-size: cover;
-  }
+}
 
-  div >>> .brochures{
-    background-image: url('/images/icons/brochure.png');
+div >>> .brochures {
+    background-image: url("/images/icons/brochure.png");
     background-size: cover;
-  }    
-  @-webkit-keyframes pulse {
+}
+@-webkit-keyframes pulse {
     0% {
-      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
     }
     70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
     }
     100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }
-  @keyframes pulse {
+}
+@keyframes pulse {
     0% {
-      -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+        -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
     }
     70% {
-      -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
     }
     100% {
-      -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
-  }
-  div.background {
+}
+div.background {
     position: fixed;
     top: 0;
     left: 0;
-  }
+}
 
-  div.full{
+div.full {
     width: 100%;
     height: 100%;
-  }
-   div >>> .pnlm-about-msg {
+}
+div >>> .pnlm-about-msg {
     width: 0;
     height: 0;
     padding: 0;
     visibility: hidden;
-
-  }
-  .pnlm-about-msg >>> a {
+}
+.pnlm-about-msg >>> a {
     visibility: hidden;
-  }
-  #controls {
-        position: absolute;
-        bottom: 0;
-        z-index: 2;
-        text-align: center;
-        width: 100%;
-        padding-bottom: 3px;
-    }
-    .ctrl {
-        width: 30px;
-        text-align: center;
-        background: rgba(200, 200, 200, 0.8);
-        display: inline-block;
-        cursor: pointer;
-    }
-    .ctrl:hover {
-        background: rgba(200, 200, 200, 1);
-    }
+}
+#controls {
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 3px;
+}
+.ctrl {
+    width: 30px;
+    text-align: center;
+    background: rgba(200, 200, 200, 0.8);
+    display: inline-block;
+    cursor: pointer;
+}
+.ctrl:hover {
+    background: rgba(200, 200, 200, 1);
+}
 
-    .center_logo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-      }
+.center_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 
-    .btnletsgo {
-        margin-left: auto;
-        margin-right: auto;
-        background-color: #1e471f;
-        border: none;
-        color: white;
-        padding: 10px 25px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 14px;
-      }
-  .booth_tracker {
+.btnletsgo {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1e471f;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+.booth_tracker {
     position: fixed;
     top: 0.1em;
     right: 0.5em;
     z-index: 2;
     cursor: pointer;
-  }
+}
 
-  .selfie{
+.selfie {
     position: fixed;
     bottom: 0.1em;
     right: 0.5em;
     z-index: 2;
-    cursor: pointer;    
-  }
+    cursor: pointer;
+}
 
-
-  #booth_visits{
+#booth_visits {
     padding: 1%;
     position: fixed;
     top: 5em;
@@ -989,50 +1126,50 @@ export default {
     z-index: 2;
     width: 35%;
     height: 75%;
-  }
+}
 
-   #booth_visits h3 {
+#booth_visits h3 {
     /* background: url('/images/modal_header.jpg');
     background-position: center;
     background-repeat: no-repeat; */
-   }
+}
 
-  marquee {
+marquee {
     position: fixed;
     bottom: 5em;
     right: 0.8em;
     /* border: 1px solid red; */
     width: 30%;
     height: 5%;
-    font-weight:600;
-    color:firebrick;
-  }
+    font-weight: 600;
+    color: firebrick;
+}
 
-  #zoom_countdown {
+#zoom_countdown {
     position: fixed;
     top: 0.4em;
     right: 3.5em;
     z-index: 2;
-  }
-  #zoom_countdown .intro {
+}
+#zoom_countdown .intro {
     font-size: 0.9em;
-  }
-  #zoom_countdown .display-4 {
-      font-size: 0.9rem;
-  }
-  #zoom_countdown .lead {
-      font-size: 0.5rem;
-  }
-  #box .card-body {
-      padding: 0.5rem !important;
-  }
+}
+#zoom_countdown .display-4 {
+    font-size: 0.9rem;
+}
+#zoom_countdown .lead {
+    font-size: 0.5rem;
+}
+#box .card-body {
+    padding: 0.5rem !important;
+}
 
-  @media screen and (max-width: 750px) {
+@media screen and (max-width: 750px) {
     #zoom_countdown .display-4 {
-       font-size: 0.8rem;
+        font-size: 0.8rem;
     }
     #zoom_countdown .lead {
-       font-size: 0.5rem;
+        font-size: 0.5rem;
     }
     #zoom_countdown .intro {
         font-size: 0.6em;
@@ -1041,109 +1178,100 @@ export default {
         padding: 0.6rem !important;
     }
 
-    #booth_visits{
+    #booth_visits {
         width: 55%;
-      }
+    }
     #booth_visits .display-4 {
-      font-size: 2rem;
+        font-size: 2rem;
     }
     #booth_visits .table th {
-      font-size: 0.8rem;
+        font-size: 0.8rem;
     }
     #booth_visits .table td {
-      font-size: 0.8rem;
+        font-size: 0.8rem;
     }
 
     marquee {
         width: 90%;
     }
+}
 
-  }
+@media screen and (max-width: 320px) {
+    #zoom_countdown .display-4 {
+        font-size: 0.6rem;
+    }
+}
 
-  @media screen and (max-width: 320px) {
-
-      #zoom_countdown .display-4 {
-          font-size: 0.6rem;
-      }
-
-  }
-
-  @media screen and (max-width: 360px) {
-      #zoom_countdown .display-4 {
-          font-size: 0.7rem;
-      }
-      #zoom_countdown .lead {
-          font-size: 0.4rem;
-      }
-      #zoom_countdown .intro {
+@media screen and (max-width: 360px) {
+    #zoom_countdown .display-4 {
+        font-size: 0.7rem;
+    }
+    #zoom_countdown .lead {
+        font-size: 0.4rem;
+    }
+    #zoom_countdown .intro {
         font-size: 0.6em;
-      }
-      #box .card-body {
-          padding: 0.6rem !important;
-      }
+    }
+    #box .card-body {
+        padding: 0.6rem !important;
+    }
 
-      #booth_visits{
+    #booth_visits {
         width: 55%;
-      }
-      #booth_visits .display-4 {
+    }
+    #booth_visits .display-4 {
         font-size: 2rem;
-      }
-      #booth_visits .table th {
+    }
+    #booth_visits .table th {
         font-size: 0.6rem;
-      }
-      #booth_visits .table td {
+    }
+    #booth_visits .table td {
         font-size: 0.6rem;
-      }
+    }
 
-      marquee {
+    marquee {
         width: 90%;
-      }
-  }
+    }
+}
 
 @media screen and (max-width: 280px) {
     #zoom_countdown .display-4 {
-          font-size: 0.7rem;
-      }
-      #zoom_countdown .lead {
-          font-size: 0.4rem;
-      }
-      #zoom_countdown .intro {
+        font-size: 0.7rem;
+    }
+    #zoom_countdown .lead {
+        font-size: 0.4rem;
+    }
+    #zoom_countdown .intro {
         font-size: 0.4em;
-      }
-      #box .card-body {
-          padding: 0.4rem !important;
-      }
-      #booth_visits{
+    }
+    #box .card-body {
+        padding: 0.4rem !important;
+    }
+    #booth_visits {
         width: 95%;
-      }
-      #booth_visits .display-4 {
+    }
+    #booth_visits .display-4 {
         font-size: 2rem;
         padding-left: 5%;
-      }
-      #booth_visits .table th {
+    }
+    #booth_visits .table th {
         font-size: 0.6rem;
-      }
-      #booth_visits .table td {
+    }
+    #booth_visits .table td {
         font-size: 0.6rem;
-      }
+    }
 
-      marquee {
+    marquee {
         width: 90%;
         height: 5%;
-        font-weight:600;
-        color:firebrick;
-      }
+        font-weight: 600;
+        color: firebrick;
+    }
 }
 
 @media screen and (max-width: 1024px) {
-
-      marquee {
+    marquee {
         width: 90%;
-      }
-
+    }
 }
-
-
-
-
 </style>
