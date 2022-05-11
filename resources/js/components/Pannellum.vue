@@ -16,7 +16,7 @@
         <Modal :value="camera" v-if="camera">
             <template v-slot:title>
                 <img
-                    src="/images/welcome_logo.png"
+                    src="/images/71st_logo_min.png.png"
                     alt=""
                     class="center_logo"
                 />
@@ -235,7 +235,7 @@
         <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
             <template v-slot:title>
                 <img
-                    src="/images/welcome_logo.png"
+                    src="/images/71st_logo_min.png"
                     alt=""
                     class="center_logo"
                 />

@@ -8,9 +8,25 @@
 
     <div class="content">
         <img src="images/71st_login_btn.png" @click="showLogin()" id="logo" style="cursor: pointer;" width="220px" alt="" srcset="">
+
+
+        <div class="event_info mb-3">
+            <div class="card bg-warning mt-3" style="width: 18rem;">
+                <img src="images/PSP 71st Banner.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Not registered yet?</h5>
+                    <!-- <p class="card-text">Click the link below to proceed to the registration</p> -->
+                    <a href="#" class="btn btn-primary">Proceed to Registration</a>
+                </div>
+            </div>
+        </div>
     </div> <!-- content -->
 
     <div class="register" v-if="visible">
+        <div class="close_btn">
+            <i class="fa fa-times-circle text-danger" @click="showLogin()" aria-hidden="true"></i>
+        </div>
+
         <div class="register-right col-md-4 mt-5" v-if="start_at">
             <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
             <div v-else  class="tab-content" id="myTabContent">
@@ -53,7 +69,7 @@
 
                                     <div class="d-flex justify-content-center">
                                         <div class="data_use_clause">
-                                            <p class="check_agree text-light">
+                                            <p class="check_agree text-light lead">
                                                 <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="agree">
                                                 <label class="form-check-label" for="exampleCheck1">{{agreement}}</label>
                                             </p>
@@ -75,7 +91,7 @@
 
                 <div class="d-flex justify-content-center">
                     <div class="data_use_clause">
-                        <p class="clause text-light" v-html="privacy_clause"></p>                       
+                        <p class="clause text-light lead" v-html="privacy_clause"></p>                       
                     </div>
                 </div>
 
@@ -207,8 +223,8 @@ div.full{
     justify-content: center;
     display: flex;
     
-    background: #333;
-    opacity: 0.85;
+    background: rgb(34, 34, 34);
+    opacity: 0.9;
 }
 
 .register-right{
@@ -299,14 +315,36 @@ div.full{
 
 .register-form input[type=text] {
     font-size: medium;
-    border: 2px solid #040036;
+    border: 1px solid #040036;
+    opacity: 1;
 }
 .register-form input[type=password]{
     font-size: medium;
-    border: 2px solid #040036;
+    border: 1px solid #040036;
+    opacity: 1;
 }
 .register-form button {
     font-size: medium;
+    opacity: 1;
+}
+
+.close_btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+
+    /* border: 1px solid green; */
+    padding: 5px;
+}
+
+.event_info {
+    position: fixed;
+    bottom: 0;
+    width: 40%;
+    
 }
 
 @media screen and (max-height: 900px) {
@@ -458,12 +496,14 @@ div.full{
 .clause {
     font-size: 17px !important;
     text-align: justify;
+    font-weight: 100;
 }
 
 
 .check_agree {
     font-size: 17px !important;
     text-align: justify;
+    font-weight: 100;
 }
 
 @media screen and (max-width: 750px) {
