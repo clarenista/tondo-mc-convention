@@ -426,16 +426,8 @@ export default {
                 // 'maxYaw':90,
               },
               "lobby": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/lobby",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
+                "type": "equirectangular",
+                "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
 
                   ],
@@ -539,20 +531,12 @@ export default {
 
 
               "hall_a" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/hall_a",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
+                "type": "equirectangular",
+                "panorama": "/images/multires/HALL_A.jpg",
+                  "hotSpots": [
 
+                  ],
 
-                ]
               },
               "hall_a_silver" :{
                 "type": "equirectangular",
@@ -566,46 +550,25 @@ export default {
                 'maxYaw':50,
               },
               "hall_b" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/hall_b",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ]
+                "type": "equirectangular",
+                "panorama": "/images/multires/HALL_B.jpg",
+                  "hotSpots": [
+
+                  ],
               },
               "hall_c" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/hall_c",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ]
+                "type": "equirectangular",
+                "panorama": "/images/multires/HALL_C.jpg",
+                  "hotSpots": [
+
+                  ],
               },
               "hall_d" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/hall_d",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ]
+                "type": "equirectangular",
+                "panorama": "/images/multires/HALL_D.jpg",
+                  "hotSpots": [
+
+                  ],
               },
               "secondf_outside" :{
                 "type": "multires",
