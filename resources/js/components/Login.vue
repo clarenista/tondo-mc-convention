@@ -45,15 +45,40 @@
 
         <!-- change to let's go modal -->
         <div class="content" v-else>
-            <img
-                src="images/71st_login_btn.png"
-                @click="letsGo()"
-                id="logo"
-                style="cursor: pointer;"
-                width="220px"
-                alt=""
-                srcset=""
-            />
+            <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
+                <template v-slot:title>
+                    <img
+                        src="/images/71st_logo_min.png"
+                        alt=""
+                        class="center_logo mt-1"
+                    />
+                    <h3
+                        class="display-4 mt-3 text-dark"
+                        style="font-size: 2em; text-align: center;"
+                    >
+                        Hi {{ $store.getters.user.first_name }},
+                    </h3>
+                    <br />
+                </template>
+                <br />
+                <template v-slot:body>
+                    <p
+                        class="text-center lead mt-3 mb-30"
+                        style="color: #77c2e6; font-weight: 300"
+                    >
+                        <strong>{{ welcomeMessage }}</strong>
+                    </p>
+                </template>
+                <template v-slot:footer>
+                    <button
+                        class="btnletsgo"
+                        type="button"
+                        @click="letsGo()"
+                    >
+                        <i class="fa fa-arrow-right"></i> okay, lets go
+                    </button>
+                </template>
+            </Modal>
         </div>
         <!-- content -->
 
@@ -215,10 +240,11 @@
 </template>
 
 <script>
-import Timer from "./Timer.vue";
+import Timer from "./Timer.vue"
+import Modal from "./Modal"
 export default {
     components: {
-        Timer
+        Timer, Modal
     },
     created() {
         this.init();
@@ -246,7 +272,9 @@ export default {
             agree: false,
             videoAutoplay: true,
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
-            videoSrc: "images/Venue1.mp4"
+            videoSrc: "images/Venue1.mp4",
+
+            welcomeMessage: 'Welcome to our PSP 71st Platinum Year Virtual Convention Event',
         };
     },
     watch: {},
@@ -311,8 +339,14 @@ export default {
         },
         videoEnded() {
             this.$router.push("/");
+        },
+        handleUpdateIsWelcomed(){
+            this.$store.commit('updateIsWelcomed', false)
+        },
+        handleIsNotAllowedClose(){
+            this.$store.commit('updateIsAllowed', false);
+        },
         }
-    }
 };
 </script>
 
@@ -488,6 +522,27 @@ div.full {
     position: fixed;
     bottom: 0;
     width: 40%;
+}
+
+.center_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.btnletsgo {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ebcb17;
+    border: none;
+    color: #610089;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 3rem;
 }
 
 @media screen and (max-height: 900px) {

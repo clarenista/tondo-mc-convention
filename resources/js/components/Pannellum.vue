@@ -1072,6 +1072,26 @@ marquee {
     padding: 0.5rem !important;
 }
 
+.center_logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.btnletsgo {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1e471f;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
 @media screen and (max-width: 750px) {
     #zoom_countdown .display-4 {
         font-size: 0.8rem;
