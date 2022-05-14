@@ -45,40 +45,47 @@
 
         <!-- change to let's go modal -->
         <div class="content" v-else>
-            <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
-                <template v-slot:title>
-                    <img
-                        src="/images/71st_logo_min.png"
-                        alt=""
-                        class="center_logo mt-1"
-                    />
-                    <h3
-                        class="display-4 mt-3 text-dark"
-                        style="font-size: 2em; text-align: center;"
+            <Transition>
+                <div v-if="!letsGoButtonClicked">
+                    <Modal
+                        :value="$store.getters.isWelcomed"
+                        v-if="$store.getters.user"
                     >
-                        Hi {{ $store.getters.user.first_name }},
-                    </h3>
-                    <br />
-                </template>
-                <br />
-                <template v-slot:body>
-                    <p
-                        class="text-center lead mt-3 mb-30"
-                        style="color: #77c2e6; font-weight: 300"
-                    >
-                        <strong>{{ welcomeMessage }}</strong>
-                    </p>
-                </template>
-                <template v-slot:footer>
-                    <button
-                        class="btnletsgo"
-                        type="button"
-                        @click="letsGo()"
-                    >
-                        <i class="fa fa-arrow-right"></i> okay, lets go
-                    </button>
-                </template>
-            </Modal>
+                        <template v-slot:title>
+                            <img
+                                src="/images/71st_logo_min.png"
+                                alt=""
+                                class="center_logo mt-1"
+                            />
+                            <h3
+                                class="display-4 mt-3 text-dark"
+                                style="font-size: 2em; text-align: center;"
+                            >
+                                Hi {{ $store.getters.user.first_name }},
+                            </h3>
+                            <br />
+                        </template>
+                        <br />
+                        <template v-slot:body>
+                            <p
+                                class="text-center lead mt-3 mb-30"
+                                style="color: #77c2e6; font-weight: 300"
+                            >
+                                <strong>{{ welcomeMessage }}</strong>
+                            </p>
+                        </template>
+                        <template v-slot:footer>
+                            <button
+                                class="btnletsgo"
+                                type="button"
+                                @click="letsGo()"
+                            >
+                                <i class="fa fa-arrow-right"></i> okay, lets go
+                            </button>
+                        </template>
+                    </Modal>
+                </div>
+            </Transition>
         </div>
         <!-- content -->
 
@@ -240,11 +247,12 @@
 </template>
 
 <script>
-import Timer from "./Timer.vue"
-import Modal from "./Modal"
+import Timer from "./Timer.vue";
+import Modal from "./Modal";
 export default {
     components: {
-        Timer, Modal
+        Timer,
+        Modal
     },
     created() {
         this.init();
@@ -274,7 +282,9 @@ export default {
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
             videoSrc: "images/Venue1.mp4",
 
-            welcomeMessage: 'Welcome to our PSP 71st Platinum Year Virtual Convention Event',
+            welcomeMessage:
+                "Welcome to our PSP 71st Platinum Year Virtual Convention Event",
+            letsGoButtonClicked: false
         };
     },
     watch: {},
@@ -334,19 +344,20 @@ export default {
             this.visible = !this.visible;
         },
         letsGo() {
+            this.letsGoButtonClicked = true;
             this.$refs.videoRef.play();
             this.$refs.videoRef.loop = false;
         },
         videoEnded() {
             this.$router.push("/");
         },
-        handleUpdateIsWelcomed(){
-            this.$store.commit('updateIsWelcomed', false)
+        handleUpdateIsWelcomed() {
+            this.$store.commit("updateIsWelcomed", false);
         },
-        handleIsNotAllowedClose(){
-            this.$store.commit('updateIsAllowed', false);
-        },
+        handleIsNotAllowedClose() {
+            this.$store.commit("updateIsAllowed", false);
         }
+    }
 };
 </script>
 
