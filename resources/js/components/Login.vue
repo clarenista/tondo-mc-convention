@@ -1,12 +1,20 @@
 <template>
     <div class="background full">
-        <div class="video-container" id="videoBG">
-            <video autoplay muted loop>
-                <source src="images/Venue.mp4" type="video/mp4" />
-            </video>
-        </div>
+        <Transition>
+            <div class="video-container" id="videoBG" v-if="show">
+                <video
+                    :autoplay="videoAutoplay"
+                    muted
+                    loop
+                    :src="videoSrc"
+                    :pause="videoPause"
+                    ref="videoRef"
+                    @ended="videoEnded()"
+                ></video>
+            </div>
+        </Transition>
 
-        <div class="content">
+        <div class="content" v-if="!isLoginSuccess">
             <img
                 src="images/71st_login_btn.png"
                 @click="showLogin()"
@@ -34,9 +42,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- change to let's go modal -->
+        <div class="content" v-else>
+            <img
+                src="images/71st_login_btn.png"
+                @click="letsGo()"
+                id="logo"
+                style="cursor: pointer;"
+                width="220px"
+                alt=""
+                srcset=""
+            />
+        </div>
         <!-- content -->
 
-        <div class="register" v-if="visible">
+        <div class="register" v-if="visible && !isLoginSuccess">
             <div class="close_btn">
                 <i
                     class="fa fa-times-circle text-danger"
@@ -201,10 +222,13 @@ export default {
     },
     created() {
         this.init();
+        const venue1 = "images/Venue1.mp4";
+        const venue2 = "images/Venue2.mp4";
         // console.log(this.$store.getters.pois)
     },
     data() {
         return {
+            show: true,
             loginMessage: null,
             text_email: "",
             text_password: "",
@@ -219,7 +243,10 @@ export default {
                 'Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
             agreement:
                 "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
-            agree: false
+            agree: false,
+            videoAutoplay: true,
+            videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
+            videoSrc: "images/Venue1.mp4"
         };
     },
     watch: {},
@@ -245,12 +272,22 @@ export default {
             fd.append("password", this.text_password);
             let { data } = await axios.post("/api/login", fd);
             if (data.status === "ok") {
+                this.show = !this.show;
                 this.isLoginSuccess = true;
                 this.$emit("isLoginSuccess", this.isLoginSuccess);
                 this.$store.commit("changeUser", data.user);
-                this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
+                // this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
                 localStorage.setItem("access_token", data.access_token);
-                this.$router.push("/");
+                setTimeout(() => {
+                    this.show = !this.show;
+                }, 500);
+                //
+                this.videoSrc = this.videos.at(1);
+                this.videoAutoplay = !this.videoAutoplay;
+                this.$refs.videoRef.play();
+                this.videoSrc = this.videos.at(1);
+
+                // this.showLogin();
             } else {
                 this.isLoginSuccess = false;
                 this.loginMessage = data.message;
@@ -267,12 +304,28 @@ export default {
         },
         showLogin() {
             this.visible = !this.visible;
+        },
+        letsGo() {
+            this.$refs.videoRef.play();
+            this.$refs.videoRef.loop = false;
+        },
+        videoEnded() {
+            this.$router.push("/");
         }
     }
 };
 </script>
 
 <style scoped>
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
 div >>> .register {
     /* align-items: center;
     justify-content: center;
@@ -315,8 +368,8 @@ div.full {
     text-align: center;
     align-items: center;
 
-    background-color: #501f9c; /*For browsers that do not support gradients */
-    background-image: linear-gradient(#2347a7, #702fa4);
+    /*background-color: #501f9c; For browsers that do not support gradients */
+    /*background-image: linear-gradient(#2347a7, #702fa4);*/
 
     margin-bottom: 3%;
     /* border: 3px solid #17094b; */

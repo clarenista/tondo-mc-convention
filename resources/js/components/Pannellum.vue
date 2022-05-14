@@ -232,62 +232,7 @@
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
         ></Sidebar>
-        <Modal :value="$store.getters.isWelcomed" v-if="$store.getters.user">
-            <template v-slot:title>
-                <img
-                    src="/images/71st_logo_min.png"
-                    alt=""
-                    class="center_logo"
-                />
-                <h3
-                    class="display-4 mt-3 text-light"
-                    style="font-size: 2em; text-align: center;"
-                >
-                    Hi {{ $store.getters.user.first_name }},
-                </h3>
-                <br />
-            </template>
-            <br />
-            <template v-slot:body>
-                <p
-                    class="text-center lead mt-3 mb-30"
-                    style="color: #0f4c05; font-weight: 500"
-                >
-                    <strong>{{ welcomeMessage }}</strong>
-                </p>
-            </template>
-            <template v-slot:footer>
-                <button
-                    class="btnletsgo"
-                    type="button"
-                    @click="handleUpdateIsWelcomed"
-                >
-                    <i class="fa fa-arrow-right"></i> okay, lets go
-                </button>
-            </template>
-        </Modal>
 
-        <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
-            <template v-slot:title>
-                <h3 class="display-4 mt-3">
-                    Hi {{ $store.getters.user.first_name }},
-                </h3>
-            </template>
-            <template v-slot:body>
-                <p class="text-center lead text-success mt-3 mb-3">
-                    <strong> {{ $store.getters.isNotAllowedMessage }}</strong>
-                </p>
-            </template>
-            <template v-slot:footer>
-                <button
-                    class="btn btn-success"
-                    type="button"
-                    @click="handleIsNotAllowedClose"
-                >
-                    <i class="fa fa-caret-right"></i> Ok
-                </button>
-            </template>
-        </Modal>
         <marquee
             style="background-color:#fff; color: #00008b;"
             class="text-uppercase"
@@ -374,7 +319,7 @@ export default {
 
         this.panorama_details = {
             "default": {
-                "firstScene": this.sceneId ? this.sceneId : "landing",
+                "firstScene": this.sceneId ? this.sceneId : "lobby",
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
