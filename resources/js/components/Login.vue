@@ -1,48 +1,94 @@
 <template>
-<div class="background full">
-    <div class="video-container" id="videoBG">
-      <video autoplay muted loop>
-        <source src="images/Venue.mp4" type="video/mp4" />
-      </video>
-    </div>
+    <div class="background full">
+        <div class="video-container" id="videoBG">
+            <video autoplay muted loop>
+                <source src="images/Venue.mp4" type="video/mp4" />
+            </video>
+        </div>
 
-    <div class="content">
-        <img src="images/71st_login_btn.png" @click="showLogin()" id="logo" style="cursor: pointer;" width="220px" alt="" srcset="">
+        <div class="content">
+            <img
+                src="images/71st_login_btn.png"
+                @click="showLogin()"
+                id="logo"
+                style="cursor: pointer;"
+                width="220px"
+                alt=""
+                srcset=""
+            />
 
-
-        <div class="event_info mb-3">
-            <div class="card bg-warning mt-3" style="width: 18rem;">
-                <img src="images/PSP 71st Banner.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Not registered yet?</h5>
-                    <!-- <p class="card-text">Click the link below to proceed to the registration</p> -->
-                    <a href="#" class="btn btn-primary">Proceed to Registration</a>
+            <div class="event_info mb-3">
+                <div class="card bg-warning mt-3" style="width: 18rem;">
+                    <img
+                        src="images/PSP 71st Banner.jpg"
+                        class="card-img-top"
+                        alt="..."
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">Not registered yet?</h5>
+                        <!-- <p class="card-text">Click the link below to proceed to the registration</p> -->
+                        <a href="#" class="btn btn-primary"
+                            >Proceed to Registration</a
+                        >
+                    </div>
                 </div>
             </div>
         </div>
-    </div> <!-- content -->
+        <!-- content -->
 
-    <div class="register" v-if="visible">
-        <div class="close_btn">
-            <i class="fa fa-times-circle text-danger" @click="showLogin()" aria-hidden="true"></i>
-        </div>
+        <div class="register" v-if="visible">
+            <div class="close_btn">
+                <i
+                    class="fa fa-times-circle text-danger"
+                    @click="showLogin()"
+                    aria-hidden="true"
+                ></i>
+            </div>
 
-        <div class="register-right col-md-4 mt-5" v-if="start_at">
-            <Timer class="register-form" :endTime="start_at" @handleTimerEnd="handleTimerEnd" v-if="!isOpen"></Timer>
-            <div v-else  class="tab-content" id="myTabContent">
-                <div class="alert alert-success" role="alert" v-if="isLoginSuccess">
-                    Login successs.
-                </div>
-                <div class="alert alert-danger" role="alert" v-if="isLoginSuccess == false">
-                    {{ loginMessage }}
-                </div>
+            <div class="register-right col-md-4 mt-5" v-if="start_at">
+                <Timer
+                    class="register-form"
+                    :endTime="start_at"
+                    @handleTimerEnd="handleTimerEnd"
+                    v-if="!isOpen"
+                ></Timer>
+                <div v-else class="tab-content" id="myTabContent">
+                    <div
+                        class="alert alert-success"
+                        role="alert"
+                        v-if="isLoginSuccess"
+                    >
+                        Login successs.
+                    </div>
+                    <div
+                        class="alert alert-danger"
+                        role="alert"
+                        v-if="isLoginSuccess == false"
+                    >
+                        {{ loginMessage }}
+                    </div>
 
-                <img src="images/71st_login_logo.png" alt="center-image" width="40%" height="40%">
+                    <img
+                        src="images/71st_login_logo.png"
+                        alt="center-image"
+                        width="40%"
+                        height="40%"
+                    />
 
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="row register-form justify-content-center align-items-center">
-                        <div class="col-lg-12 col-sm-12">
-                            <form method="POST" @submit.prevent="handleSubmit">
+                    <div
+                        class="tab-pane fade show active"
+                        id="home"
+                        role="tabpanel"
+                        aria-labelledby="home-tab"
+                    >
+                        <div
+                            class="row register-form justify-content-center align-items-center"
+                        >
+                            <div class="col-lg-12 col-sm-12">
+                                <form
+                                    method="POST"
+                                    @submit.prevent="handleSubmit"
+                                >
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -50,145 +96,184 @@
                                             placeholder="Username"
                                             v-model="text_email"
                                             required
-                                        >
+                                        />
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input
-                                                :type="isSeePassword ? 'text' : 'password'"
-                                                class="form-control text-center" id="txtpassword"
+                                                :type="
+                                                    isSeePassword
+                                                        ? 'text'
+                                                        : 'password'
+                                                "
+                                                class="form-control text-center"
+                                                id="txtpassword"
                                                 placeholder="Password"
                                                 v-model="text_password"
                                                 required
+                                            />
+                                            <div
+                                                class="input-group-append"
+                                                @click="toggleSeePassword"
                                             >
-                                            <div class="input-group-append" @click="toggleSeePassword">
-                                                <span class="input-group-text" id="my-addon"><i :class="isSeePassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i></span>
+                                                <span
+                                                    class="input-group-text"
+                                                    id="my-addon"
+                                                    ><i
+                                                        :class="
+                                                            isSeePassword
+                                                                ? 'fa fa-eye'
+                                                                : 'fa fa-eye-slash'
+                                                        "
+                                                    ></i
+                                                ></span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
                                         <div class="data_use_clause">
-                                            <p class="check_agree text-light lead">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="agree">
-                                                <label class="form-check-label" for="exampleCheck1">{{agreement}}</label>
+                                            <p
+                                                class="check_agree text-light lead"
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    class="form-check-input"
+                                                    id="exampleCheck1"
+                                                    v-model="agree"
+                                                />
+                                                <label
+                                                    class="form-check-label"
+                                                    for="exampleCheck1"
+                                                    >{{ agreement }}</label
+                                                >
                                             </p>
                                         </div>
                                     </div>
-                            
-                                    <br>
+
+                                    <br />
                                     <div class="form-group align-middle mt-2">
-                                        <button :class="agree ? 'rounded-2 btn btn-lg btn-block' : 'rounded-2 btn btn-lg btn-block'" :disabled="agree == false" style="font-weight: bold; background-color: #296E26; color: #FFF;">
-                                        LOGIN</button>
+                                        <button
+                                            :class="
+                                                agree
+                                                    ? 'rounded-2 btn btn-lg btn-block'
+                                                    : 'rounded-2 btn btn-lg btn-block'
+                                            "
+                                            :disabled="agree == false"
+                                            style="font-weight: bold; background-color: #296E26; color: #FFF;"
+                                        >
+                                            LOGIN
+                                        </button>
 
                                         <div class="form-group float-right">
-                                            <router-link :to="'/password-remind'" class=" text-light" style="font-style: italic; opacity: 0.4;">Forgot Password?</router-link>
+                                            <router-link
+                                                :to="'/password-remind'"
+                                                class=" text-light"
+                                                style="font-style: italic; opacity: 0.4;"
+                                                >Forgot Password?</router-link
+                                            >
                                         </div>
                                     </div>
-                            </form>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <div class="data_use_clause">
+                                <p
+                                    class="clause text-light lead"
+                                    v-html="privacy_clause"
+                                ></p>
+                            </div>
                         </div>
                     </div>
-
-                <div class="d-flex justify-content-center">
-                    <div class="data_use_clause">
-                        <p class="clause text-light lead" v-html="privacy_clause"></p>                       
-                    </div>
                 </div>
-
-                </div>
-
             </div>
         </div>
     </div>
-
-</div>
 </template>
 
 <script>
-    import Timer from './Timer.vue'
-    export default {
+import Timer from "./Timer.vue";
+export default {
+    components: {
+        Timer
+    },
+    created() {
+        this.init();
+        // console.log(this.$store.getters.pois)
+    },
+    data() {
+        return {
+            loginMessage: null,
+            text_email: "",
+            text_password: "",
+            isLoginSuccess: null,
+            isSeePassword: false,
+            isOpen: false,
+            start_at: null,
 
-        components:{
-            Timer
-        },
-        created() {
-            this.init()
-            // console.log(this.$store.getters.pois)
-        },
-        data(){
+            visible: false,
 
-            return{
-                loginMessage: null,
-                text_email: "",
-                text_password: "",
-                isLoginSuccess: null,
-                isSeePassword: false,
-                isOpen: false,
-                start_at: null,
+            privacy_clause:
+                'Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
+            agreement:
+                "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
+            agree: false
+        };
+    },
+    watch: {},
 
-                visible: false,
-
-                privacy_clause: "Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=' text-success'><i class=\"fa fa-sign-in\" aria-hidden=\"true\"></i></banner> icon on the booth.",
-                agreement: "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
-                agree: false,
+    methods: {
+        async init() {
+            let { data } = await axios.get("/api/v1/event");
+            let now = new Date();
+            let start_at_ = data.start_at_;
+            if (now > start_at_) {
+                this.isOpen = true;
             }
-        } ,
-        watch:{
-
+            this.start_at = data.start_at_;
         },
 
-        methods:{
-            async init(){
-                let {data} = await axios.get('/api/v1/event')
-                let now = new Date()
-                let start_at_ = data.start_at_
-                if(now > start_at_){
-                    this.isOpen = true
-                }
-                this.start_at = data.start_at_
-            },
-
-            async handleSubmit(){
-                this.isLoginSuccess = null
-                // if(this.errors){
-                //     return false
-                // }
-                let fd = new FormData()
-                fd.append('email', this.text_email)
-                fd.append('password', this.text_password)
-                let {data} = await axios.post('/api/login', fd)
-                if(data.status === 'ok'){
-                    this.isLoginSuccess = true
-                    this.$emit('isLoginSuccess', this.isLoginSuccess);
-                    this.$store.commit('changeUser', data.user)
-                    this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-                    localStorage.setItem("access_token", data.access_token);
-                    ;
-                    this.$router.push('/')
-                }else{
-                    this.isLoginSuccess = false;
-                    this.loginMessage = data.message;
-                }
-            },
-            toggleSeePassword(){
-                this.isSeePassword = !this.isSeePassword
-            },
-            handleTimerEnd(e){
-                this.isOpen = e
-            },
-            handleToggleBgMusic(){
-                this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
-            },
-            showLogin(){
-                this.visible = !this.visible
+        async handleSubmit() {
+            this.isLoginSuccess = null;
+            // if(this.errors){
+            //     return false
+            // }
+            let fd = new FormData();
+            fd.append("email", this.text_email);
+            fd.append("password", this.text_password);
+            let { data } = await axios.post("/api/login", fd);
+            if (data.status === "ok") {
+                this.isLoginSuccess = true;
+                this.$emit("isLoginSuccess", this.isLoginSuccess);
+                this.$store.commit("changeUser", data.user);
+                this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
+                localStorage.setItem("access_token", data.access_token);
+                this.$router.push("/");
+            } else {
+                this.isLoginSuccess = false;
+                this.loginMessage = data.message;
             }
+        },
+        toggleSeePassword() {
+            this.isSeePassword = !this.isSeePassword;
+        },
+        handleTimerEnd(e) {
+            this.isOpen = e;
+        },
+        handleToggleBgMusic() {
+            this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
+        },
+        showLogin() {
+            this.visible = !this.visible;
         }
-
     }
+};
 </script>
 
 <style scoped>
-div >>> .register{
+div >>> .register {
     /* align-items: center;
     justify-content: center;
     display: flex;
@@ -198,66 +283,72 @@ div >>> .register{
     opacity: 0.9; */
     /* opacity:0.8;
     background-color:#ccc; */
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0px;
-    left:0px;
-    z-index:1000;
-   
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
 }
 div.background {
-  height: 100%;
-  top: 0;
-  left: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
-div.full{
-  height: 100%;
+div.full {
+    height: 100%;
 }
-.register{
+.register {
     /* overflow: visible; */
     /* background: -webkit-linear-gradient(left, #18a01f, #12ff75); */
     /* padding: 2% 0 3%; */
     align-items: center;
     justify-content: center;
     display: flex;
-    
+
     background: rgb(34, 34, 34);
     opacity: 0.9;
 }
 
-.register-right{
+.register-right {
     text-align: center;
     align-items: center;
 
-    /* background-color: #501f9c; For browsers that do not support gradients */
-    /* background-image: linear-gradient(#2347a7, #702fa4); */
+    background-color: #501f9c; /*For browsers that do not support gradients */
+    background-image: linear-gradient(#2347a7, #702fa4);
 
     margin-bottom: 3%;
     /* border: 3px solid #17094b; */
-    border-radius: .8em;
+    border-radius: 0.8em;
     padding: 2%;
     /* box-shadow: #000 0 8px 15px 2px; */
-
 }
 
 @-webkit-keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
 }
 @keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-20px); }
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
 }
 
-.register .register-form{
+.register .register-form {
     padding: 1% 1% 1% 1%;
     margin-top: 1%;
 
     /* border: 1px solid green; */
 }
-.btnRegister{
+.btnRegister {
     float: right;
     margin-top: 10%;
     border: none;
@@ -269,7 +360,7 @@ div.full{
     width: 50%;
     cursor: pointer;
 }
-.register .nav-tabs{
+.register .nav-tabs {
     margin-top: 3%;
     border: none;
     background: #0062cc;
@@ -277,7 +368,7 @@ div.full{
     width: 28%;
     float: right;
 }
-.register .nav-tabs .nav-link{
+.register .nav-tabs .nav-link {
     padding: 2%;
     height: 34px;
     font-weight: 600;
@@ -285,17 +376,17 @@ div.full{
     border-top-right-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
 }
-.register .nav-tabs .nav-link:hover{
+.register .nav-tabs .nav-link:hover {
     border: none;
 }
-.register .nav-tabs .nav-link.active{
+.register .nav-tabs .nav-link.active {
     width: 100px;
     color: #0062cc;
     border: 2px solid #0062cc;
     border-top-left-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
 }
-.register-heading{
+.register-heading {
     text-align: center;
     margin-top: 5%;
     margin-bottom: -15%;
@@ -313,12 +404,12 @@ div.full{
     padding-left: 70px;
 }
 
-.register-form input[type=text] {
+.register-form input[type="text"] {
     font-size: medium;
     border: 1px solid #040036;
     opacity: 1;
 }
-.register-form input[type=password]{
+.register-form input[type="password"] {
     font-size: medium;
     border: 1px solid #040036;
     opacity: 1;
@@ -344,11 +435,10 @@ div.full{
     position: fixed;
     bottom: 0;
     width: 40%;
-    
 }
 
 @media screen and (max-height: 900px) {
-    .register-heading{
+    .register-heading {
         text-align: center;
         margin-top: 3%;
         margin-bottom: -15%;
@@ -368,11 +458,10 @@ div.full{
         padding: 5% 1% 3%;
     }
 
-
-    .register-form input[type=text] {
+    .register-form input[type="text"] {
         font-size: small;
     }
-    .register-form input[type=password]{
+    .register-form input[type="password"] {
         font-size: small;
     }
     .register-form button {
@@ -381,7 +470,7 @@ div.full{
 }
 
 @media screen and (max-height: 800px) {
-    .register-heading{
+    .register-heading {
         text-align: center;
         margin-top: 3%;
         margin-bottom: -15%;
@@ -401,10 +490,10 @@ div.full{
         /* padding: 3% 1% 3%; */
     }
 
-     .register-form input[type=text] {
+    .register-form input[type="text"] {
         font-size: small;
     }
-    .register-form input[type=password]{
+    .register-form input[type="password"] {
         font-size: small;
     }
     .register-form button {
@@ -412,10 +501,8 @@ div.full{
     }
 }
 
-
-
 @media screen and (max-height: 500px) {
-    .register-heading{
+    .register-heading {
         text-align: center;
         margin-top: 3%;
         margin-bottom: -15%;
@@ -435,11 +522,10 @@ div.full{
         /* padding: 3% 1% 3%; */
     }
 
-
-    .register-form input[type=text] {
+    .register-form input[type="text"] {
         font-size: small;
     }
-    .register-form input[type=password]{
+    .register-form input[type="password"] {
         font-size: small;
     }
     .register-form button {
@@ -448,13 +534,12 @@ div.full{
 }
 
 @media screen and (max-width: 767px) {
-    
     .register-right h3 {
         font-size: xx-large;
     }
 
     .register-right p {
-        font-weight:normal;
+        font-weight: normal;
     }
 
     .clause {
@@ -466,7 +551,6 @@ div.full{
 }
 
 @media screen and (max-width: 280px) {
-    
     .register-right h3 {
         font-size: x-large;
     }
@@ -477,12 +561,10 @@ div.full{
     .clause {
         font-size: 9px !important;
     }
-
 }
 
 /* data use clause */
 .data_use_clause {
-
     width: 90%;
     align-items: center;
 }
@@ -490,7 +572,6 @@ div.full{
 .btn_holder {
     /* border: 1px solid red; */
     width: 50%;
-
 }
 
 .clause {
@@ -498,7 +579,6 @@ div.full{
     text-align: justify;
     font-weight: 100;
 }
-
 
 .check_agree {
     font-size: 17px !important;
@@ -514,11 +594,9 @@ div.full{
     .data_use_clause .check_agree {
         font-size: 11px !important;
     }
+}
 
-  }
-
-  @media screen and (max-width: 320px) {
-
+@media screen and (max-width: 320px) {
     .data_use_clause .clause {
         font-size: 9px !important;
     }
@@ -526,10 +604,9 @@ div.full{
     .data_use_clause .check_agree {
         font-size: 9px !important;
     }
+}
 
-  }
-
-  @media screen and (max-width: 360px) {
+@media screen and (max-width: 360px) {
     .data_use_clause .clause {
         font-size: 9px !important;
     }
@@ -537,9 +614,5 @@ div.full{
     .data_use_clause .check_agree {
         font-size: 9px !important;
     }
-
-  }
-
-
-
+}
 </style>
