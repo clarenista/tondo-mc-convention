@@ -66,31 +66,31 @@ class BoothSeeder extends Seeder
             ],
 
             'Hall A' => [
-                // RIGHT SPONSOR_R1 **FACING POOL AREA ENTRANCE ABOVE ELEVATOR
-                // ['SPONSOR_R1', -0.96, -140.37, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
-                //     [
-                //         ['External Link','-16.06','18.78','https://localhost'],
-                //         ['Contact Us','-9.18','23.15',''],
-                //         ['Quiz','-10.11','-15.37',''],
-                //         ['Brochures','-12.06','9.60',''],
-                //         ['Videos','-0.49','-10.89',''],
-                //         ['Gallery','-0.60','9.05',''],
-                //     ]
-                // ],
+                // left facing lobby/ hall a exit
+                ['MEDTEK', -1.73, -48.56, 'silver', "MEDTEK.png", "MEDTEK.png",
+                    [
+                        ['External Link','-16.06','18.78','https://localhost'],
+                        ['Contact Us','-9.18','23.15',''],
+                        ['Quiz','-10.11','-15.37',''],
+                        ['Brochures','-12.06','9.60',''],
+                        ['Videos','-0.49','-10.89',''],
+                        ['Gallery','-0.60','9.05',''],
+                    ]
+                ],
                 // SPONSOR_R2
-                // ['SPONSOR_R2', 3.63, -89.46, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
-                //     [
-                //         ['External Link','-12.21','23.72','https://localhost'],
-                //         ['Contact Us','-7.95','26.82',''],
-                //         ['Quiz','-7.71','-12.92',''],
-                //         ['Brochures','-10.25','17.48',''],
-                //         ['Videos','0.93','-10.35',''],
-                //         ['Gallery','-0.38','11.95',''],
-                //     ]
-                // ],
+                ['LifelineDiagnostics', -2.35, -78.09, 'silver', "LifelineDiagnostics.png", "LifelineDiagnostics.png",
+                    [
+                        ['External Link','-12.21','23.72','https://localhost'],
+                        ['Contact Us','-7.95','26.82',''],
+                        ['Quiz','-7.71','-12.92',''],
+                        ['Brochures','-10.25','17.48',''],
+                        ['Videos','0.93','-10.35',''],
+                        ['Gallery','-0.38','11.95',''],
+                    ]
+                ],
 
                 // SPONSOR_R3
-                ['Allied Hospital', -1, -49.36, 'bronze', "allied.png", "allied.png",
+                ['AGAPPE', -1.81, -115.98, 'silver', "AGAPPE.png", "AGAPPE.png",
                     [
                         ['External Link','-15','-20',''],
                         ['Contact Us','-9','-24',''],
@@ -102,8 +102,8 @@ class BoothSeeder extends Seeder
                 ],
 
 
-                // LEFT SPONSOR_L1
-                ['Touchstar', -0.43, 133.45, 'bronze', "touchstar.png", "touchstar.png",
+                // LEFT SPONSOR_L4
+                ['Ortho Clinical Diagnostics', -1.89, -150.59, 'silver', "Ortho.png", "Ortho.png",
                     [
                         ['External Link','-15','-20',''],
                         ['Contact Us','-9','-24',''],
@@ -113,8 +113,8 @@ class BoothSeeder extends Seeder
                         ['Gallery','1','-10',''],
                     ]
                 ],
-                // SPONSOR_L2
-                ['SIEMENS Healthineers', 0.79, 90.61, 'gold', "siemens-healthineers.png", "siemens-healthineers.png",
+                // SPONSOR_L5
+                ['Abbott', -2.53, 148.75, 'silver', "Abbott.png", "Abbott.png",
                     [
                         ['External Link','-14','3',''],
                         ['Contact Us','-9','32',''],
@@ -124,8 +124,30 @@ class BoothSeeder extends Seeder
                         ['Gallery','0','-27',''],
                     ]
                 ],
-                // SPONSOR_L3
-                ['I.T. EASY SOFTWARE SOLUTIONS INC.', -0.36, 47.02, 'bronze', "it_easy.png", "it_easy.png",
+                // SPONSOR_L6
+                ['I.T. EASY SOFTWARE SOLUTIONS INC.', -1.56, 118.42, 'silver', "it_easy.png", "it_easy.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L7
+                ['MUREX', -0.93, 79.06, 'silver', "MUREX.png", "MUREX.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L8
+                ['RHUMBA INC.', -0.97, 49.44, 'silver', "RHUMBA.png", "RHUMBA.png",
                     [
                         ['External Link','-16','20',''],
                         ['Contact Us','-10','24',''],
@@ -138,83 +160,66 @@ class BoothSeeder extends Seeder
             ],
 
             'Hall B' => [
-                // RIGHT SPONSOR_R1 *FACING LOBBY EXIT
-                // ['SPONSOR_R1', 0.10, 47.18, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
-                //     [
-                //         ['External Link','-16.12','19.28','https://localhost'],
-                //         ['Contact Us','-10.38','24.36',''],
-                //         ['Quiz','-10.67','15.32',''],
-                //         ['Brochures','-11.94','10.14',''],
-                //         ['Videos','-0.38','-10.89',''],
-                //         ['Gallery','-0.82','9.16',''],
-                //     ]
-                // ],
-                // SPONSOR_R2
-                // ['SPONSOR_R2', -0.20, 91.04, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
-                //     [
-                //         ['External Link','-12.69','25.05','https://localhost'],
-                //         ['Contact Us','-8.26','27.31',''],
-                //         ['Quiz','-8.18','-2.22',''],
-                //         ['Brochures','-10.23','15.84',''],
-                //         ['Videos','1.15','-10.35',''],
-                //         ['Gallery','-0.49','11.64',''],
-                //     ]
-                // ],
-
-                // SPONSOR_R3
-                ['RHUMBA INC.', 0.20, 134.02, 'bronze', "rhumba.png", "rhumba.png",
+                // left facing lobby/ hall a exit
+                ['Biosite', -1.40, -47.56, 'silver', "Biosite.png", "Biosite.png",
                     [
-                        ['External Link','-15','-24',''],
-                        ['Contact Us','-9','-25',''],
-                        ['Quiz','-6','-11',''],
-                        ['Brochures','-7','26',''],
-                        ['Videos','-1','11',''],
-                        ['Gallery','2','26',''],
+                        ['External Link','-16.06','18.78','https://localhost'],
+                        ['Contact Us','-9.18','23.15',''],
+                        ['Quiz','-10.11','-15.37',''],
+                        ['Brochures','-12.06','9.60',''],
+                        ['Videos','-0.49','-10.89',''],
+                        ['Gallery','-0.60','9.05',''],
                     ]
                 ],
-                // ['BD', -1.31, 125.97, 'silver, "BG", "BOOTH"], // VACANT
-                // ['BE', -1.78, 154.53, 'bronze, "BG", "BOOTH"], // VACANT
-
-                // LEFT SPONSOR_L1 
-                ['MRL Cybertech', -0.19, -47.85, 'bronze', "mrl-cybertec.png", "mrl-cybertec.png",
+                // SPONSOR_R2
+                ['Grepcore Diamonde', -1.75, -79.71, 'silver', "Grepcore.png", "Grepcore.png",
                     [
-                        ['External Link','-16','-20',''],
-                        ['Contact Us','-9','-25',''],
-                        ['Quiz','-11','13',''],
+                        ['External Link','-12.21','23.72','https://localhost'],
+                        ['Contact Us','-7.95','26.82',''],
+                        ['Quiz','-7.71','-12.92',''],
+                        ['Brochures','-10.25','17.48',''],
+                        ['Videos','0.93','-10.35',''],
+                        ['Gallery','-0.38','11.95',''],
+                    ]
+                ],
+
+                // SPONSOR_R3
+                ['Marsman Drysdale', -1.25, -117.84, 'silver', "Marsman.png", "Marsman.png",
+                    [
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
                         ['Brochures','-4','-10',''],
-                        ['Videos','-1','10',''],
+                        ['Videos','-1','9',''],
                         ['Gallery','2','-10',''],
                     ]
                 ],
-                // [SPONSOR_L2
-                ['Ortho Clinical Diagnostics', 1.40, -90.00, 'gold', "ortho-clinical.png", "ortho-clinical.png",
+
+
+                // LEFT SPONSOR_L4
+                ['ARKRAY', -1.39, -148.88, 'silver', "ARKRAY.png", "ARKRAY.png",
                     [
-                        ['External Link','-14','8',''],
-                        ['Contact Us','-8','34',''],
-                        ['Quiz','-7','-17',''],
-                        ['Brochures','-7','-24',''],
-                        ['Videos','-3','8',''],
-                        ['Gallery','0','-24',''],
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','10',''],
+                        ['Gallery','1','-10',''],
                     ]
                 ],
-                // SPONSOR_L3
-                // ['SPONSOR_L3', -0.01, -136.18, 'bronze', "SPONSOR_L3.png", "SPONSOR_L3.png",
-                //     [
-                //         ['External Link','-15.57','18.87','https://localhost'],
-                //         ['Contact Us','-10.09','23.15',''],
-                //         ['Quiz','-10.09','-16.37',''],
-                //         ['Brochures','-11.49','7.31',''],
-                //         ['Videos','-0.49','-11.32',''],
-                //         ['Gallery','-0.61','8.93',''],
-                //     ]
-                // ],
-                // ['BJ', -1.35, -125.36, 'silver, "BG", "BOOTH"], // VACANT
-                // ['BK', -1.35, -153.34, 'bronze, "BG", "BOOTH"], // VACANT
-            ],
-
-            'Hall C' => [
-                // RIGHT SPONSOR_R1 *FACING GROUP D
-                ['Biosystems', -0.02, 46, 'bronze', "biosystem.png", "biosystem.png",
+                // SPONSOR_L5
+                ['Snibe Diagnostics', -2.21, 151.25, 'silver', "Snibe.png", "Snibe.png",
+                    [
+                        ['External Link','-14','3',''],
+                        ['Contact Us','-9','32',''],
+                        ['Quiz','-7','-20',''],
+                        ['Brochures','-7','-27',''],
+                        ['Videos','-3','6',''],
+                        ['Gallery','0','-27',''],
+                    ]
+                ],
+                // SPONSOR_L6
+                ['MINDRAY', -0.74, 120.19, 'silver', "MINDRAY.png", "MINDRAY.png",
                     [
                         ['External Link','-16','20',''],
                         ['Contact Us','-10','24',''],
@@ -224,140 +229,218 @@ class BoothSeeder extends Seeder
                         ['Gallery','2','9',''],
                     ]
                 ],
-                // SPONSOR_R2
-                // ['SPONSOR_R2', 0.14, 90.17, 'gold', "SPONSOR_R2.png", "SPONSOR_R2.png",
-                //     [
-                //         ['External Link','-12.48','24.83','https://localhost'],
-                //         ['Contact Us','-8.62','28.21',''],
-                //         ['Quiz','-7.79','-2.00',''],
-                //         ['Brochures','-9.91','17.88',''],
-                //         ['Videos','1.04','-9.92',''],
-                //         ['Gallery','-0.16','12.28',''],
-                //     ]
-                // ],
-
-                // SPONSOR_R3
-                ['BIOSITE', -0.20, 132.65, 'bronze', "biosite.png", "biosite.png",
+                // SPONSOR_L7
+                ['ERBA', -1.43, 80.49, 'silver', "ERBA.png", "ERBA.png",
                     [
-                        ['External Link','-15','-24',''],
-                        ['Contact Us','-9','-25',''],
-                        ['Quiz','-6','-11',''],
-                        ['Brochures','-7','26',''],
-                        ['Videos','-1','11',''],
-                        ['Gallery','2','26',''],
-                    ]
-                ],
-
-                // LEFT SPONSOR_L1
-                ['GLOBE BUSINESS', 0.19, -46.14, 'bronze', "globe-buisiness.png", "globe-buisiness.png",
-                    [
-                        ['External Link','-15','-24',''],
-                        ['Contact Us','-9','-25',''],
-                        ['Quiz','-6','-11',''],
-                        ['Brochures','-7','26',''],
-                        ['Videos','-1','11',''],
-                        ['Gallery','2','26',''],
-                    ]
-                ],
-                // SPONSOR_L2
-                ['BIOREMIEUX PHILIPPINES CORPORATION', 2.65, -89.18, 'gold', "biomerieux.png", "biomerieux.png",
-                    [
-                        ['External Link','-14','5',''],
-                        ['Contact Us','-9','32',''],
-                        ['Quiz','-7','-19',''],
-                        ['Brochures','-7','-27',''],
-                        ['Videos','-3','6',''],
-                        ['Gallery','0','-27',''],
-                    ]
-                ],
-
-                // SPONSOR_L3
-                // ['SPONSOR_L3', 0.36, -139.26, 'bronze', "SPONSOR_L3.png", "SPONSOR_L3.png",
-                //     [
-                //         ['External Link','-15.54','18.08','https://localhost'],
-                //         ['Contact Us','-11.39','7.31',''],
-                //         ['Quiz','-10.52','-16.25',''],
-                //         ['Brochures','-11.83','6.54',''],
-                //         ['Videos','-0.92','-11.32',''],
-                //         ['Gallery','-0.71','8.40',''],
-                //     ]
-                // ],
-                // ['CJ', -1.35, -125.36, 'silver, "BG", "BOOTH"],
-                // ['CK', -1.35, -153.34, 'bronze, "BG", "BOOTH"],
-            ],
-
-            'Hall D' => [
-                // SPONSOR_R1 *FACING PSP BOOTH
-                // ['SPONSOR_R1', 0.31, 41.76, 'bronze', "SPONSOR_R1.png", "SPONSOR_R1.png",
-                //     [
-                //         ['External Link','-15.60','20.66','https://localhost'],
-                //         ['Contact Us','-10.45','25.83',''],
-                //         ['Quiz','-10.48','-14.91',''],
-                //         ['Brochures','-11.82','10.46',''],
-                //         ['Videos','-0.38','-10.35',''],
-                //         ['Gallery','-0.71','9.38',''],
-                //     ]
-                // ],
-
-                // SPONSOR_R2
-                ['Grepcore Diamonde', 0.68, 90.05, 'gold', "grepcor.png", "grepcor.png",
-                    [
-                        ['External Link','-8','-1',''],
-                        ['Contact Us','-5','32',''],
-                        ['Quiz','-8','-15',''],
-                        ['Brochures','0','-1',''],
-                        ['Videos','2','22',''],
-                        ['Gallery','0','-15',''],
-                    ]
-                ],
-
-                // SPONSOR_R3
-                // ['SPONSOR_R3', -1.40, 136.23, 'bronze', "SPONSOR_R3.png", "SPONSOR_R3.png",
-                //     [
-                //         ['External Link','-15.56','21.05','https://localhost'],
-                //         ['Contact Us','-10.19','25.46',''],
-                //         ['Quiz','-10.67','-15.22',''],
-                //         ['Brochures','-11.73','10.14',''],
-                //         ['Videos','-0.60','-10.24',''],
-                //         ['Gallery','-0.49','9.7',''],
-                //     ]
-                // ],
-
-                // SPONSOR_L1 *FACING PSP BOOTH
-                ['Philippine Society of Pathologist Inc.', 2.54, 0.28, 'gold', "psp.png", "psp.png",
-                    [
-                        ['External Link','-13','4',''],
-                        ['Contact Us','-7','32',''],
-                        ['Quiz','-5','-19',''],
-                        ['Brochures','-5','-27',''],
-                        ['Videos','-1','6',''],
-                        ['Gallery','3','-27',''],
-                    ]
-                ],
-
-                // // SPONSOR_L2
-                ['Pathology Residents Organization', -0.33, -46.28, 'bronze', "pro.png", "pro.png",
-                    [
-                        ['External Link','-16','-20',''],
-                        ['Contact Us','-9','-25',''],
-                        ['Quiz','-11','13',''],
-                        ['Brochures','-4','-10',''],
-                        ['Videos','-1','10',''],
-                        ['Gallery','2','-10',''],
-                    ]
-                ],
-
-                // SPONSOR_L3
-                ['MUREX', -0.08, -132.18, 'bronze', "murex.png", "murex.png",
-                    [
-                        ['External Link','-16','19',''],
-                        ['Contact Us','-10','23',''],
-                        ['Quiz','-10','-15',''],
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
                         ['Brochures','-4','9',''],
                         ['Videos','-1','-11',''],
                         ['Gallery','2','9',''],
                     ]
                 ],
+                // SPONSOR_L8
+                ['OMNIBUS', -0.80, 48.30, 'silver', "OMNIBUS.png", "OMNIBUS.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+            ],
+
+            'Hall C' => [
+                // left facing lobby/ hall C exit
+                ['IMAGE ICON', -0.04, -46.67, 'silver', "IMAGE.png", "IMAGE.png",
+                    [
+                        ['External Link','-16.06','18.78','https://localhost'],
+                        ['Contact Us','-9.18','23.15',''],
+                        ['Quiz','-10.11','-15.37',''],
+                        ['Brochures','-12.06','9.60',''],
+                        ['Videos','-0.49','-10.89',''],
+                        ['Gallery','-0.60','9.05',''],
+                    ]
+                ],
+                // SPONSOR_R2
+                ['ALLIED', -0.42, -78.37, 'silver', "ALLIED.png", "ALLIED.png",
+                    [
+                        ['External Link','-12.21','23.72','https://localhost'],
+                        ['Contact Us','-7.95','26.82',''],
+                        ['Quiz','-7.71','-12.92',''],
+                        ['Brochures','-10.25','17.48',''],
+                        ['Videos','0.93','-10.35',''],
+                        ['Gallery','-0.38','11.95',''],
+                    ]
+                ],
+
+                // SPONSOR_R3
+                ['Biosystems', -0.25, -118.97, 'silver', "Biosystems.png", "Biosystems.png",
+                    [
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','9',''],
+                        ['Gallery','2','-10',''],
+                    ]
+                ],
+
+
+                // LEFT SPONSOR_L4
+                ['FAS', -0.09, -149.77, 'silver', "FAS.png", "FAS.png",
+                    [
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','10',''],
+                        ['Gallery','1','-10',''],
+                    ]
+                ],
+                // SPONSOR_L5
+                ['VITALINE', -0.26, 149.55, 'silver', "VITALINE.png", "VITALINE.png",
+                    [
+                        ['External Link','-14','3',''],
+                        ['Contact Us','-9','32',''],
+                        ['Quiz','-7','-20',''],
+                        ['Brochures','-7','-27',''],
+                        ['Videos','-3','6',''],
+                        ['Gallery','0','-27',''],
+                    ]
+                ],
+                // SPONSOR_L6
+                ['SYSMEX', -0.11, 120.84, 'silver', "SYSMEX.png", "SYSMEX.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L7
+                ['Thermo Fisher', -0.48, 79.82, 'silver', "Thermo.png", "Thermo.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L8
+                ['BLUE CROSS', -0.23, 48.32, 'silver', "BLUE.png", "BLUE.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+            ],
+
+            'Hall D' => [
+                // left facing lobby/ hall C exit
+                ['L1', -0.24, -46.18, 'silver', "L1.png", "L1.png",
+                    [
+                        ['External Link','-16.06','18.78','https://localhost'],
+                        ['Contact Us','-9.18','23.15',''],
+                        ['Quiz','-10.11','-15.37',''],
+                        ['Brochures','-12.06','9.60',''],
+                        ['Videos','-0.49','-10.89',''],
+                        ['Gallery','-0.60','9.05',''],
+                    ]
+                ],
+                // SPONSOR_R2
+                ['L2', 0.40, -79.55, 'silver', "L2.png", "L2.png",
+                    [
+                        ['External Link','-12.21','23.72','https://localhost'],
+                        ['Contact Us','-7.95','26.82',''],
+                        ['Quiz','-7.71','-12.92',''],
+                        ['Brochures','-10.25','17.48',''],
+                        ['Videos','0.93','-10.35',''],
+                        ['Gallery','-0.38','11.95',''],
+                    ]
+                ],
+
+                
+
+                // SPONSOR_R3
+                ['L3',  0.24, -119.20, 'silver', "L3.png", "L3.png",
+                    [
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','9',''],
+                        ['Gallery','2','-10',''],
+                    ]
+                ],
+
+
+                // LEFT SPONSOR_L4
+                ['Philippine Society of Pathologist', 0.77, -178.92, 'silver', "psp.png", "psp.png",
+                    [
+                        ['External Link','-15','-20',''],
+                        ['Contact Us','-9','-24',''],
+                        ['Quiz','-11','12',''],
+                        ['Brochures','-4','-10',''],
+                        ['Videos','-1','9',''],
+                        ['Gallery','2','-10',''],
+                    ]
+                ],
+                // SPONSOR_L5
+                ['Pathologist Residents Organization', 0.22, 120.41, 'silver', "pro.png", "pro.png",
+                    [
+                        ['External Link','-14','3',''],
+                        ['Contact Us','-9','32',''],
+                        ['Quiz','-7','-20',''],
+                        ['Brochures','-7','-27',''],
+                        ['Videos','-3','6',''],
+                        ['Gallery','0','-27',''],
+                    ]
+                ],
+                // SPONSOR_L6
+                ['R1', 0.06, 77.43, 'silver', "R1.png", "R1.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L7
+                ['R2', -0.71, 47.80, 'silver', "R2.png", "R2.png",
+                    [
+                        ['External Link','-16','20',''],
+                        ['Contact Us','-10','24',''],
+                        ['Quiz','-10','-14',''],
+                        ['Brochures','-4','9',''],
+                        ['Videos','-1','-11',''],
+                        ['Gallery','2','9',''],
+                    ]
+                ],
+                // SPONSOR_L8
+                // ['BLUE CROSS', -0.23, 48.32, 'silver', "BLUE.png", "BLUE.png",
+                //     [
+                //         ['External Link','-16','20',''],
+                //         ['Contact Us','-10','24',''],
+                //         ['Quiz','-10','-14',''],
+                //         ['Brochures','-4','9',''],
+                //         ['Videos','-1','-11',''],
+                //         ['Gallery','2','9',''],
+                //     ]
+                // ],
 
             ],
         ];
