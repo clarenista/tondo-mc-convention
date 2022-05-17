@@ -18,8 +18,8 @@ class BoothSeeder extends Seeder
         // , "{$aws_booth_endpoint}BG", "{$aws_booth_endpoint}BOOTH"],
         $locations = [
             'Lobby' => [
-                // RIGHT SPONSOR_R1 *updated
-                ['SNIBE', -1.94, 64.19, 'gold', "snibe.png.png", "snibe.png.png",
+                // from right to left - facing the booths -> orange
+                ['SNIBE', -0.42, -34.38, 'gold', "snibe.png.png", "snibe.png.png",
                     [
                         ['External Link','-14','6',''],
                         ['Contact Us','-9','34',''],
@@ -30,8 +30,8 @@ class BoothSeeder extends Seeder
                     ]
                 ],
 
-                // SPONSOR_R2
-                ['Thermo Fisher Scientific', -1.24, 126.80, 'gold', "thermofisher.png", "thermofisher.png",
+                // green
+                ['Thermo Fisher Scientific', -0.91, -68.92, 'gold', "thermofisher.png", "thermofisher.png",
                     [
                         ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
@@ -41,8 +41,8 @@ class BoothSeeder extends Seeder
                         ['Gallery','2','26',''],
                     ]
                 ],
-                // LEFT SPONSOR_L1
-                ['BIOCARE', -1.29, -56.62, 'gold', "biocare.png", "biocare.png",
+                // blue
+                ['BIOCARE', -0.72, -106.76, 'gold', "biocare.png", "biocare.png",
                     [
                         ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
@@ -52,8 +52,8 @@ class BoothSeeder extends Seeder
                         ['Gallery','1','26',''],
                     ]
                 ],
-                //  SPONSOR_L2
-                ['ROCHE', -1.56, -120.66, 'gold', "roche.png.png", "roche.png.png",
+                //  pink
+                ['ROCHE', -0.19, -134.06, 'gold', "roche.png.png", "roche.png.png",
                     [
                         ['External Link','-14','8',''],
                         ['Contact Us','-9','34',''],

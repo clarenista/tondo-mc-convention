@@ -18,7 +18,7 @@ class StandeeSeeder extends Seeder
         $locations = [
             // added program since standee is not use *can add file at cms->Standee menu
             'Lobby' => [
-                ['Program', -7.257028082305112, 0, "program.jpg"],
+                ['Program', 0.90, 11.37, "program.jpg"],
             ],
 
             // 'Hall A' => [
