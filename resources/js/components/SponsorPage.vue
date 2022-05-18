@@ -8,31 +8,31 @@
             :index="indexSelected"
             @close="indexSelected = null">
           </CoolLightBox>
-            <h1 class="text-light" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
-            <h1 class="text-light" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
+            <h1 class="lgbt" v-if="selectedHotspot.name == 'contact-us'">Send us a Message</h1>
+            <h1 class="lgbt" v-else>{{(selectedHotspot.name).replace(/_/g, ' ')}}</h1>
         </template>
 
         <template v-slot:body >
             <div class="row px-4">
 
-
               <!-- External link -->
-                <template v-if="selectedHotspot.name == 'external-link'">
+                <template class="lgbt" v-if="selectedHotspot.name == 'external-link'">
                   <div class="row p-1 text-center">
                     <div class="col-12">
-                      <h3 class="redirrect_msg text-dark"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
-                        You are about to leave the 70<sup>th</sup> PSP virtual convention site, you will be redirected to:
+                      <h3 class="redirrect_msg text-light"><i class="fa fa-info-circle text-info" aria-hidden="true"></i>
+                        You are about to leave the 71<sup>st</sup> PSP virtual convention site, you will be redirected to:
                       </h3>
                       <a :href="selectedHotspot.assets[0].url" target="_blank">
                         <small><u class="text-primary">{{selectedHotspot.assets[0].url}}</u></small>
                       </a>
                     </div>
                     <div class="col-12 mt-3">
-                      <small>Click the <u class="text-primary">link</u> if you wish to continue.</small>
+                      <small class="text-light">Click the <u class="text-primary">link</u> if you wish to continue.</small>
                     </div>
                   </div>
                 </template>
                 <!-- External link -->
+
                 <!-- WHEEL  -->
                 <template v-else-if="selectedHotspot.name == 'wheels'">
                 <div class="col-12 p-1">
@@ -205,7 +205,7 @@
             </div>
         </template>
         <template v-slot:footer >
-            <button class="btn btn-secondary" type="button" @click="handleCloseModal()">Close</button>
+            <button class="btn btn-warning" type="button" @click="handleCloseModal()">Close</button>
         </template>
     </Modal>   
     <Chat :sponsor_id="booth_details.sponsor_id" :user_details="user" v-if="booth_details"/>
@@ -542,5 +542,9 @@ export default {
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
   } 
-
+.lgbt {
+  color: #610089;
+  font-size: 2em;
+  padding: .5em 1.3em;
+}
 </style>
