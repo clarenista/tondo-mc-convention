@@ -16,7 +16,7 @@
         <Modal :value="camera" v-if="camera">
             <template v-slot:title>
                 <img
-                    src="/images/71st_logo_min.png.png"
+                    src="/images/71st_logo_min.png"
                     alt=""
                     class="center_logo"
                 />
