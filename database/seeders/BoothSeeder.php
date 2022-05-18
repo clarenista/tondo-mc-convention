@@ -349,41 +349,41 @@ class BoothSeeder extends Seeder
 
             'Hall D' => [
                 // left facing lobby/ hall C exit
-                ['L1', -0.24, -46.18, 'silver', "L1.png", "L1.png",
-                    [
-                        ['External Link','-16.06','18.78','https://localhost'],
-                        ['Contact Us','-9.18','23.15',''],
-                        ['Quiz','-10.11','-15.37',''],
-                        ['Brochures','-12.06','9.60',''],
-                        ['Videos','-0.49','-10.89',''],
-                        ['Gallery','-0.60','9.05',''],
-                    ]
-                ],
-                // SPONSOR_R2
-                ['L2', 0.40, -79.55, 'silver', "L2.png", "L2.png",
-                    [
-                        ['External Link','-12.21','23.72','https://localhost'],
-                        ['Contact Us','-7.95','26.82',''],
-                        ['Quiz','-7.71','-12.92',''],
-                        ['Brochures','-10.25','17.48',''],
-                        ['Videos','0.93','-10.35',''],
-                        ['Gallery','-0.38','11.95',''],
-                    ]
-                ],
+                // ['L1', -0.24, -46.18, 'silver', "L1.png", "L1.png",
+                //     [
+                //         ['External Link','-16.06','18.78','https://localhost'],
+                //         ['Contact Us','-9.18','23.15',''],
+                //         ['Quiz','-10.11','-15.37',''],
+                //         ['Brochures','-12.06','9.60',''],
+                //         ['Videos','-0.49','-10.89',''],
+                //         ['Gallery','-0.60','9.05',''],
+                //     ]
+                // ],
+                // // SPONSOR_R2
+                // ['L2', 0.40, -79.55, 'silver', "L2.png", "L2.png",
+                //     [
+                //         ['External Link','-12.21','23.72','https://localhost'],
+                //         ['Contact Us','-7.95','26.82',''],
+                //         ['Quiz','-7.71','-12.92',''],
+                //         ['Brochures','-10.25','17.48',''],
+                //         ['Videos','0.93','-10.35',''],
+                //         ['Gallery','-0.38','11.95',''],
+                //     ]
+                // ],
 
                 
 
-                // SPONSOR_R3
-                ['L3',  0.24, -119.20, 'silver', "L3.png", "L3.png",
-                    [
-                        ['External Link','-15','-20',''],
-                        ['Contact Us','-9','-24',''],
-                        ['Quiz','-11','12',''],
-                        ['Brochures','-4','-10',''],
-                        ['Videos','-1','9',''],
-                        ['Gallery','2','-10',''],
-                    ]
-                ],
+                // // SPONSOR_R3
+                // ['L3',  0.24, -119.20, 'silver', "L3.png", "L3.png",
+                //     [
+                //         ['External Link','-15','-20',''],
+                //         ['Contact Us','-9','-24',''],
+                //         ['Quiz','-11','12',''],
+                //         ['Brochures','-4','-10',''],
+                //         ['Videos','-1','9',''],
+                //         ['Gallery','2','-10',''],
+                //     ]
+                // ],
 
 
                 // LEFT SPONSOR_L4
@@ -409,27 +409,27 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // SPONSOR_L6
-                ['R1', 0.06, 77.43, 'silver', "R1.png", "R1.png",
-                    [
-                        ['External Link','-16','20',''],
-                        ['Contact Us','-10','24',''],
-                        ['Quiz','-10','-14',''],
-                        ['Brochures','-4','9',''],
-                        ['Videos','-1','-11',''],
-                        ['Gallery','2','9',''],
-                    ]
-                ],
-                // SPONSOR_L7
-                ['R2', -0.71, 47.80, 'silver', "R2.png", "R2.png",
-                    [
-                        ['External Link','-16','20',''],
-                        ['Contact Us','-10','24',''],
-                        ['Quiz','-10','-14',''],
-                        ['Brochures','-4','9',''],
-                        ['Videos','-1','-11',''],
-                        ['Gallery','2','9',''],
-                    ]
-                ],
+                // ['R1', 0.06, 77.43, 'silver', "R1.png", "R1.png",
+                //     [
+                //         ['External Link','-16','20',''],
+                //         ['Contact Us','-10','24',''],
+                //         ['Quiz','-10','-14',''],
+                //         ['Brochures','-4','9',''],
+                //         ['Videos','-1','-11',''],
+                //         ['Gallery','2','9',''],
+                //     ]
+                // ],
+                // // SPONSOR_L7
+                // ['R2', -0.71, 47.80, 'silver', "R2.png", "R2.png",
+                //     [
+                //         ['External Link','-16','20',''],
+                //         ['Contact Us','-10','24',''],
+                //         ['Quiz','-10','-14',''],
+                //         ['Brochures','-4','9',''],
+                //         ['Videos','-1','-11',''],
+                //         ['Gallery','2','9',''],
+                //     ]
+                // ],
                 // SPONSOR_L8
                 // ['BLUE CROSS', -0.23, 48.32, 'silver', "BLUE.png", "BLUE.png",
                 //     [
