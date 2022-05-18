@@ -9,6 +9,10 @@
                     @click="handleBoothTracker"
                     title="View My Activity"
                     aria-hidden="true"
+                    style="font-size: 42px;
+                    background: -webkit-linear-gradient(#006595, #8241e4);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;"    
                 ></i>
             </h1>
         </div>

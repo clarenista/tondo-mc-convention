@@ -11,20 +11,20 @@
             @click="handleNavigateTo(item)"
             :title="item.title"
         >
-            <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
+            <span class="badge lgbt"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
         </a>
         
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
             <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="badge badge-dark"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
-            <div class="dropdown-menu bg-dark" :class="showDropdown ? 'show' : ''" style="margin-left: 90px; top: 8px; !important">
-                <a class="dropdown-item bg-dark" style="border-bottom: 1px solid #F6F6F6;"  @click="handleNavigateTo(dropdown)" 
+                <span class="badge lgbt"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
+            <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="">
+                <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
                     href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
                 <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
             </div>
         </div>
         <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-            <span class="badge badge-dark"><i class="fa fa-volume-up" ></i></span> <!-- Vote -->
+            <span class="badge lgbt"><i class="fa fa-volume-up" ></i></span> <!-- Vote -->
         </a>
         <a href="javascript:void(0)" @click="handleLogout" title="Logout">
             <span class="badge badge-danger"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
@@ -153,5 +153,36 @@ button.open-btn{
 
 .closebtn {
     font-size: 1.2rem !important;
+}
+
+/* new css */
+.badge {
+    border-radius: 6em;
+    height: 3em;
+    padding-top: 17px;
+    
+}
+
+.badge:hover {
+    color:#fa7000;
+}
+
+.dropdown-menu {
+    margin-left: 90px; 
+    top: 8px !important; 
+    background-color: #ebcb17 !important;
+}
+.dropdown-item {
+   background-color: #ebcb17 !important; 
+   border: none; color: #610089;
+}
+.dropdown-item:hover {
+    color: white !important;
+    border-bottom: 1px solid white;
+}
+
+.lgbt {
+    background-image: linear-gradient(#006595, #8241e4) !important;
+    color: white;
 }
 </style>
