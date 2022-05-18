@@ -19,7 +19,7 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // from right to left - facing the booths -> orange
-                ['SNIBE', -0.42, -34.38, 'gold', "snibe.png.png", "snibe.png.png",
+                ['SNIBE', -2.13, -62.90, 'gold', "snibe.png.png", "snibe.png.png",
                     [
                         ['External Link','-14','6',''],
                         ['Contact Us','-9','34',''],
@@ -31,7 +31,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // green
-                ['Thermo Fisher Scientific', -0.91, -68.92, 'gold', "thermofisher.png", "thermofisher.png",
+                ['Thermo Fisher Scientific', -1.31, -126.56, 'gold', "thermofisher.png", "thermofisher.png",
                     [
                         ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
@@ -42,7 +42,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 // blue
-                ['BIOCARE', -0.72, -106.76, 'gold', "biocare.png", "biocare.png",
+                ['BIOCARE', -1.42, 119.25, 'gold', "biocare.png", "biocare.png",
                     [
                         ['External Link','-14','-6',''],
                         ['Contact Us','-8','-34',''],
@@ -53,7 +53,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 //  pink
-                ['ROCHE', -0.19, -134.06, 'gold', "roche.png.png", "roche.png.png",
+                ['ROCHE', -0.28, 59.73, 'gold', "roche.png.png", "roche.png.png",
                     [
                         ['External Link','-14','8',''],
                         ['Contact Us','-9','34',''],
