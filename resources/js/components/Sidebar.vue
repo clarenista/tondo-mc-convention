@@ -35,7 +35,7 @@
 
     <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:0;'">
         <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="240px" alt="psp_logo" srcset=""></div>
-        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a>
 
         <a 
             href="javascript:void(0)" 
@@ -45,16 +45,16 @@
             @click="handleNavigateTo(item)"
             :title="item.title"
         >
-            <span><i class="fa" :class="item.icon"></i>{{item.name}}</span> 
+            <span>{{item.name}}</span> 
         </a>
         
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
             <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span><i class="fa" :class="item.icon"></i></span>  {{item.name}}</a>
+                <span></span>  {{item.name}}</a>
             <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="">
                 <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
                     href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
-                <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
+                &nbsp;{{dropdown.name}}</a>
             </div>
         </div>
         <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
@@ -65,7 +65,7 @@
         </a>
     </div>
 
-    <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
+    <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
    
 </div>
 </template>
@@ -76,16 +76,16 @@ export default {
             showDropdown: false,
             navItems: [
                 // {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item', title: 'Beach'},
-                {name: "Lobby", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
-                {name: "Meeting Hall", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
+                {name: "LOBBY", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
+                {name: "MEETING HALL", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
                 // {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item' , title: 'Pool Area'},
-                {name: "Exhibit Hall", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
+                {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                     dropdowns:[
                         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall A", sceneId: 'hall_a', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall B", sceneId: 'hall_b', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall C", sceneId: 'hall_c', icon: 'fa-map-marker'},
-                        {name: "Exhibit Hall D", sceneId: 'hall_d', icon: 'fa-map-marker'},
+                        {name: "HALL A", sceneId: 'hall_a', icon: 'fa-map-marker'},
+                        {name: "HALL B", sceneId: 'hall_b', icon: 'fa-map-marker'},
+                        {name: "HALL C", sceneId: 'hall_c', icon: 'fa-map-marker'},
+                        {name: "HALL D", sceneId: 'hall_d', icon: 'fa-map-marker'},
                     ], title: 'Exhibit Hall'},
             ]
         }
@@ -93,10 +93,11 @@ export default {
     methods:{
         openNav(){
             document.getElementById("mySidenav").style.width = "300px";
+            document.getElementById("openBtn").style.display = "none";
         },
         closeNav(){
             document.getElementById("mySidenav").style.width = "0";
-
+            document.getElementById("openBtn").style.display = "block";
         },
 
         handleNavigateTo(item){
@@ -127,6 +128,7 @@ export default {
     },
 
     mounted() {
+        document.getElementById("openBtn").style.display = "block";
     },
 }
 </script>
@@ -139,7 +141,7 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-image: linear-gradient(90deg, #0073a8 , #cc00ff);
+    background-image: linear-gradient(90deg,  #cc00ff, #0073a8);
     border: #125f21;
     /* border-radius: 15%;
     -moz-border-radius: 15px;
@@ -162,7 +164,7 @@ button.open-btn{
 
   /* border: 1px solid red; */
 
-  background-image: linear-gradient(180deg, #0073a8 , #cc00ff);
+  background-image: linear-gradient(180deg, #cc00ff, #0073a8);
   /* transparent css */
   opacity: 0.9;
   /* pattern */
@@ -175,7 +177,7 @@ button.open-btn{
   color: #f1f1f1;
   display: block;
   transition: 0.3s;
-  width: 100% !important;
+
   /* border: 1px solid blue; */
 }
 
