@@ -1,8 +1,42 @@
 <template >
 <div>
-    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:90px;'">
-        <!-- <div class="text-center"><img id="psp_logo" src="images/70_logo.png" width="240px" alt="psp_logo" srcset=""></div> -->
-        <!-- <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a> -->
+
+    <!-- <div id="mySidenav" class="sidenav">
+        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="240px" alt="psp_logo" srcset=""></div>
+        
+        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+        <a 
+            href="javascript:void(0)" 
+            v-if="item.type=='nav-item'" 
+            v-for="(item, index) in navItems" 
+            :key="index"
+            @click="handleNavigateTo(item)"
+        >
+            <i class="fa" :class="item.icon"></i> {{item.name}}
+        </a>
+
+        <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
+            <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span><i class="fa" :class="item.icon"></i></span> {{item.name}}</a>
+            <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" >
+                <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
+                    href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
+                <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
+            </div>
+        </div>
+
+        <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
+            <span><i class="fa fa-volume-up" ></i></span> 
+        </a>
+        <a href="javascript:void(0)" @click="handleLogout" title="Logout">
+            <span><i class="fa fa-sign-out" ></i></span> 
+        </a>
+    </div> -->
+
+    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:0;'">
+        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="240px" alt="psp_logo" srcset=""></div>
+        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+
         <a 
             href="javascript:void(0)" 
             v-if="item.type=='nav-item'" 
@@ -11,12 +45,12 @@
             @click="handleNavigateTo(item)"
             :title="item.title"
         >
-            <span class="badge lgbt"><i class="fa" :class="item.icon"></i></span> <!--{{item.name}}-->
+            <span><i class="fa" :class="item.icon"></i>{{item.name}}</span> 
         </a>
         
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
             <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span class="badge lgbt"><i class="fa" :class="item.icon"></i></span> <!-- {{item.name}} --></a>
+                <span><i class="fa" :class="item.icon"></i></span>  {{item.name}}</a>
             <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="">
                 <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
                     href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
@@ -24,14 +58,14 @@
             </div>
         </div>
         <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-            <span class="badge lgbt"><i class="fa fa-volume-up" ></i></span> <!-- Vote -->
+            <span><i class="fa fa-volume-up" ></i></span> 
         </a>
         <a href="javascript:void(0)" @click="handleLogout" title="Logout">
-            <span class="badge badge-danger"><i class="fa fa-sign-out" ></i></span> <!-- Logout -->
+            <span><i class="fa fa-sign-out" ></i></span> 
         </a>
     </div>
 
-    <!-- <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button> -->
+    <button class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
    
 </div>
 </template>
@@ -57,6 +91,14 @@ export default {
         }
     },
     methods:{
+        openNav(){
+            document.getElementById("mySidenav").style.width = "300px";
+        },
+        closeNav(){
+            document.getElementById("mySidenav").style.width = "0";
+
+        },
+
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
             this.showDropdown = false
@@ -97,7 +139,7 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-image: linear-gradient(90deg, #072b0e, #075e20);
+    background-image: linear-gradient(90deg, #0073a8 , #cc00ff);
     border: #125f21;
     /* border-radius: 15%;
     -moz-border-radius: 15px;
@@ -105,19 +147,22 @@ button.open-btn{
 }
 
 .sidenav {
+  font-style: Arial !important;
+  font-weight: 300;
+
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 3;
+  z-index: 1;
   top: 0;
   left: 0;
   overflow-x: hidden;
   transition: 0.5s;
-  /* padding-top: 60px; */
+  padding-top: 60px;
 
   /* border: 1px solid red; */
 
-  /* background-image: linear-gradient(180deg, #030d05, #0a431a); */
+  background-image: linear-gradient(180deg, #0073a8 , #cc00ff);
   /* transparent css */
   opacity: 0.9;
   /* pattern */
@@ -127,10 +172,10 @@ button.open-btn{
   padding: 10px;
   text-decoration: none;
   font-size: 24px;
-  /* color: #f1f1f1; */
+  color: #f1f1f1;
   display: block;
   transition: 0.3s;
-
+  width: 100% !important;
   /* border: 1px solid blue; */
 }
 
@@ -146,34 +191,22 @@ button.open-btn{
   margin-left: 50px;
 }
 
-@media screen and (max-height: 450px) {
+/* @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}  
+}   */
 
 .closebtn {
     font-size: 1.2rem !important;
 }
 
 /* new css */
-.badge {
-    border-radius: 6em;
-    height: 3em;
-    padding-top: 17px;
-    
-}
-
-.badge:hover {
-    color:#fa7000;
-}
-
 .dropdown-menu {
-    margin-left: 90px; 
-    top: 8px !important; 
-    background-color: #ebcb17 !important;
+    background-color: #93b5f2; 
+    color: #f6f6f6;
 }
 .dropdown-item {
-   background-color: #ebcb17 !important; 
+   /* background-color: #ebcb17 !important;  */
    border: none; color: #610089;
 }
 .dropdown-item:hover {
