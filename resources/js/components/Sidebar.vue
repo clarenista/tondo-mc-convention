@@ -1,40 +1,8 @@
 <template >
 <div>
 
-    <!-- <div id="mySidenav" class="sidenav">
-        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="240px" alt="psp_logo" srcset=""></div>
-        
-        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-        <a 
-            href="javascript:void(0)" 
-            v-if="item.type=='nav-item'" 
-            v-for="(item, index) in navItems" 
-            :key="index"
-            @click="handleNavigateTo(item)"
-        >
-            <i class="fa" :class="item.icon"></i> {{item.name}}
-        </a>
-
-        <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
-            <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span><i class="fa" :class="item.icon"></i></span> {{item.name}}</a>
-            <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" >
-                <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
-                    href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
-                <i class="fa" :class="dropdown.icon"></i>&nbsp;{{dropdown.name}}</a>
-            </div>
-        </div>
-
-        <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-            <span><i class="fa fa-volume-up" ></i></span> 
-        </a>
-        <a href="javascript:void(0)" @click="handleLogout" title="Logout">
-            <span><i class="fa fa-sign-out" ></i></span> 
-        </a>
-    </div> -->
-
     <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:0;'">
-        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="240px" alt="psp_logo" srcset=""></div>
+        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="190px" alt="psp_logo" srcset=""></div>
         <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a>
 
         <a 
@@ -57,16 +25,21 @@
                 &nbsp;{{dropdown.name}}</a>
             </div>
         </div>
-        <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-            <span><i class="fa fa-volume-up" ></i></span> 
-        </a>
-        <a href="javascript:void(0)" @click="handleLogout" title="Logout">
-            <span><i class="fa fa-sign-out" ></i></span> 
-        </a>
+
+        <div class="left_bot">
+            <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
+                <span><i class="fa fa-volume-up small"></i> </span> 
+            </a>
+            <a href="javascript:void(0)" @click="handleLogout" title="Logout">
+                <span><i class="fa fa-sign-out text-warning small"></i></span> 
+            </a>
+        </div>
+    
     </div>
 
     <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
-   
+
+    
 </div>
 </template>
 <script>
@@ -93,15 +66,17 @@ export default {
     methods:{
         openNav(){
             document.getElementById("mySidenav").style.width = "300px";
-            document.getElementById("openBtn").style.display = "none";
+            document.getElementById("openBtn").style.opacity = "0.1";
         },
         closeNav(){
             document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("openBtn").style.display = "block";
+            document.getElementById("openBtn").style.opacity = "1";
+            this.showDropdown = false
         },
 
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
+            this.closeNav() 
             this.showDropdown = false
         },
         handleBgmPlayToggle(){
@@ -128,7 +103,6 @@ export default {
     },
 
     mounted() {
-        document.getElementById("openBtn").style.display = "block";
     },
 }
 </script>
@@ -142,16 +116,13 @@ button.open-btn{
     z-index: 2;
     
     background-image: linear-gradient(90deg,  #cc00ff, #0073a8);
-    border: #125f21;
+    border: #cc00ff;
     /* border-radius: 15%;
     -moz-border-radius: 15px;
     -webkit-border-radius: 15px; */
 }
 
 .sidenav {
-  font-style: Arial !important;
-  font-weight: 300;
-
   height: 100%;
   width: 0;
   position: fixed;
@@ -171,9 +142,9 @@ button.open-btn{
 }
 
 .sidenav a {
-  padding: 10px;
+  padding: 5px 10px;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #f1f1f1;
   display: block;
   transition: 0.3s;
@@ -189,8 +160,8 @@ button.open-btn{
   position: absolute;
   top: 0;
   right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  /* font-size: 36px; */
+  /* margin-left: 50px; */
 }
 
 /* @media screen and (max-height: 450px) {
@@ -210,14 +181,94 @@ button.open-btn{
 .dropdown-item {
    /* background-color: #ebcb17 !important;  */
    border: none; color: #610089;
-}
-.dropdown-item:hover {
-    color: white !important;
-    border-bottom: 1px solid white;
+   text-align: center;
 }
 
 .lgbt {
     background-image: linear-gradient(#006595, #8241e4) !important;
     color: white;
 }
+
+a.dropdown-item {
+    width: 320px;
+    color: #610089;
+    display: block;
+}
+
+.sidenav .left_bot {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    /* border: 1px solid blue; */
+}
+
+
+ /* greater than 319 buy less then 768 */
+  @media screen and (min-width: 320px) and (max-width: 768px) {
+    .sidenav a {
+        font-size: 1rem;
+    }
+  
+    #psp_logo {
+      width: 120px;
+      height: auto;
+    }
+
+    
+  }
+  
+  /* greater than 766 buy less then 850 */
+  @media screen and (min-width: 767px) and (max-width: 820px) {
+    .sidenav a {
+        font-size: 2rem;
+    }
+  
+    #psp_logo {
+      width: 220px;
+      height: auto;
+    }
+  }
+  
+  
+  /* less than 375*/
+  @media screen and (min-width: 220px) and (max-width: 375px) {
+    .sidenav {
+        width: 230px !important;
+    }
+    
+    .sidenav a {
+        font-size: .8rem;
+    }
+  
+    #psp_logo {
+      width: 90px;
+      height: auto;
+    }
+
+    a.dropdown-item {
+        width: 230px;
+    }
+  }
+  
+  
+  /* greater than 990*/
+  @media screen and (min-width: 990) {
+    .sidenav {
+        width: 320px !important;
+    }
+
+    #psp_logo {
+      width: 90px;
+      height: auto;
+    }
+
+    .sidenav a {
+        font-size: 1rem;
+    }
+  }
+
+  
+  
+
+
 </style>
