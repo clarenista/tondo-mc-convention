@@ -128,7 +128,7 @@ class BoothSeeder extends Seeder
                 ['I.T. EASY SOFTWARE SOLUTIONS INC.', -1.56, 118.42, 'silver', "it_easy.png", "it_easy.png",
                     [
                         ['External Link', '-14.17','-13.87','https://easy.com.ph'],
-                        ['Contact Us', '-14.17','-11.50',''],
+                        ['Contact Us', '-4.80','-12.18',''],
                         ['Quiz','-4.80', '-20.86',''],
                         ['Brochures', '2.37','-5.24',''],
                         ['Videos', '1.00','13.74',''],
@@ -151,7 +151,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-13.98','-15.73','https://rhumba-inc.com'],
                         ['Contact Us', '-5.08','-13.00',''],
-                        ['Quiz','', '-5.08','-22.45'],
+                        ['Quiz','-5.08', '-22.45',''],
                         ['Brochures', '1.66','-4.96',''],
                         ['Videos', '1.073','13.20',''],
                         ['Gallery', '1.66','-14.07',''],
@@ -174,7 +174,7 @@ class BoothSeeder extends Seeder
                 // SPONSOR_R2
                 ['Grepcore Diamonde', -1.75, -79.71, 'silver', "Grepcore.png", "Grepcore.png",
                     [
-                        ['External Link', '14.07','-19.73','https://grepcordiamonde.com.ph'],
+                        ['External Link', '-14.07','-19.73','https://grepcordiamonde.com.ph'],
                         ['Contact Us', '-5.03','-15.20',''],
                         ['Quiz', '-5.03', '-23.90',''],
                         ['Brochures', '1.94','-4.54',''],
@@ -390,7 +390,7 @@ class BoothSeeder extends Seeder
                 ['Philippine Society of Pathologist', 0.77, -178.92, 'silver', "psp.png", "psp.png",
                     [
                         ['External Link', '-6.67','-28.69','https://psp.com.ph'],
-                        ['Contact Us', '-6.67','-21.84',''],
+                        ['Contact Us', '-1.88','-21.84',''],
                         ['Quiz','-1.88', '-32.89',''],
                         ['Brochures', '-5.89','29.35',''],
                         ['Videos', '4.05','19.10',''],
