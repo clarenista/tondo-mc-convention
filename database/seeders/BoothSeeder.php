@@ -19,48 +19,48 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // from right to left - facing the booths -> orange
-                ['SNIBE', -2.13, -62.90, 'gold', "snibe.png.png", "snibe.png.png",
+                ['Abbott-Rapid', -2.13, -62.90, 'gold', "Abbott_rapid.png.png", "Abbott_rapid.png.png",
                     [
-                        ['External Link','-14','6',''],
-                        ['Contact Us','-9','34',''],
-                        ['Quiz','-6','-18',''],
-                        ['Brochures','-5','-28',''],
-                        ['Videos','-3','7',''],
-                        ['Gallery','2','-28',''],
+                        ['External Link', '-9.82','-26.94','https://abbott.com'],
+                        ['Contact Us','-3.97','-27.03',''],
+                        ['Quiz', '-3.94','-32.52',''],
+                        ['Brochures', '-8.63','31.98',''],
+                        ['Videos', '2.67','19.49',''],
+                        ['Gallery', '-1.47','-15.63','']
                     ]
                 ],
 
                 // green
-                ['Thermo Fisher Scientific', -1.31, -126.56, 'gold', "thermofisher.png", "thermofisher.png",
+                ['Siemens Healthineers', -1.31, -126.56, 'gold', "Siemens.png", "Siemens.png",
                     [
-                        ['External Link','-14','-6',''],
-                        ['Contact Us','-8','-34',''],
-                        ['Quiz','-6','17',''],
-                        ['Brochures','-5','29',''],
-                        ['Videos','-1','-7',''],
-                        ['Gallery','2','26',''],
+                        ['External Link', '-9.70','-29.23','https://siemens.com'],
+                        ['Contact Us', '-4.17','-24.10',''],
+                        ['Quiz', '-3.60','-34.12',''],
+                        ['Brochures', '-9.40','29.48',''],
+                        ['Videos', '2.69','18.13',''],
+                        ['Gallery', '-1.67','-16.34',''],
                     ]
                 ],
                 // blue
-                ['BIOCARE', -1.42, 119.25, 'gold', "biocare.png", "biocare.png",
+                ['Roche', -1.42, 119.25, 'gold', "Roche.png", "Roche.png",
                     [
-                        ['External Link','-14','-6',''],
-                        ['Contact Us','-8','-34',''],
-                        ['Quiz','-6','17',''],
-                        ['Brochures','-5','26',''],
-                        ['Videos','-1','-7',''],
-                        ['Gallery','1','26',''],
+                        ['External Link', '-12.02','-26.50','https://roche.com'],
+                        ['Contact Us', '-4.79','-28.31',''],
+                        ['Quiz', '-4.46','-34.86',''],
+                        ['Brochures', '-9.11','38.71',''],
+                        ['Videos', '2.72','22.35',''],
+                        ['Gallery', '-1.78','-15.12',''],
                     ]
                 ],
                 //  pink
-                ['ROCHE', -0.28, 59.73, 'gold', "roche.png.png", "roche.png.png",
+                ['MMJ', -0.28, 59.73, 'gold', "MMJ.png", "MMJ.png",
                     [
-                        ['External Link','-14','8',''],
-                        ['Contact Us','-9','34',''],
-                        ['Quiz','-6','-18',''],
-                        ['Brochures','-5','-26',''],
-                        ['Videos','-3','7',''],
-                        ['Gallery','2','-26',''],
+                        ['External Link', '-10.82','-33.90','https://mmjbiosystems.com'],
+                        ['Contact Us', '-4.69','-30.38',''],
+                        ['Quiz', '-4.40','-35.95',''],
+                        ['Brochures', '-10.32','36.45',''],
+                        ['Videos', '2.95','20.84',''],
+                        ['Gallery', '-1.04','-16.44',''],
                     ]
                 ],
             ],
