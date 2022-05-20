@@ -48,6 +48,8 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot enter",
         "sceneId": "lobby",
       },
+
+      // LOBBY HOTSPOTS
       {
         "scene": 'lobby',
         "type": "scene",
@@ -56,13 +58,50 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot enter",
         "sceneId": "meeting_hall",
       },
+
       {
         "scene": 'lobby',
         "type": "info",
         "pitch": 2.45,
         "yaw": -162.28,
-        "text": "Philippine Society of Pathologists",
+        "text": "Transcending Barriers: The PSP on its commitment to excellence and unceasing innovation in the midst of a pandemic",
       },
+
+      // {
+      //   "scene": 'lobby',
+      //   "type": "scene",
+      //   "pitch": 11.12,
+      //   "yaw": -29.65,
+      //   "cssClass": "custom-hotspot hall_a",
+      //   "sceneId": "hall_a",
+      // },
+
+      // {
+      //   "scene": 'lobby',
+      //   "type": "scene",
+      //   "pitch": 12.08,
+      //   "yaw": -18.84,
+      //   "cssClass": "custom-hotspot hall_b",
+      //   "sceneId": "hall_b",
+      // },
+
+      // {
+      //   "scene": 'lobby',
+      //   "type": "scene",
+      //   "pitch": 12.58,
+      //   "yaw": -6.25,
+      //   "cssClass": "custom-hotspot hall_c",
+      //   "sceneId": "hall_c",
+      // },
+
+      // {
+      //   "scene": 'lobby',
+      //   "type": "scene",
+      //   "pitch": 12.65,
+      //   "yaw": 7.15,
+      //   "cssClass": "custom-hotspot hall_d",
+      //   "sceneId": "hall_d",
+      // },
       // {
       //   "scene": 'lobby',
       //   "type": "info",
@@ -166,30 +205,53 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot arrow_left",
         "sceneId": "pool_area",
       },   
+
+      // HALL A HOTSPOT
       {
         "scene": 'hall_a',
         "type": "scene",
-        "pitch": -3.7,
-        "yaw": -0.1,
+        "pitch": 8.68,
+        "yaw": -14.92,
         "cssClass": "custom-hotspot hall_b",
         "sceneId": "hall_b",
       },
+
       {
         "scene": 'hall_a',
         "type": "scene",
-        "pitch": 19.0,
-        "yaw": -138.1,
-        "cssClass": "custom-hotspot arrow_right",
-        "sceneId": "secondf_meeting_hall",
+        "pitch": 8.56,
+        "yaw": 15.33,
+        "cssClass": "custom-hotspot hall_c",
+        "sceneId": "hall_c",
+      },
+
+      {
+        "scene": 'hall_a',
+        "type": "scene",
+        "pitch": 9.61,
+        "yaw": 0,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "meeting_hall",
       },
       {
         "scene": 'hall_a',
         "type": "scene",
-        "pitch": 42.2,
-        "yaw": -197.8,
-        "cssClass": "custom-hotspot arrow_left",
-        "sceneId": "pool_area",
+        "pitch": 7.32,
+        "yaw": 36.45,
+        "cssClass": "custom-hotspot hall_d",
+        "sceneId": "hall_d",
       },
+
+      {
+        "scene": 'hall_a',
+        "type": "scene",
+        "pitch": -1.52,
+        "yaw": -0.10,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "lobby",
+      },
+
+
       {
         "scene": 'pool_area',
         "type": "scene",
@@ -207,39 +269,51 @@ export default new Vuex.Store({
         "sceneId": "hall_d",
       },
 
+
+      // HALL C HOTSPOTS
       {
         "scene": 'hall_c',
         "type": "scene",
-
-        "pitch": -3.7,
-        "yaw": -0.1,
+        "pitch": 7.04,
+        "yaw": -36.73,
+        "cssClass": "custom-hotspot hall_a",
+        "sceneId": "hall_a",
+      },
+      {
+        "scene": 'hall_c',
+        "type": "scene",
+        "pitch": 8.68,
+        "yaw": -14.92,
+        "cssClass": "custom-hotspot hall_b",
+        "sceneId": "hall_b",
+      },
+      {
+        "scene": 'hall_c',
+        "type": "scene",
+        "pitch": 9.61,
+        "yaw": 0,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "meeting_hall",
+      },
+      {
+        "scene": 'hall_c',
+        "type": "scene",
+        "pitch": 7.32,
+        "yaw": 36.45,
         "cssClass": "custom-hotspot hall_d",
         "sceneId": "hall_d",
       },
-      {
-        "scene": 'hall_c',
-        "type": "scene",
-        "pitch": 8.7,
-        "yaw": -181.0,
-        "cssClass": "custom-hotspot arrow_left",
-        "sceneId": "secondf_outside",
-      },
-      {
-        "scene": 'hall_c',
-        "type": "scene",
-        "pitch": 15.0,
-        "yaw": 4.1,
-        "cssClass": "custom-hotspot arrow_right",
-        "sceneId": "secondf_meeting_hall",
-      },
 
       {
         "scene": 'hall_c',
-        "type": "info",
-        "pitch": 12.09,
-        "yaw": 174.28,
-        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
+        "type": "scene",
+        "pitch": -1.52,
+        "yaw": -0.10,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "lobby",
       },
+
+
       {
         "scene": 'hall',
         "type": "scene",
@@ -248,45 +322,52 @@ export default new Vuex.Store({
         "cssClass": "custom-hotspot hall_b",
         "sceneId": "hall_b",
       },
+
+      // HALL B HOTSPOTS
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": -3.7,
-        "yaw": -180.1,
+
+        "pitch": 7.04,
+        "yaw": -36.73,
         "cssClass": "custom-hotspot hall_a",
         "sceneId": "hall_a",
       },
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": -0.38,
-        "yaw": -28.44,
-        "cssClass": "custom-hotspot enter",
-        "sceneId": "lobby",
+        "pitch": 8.56,
+        "yaw": 15.33,
+        "cssClass": "custom-hotspot hall_c",
+        "sceneId": "hall_c",
       },
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": -0.55,
-        "yaw": -4.15,
+        "pitch": 9.61,
+        "yaw": 0,
         "cssClass": "custom-hotspot enter",
-        "sceneId": "lobby",
-      },
-      {
-        "scene": 'hall_b',
-        "type": "info",
-        "pitch": 12.60,
-        "yaw": -17.60,
-        "text": "Dr. Nelson T. Geraldino's Orchid Collection",
+        "sceneId": "meeting_hall",
       },
       {
         "scene": 'hall_b',
         "type": "scene",
-        "pitch": 19.0,
-        "yaw": 173.9,
-        "cssClass": "custom-hotspot arrow_left",
-        "sceneId": "pool_area",
-      },      
+        "pitch": 7.32,
+        "yaw": 36.45,
+        "cssClass": "custom-hotspot hall_d",
+        "sceneId": "hall_d",
+      },
+
+      {
+        "scene": 'hall_b',
+        "type": "scene",
+        "pitch": -1.52,
+        "yaw": -0.10,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "lobby",
+      },
+      
+      
       {
         "scene": 'hall',
         "type": "scene",
@@ -296,38 +377,72 @@ export default new Vuex.Store({
         "sceneId": "hall_c",
       },
 
+      // HALL D HOTSPOTS
       {
         "scene": 'hall_d',
         "type": "scene",
-        "pitch": -3.7,
-        "yaw": -180.1,
+
+        "pitch": 7.04,
+        "yaw": -36.73,
+        "cssClass": "custom-hotspot hall_a",
+        "sceneId": "hall_a",
+      },
+      {
+        "scene": 'hall_d',
+        "type": "scene",
+        "pitch": 8.68,
+        "yaw": -14.92,
+        "cssClass": "custom-hotspot hall_b",
+        "sceneId": "hall_b",
+      },
+      {
+        "scene": 'hall_d',
+        "type": "scene",
+        "pitch": 9.61,
+        "yaw": 0,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "meeting_hall",
+      },
+      {
+        "scene": 'hall_d',
+        "type": "scene",
+        "pitch": 8.56,
+        "yaw": 15.33,
         "cssClass": "custom-hotspot hall_c",
         "sceneId": "hall_c",
       },
+
       {
         "scene": 'hall_d',
         "type": "scene",
-        "pitch": 24.8,
-        "yaw": 7.2,
-        "cssClass": "custom-hotspot arrow_right",
-        "sceneId": "secondf_meeting_hall",
+        "pitch": -1.52,
+        "yaw": -0.10,
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "lobby",
+      },
+
+
+      // MEETING HALL HOTSPOTS
+      {
+        "scene": 'meeting_hall',
+        "pitch": 2.71,
+        "yaw": -49.66,
+        "type": "scene",
+        "cssClass": "custom-hotspot enter",
+        "sceneId": "lobby",
       },
       {
         "scene": 'meeting_hall',
-        "pitch": 1.0,
-        "yaw": -48.7,
+        "pitch": 2.26,
+        "yaw": 49.62,
         "type": "scene",
         "cssClass": "custom-hotspot enter",
-        "sceneId": "secondf_meeting_hall",
+        "sceneId": "lobby",
       },
-      {
-        "scene": 'meeting_hall',
-        "pitch": 1.0,
-        "yaw": -124.1,
-        "type": "scene",
-        "cssClass": "custom-hotspot enter",
-        "sceneId": "secondf_meeting_hall",
-      },
+
+
+
+
       {
         "id": 'zoom_meeting',
         "scene": 'meeting_hall',
