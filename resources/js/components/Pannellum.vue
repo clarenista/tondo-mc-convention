@@ -12,7 +12,7 @@
                     style="font-size: 42px;
                     background: -webkit-linear-gradient(#006595, #8241e4);
                     -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;"    
+                    -webkit-text-fill-color: transparent;"
                 ></i>
             </h1>
         </div>
@@ -151,86 +151,7 @@
             </CoolLightBox>
         </div>
 
-        <div id="panorama">
-            <div
-                v-if="
-                    sceneId === 'hall_a' ||
-                        sceneId === 'hall_b' ||
-                        sceneId === 'hall_c' ||
-                        sceneId === 'hall_d'
-                "
-            >
-                <div id="controls">
-                    <div
-                        class="ctrl custom-hotspot hall_a"
-                        @click="handleNavigateTo('hall_a')"
-                        :style="sceneId === 'hall_a' ? 'padding:5px;' : ''"
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_b"
-                        @click="handleNavigateTo('hall_b')"
-                        :style="sceneId === 'hall_b' ? 'padding:5px;' : ''"
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_c"
-                        @click="handleNavigateTo('hall_c')"
-                        :style="sceneId === 'hall_c' ? 'padding:5px;' : ''"
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_d"
-                        @click="handleNavigateTo('hall_d')"
-                        :style="sceneId === 'hall_d' ? 'padding:5px;' : ''"
-                    ></div>
-                </div>
-            </div>
-            <div
-                v-if="
-                    $store.getters.currentScene === 'hall_a' ||
-                        $store.getters.currentScene === 'hall_b' ||
-                        $store.getters.currentScene === 'hall_c' ||
-                        $store.getters.currentScene === 'hall_d'
-                "
-            >
-                <div id="controls">
-                    <div
-                        class="ctrl custom-hotspot hall_a"
-                        @click="handleNavigateTo('hall_a')"
-                        :style="
-                            $store.getters.currentScene === 'hall_a'
-                                ? 'padding:5px;'
-                                : ''
-                        "
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_b"
-                        @click="handleNavigateTo('hall_b')"
-                        :style="
-                            $store.getters.currentScene === 'hall_b'
-                                ? 'padding:5px;'
-                                : ''
-                        "
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_c"
-                        @click="handleNavigateTo('hall_c')"
-                        :style="
-                            $store.getters.currentScene === 'hall_c'
-                                ? 'padding:5px;'
-                                : ''
-                        "
-                    ></div>
-                    <div
-                        class="ctrl custom-hotspot hall_d"
-                        @click="handleNavigateTo('hall_d')"
-                        :style="
-                            $store.getters.currentScene === 'hall_d'
-                                ? 'padding:5px;'
-                                : ''
-                        "
-                    ></div>
-                </div>
-            </div>
-        </div>
+        <div id="panorama"></div>
 
         <Sidebar
             @handleNavigateTo="handleNavigateTo"
@@ -328,7 +249,7 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                // "hotSpotDebug": true,
+                "hotSpotDebug": true,
 
 
             },
@@ -851,11 +772,32 @@ export default {
         }
       }
       // BOOTH TRACKER
-
+// background: url(/images/loader.gif) 0 0;
     }
 }
 </script>
 <style scoped>
+.pnlm-container {
+    background: #f1f2f3;
+}
+div >>> .pnlm-load-box {
+    background: url(/images/loader.gif) no-repeat !important;
+    background-size: contain !important;
+    left: 52% !important;
+}
+div >>> .pnlm-load-box p {
+    z-index: -999 !important;
+    opacity: 0 !important;
+}
+
+div >>> .pnlm-lbox {
+    z-index: -999 !important;
+    opacity: 0 !important;
+}
+div >>> .pnlm-lbar {
+    z-index: -999 !important;
+    opacity: 0 !important;
+}
 div >>> .custom-hotspot {
     height: 32px;
     width: 32px;
