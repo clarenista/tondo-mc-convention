@@ -249,7 +249,7 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                "hotSpotDebug": true,
+                // "hotSpotDebug": true,
 
 
             },

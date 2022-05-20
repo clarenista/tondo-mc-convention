@@ -17,7 +17,7 @@
         </a>
         
         <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
-            <a class="nav-link dropdown-toggle" @click="showDropdown = !showDropdown" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" @click="showDropdown = true" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span></span>  {{item.name}}</a>
             <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="">
                 <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
