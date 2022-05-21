@@ -13,7 +13,6 @@
                 ></video>
             </div>
         </Transition>
-
         <div class="content" v-if="!isLoginSuccess">
             <img
                 src="images/71st_login_btn.png"
@@ -281,7 +280,8 @@ export default {
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
             videoSrc: "images/Venue1.mp4",
 
-            welcomeMessage: "Welcome to our PSP 71st Platinum Year Virtual Convention Event",
+            welcomeMessage:
+                "Welcome to our PSP 71st Platinum Year Virtual Convention Event",
             letsGoButtonClicked: false
         };
     },

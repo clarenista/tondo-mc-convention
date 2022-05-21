@@ -249,52 +249,12 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                // "hotSpotDebug": true,
+                "hotSpotDebug": true,
 
 
             },
 
             "scenes": {
-              "landing": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/landing",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-
-                ],
-                // 180 view | 360 view = 180 view x 2
-                'minPitch' :-45,
-                'maxPitch' :45,
-                'minYaw': -120,
-                'maxYaw':120,
-
-              },
-              "main_entrance": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/main_entrance",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
-              },
               "lobby": {
                 "type": "equirectangular",
                 "panorama": "/images/multires/lobby.jpg",
@@ -303,43 +263,37 @@ export default {
                   ],
 
               },
-              "hall": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/hall",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                'minPitch' :-45,
-                'maxPitch' :45,
-                'minYaw': -90,
-                'maxYaw':90,
+              "psp_monument": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/psp-monument.jpg",
+                  "hotSpots": [
+
+                  ],
+
               },
-              "secondf_meeting_hall": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/secondf_meeting_hall",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
+              "bar": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/bar.jpg",
+                  "hotSpots": [
+
+                  ],
+
+              },
+              "microscope": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/microscope.jpg",
+                  "hotSpots": [
+
+                  ],
+
+              },
+              "piano": {
+                "type": "equirectangular",
+                "panorama": "/images/multires/piano.jpg",
+                  "hotSpots": [
+
+                  ],
+
               },
               "meeting_hall": {
                 "type": "multires",
@@ -379,26 +333,6 @@ export default {
                 // 'minYaw': -90,
                 // 'maxYaw':90,
               },
-              "secondf_photobooth": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/secondf_photobooth",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
-              },
-
 
               "hall_a" :{
                 "type": "equirectangular",
@@ -407,17 +341,6 @@ export default {
 
                   ],
 
-              },
-              "hall_a_silver" :{
-                "type": "equirectangular",
-                "panorama": "/images/multires/A-Silver.png",
-                "hotSpots": [
-
-                ],
-                'minPitch' :-20,
-                'maxPitch' :20,
-                'minYaw': -50,
-                'maxYaw':50,
               },
               "hall_b" :{
                 "type": "equirectangular",
@@ -440,40 +363,6 @@ export default {
 
                   ],
               },
-              "secondf_outside" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/secondf_outside",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                'minPitch' :-45,
-                'maxPitch' :45,
-                'minYaw': -170,
-                'maxYaw': 100,
-              },
-              "pool_area2" :{
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/pool_area2",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ]
-              },
-
-
             }
         }
         for(let i in this.booths){
@@ -502,13 +391,11 @@ export default {
           for(let i in this.$store.getters.scene_hotSpots){
             this.$store.getters.scene_hotSpots[i].clickHandlerFunc =  () => {this.handleHotspotClicked(this.$store.getters.scene_hotSpots[i].sceneId)}
           }
-          this.panorama_details.scenes.landing.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'landing']))
-          // this.panorama_details.scenes.landing.hotSpots.push(...this.lobby_booths)
-
-          this.panorama_details.scenes.main_entrance.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'main_entrance']))
           this.panorama_details.scenes.lobby.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'lobby']))
-          this.panorama_details.scenes.hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall']))
           this.panorama_details.scenes.lobby.hotSpots.push(...this.lobby_booths)
+          this.panorama_details.scenes.bar.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'bar']))
+          this.panorama_details.scenes.piano.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'piano']))
+          this.panorama_details.scenes.psp_monument.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'psp_monument']))
 
           this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
@@ -524,10 +411,7 @@ export default {
           this.panorama_details.scenes.hall_d.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_d']))
           this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
-          this.panorama_details.scenes.secondf_meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_meeting_hall']))
           this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
-          this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
-          this.panorama_details.scenes.secondf_outside.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'secondf_outside']))
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
 
@@ -538,7 +422,6 @@ export default {
         this.viewer.on('scenechange', this.handleSceneChange)
         this.viewer.on('load', this.handleSceneLoad);
         this.reSize()
-
 
       },
       handleIsNotAllowedClose(){
@@ -779,12 +662,13 @@ export default {
 <style scoped>
 .pnlm-container {
     /* background: #f1f2f3; */
-    background: #FFF url(/images/71st_logo.png) !important;
+    background: #fff url(/images/71st_logo.png) no-repeat center !important;
+    background-size: contain !important;
 }
 div >>> .pnlm-load-box {
-    background: url(/images/loader.gif) no-repeat !important;
+    background: url(/images/loader.gif) no-repeat center !important;
     background-size: contain !important;
-    left: 52% !important;
+    left: 50% !important;
 }
 div >>> .pnlm-load-box p {
     z-index: -999 !important;
