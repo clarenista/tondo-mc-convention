@@ -346,7 +346,7 @@ export default new Vuex.Store({
                 pitch: -1.52,
                 yaw: -0.10,
                 cssClass: "custom-hotspot enter",
-                sceneI: "lobby",
+                sceneId: "lobby",
             },
 
 
