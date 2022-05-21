@@ -25,7 +25,7 @@
                 srcset=""
             />
 
-            <div class="event_info mb-3">
+            <!-- <div class="event_info mb-3">
                 <div class="card bg-warning mt-3" style="width: 18rem;">
                     <img
                         src="images/PSP 71st Banner.jpg"
@@ -34,13 +34,12 @@
                     />
                     <div class="card-body">
                         <h5 class="card-title">Not registered yet?</h5>
-                        <!-- <p class="card-text">Click the link below to proceed to the registration</p> -->
                         <a href="#" class="btn btn-primary"
                             >Proceed to Registration</a
                         >
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- change to let's go modal -->

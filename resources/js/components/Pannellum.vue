@@ -778,7 +778,8 @@ export default {
 </script>
 <style scoped>
 .pnlm-container {
-    background: #f1f2f3;
+    /* background: #f1f2f3; */
+    background: #FFF url(/images/71st_logo.png) !important;
 }
 div >>> .pnlm-load-box {
     background: url(/images/loader.gif) no-repeat !important;
