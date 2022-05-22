@@ -27,6 +27,8 @@
         </div>
 
         <div class="left_bot">
+            <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a>
+
             <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
                 <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> </span> 
                 <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> </span> 
