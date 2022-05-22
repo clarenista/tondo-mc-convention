@@ -28,7 +28,8 @@
 
         <div class="left_bot">
             <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-                <span><i class="fa fa-volume-up small"></i> </span> 
+                <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> </span> 
+                <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> </span> 
             </a>
             <a href="javascript:void(0)" @click="handleLogout" title="Logout">
                 <span><i class="fa fa-sign-out text-warning small"></i></span> 
@@ -44,6 +45,7 @@
 </template>
 <script>
 export default {
+    props: ['bgmStatus'],
     data() {
         return {
             showDropdown: false,
@@ -60,7 +62,7 @@ export default {
                         {name: "HALL C", sceneId: 'hall_c', icon: 'fa-map-marker'},
                         {name: "HALL D", sceneId: 'hall_d', icon: 'fa-map-marker'},
                     ], title: 'Exhibit Hall'},
-            ]
+            ],
         }
     },
     methods:{
@@ -103,6 +105,7 @@ export default {
     },
 
     mounted() {
+        console.log('sidebar', typeof this.bgmStatus)
     },
 }
 </script>

@@ -313,8 +313,11 @@ export default {
                 this.$emit("isLoginSuccess", this.isLoginSuccess);
                 this.$store.commit("changeUser", data.user);
                 // this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
+
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("sceneId", "lobby");
+                localStorage.setItem("bgmStatus", true);
+                console.log("login");
                 setTimeout(() => {
                     this.show = !this.show;
                 }, 500);
@@ -349,6 +352,7 @@ export default {
         },
         videoEnded() {
             this.$router.push("/");
+            this.$store.commit("updateBgmStart", true);
         },
         handleUpdateIsWelcomed() {
             this.$store.commit("updateIsWelcomed", false);

@@ -18,7 +18,7 @@ export default new Vuex.Store({
         currentScene: "lobby",
         bgmStart: true,
         bgm: null,
-        audio: new Audio("/bgm/landing.mp3"),
+        audio: new Audio("/bgm/lobby.mp3"),
         booth_details: null,
         announcement: null,
         isNotAllowed: null,
@@ -602,9 +602,9 @@ export default new Vuex.Store({
             state.currentScene = scene;
         },
         updateBgmStart(state, start) {
-            // console.log(state.audio)
             state.bgmStart = start;
             if (!start) {
+                console.log(start);
                 state.audio.pause();
                 // bgm.currentTime = 0;
             } else {
@@ -622,7 +622,7 @@ export default new Vuex.Store({
             state.audio.currentTime = 0;
             state.audio = new Audio(src);
             state.audio.loop = true;
-            state.audio.play();
+            state.bgmStart && state.audio.play();
         }
     },
     getters: {
@@ -644,10 +644,47 @@ export default new Vuex.Store({
         audio: state => state.audio
     },
     actions: {
-        getBgm({ commit }) {
+        getBgm({ commit, state }) {
             // alert('test')
+            // localStorage.setItem("bgmStatus", true);
+            console.log("state.currentScene", state.currentScene);
+            switch (localStorage.getItem("sceneId")) {
+                case "lobby":
+                    commit("updateAudioSource", "/bgm/lobby.mp3");
+                    break;
 
-            commit("updateBgmStart", true);
+                case "hall_a":
+                    commit("updateAudioSource", "/bgm/hall_a.mp3");
+                    break;
+                case "hall_b":
+                    commit("updateAudioSource", "/bgm/hall_b.mp3");
+                    break;
+                case "hall_c":
+                    commit("updateAudioSource", "/bgm/hall_c.mp3");
+                    break;
+                case "hall_d":
+                    commit("updateAudioSource", "/bgm/hall_d.mp3");
+                    break;
+                case "pool_area":
+                    commit("updateAudioSource", "/bgm/pool.mp3");
+                    break;
+                case "meeting_hall":
+                    commit("updateAudioSource", "/bgm/meeting_hall.mp3");
+                    break;
+                default:
+                    commit("updateAudioSource", "");
+                // code block
+            }
+            state.audio.volume = 0.1;
+
+            const localStorageBgmStatus = localStorage.getItem("bgmStatus");
+            if (localStorageBgmStatus === "true") {
+                commit("updateBgmStart", true);
+            } else {
+                commit("updateBgmStart", false);
+            }
+
+            // commit("updateBgmStart", false);
         }
     }
 });

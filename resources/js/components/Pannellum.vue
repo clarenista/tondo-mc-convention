@@ -156,6 +156,7 @@
         <Sidebar
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
+            :bgmStatus="bgmStatus"
         ></Sidebar>
 
         <marquee
@@ -183,6 +184,7 @@ export default {
 
     data() {
       return {
+          bgmStatus: localStorage.getItem('bgmStatus'),
         imageRendered: null,
         camera: false,
         booths: [],
@@ -224,6 +226,7 @@ export default {
       this.loadTimer()
       this.handleLoadBoothTracker()
       document.getElementById('booth_visits').style.display = "none"
+    //   this.bgmStatus = localStorage.getItem('bgmStatus')
     },
     methods:{
       async init(){
@@ -530,10 +533,14 @@ export default {
         this.$sendGuestEvent('click', label)
       },
       handleBgmPlayToggle(){
-        if(this.$store.getters.bgmStart){
+        if(this.bgmStatus == 'true'){
           this.$store.commit('updateBgmStart', false)
+          localStorage.setItem('bgmStatus', false)
+          this.bgmStatus = 'false'
         }else{
           this.$store.commit('updateBgmStart', true)
+          localStorage.setItem('bgmStatus', true)
+          this.bgmStatus = 'true'
 
         }
       },
