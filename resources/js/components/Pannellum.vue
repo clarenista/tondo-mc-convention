@@ -296,16 +296,8 @@ export default {
 
               },
               "meeting_hall": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/meeting_hall",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
+                "type": "equirectangular",
+                "panorama": "/images/multires/Meeting_Hall.jpg",
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
