@@ -244,7 +244,7 @@ export default {
 
         this.panorama_details = {
             "default": {
-                "firstScene": this.sceneId ? this.sceneId : "lobby",
+                "firstScene": localStorage.getItem('sceneId'),
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
@@ -434,6 +434,8 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
+        console.log(this.viewer.getScene())
+        localStorage.setItem('sceneId', this.viewer.getScene())
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
         switch(this.viewer.getScene()) {
           case 'landing':

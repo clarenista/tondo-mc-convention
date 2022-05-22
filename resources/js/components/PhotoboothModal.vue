@@ -152,8 +152,8 @@ export default {
                         image: this.inputVideo
                     });
                 },
-                width: document.body.clientWidth,
-                height: document.body.clientHeight,
+                width: 1280,
+                height: 720,
                 facingMode: facingMode
             });
             camera.start(facingMode);

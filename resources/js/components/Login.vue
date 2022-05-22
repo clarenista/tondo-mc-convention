@@ -314,6 +314,7 @@ export default {
                 this.$store.commit("changeUser", data.user);
                 // this.$store.commit("updateAudioSource", "/bgm/landing.mp3");
                 localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("sceneId", "lobby");
                 setTimeout(() => {
                     this.show = !this.show;
                 }, 500);
