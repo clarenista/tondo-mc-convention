@@ -373,8 +373,8 @@ export default new Vuex.Store({
                 pitch: 8.94,
                 yaw: 0.64,
                 type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting",
-                sceneId: "zoom_meeting"
+                cssClass: "custom-hotspot zoom open-zoom-meeting"
+                // sceneId: "zoom_meeting"
             },
 
             // {
