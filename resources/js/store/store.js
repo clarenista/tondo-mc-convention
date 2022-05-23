@@ -527,14 +527,14 @@ export default new Vuex.Store({
             //     cssClass: "custom-hotspot enter",
             //     sceneId: "secondf_meeting_hall"
             // },
-            {
-                id: "zoom_meeting",
-                scene: "meeting_hall",
-                pitch: 3.8,
-                yaw: 0,
-                type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting"
-            },
+            // {
+            //     id: "zoom_meeting",
+            //     scene: "meeting_hall",
+            //     pitch: 3.8,
+            //     yaw: 0,
+            //     type: "scene",
+            //     cssClass: "custom-hotspot zoom open-zoom-meeting"
+            // },
             {
                 scene: "exhibit_hall",
                 pitch: -3,
