@@ -7,7 +7,6 @@
                     muted
                     loop
                     :src="videoSrc"
-                    :pause="videoPause"
                     ref="videoRef"
                     @ended="videoEnded()"
                 ></video>
@@ -256,6 +255,9 @@ export default {
         this.init();
         const venue1 = "images/Venue1.mp4";
         const venue2 = "images/Venue2.mp4";
+        if (localStorage.getItem("access_token")) {
+            this.$router.push("/");
+        }
         // console.log(this.$store.getters.pois)
     },
     data() {
@@ -317,7 +319,6 @@ export default {
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("sceneId", "lobby");
                 localStorage.setItem("bgmStatus", true);
-                console.log("login");
                 setTimeout(() => {
                     this.show = !this.show;
                 }, 500);

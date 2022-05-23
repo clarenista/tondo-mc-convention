@@ -87,18 +87,8 @@ export default {
             this.$emit('handleBgmPlayToggle');
         },
         handleLogout(){
-            // remove user details in store
-            this.$store.commit('changeUser', null)
-            // clear localStorage
-            localStorage.clear();
 
-            // update isWelcomed
-            this.$store.commit('updateIsWelcomed', true)
-
-            this.$store.commit('updateBgmStart', false)
-
-            // redirect to login
-            this.$router.push('/login')
+            this.$emit('handleLogout');
         },
         handleVote(){
              // redirect to vote

@@ -72,12 +72,12 @@ class GuestController extends Controller
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
     {
 
-        try {
+        // try {
 
             $user = request()->user();
             $webinar = Program::whereEnabled(1)->first();
 
-            if ($webinar->unique_id == '88478770661') {
+            if ($webinar->unique_id == '81181139282') {
                 $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
                 if (!$reg) {
                     $registered = $this->checkRegistrants($user->email_address, $webinar);
@@ -97,34 +97,34 @@ class GuestController extends Controller
                 }
                 return $reg->join_url;
             }
-            if ($webinar->unique_id == '88443777764') {
-                // $allowed = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
-                // if (!in_array($user->classification, $allowed)) {
-                //     return "0";
-                // }
-                $reg = $user->fellowships()->where('webinar_id', $webinar->unique_id)->first();
-                if (!$reg) {
-                    $registered = $this->checkRegistrants($user->email_address, $webinar);
-                    if (!$registered) {
-                        // // DISABLE AUTO REGISTER
-                        // return "0";
-                        $registered = $this->registerToWebinar($webinar, $user);
-                        $registered['id'] = $registered['registrant_id'];
-                    }
-                    $reg = $user->webinars()->create([
-                        "registrant_id" => $registered['id'],
-                        "webinar_id" => $webinar->unique_id,
-                        "topic" => $webinar->title,
-                        "join_url" => $registered['join_url'],
-                        'registered' => true,
-                    ]);
-                }
-                return $reg->join_url;
-            }
-        } catch (\Throwable $th) {
+            // if ($webinar->unique_id == '88443777764') {
+            //     // $allowed = ['Diplomate', 'Fellow', 'Junior', 'Resident'];
+            //     // if (!in_array($user->classification, $allowed)) {
+            //     //     return "0";
+            //     // }
+            //     $reg = $user->fellowships()->where('webinar_id', $webinar->unique_id)->first();
+            //     if (!$reg) {
+            //         $registered = $this->checkRegistrants($user->email_address, $webinar);
+            //         if (!$registered) {
+            //             // // DISABLE AUTO REGISTER
+            //             // return "0";
+            //             $registered = $this->registerToWebinar($webinar, $user);
+            //             $registered['id'] = $registered['registrant_id'];
+            //         }
+            //         $reg = $user->webinars()->create([
+            //             "registrant_id" => $registered['id'],
+            //             "webinar_id" => $webinar->unique_id,
+            //             "topic" => $webinar->title,
+            //             "join_url" => $registered['join_url'],
+            //             'registered' => true,
+            //         ]);
+            //     }
+            //     return $reg->join_url;
+            // }
+        // } catch (\Throwable $th) {
 
-            return "https://us02web.zoom.us/w/88478770661?tk=oBShCrL2NOpFQ_ersJpWUNUfd8hP3mOQnEilJ1BcLCg.DQMAAAAUmb7l5RZGblBkVWtlalNlZU5UNTQtU2ZpZjVBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_7Pk4i4aaQj2dJlO-xafWIg";
-        }
+        //     return "https://us02web.zoom.us/w/81181139282?tk=oBShCrL2NOpFQ_ersJpWUNUfd8hP3mOQnEilJ1BcLCg.DQMAAAAUmb7l5RZGblBkVWtlalNlZU5UNTQtU2ZpZjVBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_7Pk4i4aaQj2dJlO-xafWIg";
+        // }
     }
 
     private function registerToWebinar($webinar, $user)
@@ -141,6 +141,7 @@ class GuestController extends Controller
         ];
 
         $response = $client->post($registrants_api, $post);
+        \Log::info($response->json());
         return $response->json();
     }
 

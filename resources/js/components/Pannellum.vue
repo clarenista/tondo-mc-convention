@@ -156,6 +156,7 @@
         <Sidebar
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
+            @handleLogout="handleLogout"
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
@@ -252,7 +253,7 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                "hotSpotDebug": true,
+                // "hotSpotDebug": true,
 
 
             },
@@ -262,7 +263,14 @@ export default {
                 "type": "equirectangular",
                 "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
-
+                    {
+                        pitch: -2.37,
+                        yaw: -190.54,
+                        cssClass: "custom-hotspot enter",
+                        clickHandlerFunc: () =>{
+                            this.handleLogout()
+                        }
+                    },
                   ],
 
               },
@@ -331,7 +339,7 @@ export default {
 
               "hall_a" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_A.jpg",
+                "panorama": "/images/multires/Hall_A.jpg",
                   "hotSpots": [
 
                   ],
@@ -339,21 +347,21 @@ export default {
               },
               "hall_b" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_B.jpg",
+                "panorama": "/images/multires/Hall_B.jpg",
                   "hotSpots": [
 
                   ],
               },
               "hall_c" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_C.jpg",
+                "panorama": "/images/multires/Hall_C.jpg",
                   "hotSpots": [
 
                   ],
               },
               "hall_d" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_D.jpg",
+                "panorama": "/images/multires/Hall_D.jpg",
                   "hotSpots": [
 
                   ],
@@ -429,15 +437,14 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
-        console.log(this.viewer.getScene())
         localStorage.setItem('sceneId', this.viewer.getScene())
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
         switch(this.viewer.getScene()) {
           case 'landing':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
             break;
-          case 'main_entrance':
-            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+          case 'piano':
+            this.$store.commit('updateAudioSource', '/bgm/piano.mp3')
             break;
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
@@ -654,6 +661,20 @@ export default {
             );
 
         }
+      },
+      handleLogout(){
+        // remove user details in store
+        this.$store.commit('changeUser', null)
+        // clear localStorage
+        localStorage.clear();
+
+        // update isWelcomed
+        this.$store.commit('updateIsWelcomed', true)
+
+        this.$store.commit('updateBgmStart', false)
+
+        // redirect to login
+        this.$router.push('/login')
       }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;
