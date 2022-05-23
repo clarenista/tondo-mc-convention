@@ -377,23 +377,23 @@ export default new Vuex.Store({
                 sceneId: "zoom_meeting"
             },
 
-            {
-                scene: "meeting_hall",
-                pitch: 5.67,
-                yaw: -30.58,
-                type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting",
-                sceneId: "zoom_meeting_2"
-            },
+            // {
+            //     scene: "meeting_hall",
+            //     pitch: 5.67,
+            //     yaw: -30.58,
+            //     type: "scene",
+            //     cssClass: "custom-hotspot zoom open-zoom-meeting",
+            //     sceneId: "zoom_meeting_2"
+            // },
 
-            {
-                scene: "meeting_hall",
-                pitch: 5.84,
-                yaw: 31.73,
-                type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting",
-                sceneId: "zoom_meeting_3"
-            },
+            // {
+            //     scene: "meeting_hall",
+            //     pitch: 5.84,
+            //     yaw: 31.73,
+            //     type: "scene",
+            //     cssClass: "custom-hotspot zoom open-zoom-meeting",
+            //     sceneId: "zoom_meeting_3"
+            // },
 
             // {
             //     scene: "hall_a",
