@@ -72,7 +72,7 @@ class GuestController extends Controller
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
     {
 
-        try {
+        // try {
 
             $user = request()->user();
             $webinar = Program::whereEnabled(1)->first();
@@ -121,10 +121,10 @@ class GuestController extends Controller
             //     }
             //     return $reg->join_url;
             // }
-        } catch (\Throwable $th) {
+        // } catch (\Throwable $th) {
 
-            return "https://us02web.zoom.us/w/88478770661?tk=oBShCrL2NOpFQ_ersJpWUNUfd8hP3mOQnEilJ1BcLCg.DQMAAAAUmb7l5RZGblBkVWtlalNlZU5UNTQtU2ZpZjVBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_7Pk4i4aaQj2dJlO-xafWIg";
-        }
+        //     return "https://us02web.zoom.us/w/81181139282?tk=oBShCrL2NOpFQ_ersJpWUNUfd8hP3mOQnEilJ1BcLCg.DQMAAAAUmb7l5RZGblBkVWtlalNlZU5UNTQtU2ZpZjVBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_7Pk4i4aaQj2dJlO-xafWIg";
+        // }
     }
 
     private function registerToWebinar($webinar, $user)
