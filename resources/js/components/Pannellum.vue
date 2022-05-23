@@ -156,6 +156,7 @@
         <Sidebar
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
+            @handleLogout="handleLogout"
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
@@ -262,7 +263,14 @@ export default {
                 "type": "equirectangular",
                 "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
-
+                    {
+                        pitch: -2.37,
+                        yaw: -190.54,
+                        cssClass: "custom-hotspot enter",
+                        clickHandlerFunc: () =>{
+                            this.handleLogout()
+                        }
+                    },
                   ],
 
               },
@@ -653,6 +661,20 @@ export default {
             );
 
         }
+      },
+      handleLogout(){
+        // remove user details in store
+        this.$store.commit('changeUser', null)
+        // clear localStorage
+        localStorage.clear();
+
+        // update isWelcomed
+        this.$store.commit('updateIsWelcomed', true)
+
+        this.$store.commit('updateBgmStart', false)
+
+        // redirect to login
+        this.$router.push('/login')
       }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;

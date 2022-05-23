@@ -119,6 +119,7 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot enter",
                 sceneId: "psp_monument"
             },
+
             // BAR
 
             {
