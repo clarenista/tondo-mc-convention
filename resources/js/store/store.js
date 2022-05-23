@@ -345,7 +345,7 @@ export default new Vuex.Store({
                 pitch: -1.52,
                 yaw: -0.1,
                 cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
+                sceneId: "lobby",
             },
 
             // MEETING HALL HOTSPOTS
@@ -380,8 +380,9 @@ export default new Vuex.Store({
                 pitch: 5.67,
                 yaw:  -30.58,
                 type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting",
-                sceneId: "zoom_meeting_2"
+                cssClass: "custom-hotspot zoom open-zoom-residents-hour",
+                sceneId: "zoom_meeting_2",
+                text: "Residents Hour"
             },
 
             {
@@ -389,8 +390,10 @@ export default new Vuex.Store({
                 pitch: 5.84,
                 yaw:  31.73,
                 type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting",
-                sceneId: "zoom_meeting_3"
+                cssClass: "custom-hotspot zoom open-zoom-bussiness-meeting",
+                sceneId: "zoom_meeting_3",
+                text: "Business Meeting"
+
             },
 
             // {
