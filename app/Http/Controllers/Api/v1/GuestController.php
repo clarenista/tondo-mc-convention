@@ -141,6 +141,7 @@ class GuestController extends Controller
         ];
 
         $response = $client->post($registrants_api, $post);
+        \Log::info($response->json());
         return $response->json();
     }
 
