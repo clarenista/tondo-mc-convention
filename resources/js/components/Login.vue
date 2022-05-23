@@ -317,7 +317,6 @@ export default {
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("sceneId", "lobby");
                 localStorage.setItem("bgmStatus", true);
-                console.log("login");
                 setTimeout(() => {
                     this.show = !this.show;
                 }, 500);

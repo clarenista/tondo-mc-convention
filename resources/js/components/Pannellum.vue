@@ -252,7 +252,7 @@ export default {
                 "autoLoad": true,
                 "showControls": false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
-                "hotSpotDebug": true,
+                // "hotSpotDebug": true,
 
 
             },
@@ -331,7 +331,7 @@ export default {
 
               "hall_a" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_A.jpg",
+                "panorama": "/images/multires/Hall_A.jpg",
                   "hotSpots": [
 
                   ],
@@ -339,21 +339,21 @@ export default {
               },
               "hall_b" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_B.jpg",
+                "panorama": "/images/multires/Hall_B.jpg",
                   "hotSpots": [
 
                   ],
               },
               "hall_c" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_C.jpg",
+                "panorama": "/images/multires/Hall_C.jpg",
                   "hotSpots": [
 
                   ],
               },
               "hall_d" :{
                 "type": "equirectangular",
-                "panorama": "/images/multires/HALL_D.jpg",
+                "panorama": "/images/multires/Hall_D.jpg",
                   "hotSpots": [
 
                   ],
@@ -429,7 +429,6 @@ export default {
       },
       handleSceneChange(){
         this.reSize()
-        console.log(this.viewer.getScene())
         localStorage.setItem('sceneId', this.viewer.getScene())
         this.$store.commit('changeCurrentScene',this.viewer.getScene())
         switch(this.viewer.getScene()) {

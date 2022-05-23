@@ -366,10 +366,11 @@ export default new Vuex.Store({
                 sceneId: "lobby"
             },
 
-            { // zoom meeting hotspots at meeting hall
+            {
+                // zoom meeting hotspots at meeting hall
                 scene: "meeting_hall",
                 pitch: 8.94,
-                yaw:  0.64,
+                yaw: 0.64,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-meeting",
                 sceneId: "zoom_meeting"
@@ -378,7 +379,7 @@ export default new Vuex.Store({
             {
                 scene: "meeting_hall",
                 pitch: 5.67,
-                yaw:  -30.58,
+                yaw: -30.58,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-meeting",
                 sceneId: "zoom_meeting_2"
@@ -387,7 +388,7 @@ export default new Vuex.Store({
             {
                 scene: "meeting_hall",
                 pitch: 5.84,
-                yaw:  31.73,
+                yaw: 31.73,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-meeting",
                 sceneId: "zoom_meeting_3"
@@ -631,7 +632,6 @@ export default new Vuex.Store({
         updateBgmStart(state, start) {
             state.bgmStart = start;
             if (!start) {
-                console.log(start);
                 state.audio.pause();
                 // bgm.currentTime = 0;
             } else {
@@ -674,7 +674,6 @@ export default new Vuex.Store({
         getBgm({ commit, state }) {
             // alert('test')
             // localStorage.setItem("bgmStatus", true);
-            console.log("state.currentScene", state.currentScene);
             switch (localStorage.getItem("sceneId")) {
                 case "lobby":
                     commit("updateAudioSource", "/bgm/lobby.mp3");
