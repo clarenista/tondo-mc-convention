@@ -129,7 +129,7 @@ class HomeController extends Controller
             ],
             'form_params' => [
                 'email' => $request->email,
-                'domain' => env('APP_URL'),
+                'domain' => 'https://convention.psp.com.ph',
             ],
         ]);
         $result = json_decode((string) $response->getBody(), true);
