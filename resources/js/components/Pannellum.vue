@@ -435,8 +435,8 @@ export default {
           case 'landing':
             this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
             break;
-          case 'main_entrance':
-            this.$store.commit('updateAudioSource', '/bgm/landing.mp3')
+          case 'piano':
+            this.$store.commit('updateAudioSource', '/bgm/piano.mp3')
             break;
           case 'lobby':
             this.$store.commit('updateAudioSource', '/bgm/lobby.mp3')
