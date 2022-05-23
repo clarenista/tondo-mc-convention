@@ -109,7 +109,8 @@ export default new Vuex.Store({
                 pitch: -4.24,
                 yaw: 39.11,
                 cssClass: "custom-hotspot enter",
-                sceneId: "bar"
+                sceneId: "bar",
+                text: "Bar Area"
             },
             {
                 scene: "lobby",
@@ -117,7 +118,8 @@ export default new Vuex.Store({
                 pitch: -5.27,
                 yaw: -173.28,
                 cssClass: "custom-hotspot enter",
-                sceneId: "psp_monument"
+                sceneId: "psp_monument",
+                text: "Go to PSP Monument"
             },
             // BAR
 
@@ -127,7 +129,8 @@ export default new Vuex.Store({
                 pitch: -11.88,
                 yaw: 142.43,
                 cssClass: "custom-hotspot enter",
-                sceneId: "piano"
+                sceneId: "piano",
+                text: "Go to Piano Area"
             },
             {
                 scene: "bar",
@@ -135,7 +138,8 @@ export default new Vuex.Store({
                 pitch: -7.23,
                 yaw: -135.11,
                 cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
+                sceneId: "lobby",
+                text: "Back to lobby"
             },
             // piano
             {
@@ -144,7 +148,8 @@ export default new Vuex.Store({
                 pitch: -8.64,
                 yaw: -56.93,
                 cssClass: "custom-hotspot enter",
-                sceneId: "bar"
+                sceneId: "bar",
+                text: "Go to Bar Area"
             },
             // psp-monument
             {
@@ -153,7 +158,8 @@ export default new Vuex.Store({
                 pitch: -5.15,
                 yaw: 96.58,
                 cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
+                sceneId: "lobby",
+                text: "Back to lobby"
             },
 
             // HALL A HOTSPOT
