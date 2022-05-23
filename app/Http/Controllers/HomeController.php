@@ -111,7 +111,8 @@ class HomeController extends Controller
         return $password2[\strtoupper($first_name[0])];
     }
 
-    function passwordRemind(Request $request){
+    function passwordRemind(Request $request)
+    {
         $guzzle = new \GuzzleHttp\Client;
         $token = $guzzle->post(config('app.domain') . '/oauth/token', [
             'form_params' => [
@@ -128,18 +129,19 @@ class HomeController extends Controller
             ],
             'form_params' => [
                 'email' => $request->email,
-                'domain' => $request->root(),
+                'domain' => 'https://convention.psp.com.ph',
             ],
         ]);
-        $result = json_decode((string) $response->getBody(), true);     
-        if($result){
+        $result = json_decode((string) $response->getBody(), true);
+        if ($result) {
             return response()->json([
                 'status' => 'ok',
             ]);
-        }   
+        }
     }
 
-    function resetPassword(Request $request){
+    function resetPassword(Request $request)
+    {
         $guzzle = new \GuzzleHttp\Client;
         $token = $guzzle->post(config('app.domain') . '/oauth/token', [
             'form_params' => [
@@ -159,10 +161,10 @@ class HomeController extends Controller
                 'reset_password_key' => $request->reset_password_key,
             ],
         ]);
-        $result = json_decode((string) $response->getBody(), true);  
+        $result = json_decode((string) $response->getBody(), true);
         // dd($result);   
         if ($result) {
-            $user = User::where('registrant_id',$result['user']['id'])->first();
+            $user = User::where('registrant_id', $result['user']['id'])->first();
             $user->password = $result['user']['password'];
             $user->save();
             return response()->json([
