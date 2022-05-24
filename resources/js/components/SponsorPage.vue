@@ -591,13 +591,13 @@ export default {
                 scenes: {
                     landing: {
                         type: "equirectangular",
-                        panorama: image
+                        panorama: image,
                         // "hotSpots": hs,
                         // 180 view | 360 view = 180 view x 2
-                        // 'minPitch' :-20,
-                        // 'maxPitch' :20,
-                        // 'minYaw': -60,
-                        // 'maxYaw': 60,
+                        minPitch: -20,
+                        minYaw: -20,
+                        maxPitch: 20,
+                        maxYaw: 20
                         // "preview": "/images/multires/loading.png"
                     }
                 }

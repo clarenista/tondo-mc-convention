@@ -273,6 +273,7 @@ export default {
                     },
                   ],
 
+
               },
               "psp_monument": {
                 "type": "equirectangular",
