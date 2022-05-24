@@ -82,8 +82,8 @@ export default {
     async openZoomRH(vue) {
         console.log('RH');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/rh?api_token=${localStorage.getItem("access_token")}`);
+        // "Welcome to the PSP Residents' Forum"
         if (data == 0) {
-            // You are attending the PSP Bussiness Meeting
             vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting is exclusive only to PSP Members.")
             return false;
         } else {
@@ -96,6 +96,7 @@ export default {
         console.log('BM');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/bm?api_token=${localStorage.getItem("access_token")}`);
         if (data == 0) {
+            // You are attending the PSP Bussiness Meeting
             vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting is exclusive only to PSP Members.")
             return false;
         } else {
