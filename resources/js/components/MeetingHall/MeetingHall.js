@@ -29,7 +29,7 @@ export default {
             if (result) {
                 zoomBtnRH.style.display = "";
                 zoomBtnRH.addEventListener("click", () => {
-                    this.isAllowed(vue).then((result) => {
+                    this.isAllowedRH(vue).then((result) => {
                         vue.$store.getters.audio.pause();
                         if (result) {
                             this.openZoomRH(vue).then((ret) => {
@@ -51,7 +51,7 @@ export default {
             if (result) {
                 zoomBtnBM.style.display = "";
                 zoomBtnBM.addEventListener("click", () => {
-                    this.isAllowed(vue).then((result) => {
+                    this.isAllowedBM(vue).then((result) => {
                         vue.$store.getters.audio.pause();
                         if (result) {
                             this.openZoomBM(vue).then((ret) => {
