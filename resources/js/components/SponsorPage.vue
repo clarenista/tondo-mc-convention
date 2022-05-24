@@ -788,6 +788,7 @@ export default {
     },
     data() {
         return {
+            viewer: null,
             booth_details: null,
             modalShow: false,
             selectedHotspot: null,
