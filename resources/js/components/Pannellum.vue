@@ -340,25 +340,25 @@ export default {
                 // 'minYaw': -90,
                 // 'maxYaw':90,
               },
-              "pool_area": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/pool_area",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
-              },
+            //   "pool_area": {
+            //     "type": "multires",
+            //     "multiRes": {
+            //       "basePath": "/images/multires/pool_area",
+            //       "path": "/%l/%s%y_%x",
+            //       "fallbackPath": "/fallback/%s",
+            //       "extension": "jpg",
+            //       "tileResolution": 512,
+            //       "maxLevel": 3,
+            //       "cubeResolution": 1904,
+            //     },
+            //     "hotSpots": [
+            //     ],
+            //     // 180 view | 360 view = 180 view x 2
+            //     // 'minPitch' :-45,
+            //     // 'maxPitch' :45,
+            //     // 'minYaw': -90,
+            //     // 'maxYaw':90,
+            //   },
 
               "hall_a" :{
                 "type": "equirectangular",
@@ -389,6 +389,22 @@ export default {
 
                   ],
               },
+              "pool_area" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/pool_area.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
+
+              "pool_area2" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/pool_area2.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
+
               "blue_room" :{
                 "type": "equirectangular",
                 "panorama": "/images/multires/Blue_Room.jpg",
@@ -445,6 +461,8 @@ export default {
           this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
           this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
+          this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
+          this.panorama_details.scenes.blue_room.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'blue_room']))
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
 

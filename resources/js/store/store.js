@@ -581,22 +581,81 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot arrow_left",
                 sceneId: "hall_c"
             },
+
+            
+            // UPDATED POOL AREA
+            // POOL AREA 1
             {
                 scene: "pool_area",
-                pitch: -2.3,
-                yaw: 2.6,
                 type: "scene",
+                pitch: -4.12,
+                yaw: -16.00,
                 cssClass: "custom-hotspot arrow_up",
-                sceneId: "pool_area2"
+                sceneId: "pool_area2",
+                text: "Go to Pool Area 2"
             },
-            {
-                scene: "pool_area2",
-                pitch: -3.4,
-                yaw: -123,
+
+            { // going back to lobby
+                scene: "pool_area",
                 type: "scene",
+                pitch: 0.12,
+                yaw: -79.36,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Go to lobby"
+            },
+
+            // POOL AREA 2
+            { // going to blue room
+                scene: "pool_area2",
+                type: "scene",
+                pitch: 0.63,
+                yaw: 20.11,
+                cssClass: "custom-hotspot enter",
+                sceneId: "blue_room",
+                text: "Go to Blue room"
+            },
+
+            { // going back pool area 1
+                scene: "pool_area2",
+                type: "scene",
+                pitch: -9.14,
+                yaw: 151.75,
                 cssClass: "custom-hotspot arrow_up",
-                sceneId: "pool_area"
-            }
+                sceneId: "pool_area",
+                text: "Go to Pool Area 1"
+            },
+
+            { // going back to lobby
+                scene: "pool_area2",
+                type: "scene",
+                pitch: -0.17,
+                yaw: -176.75,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Go to lobby"
+            },
+
+            // BLUE ROOM
+            {
+                scene: "blue_room",
+                type: "scene",
+                pitch: -0.32,
+                yaw: -95.98,
+                cssClass: "custom-hotspot arrow_up",
+                sceneId: "pool_area2",
+                text: "Go to Pool Area 2"
+            },
+
+            {
+                scene: "blue_room",
+                type: "scene",
+                pitch: -0.97,
+                yaw: 95.83,
+                cssClass: "custom-hotspot arrow_up",
+                sceneId: "lobby",
+                text: "Go to lobby"
+            },
         ]
 
         // sponsors:[
