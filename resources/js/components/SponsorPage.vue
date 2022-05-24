@@ -525,6 +525,10 @@ export default {
         this.init();
     },
     methods: {
+        mounted() {
+            window.addEventListener("resize", this.reSize);
+            this.reSize();
+        },
         async init() {
             const wrapper = document.querySelector(".hotspots--wrapper");
             let { data } = await axios.get(
@@ -767,6 +771,19 @@ export default {
         },
         imageLoad() {
             this.isLoading = false;
+        },
+        reSize() {
+            // Get screen size (inner/outerWidth, inner/outerHeight)
+            var height = window.innerHeight;
+            var width = window.innerWidth;
+
+            if (width < height) {
+                // portrait
+                this.viewer.setHfov(50);
+            } else {
+                // landscape (or width=height)
+                this.viewer.setHfov(100);
+            }
         }
     },
     data() {
