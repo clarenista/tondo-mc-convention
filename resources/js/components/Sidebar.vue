@@ -97,7 +97,7 @@ export default {
     },
 
     mounted() {
-        console.log('sidebar', typeof this.bgmStatus)
+        console.log(this.showDropdown)
     },
 }
 </script>
