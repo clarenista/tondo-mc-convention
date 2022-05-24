@@ -412,8 +412,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 7.21,
-                yaw: 16.21,
+                pitch: 7.49,
+                yaw: -15.54,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-residents-hour",
                 text: "Residents Hour"
@@ -421,8 +421,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 7.80,
-                yaw: 16.21,
+                pitch: 7.49,
+                yaw: 13.71,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-bussiness-meeting",
                 text: "Business Meeting"
