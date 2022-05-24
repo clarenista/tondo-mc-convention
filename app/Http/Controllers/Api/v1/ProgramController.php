@@ -13,7 +13,7 @@ class ProgramController extends Controller
     {
 
         $event = Program::select('start_at', 'video_url', 'type', DB::raw('`group` as embedded'), 'enabled', 'title')->whereEnabled(1)->where('id','<',5)->first();
-        $event->start_at_ = strtotime($event->start_at) * 1000;
+        // $event->start_at_ = strtotime($event->start_at) * 1000;
 
         return $event;
     }
