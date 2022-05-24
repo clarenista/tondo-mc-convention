@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 trait FileUploadTrait
 {
@@ -13,7 +14,7 @@ trait FileUploadTrait
 
         if (request()->hasFile($name)) {
             $file = request()->file($name);
-            $file_name = time() . "-" . $file->getClientOriginalName();
+            $file_name = time() . "-" . Str::slug($file->getClientOriginalName());
             $file->storeAs("{$model->type}/", $file_name);
             $model->update([
                 $field => Storage::url("{$model->type}/{$file_name}"),
