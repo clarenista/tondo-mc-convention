@@ -366,6 +366,13 @@ export default {
 
                   ],
               },
+              "blue_room" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/Blue_Room.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
             }
         }
         for(let i in this.booths){
