@@ -83,7 +83,7 @@ export default {
         console.log('RH');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/rh?api_token=${localStorage.getItem("access_token")}`);
         if (data == 0) {
-            vue.$store.commit('updateIsNotAllowedMessage', "Residents' Hour going on.")
+            vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting is exclusive only to PSP Members.")
             return false;
         } else {
             window.open(data, "_blank");
