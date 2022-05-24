@@ -29,7 +29,7 @@ export default {
             if (result) {
                 zoomBtnRH.style.display = "";
                 zoomBtnRH.addEventListener("click", () => {
-                    this.isAllowed(vue).then((result) => {
+                    this.isAllowedRH(vue).then((result) => {
                         vue.$store.getters.audio.pause();
                         if (result) {
                             this.openZoomRH(vue).then((ret) => {
@@ -51,7 +51,7 @@ export default {
             if (result) {
                 zoomBtnBM.style.display = "";
                 zoomBtnBM.addEventListener("click", () => {
-                    this.isAllowed(vue).then((result) => {
+                    this.isAllowedBM(vue).then((result) => {
                         vue.$store.getters.audio.pause();
                         if (result) {
                             this.openZoomBM(vue).then((ret) => {
@@ -68,10 +68,9 @@ export default {
         })
     },
     async openZoomMobile(vue) {
-        console.log('MAIN');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/mobile?api_token=${localStorage.getItem("access_token")}`);
         if (data == 0) {
-            vue.$store.commit('updateIsNotAllowedMessage', "PSP members' fellowship night going on.")
+            vue.$store.commit('updateIsNotAllowedMessage', "Not yet available.")
             return false;
         } else {
             window.open(data, "_blank");
@@ -83,9 +82,10 @@ export default {
         console.log('RH');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/rh?api_token=${localStorage.getItem("access_token")}`);
         if (data == 0) {
-            vue.$store.commit('updateIsNotAllowedMessage', "Residents' Hour going on.")
+            vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting is exclusive only to PSP Members.")
             return false;
         } else {
+            vue.$store.commit('updateIsNotAllowedMessage', "Welcome to the PSP Residents' Forum.")
             window.open(data, "_blank");
             return true;
         }
@@ -95,9 +95,10 @@ export default {
         console.log('BM');
         let { data } = await vue.axios.get(`/api/v1/guests/zoom/join/bm?api_token=${localStorage.getItem("access_token")}`);
         if (data == 0) {
-            vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting going on.")
+            vue.$store.commit('updateIsNotAllowedMessage', "Bussiness Meeting is exclusive only to PSP Members.")
             return false;
         } else {
+            vue.$store.commit('updateIsNotAllowedMessage', "You are attending the PSP Bussiness Meeting.")
             window.open(data, "_blank");
             return true;
         }

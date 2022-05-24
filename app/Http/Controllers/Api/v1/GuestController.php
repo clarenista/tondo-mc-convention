@@ -69,38 +69,46 @@ class GuestController extends Controller
     }
 
     public function zoomJoinRH(){
+
+
+
+
         $user = request()->user();
         $webinar = Program::whereEnabled(1)->where('id',6)->first();
-        if (!$webinar) {
-            return 0;
-        }
-        $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
-        if (!$reg) {
-            $registered = $this->checkRegistrants($user->email_address, $webinar);
-            if (!$registered) {
-                // // DISABLE AUTO REGISTER
-                // return "0";
-                $registered = $this->registerToWebinar($webinar, $user);
-                $registered['id'] = $registered['registrant_id'];
-            }
-            $reg = $user->webinars()->create([
-                "registrant_id" => $registered['id'],
-                "webinar_id" => $webinar->unique_id,
-                "topic" => $webinar->title,
-                "join_url" => $registered['join_url'],
-                'registered' => true,
-            ]);
-        }
-        return $reg->join_url;
+        return 'https://us02web.zoom.us/j/'.$webinar->unique_id.'?pwd='.$webinar->description;
+
+        // if (!$webinar) {
+        //     return 0;
+        // }
+        // $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
+        // if (!$reg) {
+        //     $registered = $this->checkRegistrants($user->email_address, $webinar);
+        //     if (!$registered) {
+        //         // // DISABLE AUTO REGISTER
+        //         // return "0";
+        //         $registered = $this->registerToWebinar($webinar, $user);
+        //         $registered['id'] = $registered['registrant_id'];
+        //     }
+        //     $reg = $user->webinars()->create([
+        //         "registrant_id" => $registered['id'],
+        //         "webinar_id" => $webinar->unique_id,
+        //         "topic" => $webinar->title,
+        //         "join_url" => $registered['join_url'],
+        //         'registered' => true,
+        //     ]);
+        // }
+        // return $reg->join_url;
     }
 
     public function zoomJoinBM(){
         $user = request()->user();
         $webinar = Program::whereEnabled(1)->where('id',5)->first();
-        if (!$webinar) {
+        if (!$webinar || !in_array($user->classification,['Diplomate','Fellow','Life Member']) ) {
             return 0;
         }
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
+
+
         if (!$reg) {
             $registered = $this->checkRegistrants($user->email_address, $webinar);
             if (!$registered) {
