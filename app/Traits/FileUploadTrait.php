@@ -14,7 +14,7 @@ trait FileUploadTrait
 
         if (request()->hasFile($name)) {
             $file = request()->file($name);
-            $file_name = time() . "-" . Str::slug($file->getClientOriginalName());
+            $file_name = time() . "-" . Str::slug($file->getClientOriginalName()) . "." . $file->getClientOriginalExtension();
             $file->storeAs("{$model->type}/", $file_name);
             $model->update([
                 $field => Storage::url("{$model->type}/{$file_name}"),
