@@ -146,6 +146,8 @@ class GuestController extends Controller
                 ]);
             }
         }else{
+
+            return 'https://us02web.zoom.us/j/'.$webinar->unique_id.'?pwd='.$webinar->description;
             return 'https://us02web.zoom.us/j/85670664486?pwd=9Ll1xvvO4XrXNpL_Q4TkJHCIE1ueqG.1';
         }
         return $reg->join_url;
