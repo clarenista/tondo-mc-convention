@@ -160,6 +160,28 @@
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
+        <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
+            <template v-slot:title>
+                <h3 class="display-4 mt-3">
+                    Hi {{ $store.getters.user.first_name }},
+                </h3>
+            </template>
+            <template v-slot:body>
+                <p class="text-center lead text-success mt-3 mb-3">
+                    <strong> {{ $store.getters.isNotAllowedMessage }}</strong>
+                </p>
+            </template>
+            <template v-slot:footer>
+                <button
+                    class="btn btn-success"
+                    type="button"
+                    @click="handleIsNotAllowedClose"
+                >
+                    <i class="fa fa-caret-right"></i> Ok
+                </button>
+            </template>
+        </Modal>
+
         <marquee
             style="background-color:#fff; color: #00008b;"
             class="text-uppercase"
