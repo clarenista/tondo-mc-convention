@@ -78,7 +78,7 @@
         <!-- BOOTH TRACKER -->
 
         <!-- ZOOM TIMER -->
-        <div id="zoom_countdown" v-if="enabled">
+        <!-- <div id="zoom_countdown" v-if="enabled">
             <div class="col-12">
                 <div class="row">
                     <div class="col p-1" id="box">
@@ -140,7 +140,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
         <div v-if="this.standee_dtls">
             <CoolLightBox
                 :items="standee_dtls"
@@ -183,7 +184,7 @@
         </Modal>
 
         <marquee
-            style="background-color:#fff; color: #00008b;"
+            style="background-color: rgb(255 255 255 / 40%); color: #212529; font-size: 1.2rem;"
             class="text-uppercase"
             v-if="$store.getters.announcement != null"
             direction="left"
@@ -534,6 +535,9 @@ export default {
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
           case 'pool_area2':
+            this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
+            break;
+          case 'blue_room':
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
           case 'meeting_hall':
@@ -969,12 +973,12 @@ div >>> .pnlm-about-msg {
 marquee {
     position: fixed;
     bottom: 5em;
-    right: 0.8em;
+    /* right: 0.8em; */
     /* border: 1px solid red; */
-    width: 30%;
+    /* width: 30%; */
     height: 5%;
     font-weight: 600;
-    color: firebrick;
+    padding-top: 0.8rem;
 }
 
 #zoom_countdown {
