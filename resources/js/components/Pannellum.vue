@@ -289,14 +289,31 @@ export default {
                         pitch: -2.37,
                         yaw: -190.54,
                         cssClass: "custom-hotspot enter",
+                        text: "logout",
                         clickHandlerFunc: () =>{
                             this.handleLogout()
+                        }
+                    },
+
+                    // voting hot spot
+                    {
+                        pitch: 0.50,
+                        yaw: 14.31,
+                        cssClass: "custom-hotspot vote",
+                        text: "Voting",
+                        clickHandlerFunc: () =>{
+                            this.handleVote()
                         }
                     },
                   ],
 
 
               },
+              
+
+
+
+
               "psp_monument": {
                 "type": "equirectangular",
                 "panorama": "/images/multires/psp-monument.jpg",
@@ -724,7 +741,12 @@ export default {
 
         // redirect to login
         this.$router.push('/login')
-      }
+      },
+
+      handleVote(){
+             // redirect to vote
+            this.$router.push('/vote')
+        }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;
     }
