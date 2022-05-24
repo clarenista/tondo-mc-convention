@@ -112,6 +112,26 @@ export default new Vuex.Store({
                     "Microscopic means being invisible to the eye unless aided by a microscope."
             },
 
+            { // microscope
+                scene: "lobby",
+                type: "scene",
+                pitch: -0.45,
+                yaw: -24.19,
+                cssClass: "custom-hotspot arrow_left",
+                sceneId: "microscope",
+                text: "View microscope"
+            },
+
+            { // go to lobby
+                scene: "microscope",
+                type: "scene",
+                pitch: -10.03,
+                yaw: -176.20,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Back to lobby"
+            },
+
             { // going to bar area
                 scene: "lobby",
                 type: "scene",
@@ -157,7 +177,7 @@ export default new Vuex.Store({
                 type: "scene",
                 pitch: -7.23,
                 yaw: -135.11,
-                cssClass: "custom-hotspot arrow_right",
+                cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
                 text: "Back to lobby"
             },
@@ -602,7 +622,7 @@ export default new Vuex.Store({
                 yaw: -79.36,
                 cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
-                text: "Go to lobby"
+                text: "Back to lobby"
             },
 
             // POOL AREA 2
@@ -633,7 +653,7 @@ export default new Vuex.Store({
                 yaw: -176.75,
                 cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
-                text: "Go to lobby"
+                text: "Back to lobby"
             },
 
             // BLUE ROOM
@@ -652,9 +672,9 @@ export default new Vuex.Store({
                 type: "scene",
                 pitch: -0.97,
                 yaw: 95.83,
-                cssClass: "custom-hotspot arrow_up",
+                cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
-                text: "Go to lobby"
+                text: "Back to lobby"
             },
         ]
 

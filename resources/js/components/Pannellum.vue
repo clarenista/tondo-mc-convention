@@ -463,6 +463,7 @@ export default {
           this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
           this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
           this.panorama_details.scenes.blue_room.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'blue_room']))
+          this.panorama_details.scenes.microscope.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'microscope']))
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
 
