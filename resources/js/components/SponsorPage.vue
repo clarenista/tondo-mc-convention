@@ -527,7 +527,7 @@ export default {
     methods: {
         mounted() {
             window.addEventListener("resize", this.reSize);
-            this.reSize();
+            this.reSize;
         },
         async init() {
             const wrapper = document.querySelector(".hotspots--wrapper");
