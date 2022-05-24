@@ -199,12 +199,7 @@ a.dropdown-item {
 
 
 .sidenav {
-        width: 270px;
-    }
-
-#psp_logo {
-    width: 90px;
-    height: auto;
+    width: 270px;
 }
 
 .sidenav a {
