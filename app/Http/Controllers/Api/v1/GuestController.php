@@ -97,10 +97,12 @@ class GuestController extends Controller
     public function zoomJoinBM(){
         $user = request()->user();
         $webinar = Program::whereEnabled(1)->where('id',5)->first();
-        if (!$webinar) {
+        if (!$webinar || !in_array($user->classification,['Diplomate','Fellow','Life Member']) ) {
             return 0;
         }
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
+
+
         if (!$reg) {
             $registered = $this->checkRegistrants($user->email_address, $webinar);
             if (!$registered) {
