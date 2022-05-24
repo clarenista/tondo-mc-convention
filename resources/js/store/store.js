@@ -63,8 +63,7 @@ export default new Vuex.Store({
                 type: "info",
                 pitch: 2.45,
                 yaw: -162.28,
-                text:
-                    "Transcending Barriers: The PSP on its commitment to excellence and unceasing innovation in the midst of a pandemic"
+                // text: "PSP cast"
             },
 
             {
@@ -108,8 +107,7 @@ export default new Vuex.Store({
                 type: "info",
                 pitch: 0.73,
                 yaw: -26.80,
-                text:
-                    "Microscopic means being invisible to the eye unless aided by a microscope."
+                text: "The Pathologist's Eye"
             },
 
             { // microscope
@@ -414,8 +412,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 5.67,
-                yaw: -30.58,
+                pitch: 7.49,
+                yaw: -15.54,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-residents-hour",
                 text: "Residents Hour"
@@ -423,8 +421,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 5.84,
-                yaw: 31.73,
+                pitch: 7.49,
+                yaw: 13.71,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-bussiness-meeting",
                 text: "Business Meeting"
