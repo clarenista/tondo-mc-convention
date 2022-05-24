@@ -103,32 +103,72 @@ export default new Vuex.Store({
                 sceneId: "hall_d"
             },
 
-            {
+            { // microscope
+                scene: "lobby",
+                type: "info",
+                pitch: 0.73,
+                yaw: -26.80,
+                text:
+                    "Microscopic means being invisible to the eye unless aided by a microscope."
+            },
+
+            { // microscope
+                scene: "lobby",
+                type: "scene",
+                pitch: -0.45,
+                yaw: -24.19,
+                cssClass: "custom-hotspot arrow_left",
+                sceneId: "microscope",
+                text: "View microscope"
+            },
+
+            { // go to lobby
+                scene: "microscope",
+                type: "scene",
+                pitch: -10.03,
+                yaw: -176.20,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Back to lobby"
+            },
+
+            { // going to bar area
                 scene: "lobby",
                 type: "scene",
                 pitch: -4.24,
                 yaw: 39.11,
-                cssClass: "custom-hotspot enter",
+                cssClass: "custom-hotspot arrow_right",
                 sceneId: "bar",
                 text: "Bar Area"
             },
-            {
+
+            { // going to PSP monument
                 scene: "lobby",
                 type: "scene",
                 pitch: -5.27,
                 yaw: -173.28,
-                cssClass: "custom-hotspot enter",
+                cssClass: "custom-hotspot arrow_right",
                 sceneId: "psp_monument",
                 text: "Go to PSP Monument"
             },
-            // BAR
 
+            { // going to Pool area
+                scene: "lobby",
+                type: "scene",
+                pitch: 10.71,
+                yaw: -38.24,
+                cssClass: "custom-hotspot arrow_left",
+                sceneId: "pool_area",
+                text: "Go to Pool Area"
+            },
+
+            // BAR AREA
             {
                 scene: "bar",
                 type: "scene",
                 pitch: -11.88,
                 yaw: 142.43,
-                cssClass: "custom-hotspot enter",
+                cssClass: "custom-hotspot arrow_left",
                 sceneId: "piano",
                 text: "Go to Piano Area"
             },
@@ -141,17 +181,17 @@ export default new Vuex.Store({
                 sceneId: "lobby",
                 text: "Back to lobby"
             },
-            // piano
+            // PIANO AREA
             {
                 scene: "piano",
                 type: "scene",
                 pitch: -8.64,
                 yaw: -56.93,
-                cssClass: "custom-hotspot enter",
+                cssClass: "custom-hotspot arrow_right",
                 sceneId: "bar",
-                text: "Go to Bar Area"
+                text: "Go to Bar area"
             },
-            // psp-monument
+            // psp-monument AREA
             {
                 scene: "psp_monument",
                 type: "scene",
@@ -561,22 +601,81 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot arrow_left",
                 sceneId: "hall_c"
             },
+
+            
+            // UPDATED POOL AREA
+            // POOL AREA 1
             {
                 scene: "pool_area",
-                pitch: -2.3,
-                yaw: 2.6,
                 type: "scene",
+                pitch: -4.12,
+                yaw: -16.00,
                 cssClass: "custom-hotspot arrow_up",
-                sceneId: "pool_area2"
+                sceneId: "pool_area2",
+                text: "Go to Pool Area 2"
             },
-            {
-                scene: "pool_area2",
-                pitch: -3.4,
-                yaw: -123,
+
+            { // going back to lobby
+                scene: "pool_area",
                 type: "scene",
+                pitch: 0.12,
+                yaw: -79.36,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Back to lobby"
+            },
+
+            // POOL AREA 2
+            { // going to blue room
+                scene: "pool_area2",
+                type: "scene",
+                pitch: 0.63,
+                yaw: 20.11,
+                cssClass: "custom-hotspot enter",
+                sceneId: "blue_room",
+                text: "Go to Blue room"
+            },
+
+            { // going back pool area 1
+                scene: "pool_area2",
+                type: "scene",
+                pitch: -9.14,
+                yaw: 151.75,
                 cssClass: "custom-hotspot arrow_up",
-                sceneId: "pool_area"
-            }
+                sceneId: "pool_area",
+                text: "Go to Pool Area 1"
+            },
+
+            { // going back to lobby
+                scene: "pool_area2",
+                type: "scene",
+                pitch: -0.17,
+                yaw: -176.75,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Back to lobby"
+            },
+
+            // BLUE ROOM
+            {
+                scene: "blue_room",
+                type: "scene",
+                pitch: -0.32,
+                yaw: -95.98,
+                cssClass: "custom-hotspot arrow_up",
+                sceneId: "pool_area2",
+                text: "Go to Pool Area 2"
+            },
+
+            {
+                scene: "blue_room",
+                type: "scene",
+                pitch: -0.97,
+                yaw: 95.83,
+                cssClass: "custom-hotspot enter",
+                sceneId: "lobby",
+                text: "Back to lobby"
+            },
         ]
 
         // sponsors:[

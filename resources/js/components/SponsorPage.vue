@@ -525,6 +525,10 @@ export default {
         this.init();
     },
     methods: {
+        mounted() {
+            window.addEventListener("resize", this.reSize);
+            this.reSize;
+        },
         async init() {
             const wrapper = document.querySelector(".hotspots--wrapper");
             let { data } = await axios.get(
@@ -591,13 +595,13 @@ export default {
                 scenes: {
                     landing: {
                         type: "equirectangular",
-                        panorama: image
+                        panorama: image,
                         // "hotSpots": hs,
                         // 180 view | 360 view = 180 view x 2
-                        // 'minPitch' :-20,
-                        // 'maxPitch' :20,
-                        // 'minYaw': -60,
-                        // 'maxYaw': 60,
+                        minPitch: -20,
+                        minYaw: -20,
+                        maxPitch: 20,
+                        maxYaw: 20
                         // "preview": "/images/multires/loading.png"
                     }
                 }
@@ -767,10 +771,24 @@ export default {
         },
         imageLoad() {
             this.isLoading = false;
+        },
+        reSize() {
+            // Get screen size (inner/outerWidth, inner/outerHeight)
+            var height = window.innerHeight;
+            var width = window.innerWidth;
+
+            if (width < height) {
+                // portrait
+                this.viewer.setHfov(50);
+            } else {
+                // landscape (or width=height)
+                this.viewer.setHfov(100);
+            }
         }
     },
     data() {
         return {
+            viewer: null,
             booth_details: null,
             modalShow: false,
             selectedHotspot: null,

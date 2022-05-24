@@ -160,6 +160,28 @@
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
+        <Modal :value="$store.getters.isNotAllowed" v-if="$store.getters.user">
+            <template v-slot:title>
+                <h3 class="display-4 mt-3">
+                    Hi {{ $store.getters.user.first_name }},
+                </h3>
+            </template>
+            <template v-slot:body>
+                <p class="text-center lead text-success mt-3 mb-3">
+                    <strong> {{ $store.getters.isNotAllowedMessage }}</strong>
+                </p>
+            </template>
+            <template v-slot:footer>
+                <button
+                    class="btn btn-success"
+                    type="button"
+                    @click="handleIsNotAllowedClose"
+                >
+                    <i class="fa fa-caret-right"></i> Ok
+                </button>
+            </template>
+        </Modal>
+
         <marquee
             style="background-color:#fff; color: #00008b;"
             class="text-uppercase"
@@ -267,13 +289,31 @@ export default {
                         pitch: -2.37,
                         yaw: -190.54,
                         cssClass: "custom-hotspot enter",
+                        text: "logout",
                         clickHandlerFunc: () =>{
                             this.handleLogout()
                         }
                     },
+
+                    // voting hot spot
+                    {
+                        pitch: 0.50,
+                        yaw: 14.31,
+                        cssClass: "custom-hotspot vote",
+                        text: "Voting",
+                        clickHandlerFunc: () =>{
+                            this.handleVote()
+                        }
+                    },
                   ],
 
+
               },
+              
+
+
+
+
               "psp_monument": {
                 "type": "equirectangular",
                 "panorama": "/images/multires/psp-monument.jpg",
@@ -317,25 +357,25 @@ export default {
                 // 'minYaw': -90,
                 // 'maxYaw':90,
               },
-              "pool_area": {
-                "type": "multires",
-                "multiRes": {
-                  "basePath": "/images/multires/pool_area",
-                  "path": "/%l/%s%y_%x",
-                  "fallbackPath": "/fallback/%s",
-                  "extension": "jpg",
-                  "tileResolution": 512,
-                  "maxLevel": 3,
-                  "cubeResolution": 1904,
-                },
-                "hotSpots": [
-                ],
-                // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
-              },
+            //   "pool_area": {
+            //     "type": "multires",
+            //     "multiRes": {
+            //       "basePath": "/images/multires/pool_area",
+            //       "path": "/%l/%s%y_%x",
+            //       "fallbackPath": "/fallback/%s",
+            //       "extension": "jpg",
+            //       "tileResolution": 512,
+            //       "maxLevel": 3,
+            //       "cubeResolution": 1904,
+            //     },
+            //     "hotSpots": [
+            //     ],
+            //     // 180 view | 360 view = 180 view x 2
+            //     // 'minPitch' :-45,
+            //     // 'maxPitch' :45,
+            //     // 'minYaw': -90,
+            //     // 'maxYaw':90,
+            //   },
 
               "hall_a" :{
                 "type": "equirectangular",
@@ -362,6 +402,29 @@ export default {
               "hall_d" :{
                 "type": "equirectangular",
                 "panorama": "/images/multires/Hall_D.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
+              "pool_area" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/pool_area.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
+
+              "pool_area2" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/pool_area2.jpg",
+                  "hotSpots": [
+
+                  ],
+              },
+
+              "blue_room" :{
+                "type": "equirectangular",
+                "panorama": "/images/multires/Blue_Room.jpg",
                   "hotSpots": [
 
                   ],
@@ -415,6 +478,9 @@ export default {
           this.panorama_details.scenes.hall_d.hotSpots.push(...this.hall_d_booths)
 
           this.panorama_details.scenes.pool_area.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area']))
+          this.panorama_details.scenes.pool_area2.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'pool_area2']))
+          this.panorama_details.scenes.blue_room.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'blue_room']))
+          this.panorama_details.scenes.microscope.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'microscope']))
           this.viewer= pannellum.viewer('panorama', this.panorama_details );
         }
 
@@ -675,7 +741,12 @@ export default {
 
         // redirect to login
         this.$router.push('/login')
-      }
+      },
+
+      handleVote(){
+             // redirect to vote
+            this.$router.push('/vote')
+        }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;
     }

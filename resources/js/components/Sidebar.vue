@@ -1,8 +1,8 @@
 <template >
 <div>
 
-    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:300px;' : 'width:0;'">
-        <div class="text-center"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="190px" alt="psp_logo" srcset=""></div>
+    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'">
+        <div class="text-center mb-5"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="190px" alt="psp_logo" srcset=""></div>
         <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a>
 
         <a 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="left_bot">
-            <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a>
+            <!-- <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a> -->
 
             <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
                 <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> </span> 
@@ -59,17 +59,17 @@ export default {
                 {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                     dropdowns:[
                         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
-                        {name: "HALL A", sceneId: 'hall_a', icon: 'fa-map-marker'},
-                        {name: "HALL B", sceneId: 'hall_b', icon: 'fa-map-marker'},
-                        {name: "HALL C", sceneId: 'hall_c', icon: 'fa-map-marker'},
-                        {name: "HALL D", sceneId: 'hall_d', icon: 'fa-map-marker'},
+                        {name: "HALL - A", sceneId: 'hall_a', icon: 'fa-map-marker'},
+                        {name: "HALL - B", sceneId: 'hall_b', icon: 'fa-map-marker'},
+                        {name: "HALL - C", sceneId: 'hall_c', icon: 'fa-map-marker'},
+                        {name: "HALL - D", sceneId: 'hall_d', icon: 'fa-map-marker'},
                     ], title: 'Exhibit Hall'},
             ],
         }
     },
     methods:{
         openNav(){
-            document.getElementById("mySidenav").style.width = "300px";
+            document.getElementById("mySidenav").style.width = "270px";
             document.getElementById("openBtn").style.opacity = "0.1";
         },
         closeNav(){
@@ -97,7 +97,7 @@ export default {
     },
 
     mounted() {
-        console.log('sidebar', typeof this.bgmStatus)
+        console.log(this.showDropdown)
     },
 }
 </script>
@@ -198,6 +198,12 @@ a.dropdown-item {
 }
 
 
+.sidenav {
+    width: 270px;
+}
+
+
+
  /* greater than 319 buy less then 768 */
   @media screen and (min-width: 320px) and (max-width: 768px) {
     .sidenav a {
@@ -224,28 +230,6 @@ a.dropdown-item {
     }
   }
   
-  
-  /* less than 375*/
-  @media screen and (min-width: 220px) and (max-width: 375px) {
-    .sidenav {
-        width: 230px !important;
-    }
-    
-    .sidenav a {
-        font-size: .8rem;
-    }
-  
-    #psp_logo {
-      width: 90px;
-      height: auto;
-    }
-
-    a.dropdown-item {
-        width: 230px;
-    }
-  }
-  
-  
   /* greater than 990*/
   @media screen and (min-width: 990) {
     .sidenav {
@@ -261,6 +245,43 @@ a.dropdown-item {
         font-size: 1rem;
     }
   }
+
+    /* 280  375 360 */
+  @media screen and (min-width: 281px) and (max-width: 390px) {
+    .sidenav {
+        width: 270px;
+    }
+    
+    .sidenav a {
+        font-size: .8rem;
+    }
+  
+    #psp_logo {
+      width: 90px;
+      height: auto;
+    }
+
+    a.dropdown-item {
+        width: 270px;
+    }
+  }
+
+  @media screen and (max-width:1024px) and (-webkit-min-device-pixel-ratio:0){
+    .sidenav a {
+        font-size: .8rem;
+    }
+
+    #psp_logo {
+      width: 120px;
+      height: auto;
+    }
+
+  }
+  
+
+
+
+
 
   
   
