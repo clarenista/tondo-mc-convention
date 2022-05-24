@@ -12,6 +12,7 @@ class ProgramController extends Controller
 
     public function update()
     {
+
         $input = request()->merge([
             'enabled' => filter_var(request()->enabled, FILTER_VALIDATE_BOOLEAN),
         ])->validate([
@@ -19,14 +20,17 @@ class ProgramController extends Controller
             'enabled' => 'required',
             'start_at' => 'required',
             'end_at' => 'required',
-            'unique_id' => 'required',  //Zoom ID
-            'title' => 'nullable',  //Topic
+            'unique_id' => 'required', //Zoom ID
+            'title' => 'nullable', //Topic
             'description' => 'required', //Token
         ]);
 
-        DB::statement('UPDATE programs SET enabled = 0');
+        if ($input['program_id'] < 5) {
+            DB::statement('UPDATE programs SET enabled = 0 WHERE id < 5');
+        }
 
         $event = Program::find($input['program_id']);
+
         if ($event) {
             $event->update($input);
         } else {

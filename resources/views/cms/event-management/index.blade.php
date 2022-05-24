@@ -61,7 +61,7 @@
             @php
                 $program = $program1 ?? new App\Models\Program();
             @endphp
-            <h3>Webinar Day 1</h3>
+            <h3>Lecture Day 1</h3>
             <form action="{{ route('cms.program.update') }}" method="post">
                 @csrf
                 {{ method_field('PUT') }}
@@ -96,9 +96,12 @@
                         <input type="datetime-local" name="end_at" class="form-control" value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
                     </div>
                 </div>
-                @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID'])
-                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
-                @include('cms.include.input-text', ['key' => 'description', 'label' => 'Token'])
+                @php
+
+                @endphp
+                @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID','model'=>$program])
+                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title','model'=>$program])
+                @include('cms.include.input-text', ['key' => 'description', 'label' => 'Token','model'=>$program])
                 <div class="form-group">
                     <button class="btn btn-info btn-block">&#10004;UPDATE PROGRAM</button>
                 </div>
@@ -108,7 +111,7 @@
             @php
                 $program = $program2 ?? new App\Models\Program();
             @endphp
-            <h3>Webinar Day 2</h3>
+            <h3>Lecture Day 2</h3>
             <form action="{{ route('cms.program.update') }}" method="post">
                 @csrf
                 {{ method_field('PUT') }}
@@ -155,7 +158,7 @@
             @php
                 $program = $program3 ?? new App\Models\Program();
             @endphp
-            <h3>Webinar Day 3</h3>
+            <h3>Lecture Day 3</h3>
             <form action="{{ route('cms.program.update') }}" method="post">
                 @csrf
                 {{ method_field('PUT') }}
@@ -163,6 +166,147 @@
                     $model = $program;
                 @endphp
                 <input type="hidden" name="program_id" value="3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Enabled</span>
+                        </span>
+                        <select class="custom-select" required name="enabled">
+                            <option value="true" {{ $program->enabled ? 'selected' : '' }}>True</option>
+                            <option value="false" {{ !$program->enabled ? 'selected' : '' }}>False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Start At</span>
+                        </span>
+                        <input type="datetime-local" name="start_at" class="form-control" value="{{ old('start_at', Carbon\Carbon::parse($program->start_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">End At</span>
+                        </span>
+                        <input type="datetime-local" name="end_at" class="form-control" value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID'])
+                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
+                @include('cms.include.input-text', ['key' => 'description', 'label' => 'Token'])
+                <div class="form-group">
+                    <button class="btn btn-info btn-block">&#10004;UPDATE PROGRAM</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm col-lg">
+            @php
+                $program = $program4 ?? new App\Models\Program();
+            @endphp
+            <h3>Fellowship Night</h3>
+            <form action="{{ route('cms.program.update') }}" method="post">
+                @csrf
+                {{ method_field('PUT') }}
+                @php
+                    $model = $program;
+                @endphp
+                <input type="hidden" name="program_id" value="4">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Enabled</span>
+                        </span>
+                        <select class="custom-select" required name="enabled">
+                            <option value="true" {{ $program->enabled ? 'selected' : '' }}>True</option>
+                            <option value="false" {{ !$program->enabled ? 'selected' : '' }}>False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Start At</span>
+                        </span>
+                        <input type="datetime-local" name="start_at" class="form-control" value="{{ old('start_at', Carbon\Carbon::parse($program->start_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">End At</span>
+                        </span>
+                        <input type="datetime-local" name="end_at" class="form-control" value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID'])
+                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
+                @include('cms.include.input-text', ['key' => 'description', 'label' => 'Token'])
+                <div class="form-group">
+                    <button class="btn btn-info btn-block">&#10004;UPDATE PROGRAM</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm col-lg">
+            @php
+                $program = $program5 ?? new App\Models\Program();
+            @endphp
+            <h3>Bussiness Meeting</h3>
+            <form action="{{ route('cms.program.update') }}" method="post">
+                @csrf
+                {{ method_field('PUT') }}
+                @php
+                    $model = $program;
+                @endphp
+                <input type="hidden" name="program_id" value="5">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Enabled</span>
+                        </span>
+                        <select class="custom-select" required name="enabled">
+                            <option value="true" {{ $program->enabled ? 'selected' : '' }}>True</option>
+                            <option value="false" {{ !$program->enabled ? 'selected' : '' }}>False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">Start At</span>
+                        </span>
+                        <input type="datetime-local" name="start_at" class="form-control" value="{{ old('start_at', Carbon\Carbon::parse($program->start_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">End At</span>
+                        </span>
+                        <input type="datetime-local" name="end_at" class="form-control" value="{{ old('end_at', Carbon\Carbon::parse($program->end_at)->format('Y-m-d\TH:i')) }}">
+                    </div>
+                </div>
+                @include('cms.include.input-text', ['key' => 'unique_id', 'label' => 'Zoom ID'])
+                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
+                @include('cms.include.input-text', ['key' => 'description', 'label' => 'Token'])
+                <div class="form-group">
+                    <button class="btn btn-info btn-block">&#10004;UPDATE PROGRAM</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm col-lg">
+            @php
+                $program = $program6 ?? new App\Models\Program();
+            @endphp
+            <h3>Residents' Hour</h3>
+            <form action="{{ route('cms.program.update') }}" method="post">
+                @csrf
+                {{ method_field('PUT') }}
+                @php
+                    $model = $program;
+                @endphp
+                <input type="hidden" name="program_id" value="6">
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-prepend">
