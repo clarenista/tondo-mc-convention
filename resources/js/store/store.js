@@ -62,7 +62,7 @@ export default new Vuex.Store({
                 scene: "lobby",
                 type: "info",
                 pitch: 2.45,
-                yaw: -162.28,
+                yaw: -162.28
                 // text: "PSP cast"
             },
 
@@ -102,15 +102,17 @@ export default new Vuex.Store({
                 sceneId: "hall_d"
             },
 
-            { // microscope
+            {
+                // microscope
                 scene: "lobby",
                 type: "info",
                 pitch: 0.73,
-                yaw: -26.80,
+                yaw: -26.8,
                 text: "The Pathologist's Eye"
             },
 
-            { // microscope
+            {
+                // microscope
                 scene: "lobby",
                 type: "scene",
                 pitch: -0.45,
@@ -120,17 +122,19 @@ export default new Vuex.Store({
                 text: "View microscope"
             },
 
-            { // go to lobby
+            {
+                // go to lobby
                 scene: "microscope",
                 type: "scene",
                 pitch: -10.03,
-                yaw: -176.20,
+                yaw: -176.2,
                 cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
                 text: "Back to lobby"
             },
 
-            { // going to bar area
+            {
+                // going to bar area
                 scene: "lobby",
                 type: "scene",
                 pitch: -4.24,
@@ -140,7 +144,8 @@ export default new Vuex.Store({
                 text: "Bar Area"
             },
 
-            { // going to PSP monument
+            {
+                // going to PSP monument
                 scene: "lobby",
                 type: "scene",
                 pitch: -5.27,
@@ -150,7 +155,8 @@ export default new Vuex.Store({
                 text: "Go to PSP Monument"
             },
 
-            { // going to Pool area
+            {
+                // going to Pool area
                 scene: "lobby",
                 type: "scene",
                 pitch: 10.71,
@@ -600,20 +606,20 @@ export default new Vuex.Store({
                 sceneId: "hall_c"
             },
 
-            
             // UPDATED POOL AREA
             // POOL AREA 1
             {
                 scene: "pool_area",
                 type: "scene",
                 pitch: -4.12,
-                yaw: -16.00,
+                yaw: -16.0,
                 cssClass: "custom-hotspot arrow_up",
                 sceneId: "pool_area2",
                 text: "Go to Pool Area 2"
             },
 
-            { // going back to lobby
+            {
+                // going back to lobby
                 scene: "pool_area",
                 type: "scene",
                 pitch: 0.12,
@@ -624,7 +630,8 @@ export default new Vuex.Store({
             },
 
             // POOL AREA 2
-            { // going to blue room
+            {
+                // going to blue room
                 scene: "pool_area2",
                 type: "scene",
                 pitch: 0.63,
@@ -634,7 +641,8 @@ export default new Vuex.Store({
                 text: "Go to Blue room"
             },
 
-            { // going back pool area 1
+            {
+                // going back pool area 1
                 scene: "pool_area2",
                 type: "scene",
                 pitch: -9.14,
@@ -644,7 +652,8 @@ export default new Vuex.Store({
                 text: "Go to Pool Area 1"
             },
 
-            { // going back to lobby
+            {
+                // going back to lobby
                 scene: "pool_area2",
                 type: "scene",
                 pitch: -0.17,
@@ -673,7 +682,7 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot enter",
                 sceneId: "lobby",
                 text: "Back to lobby"
-            },
+            }
         ]
 
         // sponsors:[
@@ -724,7 +733,6 @@ export default new Vuex.Store({
         updateBgmStart(state, start) {
             state.bgmStart = start;
             if (!start) {
-                console.log(start);
                 state.audio.pause();
                 // bgm.currentTime = 0;
             } else {
@@ -767,7 +775,6 @@ export default new Vuex.Store({
         getBgm({ commit, state }) {
             // alert('test')
             // localStorage.setItem("bgmStatus", true);
-            console.log("state.currentScene", state.currentScene);
             switch (localStorage.getItem("sceneId")) {
                 case "lobby":
                     commit("updateAudioSource", "/bgm/lobby.mp3");
