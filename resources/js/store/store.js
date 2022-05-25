@@ -62,8 +62,8 @@ export default new Vuex.Store({
                 scene: "lobby",
                 type: "info",
                 pitch: 2.45,
-                yaw: -162.28
-                // text: "PSP cast"
+                yaw: -162.28,
+                text: "PSP cast"
             },
 
             {
@@ -152,7 +152,7 @@ export default new Vuex.Store({
                 yaw: -173.28,
                 cssClass: "custom-hotspot arrow_right",
                 sceneId: "psp_monument",
-                text: "Go to PSP Monument"
+                // text: "Go to PSP Monument"
             },
 
             {
