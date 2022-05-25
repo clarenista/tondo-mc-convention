@@ -271,7 +271,7 @@ export default {
 
         this.panorama_details = {
             "default": {
-                "firstScene": localStorage.getItem('sceneId'),
+                "firstScene": !!localStorage.getItem('sceneId') && 'lobby',
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
