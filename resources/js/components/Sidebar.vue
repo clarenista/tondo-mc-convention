@@ -56,6 +56,7 @@ export default {
                 {name: "LOBBY", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
                 {name: "MEETING HALL", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
                 // {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item' , title: 'Pool Area'},
+                {name: "VOTE", sceneId: 'vote', icon: 'fa-vote-yea', type:'nav-item' , title: 'Cast Vote'},
                 {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                     dropdowns:[
                         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
@@ -79,6 +80,9 @@ export default {
         },
 
         handleNavigateTo(item){
+            if(item.name === 'VOTE') {
+                this.$router.push('/vote')
+            }
             this.$emit('handleNavigateTo', item.sceneId);
             this.closeNav() 
             this.showDropdown = false
@@ -97,7 +101,6 @@ export default {
     },
 
     mounted() {
-        console.log(this.showDropdown)
     },
 }
 </script>
