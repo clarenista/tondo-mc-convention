@@ -43,8 +43,8 @@ class RegisterWebinarGuest extends Command
 
         $bearer = "Bearer ";
         $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2NTM5MjI4NzgsImlhdCI6MTY1MzMxODA3OH0.2URjxhV-RhSmnQaV4g3YXwYVYpyzp3lfg25Rr4X-H24";
-        $webinar_id = "88597647991";
-        $webinar_topic = "PSP 71st Annual Convention";
+        $webinar_id = "81442450608";
+        $webinar_topic = "PSP 71st Annual Convention - Bussiness Meeting";
 
         $panelists = [
             // 'coleman22@kshlerin.biz',
@@ -101,10 +101,15 @@ class RegisterWebinarGuest extends Command
         $registrants = $all;
         $guests = User::withTrashed()
             ->whereNotNull('email')
-            ->whereDoesntHave('webinars')
+            ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
+                $q->where('webinar_id', $webinar_id);
+            })
+            ->whereIn('classification', ['Fellow','Diplomate','Life Member'])
             ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [37])
             ->get();
+
+        // dd($guests);
         echo join(', ', $guests->pluck('email_address')->toArray());
         echo PHP_EOL . $guests->count();
         if ($this->confirm('register guests?')) {
@@ -139,7 +144,7 @@ class RegisterWebinarGuest extends Command
                         \Log::info($response);
                         continue;
                     }
-                    $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->first();
+                    $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->where('webinar_id',$webinar_id)->first();
                     $data = [
                         'registrant_id' => $response['registrant_id'],
                         'webinar_id' => $response['id'],
