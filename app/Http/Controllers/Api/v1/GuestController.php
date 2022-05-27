@@ -75,6 +75,8 @@ class GuestController extends Controller
 
         $user = request()->user();
         $webinar = Program::whereEnabled(1)->where('id',6)->first();
+
+        return 'https://myabbottmeetings.webex.com/myabbottmeetings/j.php?MTID=meb5878b4161919e4301b0dec72d96834';
         return 'https://us02web.zoom.us/j/'.$webinar->unique_id.'?pwd='.$webinar->description;
 
         // if (!$webinar) {
