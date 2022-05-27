@@ -300,10 +300,13 @@ export default {
                     {
                         pitch: 0.50,
                         yaw: 14.31,
-                        cssClass: "custom-hotspot vote",
-                        text: "Voting",
+                        cssClass: "custom-hotspot enter",
+                        text: "Evaluation",
                         clickHandlerFunc: () =>{
-                            this.handleVote()
+                            window.open(
+                                'https://psp.com.ph/membership/login',
+                                '_blank' // <- This is what makes it open in a new window.
+                            );
                         }
                     },
                   ],
@@ -750,6 +753,11 @@ export default {
       handleVote(){
              // redirect to vote
             this.$router.push('/vote')
+        },
+      handleEvaluation(){
+             // redirect to vote
+             window.location.href= 'https://psp.com.ph/membership/login'
+            // this.$router.push('/evaluation')
         }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;
