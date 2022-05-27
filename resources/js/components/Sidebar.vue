@@ -57,6 +57,7 @@ export default {
                 {name: "MEETING HALL", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
                 // {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item' , title: 'Pool Area'},
                 // {name: "VOTE", sceneId: 'vote', icon: 'fa-vote-yea', type:'nav-item' , title: 'Cast Vote'},
+                {name: "EVALUATION", sceneId: 'lobby', icon: 'fa-vote-yea', type:'nav-item' , title: 'Evaluation'},
                 {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                     dropdowns:[
                         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
@@ -80,8 +81,12 @@ export default {
         },
 
         handleNavigateTo(item){
-            if(item.name === 'VOTE') {
-                this.$router.push('/vote')
+            if(item.name === 'EVALUATION' ) {
+            this.$emit('handleNavigateTo', item.sceneId);
+                window.open(
+                    'https://psp.com.ph/membership/login',
+                    '_blank' // <- This is what makes it open in a new window.
+                );
             }
             this.$emit('handleNavigateTo', item.sceneId);
             this.closeNav() 
