@@ -13,22 +13,22 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function loginView(){
+    public function loginView()
+    {
         return view('cms.login');
     }
 
-    public function loginUser(Request $request){
+    public function loginUser(Request $request)
+    {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if(Auth::user()->hasRole('admin')){
+            if (Auth::user()->hasRole('admin')) {
                 return redirect()->intended('/cms/users');
-
-            }else{
+            } else {
                 return redirect()->intended('/cms/');
-
             }
         }
 
@@ -37,33 +37,35 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logoutUser(){
+    public function logoutUser()
+    {
         $logout = Auth::logout();
         return redirect()->route('cms.login');
     }
 
-    public function register(){
+    public function register()
+    {
         return 'test';
         return view('users.register');
     }
 
-    public function storeRegistration(Request $request){
+    public function storeRegistration(Request $request)
+    {
         $user = User::create($request->except('api_token'));
         $user->password = Hash::make($request->password);
         $user->save();
-        if($request->role == 'admin'){
+        if ($request->role == 'admin') {
             $admin = Role::where('name', 'admin')->first();
             $user->assignRole($admin);
-
-        }else{
+        } else {
             $sponsor = Role::where('name', 'sponsor')->first();
             $user->assignRole($sponsor);
-
         }
         return back()->withMessage('Registration success');
     }
 
-    public function allUsers(){
+    public function allUsers()
+    {
         // app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // // create permissions
@@ -84,5 +86,16 @@ class AuthController extends Controller
         return response()->json([
             'users' => $users
         ]);
+    }
+
+    public function guest_registration()
+    {
+        return view('auth.registration');
+    }
+
+    public function save_guest_registration(Request $request)
+    {
+        User::create($request->except('_token'));
+        return redirect(\route('guest_registration'));
     }
 }

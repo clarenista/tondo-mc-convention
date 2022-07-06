@@ -34,7 +34,11 @@ class User extends Authenticatable
         'login_code',
         'classification',
         'api_token',
-        'registrant_id'
+        'registrant_id',
+        'prc_no',
+        'hospital_affiliation',
+        'name_on_cert',
+        'position',
     ];
 
     /**
@@ -128,7 +132,8 @@ class User extends Authenticatable
         return $this->hasMany(ChatMessage::class);
     }
 
-    public function activities(){
+    public function activities()
+    {
 
         return $this->hasMany(UserActivity::class);
     }
