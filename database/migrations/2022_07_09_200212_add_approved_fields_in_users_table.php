@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailAddressInUsersTable extends Migration
+class AddApprovedFieldsInUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddEmailAddressInUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email_address')->unique()->nullable()->after('email');
+            $table->integer('approved_by')->nullable();
+            $table->timestamp('approved_at')->nullable();
         });
     }
 

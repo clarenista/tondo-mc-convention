@@ -5,7 +5,25 @@ Registration
 @stop
 
 @section('content')
+<div class="container">
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+</div>
 <section>
+
     <div class="container">
         <div class="row ">
             <div class="col-md-4 py-5 bg-primary text-white text-center ">
@@ -25,38 +43,38 @@ Registration
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-4 col-xs-12">
-                            <input name="first_name" placeholder="First Name" class="form-control" type="text">
+                            <input name="first_name" value="{{ old('first_name', '') }}" placeholder="First Name" class="form-control" type="text" required>
                         </div>
                         <div class="form-group col-md-4 col-xs-12">
-                            <input name="middle_name" placeholder="Middle Name" class="form-control" type="text">
+                            <input name="middle_name" value="{{ old('middle_name', '') }}" placeholder="Middle Name" class="form-control" type="text" required>
                         </div>
                         <div class="form-group col-md-4 col-xs-12">
-                            <input name="last_name" placeholder="Last Name" class="form-control" type="text">
+                            <input name="last_name" value="{{ old('last_name', '') }}" placeholder="Last Name" class="form-control" type="text" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-4 col-xs-12">
-                            <input name="prc_no" placeholder="PRC ID (if applicable)" class="form-control" type="number">
+                            <input name="prc_no" value="{{ old('prc_no', '') }}" placeholder="PRC ID (if applicable)" class="form-control" type="number" required>
                         </div>
                         <div class="form-group col-md col-xs-12">
-                            <input name="hospital_affiliation" placeholder="Hospital Affiliation" class="form-control" type="text">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md col-xs-12">
-                            <input name="email_address" placeholder="Email Address" class="form-control" type="email">
-                        </div>
-                        <div class="form-group col-md col-xs-12">
-                            <input name="confirm_email_address" placeholder="Confirm Email Address" class="form-control" type="email">
+                            <input name="hospital_affiliation" value="{{ old('hospital_affiliation', '') }}" placeholder="Hospital Affiliation" class="form-control" type="text" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md col-xs-12">
-                            <input name="name_on_cert" placeholder="Name on the Certificate" class="form-control" type="text">
+                            <input name="email_address" value="{{ old('email_address', '') }}" placeholder="Email Address" class="form-control" type="email" required>
+                        </div>
+                        <div class="form-group col-md col-xs-12">
+                            <input name="email_address_confirmation" value="{{ old('email_address_confirmation', '') }}" placeholder="Confirm Email Address" class="form-control" type="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md col-xs-12">
+                            <input name="name_on_cert" value="{{ old('name_on_cert', '') }}" placeholder="Name on the Certificate" class="form-control" type="text" required>
                         </div>
                         <div class="form-group col-md-6">
 
-                            <select id="inputState" name="position" class="form-control">
+                            <select id="inputState" name="position" value="{{ old('position', '') }}" class="form-control" required>
                                 <option value="">Choose Position...</option>
                                 <option value="Consultant"> Consultant</option>
                                 <option value="Fellow-in-training"> Fellow-in-training</option>
@@ -71,8 +89,8 @@ Registration
                     <div class="ml-1 form-row">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                                <label class="form-check-label" for="invalidCheck2">
+                                <input class="form-check-input" type="checkbox" name="disclaimer_checkbox" id="disclaimer1" required>
+                                <label class="form-check-label" for="disclaimer1">
                                     <small>I understand that all information I have provided will be processed by the account owner and host in accordance to the Data Privacy Act of 2012 (RA 10173)</small>
                                 </label>
                             </div>
@@ -81,15 +99,15 @@ Registration
                     <div class="ml-1 form-row">
                         <div class="form-group">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                                <label class="form-check-label" for="invalidCheck2">
+                                <input class="form-check-input" type="checkbox" name="disclaimer_checkbox" id="disclaimer2" required>
+                                <label class="form-check-label" for="disclaimer2">
                                     <small>I allow to share my name to the industry partners for attendance purposes.</small>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row" id="register-btn-container" style="display: none;">
                         <button type="submit" class="btn btn-danger">Register</button>
                     </div>
                 </form>
@@ -98,4 +116,23 @@ Registration
     </div>
 </section>
 
+@stop
+
+@section('js')
+<script>
+    let checkedDisclaimers = []
+    const disclaimers = $('[name="disclaimer_checkbox"]')
+    for (let d of disclaimers) {
+        d.addEventListener('change', function(e) {
+            if (this.checked) checkedDisclaimers.push(this.id)
+            else checkedDisclaimers.splice(checkedDisclaimers.findIndex(cd => cd === this.id), 1)
+            if (checkedDisclaimers.length >= 2) {
+                $('#register-btn-container').show()
+            } else {
+                $('#register-btn-container').hide()
+            }
+
+        })
+    }
+</script>
 @stop
