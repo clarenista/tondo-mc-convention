@@ -8,7 +8,6 @@
                     loop
                     :src="videoSrc"
                     ref="videoRef"
-                    @ended="videoEnded()"
                 ></video>
             </div>
         </Transition>
@@ -309,7 +308,7 @@ export default {
             fd.append("password", this.text_password);
             let { data } = await axios.post("/api/login", fd);
             if (data.status === "ok") {
-                this.show = !this.show;
+                // this.show = !this.show;
                 this.isLoginSuccess = true;
                 this.$emit("isLoginSuccess", this.isLoginSuccess);
                 this.$store.commit("changeUser", data.user);
@@ -318,14 +317,14 @@ export default {
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("sceneId", "lobby");
                 localStorage.setItem("bgmStatus", true);
-                setTimeout(() => {
-                    this.show = !this.show;
-                }, 500);
+                // setTimeout(() => {
+                //     this.show = !this.show;
+                // }, 500);
                 //
-                this.videoSrc = this.videos.at(1);
-                this.videoAutoplay = !this.videoAutoplay;
-                this.$refs.videoRef.play();
-                this.videoSrc = this.videos.at(1);
+                // this.videoSrc = this.videos.at(1);
+                // this.videoAutoplay = !this.videoAutoplay;
+                // this.$refs.videoRef.play();
+                // this.videoSrc = this.videos.at(1);
 
                 // this.showLogin();
             } else {
@@ -347,8 +346,9 @@ export default {
         },
         letsGo() {
             this.letsGoButtonClicked = true;
-            this.$refs.videoRef.play();
-            this.$refs.videoRef.loop = false;
+            // this.$refs.videoRef.play();
+            // this.$refs.videoRef.loop = false;
+            this.$router.push("/");
         },
         videoEnded() {
             this.$router.push("/");
