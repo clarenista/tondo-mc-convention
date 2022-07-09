@@ -142,42 +142,10 @@
                                         <input
                                             type="text"
                                             class="form-control text-center"
-                                            placeholder="Username"
+                                            placeholder="Enter email address"
                                             v-model="text_email"
                                             required
                                         />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input
-                                                :type="
-                                                    isSeePassword
-                                                        ? 'text'
-                                                        : 'password'
-                                                "
-                                                class="form-control text-center"
-                                                id="txtpassword"
-                                                placeholder="Password"
-                                                v-model="text_password"
-                                                required
-                                            />
-                                            <div
-                                                class="input-group-append"
-                                                @click="toggleSeePassword"
-                                            >
-                                                <span
-                                                    class="input-group-text"
-                                                    id="my-addon"
-                                                    ><i
-                                                        :class="
-                                                            isSeePassword
-                                                                ? 'fa fa-eye'
-                                                                : 'fa fa-eye-slash'
-                                                        "
-                                                    ></i
-                                                ></span>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
@@ -304,8 +272,8 @@ export default {
             //     return false
             // }
             let fd = new FormData();
-            fd.append("email", this.text_email);
-            fd.append("password", this.text_password);
+            fd.append("email_address", this.text_email);
+            // fd.append("password", this.text_password);
             let { data } = await axios.post("/api/login", fd);
             if (data.status === "ok") {
                 // this.show = !this.show;
