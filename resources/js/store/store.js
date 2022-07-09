@@ -53,118 +53,118 @@ export default new Vuex.Store({
             {
                 scene: "lobby",
                 type: "scene",
-                pitch: 1.14,
-                yaw: -13.3,
-                cssClass: "custom-hotspot enter",
-                sceneId: "meeting_hall"
-            },
-            {
-                scene: "lobby",
-                type: "info",
-                pitch: 2.45,
-                yaw: -162.28,
-                text: "PSP Cast"
-            },
-
-            {
-                scene: "lobby",
-                type: "scene",
-                pitch: 11.12,
-                yaw: -29.65,
-                cssClass: "custom-hotspot hall_a",
-                sceneId: "hall_a"
-            },
-
-            {
-                scene: "lobby",
-                type: "scene",
-                pitch: 12.08,
-                yaw: -18.84,
-                cssClass: "custom-hotspot hall_b",
-                sceneId: "hall_b"
-            },
-
-            {
-                scene: "lobby",
-                type: "scene",
-                pitch: 12.58,
-                yaw: -6.25,
-                cssClass: "custom-hotspot hall_c",
-                sceneId: "hall_c"
-            },
-
-            {
-                scene: "lobby",
-                type: "scene",
-                pitch: 12.65,
-                yaw: 7.15,
-                cssClass: "custom-hotspot hall_d",
-                sceneId: "hall_d"
-            },
-
-            {
-                // microscope
-                scene: "lobby",
-                type: "info",
-                pitch: 0.73,
-                yaw: -26.8,
-                text: "The Pathologist's Eye"
-            },
-
-            {
-                // microscope
-                scene: "lobby",
-                type: "scene",
-                pitch: -0.45,
-                yaw: -24.19,
-                cssClass: "custom-hotspot arrow_left",
-                sceneId: "microscope",
-                text: "View microscope"
-            },
-
-            {
-                // go to lobby
-                scene: "microscope",
-                type: "scene",
-                pitch: -10.03,
-                yaw: -176.2,
-                cssClass: "custom-hotspot enter",
-                sceneId: "lobby",
-                text: "Back to lobby"
-            },
-
-            {
-                // going to bar area
-                scene: "lobby",
-                type: "scene",
-                pitch: -4.24,
-                yaw: 39.11,
+                pitch: 2.42,
+                yaw: 22.07,
                 cssClass: "custom-hotspot arrow_right",
-                sceneId: "bar",
-                text: "Bar Area"
+                sceneId: "meeting_hall", 
+                text: "Go to Meeting Hall"
             },
+            // {
+            //     scene: "lobby",
+            //     type: "info",
+            //     pitch: 2.45,
+            //     yaw: -162.28
+            //     // text: "PSP cast"
+            // },
 
+            // *HOTSPOT FOR EXHIBIT HALL
             {
-                // going to PSP monument
                 scene: "lobby",
                 type: "scene",
-                pitch: -5.27,
-                yaw: -173.28,
-                cssClass: "custom-hotspot arrow_right",
-                sceneId: "psp_monument",
-                text: "Go to PSP Cast"
-            },
-
-            {
-                // going to Pool area
-                scene: "lobby",
-                type: "scene",
-                pitch: 10.71,
-                yaw: -38.24,
+                pitch: 2.42,
+                yaw: -22.43,
                 cssClass: "custom-hotspot arrow_left",
-                sceneId: "pool_area",
-                text: "Go to Pool Area"
+                sceneId: "hall_a",
+                text: "Go to Exhibit Hall"
             },
+
+            // {
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: 12.08,
+            //     yaw: -18.84,
+            //     cssClass: "custom-hotspot hall_b",
+            //     sceneId: "hall_b"
+            // },
+
+            // {
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: 12.58,
+            //     yaw: -6.25,
+            //     cssClass: "custom-hotspot hall_c",
+            //     sceneId: "hall_c"
+            // },
+
+            // {
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: 12.65,
+            //     yaw: 7.15,
+            //     cssClass: "custom-hotspot hall_d",
+            //     sceneId: "hall_d"
+            // },
+
+            // {
+            //     // microscope
+            //     scene: "lobby",
+            //     type: "info",
+            //     pitch: 0.73,
+            //     yaw: -26.8,
+            // },
+
+            // {
+            //     // microscope
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: -0.45,
+            //     yaw: -24.19,
+            //     cssClass: "custom-hotspot arrow_left",
+            //     sceneId: "microscope",
+            // },
+
+            // {
+            //     // go to lobby
+            //     scene: "microscope",
+            //     type: "scene",
+            //     pitch: -10.03,
+            //     yaw: -176.2,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "lobby",
+            //     text: "Back to lobby"
+            // },
+
+            // {
+            //     // going to bar area
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: -4.24,
+            //     yaw: 39.11,
+            //     cssClass: "custom-hotspot arrow_right",
+            //     sceneId: "bar",
+            //     text: "Bar Area"
+            // },
+
+            // {
+            //     // going to PSP monument
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: -5.27,
+            //     yaw: -173.28,
+            //     cssClass: "custom-hotspot arrow_right",
+            //     sceneId: "psp_monument",
+            // },
+
+            // {
+            //     // going to Pool area
+            //     scene: "lobby",
+            //     type: "scene",
+            //     pitch: 10.71,
+            //     yaw: -38.24,
+            //     cssClass: "custom-hotspot arrow_left",
+            //     sceneId: "pool_area",
+            //     text: "Go to Pool Area"
+            // },
 
             // BAR AREA
             {
@@ -196,51 +196,51 @@ export default new Vuex.Store({
                 text: "Go to Bar area"
             },
             // psp-monument AREA
-            {
-                scene: "psp_monument",
-                type: "scene",
-                pitch: -5.15,
-                yaw: 96.58,
-                cssClass: "custom-hotspot enter",
-                sceneId: "lobby",
-                text: "Back to lobby"
-            },
+            // {
+            //     scene: "psp_monument",
+            //     type: "scene",
+            //     pitch: -5.15,
+            //     yaw: 96.58,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "lobby",
+            //     text: "Back to lobby"
+            // },
 
             // HALL A HOTSPOT
-            {
-                scene: "hall_a",
-                type: "scene",
-                pitch: 8.68,
-                yaw: -14.92,
-                cssClass: "custom-hotspot hall_b",
-                sceneId: "hall_b"
-            },
+            // {
+            //     scene: "hall_a",
+            //     type: "scene",
+            //     pitch: 8.68,
+            //     yaw: -14.92,
+            //     cssClass: "custom-hotspot hall_b",
+            //     sceneId: "hall_b"
+            // },
 
-            {
-                scene: "hall_a",
-                type: "scene",
-                pitch: 8.56,
-                yaw: 15.33,
-                cssClass: "custom-hotspot hall_c",
-                sceneId: "hall_c"
-            },
+            // {
+            //     scene: "hall_a",
+            //     type: "scene",
+            //     pitch: 8.56,
+            //     yaw: 15.33,
+            //     cssClass: "custom-hotspot hall_c",
+            //     sceneId: "hall_c"
+            // },
 
-            {
-                scene: "hall_a",
-                type: "scene",
-                pitch: 9.61,
-                yaw: 0,
-                cssClass: "custom-hotspot enter",
-                sceneId: "meeting_hall"
-            },
-            {
-                scene: "hall_a",
-                type: "scene",
-                pitch: 7.32,
-                yaw: 36.45,
-                cssClass: "custom-hotspot hall_d",
-                sceneId: "hall_d"
-            },
+            // {
+            //     scene: "hall_a",
+            //     type: "scene",
+            //     pitch: 9.61,
+            //     yaw: 0,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "meeting_hall"
+            // },
+            // {
+            //     scene: "hall_a",
+            //     type: "scene",
+            //     pitch: 7.32,
+            //     yaw: 36.45,
+            //     cssClass: "custom-hotspot hall_d",
+            //     sceneId: "hall_d"
+            // },
 
             {
                 scene: "hall_a",
@@ -252,151 +252,151 @@ export default new Vuex.Store({
             },
 
             // HALL B HOTSPOTS
-            {
-                scene: "hall_b",
-                type: "scene",
-                pitch: 7.04,
-                yaw: -36.73,
-                cssClass: "custom-hotspot hall_a",
-                sceneId: "hall_a"
-            },
-            {
-                scene: "hall_b",
-                type: "scene",
-                pitch: 8.56,
-                yaw: 15.33,
-                cssClass: "custom-hotspot hall_c",
-                sceneId: "hall_c"
-            },
-            {
-                scene: "hall_b",
-                type: "scene",
-                pitch: 9.61,
-                yaw: 0,
-                cssClass: "custom-hotspot enter",
-                sceneId: "meeting_hall"
-            },
-            {
-                scene: "hall_b",
-                type: "scene",
-                pitch: 7.32,
-                yaw: 36.45,
-                cssClass: "custom-hotspot hall_d",
-                sceneId: "hall_d"
-            },
+            // {
+            //     scene: "hall_b",
+            //     type: "scene",
+            //     pitch: 7.04,
+            //     yaw: -36.73,
+            //     cssClass: "custom-hotspot hall_a",
+            //     sceneId: "hall_a"
+            // },
+            // {
+            //     scene: "hall_b",
+            //     type: "scene",
+            //     pitch: 8.56,
+            //     yaw: 15.33,
+            //     cssClass: "custom-hotspot hall_c",
+            //     sceneId: "hall_c"
+            // },
+            // {
+            //     scene: "hall_b",
+            //     type: "scene",
+            //     pitch: 9.61,
+            //     yaw: 0,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "meeting_hall"
+            // },
+            // {
+            //     scene: "hall_b",
+            //     type: "scene",
+            //     pitch: 7.32,
+            //     yaw: 36.45,
+            //     cssClass: "custom-hotspot hall_d",
+            //     sceneId: "hall_d"
+            // },
 
-            {
-                scene: "hall_b",
-                type: "scene",
-                pitch: -1.52,
-                yaw: -0.1,
-                cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
-            },
+            // {
+            //     scene: "hall_b",
+            //     type: "scene",
+            //     pitch: -1.52,
+            //     yaw: -0.1,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "lobby"
+            // },
 
-            {
-                scene: "hall",
-                type: "scene",
-                pitch: -22.8,
-                yaw: 34.1,
-                cssClass: "custom-hotspot hall_c",
-                sceneId: "hall_c"
-            },
+            // {
+            //     scene: "hall",
+            //     type: "scene",
+            //     pitch: -22.8,
+            //     yaw: 34.1,
+            //     cssClass: "custom-hotspot hall_c",
+            //     sceneId: "hall_c"
+            // },
 
             // HALL C HOTSPOTS
-            {
-                scene: "hall_c",
-                type: "scene",
-                pitch: 7.04,
-                yaw: -36.73,
-                cssClass: "custom-hotspot hall_a",
-                sceneId: "hall_a"
-            },
-            {
-                scene: "hall_c",
-                type: "scene",
-                pitch: 8.68,
-                yaw: -14.92,
-                cssClass: "custom-hotspot hall_b",
-                sceneId: "hall_b"
-            },
-            {
-                scene: "hall_c",
-                type: "scene",
-                pitch: 9.61,
-                yaw: 0,
-                cssClass: "custom-hotspot enter",
-                sceneId: "meeting_hall"
-            },
-            {
-                scene: "hall_c",
-                type: "scene",
-                pitch: 7.32,
-                yaw: 36.45,
-                cssClass: "custom-hotspot hall_d",
-                sceneId: "hall_d"
-            },
+            // {
+            //     scene: "hall_c",
+            //     type: "scene",
+            //     pitch: 7.04,
+            //     yaw: -36.73,
+            //     cssClass: "custom-hotspot hall_a",
+            //     sceneId: "hall_a"
+            // },
+            // {
+            //     scene: "hall_c",
+            //     type: "scene",
+            //     pitch: 8.68,
+            //     yaw: -14.92,
+            //     cssClass: "custom-hotspot hall_b",
+            //     sceneId: "hall_b"
+            // },
+            // {
+            //     scene: "hall_c",
+            //     type: "scene",
+            //     pitch: 9.61,
+            //     yaw: 0,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "meeting_hall"
+            // },
+            // {
+            //     scene: "hall_c",
+            //     type: "scene",
+            //     pitch: 7.32,
+            //     yaw: 36.45,
+            //     cssClass: "custom-hotspot hall_d",
+            //     sceneId: "hall_d"
+            // },
 
-            {
-                scene: "hall_c",
-                type: "scene",
-                pitch: -1.52,
-                yaw: -0.1,
-                cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
-            },
+            // {
+            //     scene: "hall_c",
+            //     type: "scene",
+            //     pitch: -1.52,
+            //     yaw: -0.1,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "lobby"
+            // },
 
-            {
-                scene: "hall",
-                type: "scene",
-                pitch: -22.8,
-                yaw: -34.1,
-                cssClass: "custom-hotspot hall_b",
-                sceneId: "hall_b"
-            },
+            // {
+            //     scene: "hall",
+            //     type: "scene",
+            //     pitch: -22.8,
+            //     yaw: -34.1,
+            //     cssClass: "custom-hotspot hall_b",
+            //     sceneId: "hall_b"
+            // },
 
             // HALL D HOTSPOTS
-            {
-                scene: "hall_d",
-                type: "scene",
-                pitch: 7.04,
-                yaw: -36.73,
-                cssClass: "custom-hotspot hall_a",
-                sceneId: "hall_a"
-            },
-            {
-                scene: "hall_d",
-                type: "scene",
-                pitch: 8.68,
-                yaw: -14.92,
-                cssClass: "custom-hotspot hall_b",
-                sceneId: "hall_b"
-            },
-            {
-                scene: "hall_d",
-                type: "scene",
-                pitch: 9.61,
-                yaw: 0,
-                cssClass: "custom-hotspot enter",
-                sceneId: "meeting_hall"
-            },
-            {
-                scene: "hall_d",
-                type: "scene",
-                pitch: 8.56,
-                yaw: 15.33,
-                cssClass: "custom-hotspot hall_c",
-                sceneId: "hall_c"
-            },
+            // {
+            //     scene: "hall_d",
+            //     type: "scene",
+            //     pitch: 7.04,
+            //     yaw: -36.73,
+            //     cssClass: "custom-hotspot hall_a",
+            //     sceneId: "hall_a"
+            // },
+            // {
+            //     scene: "hall_d",
+            //     type: "scene",
+            //     pitch: 8.68,
+            //     yaw: -14.92,
+            //     cssClass: "custom-hotspot hall_b",
+            //     sceneId: "hall_b"
+            // },
+            // {
+            //     scene: "hall_d",
+            //     type: "scene",
+            //     pitch: 9.61,
+            //     yaw: 0,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "meeting_hall"
+            // },
+            // {
+            //     scene: "hall_d",
+            //     type: "scene",
+            //     pitch: 8.56,
+            //     yaw: 15.33,
+            //     cssClass: "custom-hotspot hall_c",
+            //     sceneId: "hall_c"
+            // },
 
-            {
-                scene: "hall_d",
-                type: "scene",
-                pitch: -1.52,
-                yaw: -0.1,
-                cssClass: "custom-hotspot enter",
-                sceneId: "lobby"
-            },
+            // {
+            //     scene: "hall_d",
+            //     type: "scene",
+            //     pitch: -1.52,
+            //     yaw: -0.1,
+            //     cssClass: "custom-hotspot enter",
+            //     sceneId: "lobby"
+            // },
 
             // MEETING HALL HOTSPOTS
             {

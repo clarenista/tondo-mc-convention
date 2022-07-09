@@ -95,7 +95,10 @@ class AuthController extends Controller
 
     public function save_guest_registration(Request $request)
     {
+        $validated = $request->validate([
+            'email_address' => 'unique:users| confirmed',
+        ]);
         User::create($request->except('_token'));
-        return redirect(\route('guest_registration'));
+        return redirect(\route('guest_registration'))->with('status', 'Registration has successfully submitted!');
     }
 }

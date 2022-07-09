@@ -20,7 +20,7 @@
         <Modal :value="camera" v-if="camera">
             <template v-slot:title>
                 <img
-                    src="/images/71st_logo_min.png"
+                    src="/images/71st_logo.png"
                     alt=""
                     class="center_logo"
                 />
@@ -240,7 +240,7 @@ export default {
         standee_index: null,
         standees: null,
 
-        welcomeMessage: 'Welcome to our PSP 71st Platinum Year Virtual Convention Event',
+        welcomeMessage: 'Welcome to our Virtual Convention Event',
       }
     },
     mounted() {
@@ -271,7 +271,7 @@ export default {
 
         this.panorama_details = {
             "default": {
-                "firstScene": !!localStorage.getItem('sceneId') && 'lobby',
+                "firstScene": localStorage.getItem('sceneId'),
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
@@ -287,8 +287,8 @@ export default {
                 "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
                     {
-                        pitch: -2.37,
-                        yaw: -190.54,
+                        pitch: 4.57,
+                        yaw: -167.12,
                         cssClass: "custom-hotspot enter",
                         text: "logout",
                         clickHandlerFunc: () =>{
@@ -297,18 +297,15 @@ export default {
                     },
 
                     // voting hot spot
-                    {
-                        pitch: 0.50,
-                        yaw: 14.31,
-                        cssClass: "custom-hotspot enter",
-                        text: "Evaluation",
-                        clickHandlerFunc: () =>{
-                            window.open(
-                                'https://psp.com.ph/membership/login',
-                                '_blank' // <- This is what makes it open in a new window.
-                            );
-                        }
-                    },
+                    // {
+                    //     pitch: 0.50,
+                    //     yaw: 14.31,
+                    //     cssClass: "custom-hotspot vote",
+                    //     text: "Voting",
+                    //     clickHandlerFunc: () =>{
+                    //         this.handleVote()
+                    //     }
+                    // },
                   ],
 
 
@@ -753,11 +750,6 @@ export default {
       handleVote(){
              // redirect to vote
             this.$router.push('/vote')
-        },
-      handleEvaluation(){
-             // redirect to vote
-             window.location.href= 'https://psp.com.ph/membership/login'
-            // this.$router.push('/evaluation')
         }
       // BOOTH TRACKER
 // background: url(/images/loader.gif) 0 0;

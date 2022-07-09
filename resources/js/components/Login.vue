@@ -8,7 +8,6 @@
                     loop
                     :src="videoSrc"
                     ref="videoRef"
-                    @ended="videoEnded()"
                 ></video>
             </div>
         </Transition>
@@ -50,7 +49,7 @@
                     >
                         <template v-slot:title>
                             <img
-                                src="/images/71st_logo_min.png"
+                                src="/images/71st_logo.png"
                                 alt=""
                                 class="center_logo mt-1"
                             />
@@ -66,7 +65,7 @@
                         <template v-slot:body>
                             <p
                                 class="text-center lead mt-3 mb-30"
-                                style="color: #77c2e6; font-weight: 300"
+                                style="color: #FFF; font-weight: 300"
                             >
                                 <strong>{{ welcomeMessage }}</strong>
                             </p>
@@ -143,42 +142,10 @@
                                         <input
                                             type="text"
                                             class="form-control text-center"
-                                            placeholder="Username"
+                                            placeholder="Enter email address"
                                             v-model="text_email"
                                             required
                                         />
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input
-                                                :type="
-                                                    isSeePassword
-                                                        ? 'text'
-                                                        : 'password'
-                                                "
-                                                class="form-control text-center"
-                                                id="txtpassword"
-                                                placeholder="Password"
-                                                v-model="text_password"
-                                                required
-                                            />
-                                            <div
-                                                class="input-group-append"
-                                                @click="toggleSeePassword"
-                                            >
-                                                <span
-                                                    class="input-group-text"
-                                                    id="my-addon"
-                                                    ><i
-                                                        :class="
-                                                            isSeePassword
-                                                                ? 'fa fa-eye'
-                                                                : 'fa fa-eye-slash'
-                                                        "
-                                                    ></i
-                                                ></span>
-                                            </div>
-                                        </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center">
@@ -274,7 +241,7 @@ export default {
             visible: false,
 
             privacy_clause:
-                'Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
+                'Note: You will be entitled to join the 2nd Postgraduate Course raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
             agreement:
                 "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
             agree: false,
@@ -282,8 +249,7 @@ export default {
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
             videoSrc: "images/Venue1.mp4",
 
-            welcomeMessage:
-                "Welcome to our PSP 71st Platinum Year Virtual Convention Event",
+            welcomeMessage: "Welcome to our 2nd Postgraduate Course",
             letsGoButtonClicked: false
         };
     },
@@ -306,11 +272,11 @@ export default {
             //     return false
             // }
             let fd = new FormData();
-            fd.append("email", this.text_email);
-            fd.append("password", this.text_password);
+            fd.append("email_address", this.text_email);
+            // fd.append("password", this.text_password);
             let { data } = await axios.post("/api/login", fd);
             if (data.status === "ok") {
-                this.show = !this.show;
+                // this.show = !this.show;
                 this.isLoginSuccess = true;
                 this.$emit("isLoginSuccess", this.isLoginSuccess);
                 this.$store.commit("changeUser", data.user);
@@ -319,14 +285,14 @@ export default {
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("sceneId", "lobby");
                 localStorage.setItem("bgmStatus", true);
-                setTimeout(() => {
-                    this.show = !this.show;
-                }, 500);
+                // setTimeout(() => {
+                //     this.show = !this.show;
+                // }, 500);
                 //
-                this.videoSrc = this.videos.at(1);
-                this.videoAutoplay = !this.videoAutoplay;
-                this.$refs.videoRef.play();
-                this.videoSrc = this.videos.at(1);
+                // this.videoSrc = this.videos.at(1);
+                // this.videoAutoplay = !this.videoAutoplay;
+                // this.$refs.videoRef.play();
+                // this.videoSrc = this.videos.at(1);
 
                 // this.showLogin();
             } else {
@@ -348,8 +314,9 @@ export default {
         },
         letsGo() {
             this.letsGoButtonClicked = true;
-            this.$refs.videoRef.play();
-            this.$refs.videoRef.loop = false;
+            // this.$refs.videoRef.play();
+            // this.$refs.videoRef.loop = false;
+            this.$router.push("/");
         },
         videoEnded() {
             this.$router.push("/");

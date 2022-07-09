@@ -8,7 +8,7 @@
                 tabindex="-1" role="dialog" aria-hidden="true">
 
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="background: linear-gradient(#006595, #8241e4);">
+                    <div class="modal-content">
                         <div class="modal-title container text-uppercase">
                             <div class="align-middle">
                             <slot name="title"></slot>
@@ -51,6 +51,14 @@ export default {
 }
 .h1, h1 {
     font-weight: 100;
+}
+
+.modal-body{
+    background: linear-gradient(#750092, #005229);
+}
+
+.modal-footer{
+    background:#005229;
 }
 
 </style>
