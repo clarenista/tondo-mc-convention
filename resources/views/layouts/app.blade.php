@@ -10,6 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script defer src="{{ mix('js/app.js') }}?v71st"></script>
   <title>Convention</title>
   <style>
     body {
@@ -48,7 +49,7 @@
 
   <div id="app" ref="appRef">
   </div>
-  <script src="{{ mix('js/app.js') }}?v71st"></script>
+
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.js" integrity="sha512-wi1en5HQFr/+nc03XLj7iJohyUcclImFC3U5uOjYE+CM6FTla7scwzbuy56+Z5sIZ3sZy1KuNdjLIid4vhJMzg==" crossorigin="anonymous"></script> -->
 
 

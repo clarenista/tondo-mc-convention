@@ -126,7 +126,7 @@ Registration
         d.addEventListener('change', function(e) {
             if (this.checked) checkedDisclaimers.push(this.id)
             else checkedDisclaimers.splice(checkedDisclaimers.findIndex(cd => cd === this.id), 1)
-            if (checkedDisclaimers.length >= 2) {
+            if (checkedDisclaimers.length >= disclaimers.length) {
                 $('#register-btn-container').show()
             } else {
                 $('#register-btn-container').hide()
