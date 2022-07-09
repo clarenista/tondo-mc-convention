@@ -2,7 +2,7 @@
 <div>
 
     <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'">
-        <div class="text-center mb-5"><img id="psp_logo" src="images/psp_sidebar_logo.png" width="190px" alt="psp_logo" srcset=""></div>
+        <div class="text-center mb-5"><img id="psp_logo" src="images/71st_logo.png" width="190px" alt="psp_logo" srcset=""></div>
         <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a>
 
         <a 
@@ -55,17 +55,15 @@ export default {
                 // {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item', title: 'Beach'},
                 {name: "LOBBY", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
                 {name: "MEETING HALL", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
-                // {name: "Pool Area", sceneId: 'pool_area', icon: 'fa-tint fa-lg', type:'nav-item' , title: 'Pool Area'},
-                // {name: "VOTE", sceneId: 'vote', icon: 'fa-vote-yea', type:'nav-item' , title: 'Cast Vote'},
-                {name: "EVALUATION", sceneId: 'lobby', icon: 'fa-vote-yea', type:'nav-item' , title: 'Evaluation'},
-                {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
-                    dropdowns:[
-                        // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
-                        {name: "HALL - A", sceneId: 'hall_a', icon: 'fa-map-marker'},
-                        {name: "HALL - B", sceneId: 'hall_b', icon: 'fa-map-marker'},
-                        {name: "HALL - C", sceneId: 'hall_c', icon: 'fa-map-marker'},
-                        {name: "HALL - D", sceneId: 'hall_d', icon: 'fa-map-marker'},
-                    ], title: 'Exhibit Hall'},
+                {name: "EXHIBIT HALL", sceneId: 'hall_a', icon: 'fa-map-marker', type:'nav-item' , title: 'Exhibit Hall'},
+                // {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
+                //     dropdowns:[
+                //         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
+                //         {name: "HALL - A", sceneId: 'hall_a', icon: 'fa-map-marker'},
+                //         {name: "HALL - B", sceneId: 'hall_b', icon: 'fa-map-marker'},
+                //         {name: "HALL - C", sceneId: 'hall_c', icon: 'fa-map-marker'},
+                //         {name: "HALL - D", sceneId: 'hall_d', icon: 'fa-map-marker'},
+                //     ], title: 'Exhibit Hall'},
             ],
         }
     },
@@ -81,13 +79,6 @@ export default {
         },
 
         handleNavigateTo(item){
-            if(item.name === 'EVALUATION' ) {
-            this.$emit('handleNavigateTo', item.sceneId);
-                window.open(
-                    'https://psp.com.ph/membership/login',
-                    '_blank' // <- This is what makes it open in a new window.
-                );
-            }
             this.$emit('handleNavigateTo', item.sceneId);
             this.closeNav() 
             this.showDropdown = false
@@ -106,6 +97,7 @@ export default {
     },
 
     mounted() {
+        console.log(this.showDropdown)
     },
 }
 </script>
@@ -118,7 +110,7 @@ button.open-btn{
     top: 0;
     z-index: 2;
     
-    background-image: linear-gradient(90deg,  #cc00ff, #0073a8);
+    background-image: linear-gradient(90deg,  #750092, #005229);
     border: #cc00ff;
     /* border-radius: 15%;
     -moz-border-radius: 15px;
@@ -138,7 +130,7 @@ button.open-btn{
 
   /* border: 1px solid red; */
 
-  background-image: linear-gradient(180deg, #cc00ff, #0073a8);
+  background-image: linear-gradient(180deg, #750092, #005229);
   /* transparent css */
   opacity: 0.9;
   /* pattern */

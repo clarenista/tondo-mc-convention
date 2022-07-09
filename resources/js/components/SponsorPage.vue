@@ -30,11 +30,10 @@
                                         class="fa fa-info-circle text-info"
                                         aria-hidden="true"
                                     ></i>
-                                    You are about to leave the 71<sup>st</sup>
-                                    PSP virtual convention site, you will be
+                                    You are about to leave the virtual convention site, you will be
                                     redirected to:
                                 </h3>
-                                <a
+                                <a class="lead"
                                     :href="selectedHotspot.assets[0].url"
                                     target="_blank"
                                 >

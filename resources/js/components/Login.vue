@@ -50,7 +50,7 @@
                     >
                         <template v-slot:title>
                             <img
-                                src="/images/71st_logo_min.png"
+                                src="/images/71st_logo.png"
                                 alt=""
                                 class="center_logo mt-1"
                             />
@@ -66,7 +66,7 @@
                         <template v-slot:body>
                             <p
                                 class="text-center lead mt-3 mb-30"
-                                style="color: #77c2e6; font-weight: 300"
+                                style="color: #FFF; font-weight: 300"
                             >
                                 <strong>{{ welcomeMessage }}</strong>
                             </p>
@@ -274,7 +274,7 @@ export default {
             visible: false,
 
             privacy_clause:
-                'Note: You will be entitled to join the PSP raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
+                'Note: You will be entitled to join the 2nd Postgraduate Course raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
             agreement:
                 "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
             agree: false,
@@ -282,8 +282,7 @@ export default {
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
             videoSrc: "images/Venue1.mp4",
 
-            welcomeMessage:
-                "Welcome to our PSP 71st Platinum Year Virtual Convention Event",
+            welcomeMessage: "Welcome to our 2nd Postgraduate Course",
             letsGoButtonClicked: false
         };
     },
