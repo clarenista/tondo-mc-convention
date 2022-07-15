@@ -12,31 +12,55 @@
             </div>
         </Transition>
         <div class="content" v-if="!isLoginSuccess">
-            <img
-                src="images/71st_login_btn.png"
-                @click="showLogin()"
-                id="logo"
-                style="cursor: pointer;"
-                width="220px"
-                alt=""
-                srcset=""
-            />
+            <div class="event_info">
+                <div class="card mt-3" style="width: 60%;">
+                    <div class="text-center text-light small mt-3">
+                        <p>
+                            <img style="padding: 0 10px; width: 70%;"
+                                src="images/header.png"
+                                class="card-img-top"
+                                alt="..."
+                            />
+                        </p> 
+                    </div>
 
-            <!-- <div class="event_info mb-3">
-                <div class="card bg-warning mt-3" style="width: 18rem;">
-                    <img
-                        src="images/PSP 71st Banner.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
+                    <div class="border_bot">
+                        &nbsp;
+                    </div>
+                    
                     <div class="card-body">
-                        <h5 class="card-title">Not registered yet?</h5>
-                        <a href="#" class="btn btn-primary"
-                            >Proceed to Registration</a
-                        >
+                        <h5 class="card-title text-center mt-3">
+                            2<sup>nd</sup> POSTGRADUATE COURSE</h5>
+                       
+                        <h1 class="text-center text-light">
+                            TAILORING<br> THE OPTIMAL MANAGEMENT<br> OF OB-GYN CONDITIONS</h1>   
+                    
+                        <p class="event_date_box mt-3 text-light">
+                            AUGUST 11 - 12, 2022<br>
+                            04:00 PM - 07:00 PM
+                        </p>
+
+                        <a href="#" class="btn btn_pink btn-block mt-5" @click="showLogin()">LOGIN</a >
+
+                        <p class="text-center">
+                            <span class="lead">not yer registered? 
+                                <a href="#" class="btn">CLICK HERE</a ></span>
+                        </p>
+                    </div>
+
+                    <div class="border_bot">
+                        &nbsp;
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="event_info_footer">
+                            <h1 class="lead text-center text-light"><a href="#" class="btn">PROGRAM</a ></h1>
+                            <h1 class="lead float-left"><a href="#" class="btn">SPEAKERS</a ></h1>
+                            <h1 class="lead float-right"><a href="#" class="btn">CONTACT US</a ></h1>
+                        </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
         </div>
 
         <!-- change to let's go modal -->
@@ -181,28 +205,30 @@
                                         >
                                             LOGIN
                                         </button>
-
-                                        <div class="form-group float-right">
+                                        
+                                        <!-- remove forgot password -->
+                                        <!-- <div class="form-group float-right">
                                             <router-link
                                                 :to="'/password-remind'"
                                                 class=" text-light"
                                                 style="font-style: italic; opacity: 0.4;"
                                                 >Forgot Password?</router-link
                                             >
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </form>
                             </div>
                         </div>
-
-                        <div class="d-flex justify-content-center">
+                        
+                        <!-- remove privacy_clause -->
+                        <!-- <div class="d-flex justify-content-center">
                             <div class="data_use_clause">
                                 <p
                                     class="clause text-light lead"
                                     v-html="privacy_clause"
                                 ></p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -243,7 +269,7 @@ export default {
             privacy_clause:
                 'Note: You will be entitled to join the 2nd Postgraduate Course raffle draw if you are able to visit all the booths. However, please refrain from visiting the booths or any particular booth if you do not wish to share your contact details to them.  Virtual booth visit happens when you click <banner class=\' text-success\'><i class="fa fa-sign-in" aria-hidden="true"></i></banner> icon on the booth.',
             agreement:
-                "I am aware that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
+                "I accept that when I visit the booths inside the virtual venue, my contact details will be accessible to the event sponsors and that I may be reached for promotion of their products.",
             agree: false,
             videoAutoplay: true,
             videos: ["images/Venue1.mp4", "images/Venue2.mp4"],
@@ -502,7 +528,7 @@ div.full {
 
 .event_info {
     position: fixed;
-    bottom: 0;
+    top: 0;
     width: 40%;
 }
 
@@ -525,6 +551,65 @@ div.full {
     display: inline-block;
     font-size: 14px;
     border-radius: 3rem;
+}
+
+/* new styles */
+.event_info .card {
+    /* background: linear-gradient(#45007C, #8801a3) !important; */
+    background: linear-gradient(#45007C, #45007C) !important;
+    opacity: 0.7;
+    border-radius: 0;
+}
+
+.event_info .card-title {
+    color: #ff00ff;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size:1.8rem; font-weight:600; line-height:1.5;
+}
+
+.event_info .card-body h1{
+
+    font-size:1.8rem; font-weight:300; line-height:1.5;
+}
+
+.event_date_box {
+    text-align: center;
+    border: 1px solid #FFF;
+    padding: 0.2em;
+    font-size:1.2rem; font-weight:600; line-height:1.2;
+    margin: 0 6rem;
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.border_bot{
+    margin: 0 20px; border-bottom: 2px solid #CCC;
+}
+
+.btn_pink {
+    color: #FFF;
+    padding: .3em 0;
+    border: 1px solid #770077;
+    font-size:2.4rem; font-weight:600;
+    border-radius: .1em;
+    background: #ff3bff;
+}
+.lead {
+    font-size:1.32875rem; font-weight:600;
+    color: #FFF;
+}
+
+.lead a {
+    font-size:1.32875rem; font-weight:600;
+    color: #ff00ff;
+}
+
+.event_info_footer{
+    padding: 0 2.188rem 3rem;
+}
+
+.event_info_footer a {
+    font-size:1.32875rem; font-weight:600;
+    color: #FFF;
 }
 
 @media screen and (max-height: 900px) {
