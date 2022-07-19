@@ -16,35 +16,52 @@
                 <div class="card mt-3" style="width: 60%;">
                     <div class="text-center text-light small mt-3">
                         <p>
-                            <img style="padding: 0 10px; width: 70%;"
+                            <img
+                                style="padding: 0 10px; width: 70%;"
                                 src="images/header.png"
                                 class="card-img-top"
                                 alt="..."
                             />
-                        </p> 
+                        </p>
                     </div>
 
                     <div class="border_bot">
                         &nbsp;
                     </div>
-                    
+
                     <div class="card-body">
                         <h5 class="card-title text-center mt-3">
-                            2<sup>nd</sup> POSTGRADUATE COURSE</h5>
-                       
+                            2<sup>nd</sup> POSTGRADUATE COURSE
+                        </h5>
+
                         <h1 class="text-center text-light">
-                            TAILORING<br> THE OPTIMAL MANAGEMENT<br> OF OB-GYN CONDITIONS</h1>   
-                    
+                            TAILORING<br />
+                            THE OPTIMAL MANAGEMENT<br />
+                            OF OB-GYN CONDITIONS
+                        </h1>
+
                         <p class="event_date_box mt-3 text-light">
-                            AUGUST 11 - 12, 2022<br>
+                            AUGUST 11 - 12, 2022<br />
                             04:00 PM - 07:00 PM
                         </p>
 
-                        <a href="#" class="btn btn_pink btn-block mt-5" @click="showLogin()">LOGIN</a >
+                        <a
+                            href="#"
+                            class="btn btn_pink btn-block mt-5"
+                            @click="showLogin()"
+                            >LOGIN</a
+                        >
 
                         <p class="text-center">
-                            <span class="lead">not yer registered? 
-                                <a href="#" class="btn">CLICK HERE</a ></span>
+                            <span class="lead"
+                                >not yer registered?
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleRegisterClicked"
+                                    >CLICK HERE</a
+                                ></span
+                            >
                         </p>
                     </div>
 
@@ -54,9 +71,15 @@
 
                     <div class="mt-3">
                         <div class="event_info_footer">
-                            <h1 class="lead text-center text-light"><a href="#" class="btn">PROGRAM</a ></h1>
-                            <h1 class="lead float-left"><a href="#" class="btn">SPEAKERS</a ></h1>
-                            <h1 class="lead float-right"><a href="#" class="btn">CONTACT US</a ></h1>
+                            <h1 class="lead text-center text-light">
+                                <a href="#" class="btn">PROGRAM</a>
+                            </h1>
+                            <h1 class="lead float-left">
+                                <a href="#" class="btn">SPEAKERS</a>
+                            </h1>
+                            <h1 class="lead float-right">
+                                <a href="#" class="btn">CONTACT US</a>
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -108,6 +131,36 @@
             </Transition>
         </div>
         <!-- content -->
+
+        <Transition>
+            <div>
+                <Modal :value="showRegistrationModal" :modalLg="true">
+                    <template v-slot:title>
+                        <img
+                            style="width: 10vw;"
+                            src="/images/71st_logo.png"
+                            alt=""
+                            class="center_logo mt-3 d-none d-md-block"
+                        />
+                        <h3
+                            class="display-4 mt-3 text-dark"
+                            style="font-size: 2em; text-align: center;"
+                        >
+                            Registration
+                        </h3>
+                        <br />
+                    </template>
+                    <br />
+                    <template v-slot:body>
+                        <Registration
+                            @handleSuccessRegistration="
+                                handleSuccessRegistration
+                            "
+                        />
+                    </template>
+                </Modal>
+            </div>
+        </Transition>
 
         <div class="register" v-if="visible && !isLoginSuccess">
             <div class="close_btn">
@@ -205,7 +258,7 @@
                                         >
                                             LOGIN
                                         </button>
-                                        
+
                                         <!-- remove forgot password -->
                                         <!-- <div class="form-group float-right">
                                             <router-link
@@ -219,7 +272,7 @@
                                 </form>
                             </div>
                         </div>
-                        
+
                         <!-- remove privacy_clause -->
                         <!-- <div class="d-flex justify-content-center">
                             <div class="data_use_clause">
@@ -239,10 +292,12 @@
 <script>
 import Timer from "./Timer.vue";
 import Modal from "./Modal";
+import Registration from "./Registration";
 export default {
     components: {
         Timer,
-        Modal
+        Modal,
+        Registration
     },
     created() {
         this.init();
@@ -255,6 +310,7 @@ export default {
     },
     data() {
         return {
+            showRegistrationModal: false,
             show: true,
             loginMessage: null,
             text_email: "",
@@ -282,6 +338,12 @@ export default {
     watch: {},
 
     methods: {
+        handleSuccessRegistration(e) {
+            this.showRegistrationModal = !e;
+        },
+        handleRegisterClicked() {
+            this.showRegistrationModal = true;
+        },
         async init() {
             let { data } = await axios.get("/api/v1/event");
             let now = new Date();
@@ -556,60 +618,72 @@ div.full {
 /* new styles */
 .event_info .card {
     /* background: linear-gradient(#45007C, #8801a3) !important; */
-    background: linear-gradient(#45007C, #45007C) !important;
+    background: linear-gradient(#45007c, #45007c) !important;
     opacity: 0.7;
     border-radius: 0;
 }
 
 .event_info .card-title {
     color: #ff00ff;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size:1.8rem; font-weight:600; line-height:1.5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.5;
 }
 
-.event_info .card-body h1{
-
-    font-size:1.8rem; font-weight:300; line-height:1.5;
+.event_info .card-body h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1.5;
 }
 
 .event_date_box {
     text-align: center;
-    border: 1px solid #FFF;
+    border: 1px solid #fff;
     padding: 0.2em;
-    font-size:1.2rem; font-weight:600; line-height:1.2;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.2;
     margin: 0 6rem;
-    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.border_bot{
-    margin: 0 20px; border-bottom: 2px solid #CCC;
+.border_bot {
+    margin: 0 20px;
+    border-bottom: 2px solid #ccc;
 }
 
 .btn_pink {
-    color: #FFF;
-    padding: .3em 0;
+    color: #fff;
+    padding: 0.3em 0;
     border: 1px solid #770077;
-    font-size:2.4rem; font-weight:600;
-    border-radius: .1em;
+    font-size: 2.4rem;
+    font-weight: 600;
+    border-radius: 0.1em;
     background: #ff3bff;
 }
 .lead {
-    font-size:1.32875rem; font-weight:600;
-    color: #FFF;
+    font-size: 1.32875rem;
+    font-weight: 600;
+    color: #fff;
 }
 
 .lead a {
-    font-size:1.32875rem; font-weight:600;
+    font-size: 1.32875rem;
+    font-weight: 600;
     color: #ff00ff;
 }
 
-.event_info_footer{
+.event_info_footer {
     padding: 0 2.188rem 3rem;
 }
 
 .event_info_footer a {
-    font-size:1.32875rem; font-weight:600;
-    color: #FFF;
+    font-size: 1.32875rem;
+    font-weight: 600;
+    color: #fff;
 }
 
 @media screen and (max-height: 900px) {

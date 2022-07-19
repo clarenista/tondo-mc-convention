@@ -29,8 +29,8 @@ Route::get('/pb', function () {
     return view('photobooth');
 });
 
-Route::get('/registration', [AuthController::class, 'guest_registration'])->name('guest_registration');
-Route::post('/registration', [AuthController::class, 'save_guest_registration'])->name('save_guest_registration');
+// Route::get('/registration', [AuthController::class, 'guest_registration'])->name('guest_registration');
+// Route::post('/registration', [AuthController::class, 'save_guest_registration'])->name('save_guest_registration');
 Route::get('/sponsor/{id}/fortune-wheel/token/{token}', [FortuneWheelController::class, 'index']);
 Route::get('{any}', function () {
     return view('layouts.app');

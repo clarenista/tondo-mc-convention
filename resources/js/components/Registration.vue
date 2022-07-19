@@ -1,146 +1,220 @@
 <template>
-    <div class="container">
-        <div class="alert alert-success" role="alert" v-if="successRegistration">
+    <div class="">
+        <div
+            class="alert alert-success"
+            role="alert"
+            v-if="successRegistration"
+        >
             Registered successfully.
         </div>
+        <div class="alert alert-danger" role="alert" v-if="errors[0]">
+            <ul>
+                <li v-for="(item, index) in errors[0]" :key="index">
+                    {{ item }}
+                </li>
+            </ul>
+        </div>
         <div class="row justify-content-center">
-            <div class="col-lg-7">
-                
-                <div class="card border-primary mb-3" >
-                    <div class="card-header">Registration</div>
+            <div class="col-lg-12">
+                <div class="card border-primary mb-3">
                     <div class="card-body">
                         <form method="POST" @submit.prevent="handleSubmit">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-md-4 col-sm-12 ">
                                     <div class="form-group">
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            placeholder="Title *"
-                                            v-model="text_title"
-                                            required
-                                        >
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            placeholder="Affiliation *"
-                                            name="affiliation"
-                                            v-model="text_affiliation"
-                                            required
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
+                                        <input
+                                            type="text"
+                                            class="form-control"
                                             placeholder="First Name *"
                                             v-model="text_fname"
                                             required
-                                        >
+                                        />
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-md-4 col-sm-12 ">
                                     <div class="form-group">
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Middle Name *"
+                                            v-model="text_mname"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-12 ">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
                                             placeholder="Last Name *"
                                             v-model="text_lname"
                                             required
-                                        >
+                                        />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
-                                        <input 
-                                            type="text" 
-                                            class="form-control" 
-                                            placeholder="Contact No. *"
-                                            v-model="text_contactno"
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="PRC ID (if applicatble)"
+                                            v-model="prc_id"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Hospital Affiliation *"
+                                            v-model="hospital_affiliation"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                placeholder="Email address *"
+                                                v-model="text_email"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input
+                                                type="email"
+                                                class="form-control"
+                                                placeholder="Confirm Email address
+                                            *"
+                                                v-model="text_cemail"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                placeholder="Name on the Certificate *"
+                                                v-model="text_name_on_cert"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <select
+                                            id="my-select"
+                                            class="custom-select"
+                                            v-model="select_position"
                                             required
                                         >
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <input 
-                                            type="email" 
-                                            class="form-control" 
-                                            placeholder="Email Address *"
-                                            v-model="text_email"
-                                            required
-                                        >
+                                            <option value=""
+                                                >Choose Position...</option
+                                            >
+                                            <option value="Consultant">
+                                                Consultant</option
+                                            >
+                                            <option value="Fellow-in-training">
+                                                Fellow-in-training</option
+                                            >
+                                            <option value="Resident">
+                                                Resident</option
+                                            >
+                                            <option
+                                                value="	Clerk/Medical Intern"
+                                            >
+                                                Clerk/Medical Intern</option
+                                            >
+                                            <option
+                                                value="Nurse/Healthcare Practitioner"
+                                            >
+                                                Nurse/Healthcare
+                                                Practitioner</option
+                                            >
+                                            <option value="Other">Other</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <label >Role</label>
-                                            <select 
-                                                class="custom-select" 
-                                                v-model="select_role"
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                v-model="disclaimer_checkbox"
+                                                id="disclaimer1"
+                                                value="disclaimer1"
                                                 required
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="disclaimer1"
+                                            >
+                                                <small
+                                                    >I understand that all
+                                                    information I have provided
+                                                    will be processed by the
+                                                    account owner and host in
+                                                    accordance to the Data
+                                                    Privacy Act of 2012 (RA
+                                                    10173)</small
                                                 >
-                                                <option 
-                                                    v-for="(item, index) in $store.state.roles" 
-                                                    :key="index"
-                                                    :value="item.key"
-                                                >
-                                                    {{item.value}}
-                                                </option>
-                                            </select>
+                                            </label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col">
                                     <div class="form-group">
-                                        <div class="form-group">
-                                            <input 
-                                                type="password" 
-                                                class="form-control" 
-                                                placeholder="Password *"
-                                                v-model="text_password"
-                                                required
+                                        <div class="form-check">
+                                            <input
+                                                class="form-check-input"
+                                                type="checkbox"
+                                                v-model="disclaimer_checkbox"
+                                                id="disclaimer2"
+                                                value="disclaimer2"
+                                            />
+                                            <label
+                                                class="form-check-label"
+                                                for="disclaimer2"
                                             >
-                                        </div>
-                                        <div class="form-group">
-                                            <input 
-                                                type="password" 
-                                                class="form-control" 
-                                                placeholder="Confirm password *"
-                                                v-model="text_cpassword"
-                                                required
-                                            >
-                                            <small class="text-danger" v-if="errors != ''">Those password didn't match. Try again.</small>
+                                                <small
+                                                    >I allow to share my name to
+                                                    the industry partners for
+                                                    attendance purposes.</small
+                                                >
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    
-                                    <div class="form-group">
-                                        <p>
-                                            <small class="text-muted">
-                                                By clicking Register you agree to our Terms and that you have read out <a href="#">Data Use Policy</a>, including our <a href="#">Cookie Use</a>.                                        
-                                            </small>
-                                        </p>
-                                        <button class="btn btn-primary">Register</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                                :disabled="submitting"
+                            >
+                                Register
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -150,72 +224,67 @@
 </template>
 
 <script>
-    export default {
-        mounted() {
-            // console.log(this.$store.getters.user)
-        },
-        data(){
-            
-            return{
-                text_title: "",
-                text_affiliation: "",
-                text_fname: "",
-                text_lname: "",
-                text_email: "",
-                text_contactno: "",
-                textarea_message: "",
-                text_password: "",
-                text_cpassword: "",
-                select_role: 'admin',
-                errors: [],
-                successRegistration: false
-            }
-        } ,
-        watch:{
-            text_cpassword(e){
-                
-                if(this.text_password != e){
-                    if(!this.errors.includes('cpassword')){
-                        this.errors.push('cpassword')
-                    }
-                    
-                }else{
-                    const index = this.errors.indexOf('cpassword');
-                    if (index > -1) {
-                        this.errors.splice(index, 1);
-                    }                    
-                }
-            }
-        },
+export default {
+    mounted() {
+        // console.log(this.$store.getters.user)
+    },
+    data() {
+        return {
+            submitting: false,
+            text_fname: "",
+            text_mname: "",
+            text_lname: "",
+            prc_id: "",
+            hospital_affiliation: "",
+            text_email: "",
+            text_cemail: "",
+            text_name_on_cert: "",
+            select_position: "",
+            disclaimer_checkbox: [],
 
-        methods:{
-            async handleSubmit(){
-                let api_token = this.$store.getters.api_token
-                let url = '/api/v1/registration?api_token='+api_token
-                // if(this.errors){
-                //     return false
-                // }
-                let fd = new FormData()
-                fd.append('title', this.text_title)
-                fd.append('affiliation', this.text_affiliation)
-                fd.append('first_name', this.text_fname)
-                fd.append('last_name', this.text_lname)
-                fd.append('contactno', this.text_contactno)
-                fd.append('email', this.text_email)
-                fd.append('role', this.select_role)
-                fd.append('message', this.textarea_message)
-                fd.append('password', this.text_password)
-                fd.append('api_token', this.api_token)
-                let {data} = await axios.post(url, fd)
-                if(data.status === 'ok'){
-                    this.successRegistration = true
+            errors: [],
+            successRegistration: false
+        };
+    },
+    watch: {},
+
+    methods: {
+        async handleSubmit() {
+            this.submitting = true;
+            this.errors = [];
+            let api_token = this.$store.getters.api_token;
+            let url = "/api/registration";
+            // if(this.errors){
+            //     return false
+            // }
+            let fd = new FormData();
+            fd.append("first_name", this.text_fname);
+            fd.append("middle_name", this.text_mname);
+            fd.append("last_name", this.text_lname);
+            fd.append("prc_id", this.prc_id);
+            fd.append("hospital_affiliation", this.hospital_affiliation);
+            fd.append("email_address", this.text_email);
+            fd.append("email_address_confirmation", this.text_cemail);
+            fd.append("name_on_cert", this.text_name_on_cert);
+            fd.append("position", this.select_position);
+            try {
+                let { data } = await axios.post(url, fd);
+                if (data === "success") {
+                    this.successRegistration = true;
+                    setTimeout(
+                        () => this.$emit("handleSuccessRegistration", true),
+                        2000
+                    );
+                    this.submitting = false;
                 }
+            } catch (err) {
+                this.errors.push(err.response.data.errors.email_address);
+                this.submitting = false;
+                // alert(response.statusText);
             }
         }
-
     }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

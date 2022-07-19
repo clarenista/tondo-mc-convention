@@ -17,10 +17,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     public function user(){
+    public function user()
+    {
 
-         return User::with('booth')->find(request()->user()->id);
-     }
+        return User::with('booth')->find(request()->user()->id);
+    }
 
     public function index()
     {
@@ -47,8 +48,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
-        DB::transaction(function ()  use ($request){
+
+        DB::transaction(function ()  use ($request) {
             $user = User::create(
                 \request()->validate([
                     'first_name' => 'required|string',
@@ -61,17 +62,15 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
 
-            if(\request()->role == 'admin'){
+            if (\request()->role == 'admin') {
                 $admin = Role::where('name', 'admin')->first();
                 $user->assignRole($admin);
-    
-            }else{
+            } else {
                 $sponsor = Role::where('name', 'sponsor')->first();
                 $user->assignRole($sponsor);
-    
             }
         });
-        
+
 
         return \redirect()->route('cms.users.index')
             ->with('success', 'You have successfully added a User.');
@@ -96,7 +95,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view("users.form", \compact('user'));        
+        return view("users.form", \compact('user'));
     }
 
     /**
@@ -136,7 +135,8 @@ class UserController extends Controller
             ->with('success', 'You have successfully deleted the user.');
     }
 
-    public function syncUsers(){
+    public function syncUsers()
+    {
         $guzzle = new \GuzzleHttp\Client;
         $token = $guzzle->post(config('app.domain') . '/oauth/token', [
             'form_params' => [
@@ -171,7 +171,16 @@ class UserController extends Controller
             ]);
         }
         return \redirect()->route('cms.users.index')
-        ->with('success', 'Sync success');
+            ->with('success', 'Sync success');
+    }
 
+    function storeRegistration()
+    {
+        $validated = \request()->validate([
+            'email_address' => 'unique:users| confirmed',
+        ]);
+        User::create(\request()->except('_token'));
+        // return redirect(\route('guest_registration'))->with('status', 'Registration has successfully submitted!');
+        return 'success';
     }
 }

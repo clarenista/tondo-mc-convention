@@ -97,7 +97,7 @@ export default {
     },
 
     mounted() {
-        console.log(this.showDropdown)
+        // console.log(this.showDropdown)
     },
 }
 </script>
