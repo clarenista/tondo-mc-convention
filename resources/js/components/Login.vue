@@ -13,7 +13,7 @@
         </Transition>
         <div class="content" v-if="!isLoginSuccess">
             <div class="event_info">
-                <div class="card mt-3" style="width: 60%;">
+                <div class="card mt-3">
                     <div class="text-center text-light small mt-3">
                         <p>
                             <img
@@ -69,17 +69,18 @@
                         &nbsp;
                     </div>
 
-                    <div class="mt-3">
+                    <div>
                         <div class="event_info_footer">
                             <h1 class="lead text-center text-light">
                                 <a href="#" class="btn">PROGRAM</a>
                             </h1>
+                               
                             <h1 class="lead float-left">
                                 <a href="#" class="btn">SPEAKERS</a>
                             </h1>
                             <h1 class="lead float-right">
                                 <a href="#" class="btn">CONTACT US</a>
-                            </h1>
+                            </h1>                      
                         </div>
                     </div>
                 </div>
@@ -621,10 +622,11 @@ div.full {
 
 /* new styles */
 .event_info .card {
-    /* background: linear-gradient(#45007C, #8801a3) !important; */
-    background: linear-gradient(#45007c, #45007c) !important;
-    opacity: 0.7;
+    background: linear-gradient(#45007C, #8801a3) !important;
+    /* background: linear-gradient(#45007c, #45007c) !important; */
+    opacity: 0.9;
     border-radius: 0;
+    width: 450px;
 }
 
 .event_info .card-title {
@@ -752,6 +754,8 @@ div.full {
     .register-form button {
         font-size: small;
     }
+
+    
 }
 
 @media screen and (max-height: 500px) {
@@ -868,4 +872,151 @@ div.full {
         font-size: 9px !important;
     }
 }
+
+/* new media */
+@media screen and (min-width: 280px) and (max-width: 415px) {
+    .event_info .card-title {
+        font-size: .5rem;
+    }
+
+    .event_info .card-body h1{
+        font-size: .88rem;
+        line-height: 1.1;
+    }
+
+    .event_date_box{
+        text-align: center;
+        border: 1px solid #fff;
+        /* padding: 2.1999999999999993em; */
+        font-size: 0.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .btn_pink{
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    .lead {
+        font-size: 0.55rem;
+    }
+
+    .lead a {
+        font-size: 0.55rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+
+    .event_info .card {
+        width: 220px;
+    }
+}
+
+@media screen and (min-height: 599px) and (max-height: 720px) {
+    .event_info .card {
+        width: 320px;
+    }
+
+    .event_info .card-title {
+        font-size: .5rem;
+    }
+
+    .event_info .card-body h1{
+        font-size: .88rem;
+        line-height: 1.1;
+    }
+
+    .event_date_box{
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .btn_pink{
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    .lead {
+        font-size: 0.55rem;
+    }
+
+    .lead a {
+        font-size: 0.55rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+}
+
+@media(max-width: 320px) {
+    .event_info .card {
+        width: 220px;
+    }
+}
+
+@media screen and (min-width: 980px) and (max-width: 1281px) {
+    .event_info .card {
+        width: 300px;
+    }
+
+    .event_info .card-title {
+        font-size: 1.2rem;
+    }
+
+    .event_info .card-body h1{
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .event_date_box{
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0 3rem;
+    }
+
+    .btn_pink{
+        font-size: 1.3rem;
+        margin-top: 3rem !important;
+    }
+
+    .lead {
+        font-size: 0.95rem;
+    }
+
+    .lead a {
+        font-size: 0.95rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+
+    .video-container video{
+        height: 85%;
+    }
+
+}
+
+/* @media screen and (min-width: 851px){
+    .video-container video{
+        height: 85% !important;
+    }
+} */
+
+
 </style>
