@@ -156,6 +156,7 @@
                             @handleSuccessRegistration="
                                 handleSuccessRegistration
                             "
+                            @handleCancelClicked="handleCancelClicked"
                         />
                     </template>
                 </Modal>
@@ -338,6 +339,9 @@ export default {
     watch: {},
 
     methods: {
+        handleCancelClicked() {
+            this.showRegistrationModal = !this.showRegistrationModal;
+        },
         handleSuccessRegistration(e) {
             this.showRegistrationModal = !e;
         },

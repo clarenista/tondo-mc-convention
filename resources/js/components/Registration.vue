@@ -215,6 +215,13 @@
                             >
                                 Register
                             </button>
+                            <button
+                                class="btn btn-danger"
+                                type="button"
+                                @click="handleCancelClicked"
+                            >
+                                Cancel
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -249,6 +256,9 @@ export default {
     watch: {},
 
     methods: {
+        handleCancelClicked() {
+            this.$emit("handleCancelClicked");
+        },
         async handleSubmit() {
             this.submitting = true;
             this.errors = [];
