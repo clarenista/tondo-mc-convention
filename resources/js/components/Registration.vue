@@ -5,7 +5,22 @@
             role="alert"
             v-if="successRegistration"
         >
-            Registered successfully.
+            <div class="row">
+                <div
+                    class="col-md-2 col-sm-2 col-xs-12 d-flex justify-content-center align-items-center"
+                >
+                    <i
+                        class="fa fa-check-circle-o fa-5x"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+                <div class="col-md col-sm-10 col-xs-12 text-justify-sm">
+                    <p class="display-4">
+                        Success!
+                    </p>
+                    <p>Your account has been successfully created.</p>
+                </div>
+            </div>
         </div>
         <div class="alert alert-danger" role="alert" v-if="errors[0]">
             <ul>
@@ -158,7 +173,9 @@
                                                 Allied Health Care
                                                 Worker</option
                                             >
-                                            <option value="Others">Others</option>
+                                            <option value="Others"
+                                                >Others</option
+                                            >
                                         </select>
                                     </div>
                                 </div>
@@ -193,10 +210,6 @@
                                                         >(RA 10173)</a
                                                     ></small
                                                 >
-                                            </label>
-
-                                            <label for="">
-                                                <small>Please do not forget </small>
                                             </label>
                                         </div>
                                     </div>
@@ -311,5 +324,12 @@ export default {
     text-decoration: none;
     color: blue;
     cursor: pointer;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 375px) {
+    .text-justify-sm {
+        text-align: center;
+    }
 }
 </style>
