@@ -344,7 +344,7 @@ export default {
             this.showRegistrationModal = !this.showRegistrationModal;
         },
         handleSuccessRegistration(e) {
-            // this.showRegistrationModal = !e;
+            this.showRegistrationModal = !e;
         },
         handleRegisterClicked() {
             this.showRegistrationModal = true;

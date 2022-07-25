@@ -138,23 +138,25 @@
                                             <option value="Fellow-in-training">
                                                 Fellow-in-training</option
                                             >
-                                            <option value="Resident-in-Training">
+                                            <option
+                                                value="Resident-in-Training"
+                                            >
                                                 Resident-in-Training</option
                                             >
                                             <option
                                                 value="Medical Clerk/Medical Intern"
                                             >
-                                                Medical Clerk/Medical Intern</option
+                                                Medical Clerk/Medical
+                                                Intern</option
                                             >
-                                            <option
-                                                value="Nurse"
-                                            >
+                                            <option value="Nurse">
                                                 Nurse</option
                                             >
-                                             <option
+                                            <option
                                                 value="Allied Health Care Worker"
                                             >
-                                                Allied Health Care Worker</option
+                                                Allied Health Care
+                                                Worker</option
                                             >
                                             <option value="Other">Other</option>
                                         </select>
@@ -183,8 +185,13 @@
                                                     will be processed by the
                                                     account owner and host in
                                                     accordance to the Data
-                                                    Privacy Act of 2012 <a class="ra_link" href="https://www.privacy.gov.ph/data-privacy-act/" target="_new">(RA
-                                                    10173)</a></small
+                                                    Privacy Act of 2012
+                                                    <a
+                                                        class="ra_link"
+                                                        href="https://www.privacy.gov.ph/data-privacy-act/"
+                                                        target="_new"
+                                                        >(RA 10173)</a
+                                                    ></small
                                                 >
                                             </label>
                                         </div>
@@ -197,6 +204,13 @@
                                 :disabled="submitting"
                             >
                                 Register
+                            </button>
+                            <button
+                                class="btn btn-danger"
+                                type="button"
+                                @click="handleCancelClicked"
+                            >
+                                Cancel
                             </button>
                         </form>
                     </div>
@@ -289,7 +303,7 @@ export default {
 </script>
 
 <style scoped>
-.ra_link{
+.ra_link {
     text-decoration: none;
     color: blue;
     cursor: pointer;
