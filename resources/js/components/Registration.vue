@@ -158,7 +158,7 @@
                                                 Allied Health Care
                                                 Worker</option
                                             >
-                                            <option value="Other">Other</option>
+                                            <option value="Others">Others</option>
                                         </select>
                                     </div>
                                 </div>
@@ -193,6 +193,10 @@
                                                         >(RA 10173)</a
                                                     ></small
                                                 >
+                                            </label>
+
+                                            <label for="">
+                                                <small>Please do not forget </small>
                                             </label>
                                         </div>
                                     </div>

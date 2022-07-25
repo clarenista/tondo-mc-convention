@@ -54,7 +54,7 @@
 
                         <p class="text-center">
                             <span class="lead"
-                                >not yet registered?
+                                >NOT YET REGISTERED?
                                 <a
                                     href="#"
                                     class="btn"
@@ -312,7 +312,7 @@ export default {
     },
     data() {
         return {
-            showRegistrationModal: true,
+            showRegistrationModal: false,
             show: true,
             loginMessage: null,
             text_email: "",
