@@ -194,10 +194,6 @@
                                                     ></small
                                                 >
                                             </label>
-
-                                            <label for="">
-                                                <small>Please do not forget </small>
-                                            </label>
                                         </div>
                                     </div>
                                 </div>

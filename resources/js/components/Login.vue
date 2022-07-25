@@ -288,6 +288,13 @@
                 </div>
             </div>
         </div>
+
+        <marquee
+            class="text-uppercase marqee"
+            direction="left"
+        >
+            PUBLIC ACCESS OF ALL FEATURE FOR REGISTERED USERS WILL BE AVAILABLE STARTING AUG. 20, 2022 (THURSDAY)</marquee
+        >
     </div>
 </template>
 
@@ -1014,4 +1021,11 @@ div.full {
         height: 85% !important;
     }
 } */
+.marqee {
+    background-color: rgb(255 255 255 / 40%); 
+    /* color: #212529;  */
+    color: blue; 
+    font-size: 1.2rem; 
+    position: absolute; bottom: 50px; left: 0;
+}
 </style>
