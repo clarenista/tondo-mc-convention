@@ -185,27 +185,6 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                v-model="disclaimer_checkbox"
-                                                id="disclaimer2"
-                                                value="disclaimer2"
-                                            />
-                                            <label
-                                                class="form-check-label"
-                                                for="disclaimer2"
-                                            >
-                                                <small
-                                                    >I allow to share my name to
-                                                    the industry partners for
-                                                    attendance purposes.</small
-                                                >
-                                            </label>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <button
@@ -214,13 +193,6 @@
                                 :disabled="submitting"
                             >
                                 Register
-                            </button>
-                            <button
-                                class="btn btn-danger"
-                                type="button"
-                                @click="handleCancelClicked"
-                            >
-                                Cancel
                             </button>
                         </form>
                     </div>
@@ -256,6 +228,20 @@ export default {
     watch: {},
 
     methods: {
+        clearInputs() {
+            this.text_fname = "";
+            this.text_mname = "";
+            this.text_lname = "";
+            this.prc_id = "";
+            this.hospital_affiliation = "";
+            this.text_email = "";
+            this.text_cemail = "";
+            this.text_name_on_cert = "";
+            this.select_position = "";
+            this.disclaimer_checkbox = [];
+
+            this.errors = [];
+        },
         handleCancelClicked() {
             this.$emit("handleCancelClicked");
         },
@@ -281,6 +267,7 @@ export default {
                 let { data } = await axios.post(url, fd);
                 if (data === "success") {
                     this.successRegistration = true;
+                    this.clearInputs();
                     setTimeout(
                         () => this.$emit("handleSuccessRegistration", true),
                         2000

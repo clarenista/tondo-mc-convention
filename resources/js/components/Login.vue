@@ -54,7 +54,7 @@
 
                         <p class="text-center">
                             <span class="lead"
-                                >not yer registered?
+                                >not yet registered?
                                 <a
                                     href="#"
                                     class="btn"
@@ -74,13 +74,13 @@
                             <h1 class="lead text-center text-light">
                                 <a href="#" class="btn">PROGRAM</a>
                             </h1>
-                               
+
                             <h1 class="lead float-left">
                                 <a href="#" class="btn">SPEAKERS</a>
                             </h1>
                             <h1 class="lead float-right">
                                 <a href="#" class="btn">CONTACT US</a>
-                            </h1>                      
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -312,7 +312,7 @@ export default {
     },
     data() {
         return {
-            showRegistrationModal: false,
+            showRegistrationModal: true,
             show: true,
             loginMessage: null,
             text_email: "",
@@ -344,7 +344,7 @@ export default {
             this.showRegistrationModal = !this.showRegistrationModal;
         },
         handleSuccessRegistration(e) {
-            this.showRegistrationModal = !e;
+            // this.showRegistrationModal = !e;
         },
         handleRegisterClicked() {
             this.showRegistrationModal = true;
@@ -622,7 +622,7 @@ div.full {
 
 /* new styles */
 .event_info .card {
-    background: linear-gradient(#45007C, #8801a3) !important;
+    background: linear-gradient(#45007c, #8801a3) !important;
     /* background: linear-gradient(#45007c, #45007c) !important; */
     opacity: 0.9;
     border-radius: 0;
@@ -754,8 +754,6 @@ div.full {
     .register-form button {
         font-size: small;
     }
-
-    
 }
 
 @media screen and (max-height: 500px) {
@@ -876,15 +874,15 @@ div.full {
 /* new media */
 @media screen and (min-width: 280px) and (max-width: 415px) {
     .event_info .card-title {
-        font-size: .5rem;
+        font-size: 0.5rem;
     }
 
-    .event_info .card-body h1{
-        font-size: .88rem;
+    .event_info .card-body h1 {
+        font-size: 0.88rem;
         line-height: 1.1;
     }
 
-    .event_date_box{
+    .event_date_box {
         text-align: center;
         border: 1px solid #fff;
         /* padding: 2.1999999999999993em; */
@@ -894,7 +892,7 @@ div.full {
         margin: 0;
     }
 
-    .btn_pink{
+    .btn_pink {
         font-size: 1rem;
         margin-top: 1rem !important;
     }
@@ -923,15 +921,15 @@ div.full {
     }
 
     .event_info .card-title {
-        font-size: .5rem;
+        font-size: 0.5rem;
     }
 
-    .event_info .card-body h1{
-        font-size: .88rem;
+    .event_info .card-body h1 {
+        font-size: 0.88rem;
         line-height: 1.1;
     }
 
-    .event_date_box{
+    .event_date_box {
         text-align: center;
         border: 1px solid #fff;
         font-size: 0.5rem;
@@ -940,7 +938,7 @@ div.full {
         margin: 0;
     }
 
-    .btn_pink{
+    .btn_pink {
         font-size: 1rem;
         margin-top: 1rem !important;
     }
@@ -959,7 +957,7 @@ div.full {
     }
 }
 
-@media(max-width: 320px) {
+@media (max-width: 320px) {
     .event_info .card {
         width: 220px;
     }
@@ -974,12 +972,12 @@ div.full {
         font-size: 1.2rem;
     }
 
-    .event_info .card-body h1{
+    .event_info .card-body h1 {
         font-size: 1.2rem;
         line-height: 1.3;
     }
 
-    .event_date_box{
+    .event_date_box {
         text-align: center;
         border: 1px solid #fff;
         font-size: 0.9rem;
@@ -988,7 +986,7 @@ div.full {
         margin: 0 3rem;
     }
 
-    .btn_pink{
+    .btn_pink {
         font-size: 1.3rem;
         margin-top: 3rem !important;
     }
@@ -1006,10 +1004,9 @@ div.full {
         padding: 0;
     }
 
-    .video-container video{
+    .video-container video {
         height: 85%;
     }
-
 }
 
 /* @media screen and (min-width: 851px){
@@ -1017,6 +1014,4 @@ div.full {
         height: 85% !important;
     }
 } */
-
-
 </style>
