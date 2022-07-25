@@ -293,7 +293,7 @@
             class="text-uppercase marqee"
             direction="left"
         >
-            PUBLIC ACCESS OF ALL FEATURE FOR REGISTERED USERS WILL BE AVAILABLE STARTING AUG. 20, 2022 (THURSDAY)</marquee
+            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE STARTING AUG. 20, 2022 (THURSDAY)</marquee
         >
     </div>
 </template>
