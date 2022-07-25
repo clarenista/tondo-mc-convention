@@ -138,19 +138,23 @@
                                             <option value="Fellow-in-training">
                                                 Fellow-in-training</option
                                             >
-                                            <option value="Resident">
-                                                Resident</option
+                                            <option value="Resident-in-Training">
+                                                Resident-in-Training</option
                                             >
                                             <option
-                                                value="	Clerk/Medical Intern"
+                                                value="Medical Clerk/Medical Intern"
                                             >
-                                                Clerk/Medical Intern</option
+                                                Medical Clerk/Medical Intern</option
                                             >
                                             <option
-                                                value="Nurse/Healthcare Practitioner"
+                                                value="Nurse"
                                             >
-                                                Nurse/Healthcare
-                                                Practitioner</option
+                                                Nurse</option
+                                            >
+                                             <option
+                                                value="Allied Health Care Worker"
+                                            >
+                                                Allied Health Care Worker</option
                                             >
                                             <option value="Other">Other</option>
                                         </select>
@@ -179,8 +183,8 @@
                                                     will be processed by the
                                                     account owner and host in
                                                     accordance to the Data
-                                                    Privacy Act of 2012 (RA
-                                                    10173)</small
+                                                    Privacy Act of 2012 <a class="ra_link" href="https://www.privacy.gov.ph/data-privacy-act/" target="_new">(RA
+                                                    10173)</a></small
                                                 >
                                             </label>
                                         </div>
@@ -284,4 +288,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.ra_link{
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+</style>
