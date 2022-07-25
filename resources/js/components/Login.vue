@@ -72,17 +72,70 @@
                     <div>
                         <div class="event_info_footer">
                             <h1 class="lead text-center text-light">
-                                <a href="#" class="btn">PROGRAM</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(1)"
+                                    >PROGRAM</a
+                                >
                             </h1>
 
                             <h1 class="lead float-left">
-                                <a href="#" class="btn">SPEAKERS</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(2)"
+                                    >SPEAKERS</a
+                                >
                             </h1>
                             <h1 class="lead float-right">
-                                <a href="#" class="btn">CONTACT US</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(3)"
+                                    >CONTACT US</a
+                                >
                             </h1>
                         </div>
                     </div>
+
+                    <!-- event info-->
+                    <Transition>
+                        <div>
+                            <Modal :value="eventInfo" :modalSize="'modal-xl'">
+                                <template v-slot:title>
+                                    <h3
+                                        class="display-4 mt-3 text-dark"
+                                        style="font-size: 2em; text-align: center;"
+                                    >
+                                        {{ eventInfo.name }}
+                                    </h3>
+                                    <br />
+                                </template>
+                                <br />
+                                <template v-slot:body>
+                                    <div
+                                        class="embed-responsive embed-responsive-16by9"
+                                    >
+                                        <iframe
+                                            class="embed-responsive-item"
+                                            :src="eventInfo.path"
+                                            allowfullscreen
+                                        ></iframe>
+                                    </div>
+                                </template>
+                                <template v-slot:footer>
+                                    <button
+                                        class="btn btn-primary btn-lg"
+                                        type="button"
+                                        @click="eventInfo = ''"
+                                    >
+                                        Done
+                                    </button>
+                                </template>
+                            </Modal>
+                        </div>
+                    </Transition>
                 </div>
             </div>
         </div>
@@ -135,7 +188,7 @@
 
         <Transition>
             <div>
-                <Modal :value="showRegistrationModal" :modalLg="true">
+                <Modal :value="showRegistrationModal" :modalSize="'modal-lg'">
                     <template v-slot:title>
                         <img
                             style="width: 10vw;"
@@ -292,8 +345,10 @@
         <marquee
             class="text-uppercase marqee"
             direction="left"
+            v-if="!eventInfo"
         >
-            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE STARTING AUG. 20, 2022 (THURSDAY)</marquee
+            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE
+            STARTING AUG. 20, 2022 (THURSDAY)</marquee
         >
     </div>
 </template>
@@ -319,6 +374,20 @@ export default {
     },
     data() {
         return {
+            eventInfo: null,
+            eventInfos: [
+                { id: 1, name: "Program", path: "/documents/tmc-program.pdf" },
+                {
+                    id: 2,
+                    name: "Speakers",
+                    path: "/documents/tmc-speakers.pdf"
+                },
+                {
+                    id: 3,
+                    name: "Contact us",
+                    path: "/documents/tmc-contact.pdf"
+                }
+            ],
             showRegistrationModal: false,
             show: true,
             loginMessage: null,
@@ -347,6 +416,10 @@ export default {
     watch: {},
 
     methods: {
+        handleChangeEventInfoModal(infoId) {
+            const info = this.eventInfos.find(e => e.id === infoId);
+            this.eventInfo = info;
+        },
         handleCancelClicked() {
             this.showRegistrationModal = !this.showRegistrationModal;
         },
@@ -1022,10 +1095,12 @@ div.full {
     }
 } */
 .marqee {
-    background-color: rgb(255 255 255 / 40%); 
+    background-color: rgb(255 255 255 / 40%);
     /* color: #212529;  */
-    color: blue; 
-    font-size: 1.2rem; 
-    position: absolute; bottom: 50px; left: 0;
+    color: blue;
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
 }
 </style>
