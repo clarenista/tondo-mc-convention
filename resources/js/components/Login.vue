@@ -89,12 +89,15 @@
                                 >
                             </h1>
                             <h1 class="lead float-right">
+                                <!--
                                 <a
                                     href="#"
                                     class="btn"
                                     @click="handleChangeEventInfoModal(3)"
                                     >CONTACT US</a
                                 >
+                                    -->
+                                <a href="#" class="btn">CONTACT US</a>
                             </h1>
                         </div>
                     </div>
