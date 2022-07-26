@@ -348,7 +348,7 @@
             v-if="!eventInfo"
         >
             PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE
-            STARTING AUG. 20, 2022 (THURSDAY)</marquee
+            STARTING AUG. 04, 2022 (THURSDAY)</marquee
         >
     </div>
 </template>
