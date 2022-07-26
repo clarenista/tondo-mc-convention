@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/css/app.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script defer src="{{ mix('js/app.js') }}?v72st"></script>
-  <title>Convention</title>
+  <title>Tondo Medical Center - 2nd Postgrad Course</title>
   <style>
     body {
       /* margin: 0;
