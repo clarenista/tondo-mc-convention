@@ -89,15 +89,12 @@
                                 >
                             </h1>
                             <h1 class="lead float-right">
-                                <!--
                                 <a
                                     href="#"
                                     class="btn"
                                     @click="handleChangeEventInfoModal(3)"
                                     >CONTACT US</a
                                 >
-                                    -->
-                                <a href="#" class="btn">CONTACT US</a>
                             </h1>
                         </div>
                     </div>
@@ -707,7 +704,7 @@ div.full {
 .event_info .card {
     background: linear-gradient(#45007c, #8801a3) !important;
     /* background: linear-gradient(#45007c, #45007c) !important; */
-    opacity: 0.9;
+    /* opacity: 0.9; */
     border-radius: 0;
     width: 450px;
 }
