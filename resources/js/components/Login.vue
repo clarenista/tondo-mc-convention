@@ -103,17 +103,29 @@
                                     >CONTACT US</a
                                 >
                             </h1>
-
-                            <h1 class="lead text-center text-light">
-                                <a
-                                    href="https://tmc.doh.gov.ph/"
-                                    class="btn"
-                                    target="_new"
-                                    >visit: tmc.doh.gov.ph</a
-                                >
-                            </h1>
                         </div>
                     </div>
+
+                    <h1 class="text-center text-light">
+                        <a
+                            style="padding: 4px 7px; background: #ff00ff; border-radius: 50%; color: #fff;"
+                            href="https://tmc.doh.gov.ph/"
+                            class="btn "
+                            target="_new"
+                            ><i class="fa fa-globe fa-lg" aria-hidden="true">
+                            </i>
+                        </a>
+                        <a
+                            style="padding: 4px 9px; background: #ff00ff; border-radius: 50%; color: #fff"
+                            href="https://www.facebook.com/tondomed"
+                            class="btn "
+                            target="_new"
+                            ><i
+                                class="fa fa-facebook-square"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                    </h1>
 
                     <!-- event info-->
                     <Transition>
@@ -135,7 +147,9 @@
                                     >
                                         <iframe
                                             class="embed-responsive-item"
-                                            :src="eventInfo.path"
+                                            :src="
+                                                `https://docs.google.com/viewerng/viewer?url=${eventInfo.path}&embedded=true`
+                                            "
                                             allowfullscreen
                                         ></iframe>
                                     </div>
@@ -392,16 +406,20 @@ export default {
         return {
             eventInfo: null,
             eventInfos: [
-                { id: 1, name: "Program", path: "/documents/tmc-program.pdf" },
+                {
+                    id: 1,
+                    name: "Program",
+                    path: window.location.origin + "/documents/tmc-program.pdf"
+                },
                 {
                     id: 2,
                     name: "Speakers",
-                    path: "/documents/tmc-speakers.pdf"
+                    path: window.location.origin + "/documents/tmc-speakers.pdf"
                 },
                 {
                     id: 3,
                     name: "Contact us",
-                    path: "/documents/tmc-contact.pdf"
+                    path: window.location.origin + "/documents/tmc-contact.pdf"
                 }
             ],
             showRegistrationModal: false,
@@ -522,6 +540,22 @@ export default {
 </script>
 
 <style scoped>
+.hover {
+    --s: 0.2em; /* the thickness of the line */
+    --c: #ff00ff; /* the color */
+
+    color: #0000;
+    padding-bottom: var(--s);
+    background: linear-gradient(90deg, var(--c) 50%, #000 0)
+            calc(100% - var(--_p, 0%)) / 200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) var(--s) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+}
+.hover:hover {
+    --_p: 100%;
+}
 .v-enter-active,
 .v-leave-active {
     transition: opacity 1s ease;
