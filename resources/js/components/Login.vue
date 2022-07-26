@@ -45,14 +45,21 @@
                             04:00 PM - 07:00 PM
                         </p>
 
+                        <!-- disable login button for now -->
                         <a
+                            href="#"
+                            class="btn btn_pink btn-block mt-5"
+                            @click="handleRegisterClicked()"
+                            >REGISTER</a
+                        >
+                        <!-- <a
                             href="#"
                             class="btn btn_pink btn-block mt-5"
                             @click="showLogin()"
                             >LOGIN</a
-                        >
+                        > -->
 
-                        <p class="text-center">
+                        <!-- <p class="text-center">
                             <span class="lead"
                                 >NOT YET REGISTERED?
                                 <a
@@ -62,7 +69,7 @@
                                     >CLICK HERE</a
                                 ></span
                             >
-                        </p>
+                        </p> -->
                     </div>
 
                     <div class="border_bot">
