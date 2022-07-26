@@ -126,9 +126,7 @@
                                     >
                                         <iframe
                                             class="embed-responsive-item"
-                                            :src="
-                                                `https://docs.google.com/viewerng/viewer?embedded=true&url=${eventInfo.path}`
-                                            "
+                                            :src="eventInfo.path"
                                             allowfullscreen
                                         ></iframe>
                                     </div>
@@ -385,20 +383,16 @@ export default {
         return {
             eventInfo: null,
             eventInfos: [
-                {
-                    id: 1,
-                    name: "Program",
-                    path: window.location.origin + "/documents/tmc-program.pdf"
-                },
+                { id: 1, name: "Program", path: "/documents/tmc-program.pdf" },
                 {
                     id: 2,
                     name: "Speakers",
-                    path: window.location.origin + "/documents/tmc-speakers.pdf"
+                    path: "/documents/tmc-speakers.pdf"
                 },
                 {
                     id: 3,
                     name: "Contact us",
-                    path: window.location.origin + "/documents/tmc-contact.pdf"
+                    path: "/documents/tmc-contact.pdf"
                 }
             ],
             showRegistrationModal: false,
