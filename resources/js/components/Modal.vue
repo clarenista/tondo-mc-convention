@@ -63,6 +63,10 @@ h1 {
     font-weight: 100;
 }
 
+.modal-content {
+    height: 100vh;
+}
+
 .modal-body {
     background: linear-gradient(#750092, #005229);
 }

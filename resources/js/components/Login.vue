@@ -144,6 +144,7 @@
                                 <template v-slot:body>
                                     <div
                                         class="embed-responsive embed-responsive-16by9"
+                                        style="height: 100%;"
                                     >
                                         <iframe
                                             class="embed-responsive-item"
