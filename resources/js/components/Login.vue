@@ -103,15 +103,6 @@
                                     >CONTACT US</a
                                 >
                             </h1>
-
-                            <h1 class="lead text-center text-light">
-                                <a
-                                    href="https://tmc.doh.gov.ph/"
-                                    class="btn"
-                                    target="_new"
-                                    >visit: tmc.doh.gov.ph</a
-                                >
-                            </h1>
                         </div>
                     </div>
 
