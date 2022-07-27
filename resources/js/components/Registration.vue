@@ -74,7 +74,7 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <input
-                                            type="text"
+                                            type="number"
                                             class="form-control"
                                             placeholder="PRC ID (if applicatble)"
                                             v-model="prc_id"
@@ -292,7 +292,7 @@ export default {
             fd.append("first_name", this.text_fname);
             fd.append("middle_name", this.text_mname);
             fd.append("last_name", this.text_lname);
-            fd.append("prc_id", this.prc_id);
+            fd.append("prc_no", this.prc_id);
             fd.append("hospital_affiliation", this.hospital_affiliation);
             fd.append("email_address", this.text_email);
             fd.append("email_address_confirmation", this.text_cemail);
