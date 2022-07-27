@@ -23,11 +23,10 @@
             </div>
         </div>
         <div class="alert alert-danger" role="alert" v-if="errors[0]">
-            <ul>
-                <li v-for="(item, index) in errors[0]" :key="index">
-                    {{ item }}
-                </li>
-            </ul>
+            <p class="display-5">
+                Registration failed!
+            </p>
+            <p>Please correct all errors below.</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -74,11 +73,40 @@
                                 <div class="col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <input
-                                            type="number"
+                                            type="text"
                                             class="form-control"
+                                            :class="
+                                                errors[0] &&
+                                                    errors[0].some(
+                                                        e => e[0] === 'prc_no'
+                                                    ) &&
+                                                    'is-invalid'
+                                            "
                                             placeholder="PRC ID (if applicable)"
                                             v-model="prc_id"
                                         />
+
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="
+                                                errors[0] &&
+                                                    errors[0].some(
+                                                        e => e[0] === 'prc_no'
+                                                    )
+                                            "
+                                        >
+                                            <ul>
+                                                <li
+                                                    v-for="(item,
+                                                    index) in errors[0].find(
+                                                        e => e[0] === 'prc_no'
+                                                    )[1]"
+                                                    :key="index"
+                                                >
+                                                    {{ item }}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -100,10 +128,44 @@
                                             <input
                                                 type="email"
                                                 class="form-control"
+                                                :class="
+                                                    errors[0] &&
+                                                        errors[0].some(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        ) &&
+                                                        'is-invalid'
+                                                "
                                                 placeholder="Email address *"
                                                 v-model="text_email"
                                                 required
                                             />
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="
+                                                    errors[0] &&
+                                                        errors[0].some(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        )
+                                                "
+                                            >
+                                                <ul>
+                                                    <li
+                                                        v-for="(item,
+                                                        index) in errors[0].find(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        )[1]"
+                                                        :key="index"
+                                                    >
+                                                        {{ item }}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -310,7 +372,15 @@ export default {
                     this.submitting = false;
                 }
             } catch (err) {
-                this.errors.push(err.response.data.errors.email_address);
+                const errs = err.response.data.errors;
+                // console.log();
+                // const email_errors = err.response.data.errors.map(
+                //     e => e.email_address
+                // );
+                // const prc_no_errors = err.response.data.errors.map(
+                //     e => e.prc_no
+                // );
+                this.errors.push(Object.entries(errs));
                 this.submitting = false;
                 // alert(response.statusText);
             }

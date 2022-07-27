@@ -129,7 +129,7 @@
 
                     <!-- event info-->
                     <Transition>
-                        <div>
+                        <div v-if="eventInfo">
                             <Modal :value="eventInfo" :modalSize="'modal-xl'">
                                 <template v-slot:title>
                                     <h3
