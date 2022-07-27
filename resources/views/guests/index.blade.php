@@ -34,6 +34,7 @@
                     <th class="text-center">Affiliation</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Certificate Name</th>
+                    <th class="text-center">Registration Date</th>
                     {{-- <th class="text-center">Action</th> --}}
                 </tr>
             </thead>
@@ -46,6 +47,7 @@
                     <td>{{ $user->hospital_affiliation }}</td>
                     <td>{{ $user->email_address }}</td>
                     <td>{{ $user->name_on_cert }}</td>
+                    <td>{{ $user->created_at }}</td>
                     {{-- <td>
                         <div class="btn-group">
                             <button class="btn btn-danger btn-delete" data-href="{{ route('cms.guests.destroy', $user->id) }}" type="submit">delete</button>
