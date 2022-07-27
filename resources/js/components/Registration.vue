@@ -76,7 +76,7 @@
                                         <input
                                             type="number"
                                             class="form-control"
-                                            placeholder="PRC ID (if applicatble)"
+                                            placeholder="PRC ID (if applicable)"
                                             v-model="prc_id"
                                         />
                                     </div>
