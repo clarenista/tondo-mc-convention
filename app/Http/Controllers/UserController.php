@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Library\SendEmail;
 
 class UserController extends Controller
 {
@@ -181,6 +182,7 @@ class UserController extends Controller
             'prc_no' => 'numeric',
         ]);
         User::create(\request()->except('_token'));
+        $sm = (new SendEmail(\request()->email_address))->send();
         // return redirect(\route('guest_registration'))->with('status', 'Registration has successfully submitted!');
         return 'success';
     }
