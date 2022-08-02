@@ -44,7 +44,7 @@ class SendEmailBlast extends Command
 
         foreach ($users as $user) {
             echo $user->email_address . PHP_EOL;
-            if (!$user->email_adress) continue;
+            if (!$user->email_address) continue;
             (new SendEmail($user->email_address))->send();
             sleep(1);
         }
