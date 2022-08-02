@@ -43,8 +43,9 @@ class SendEmailBlast extends Command
         $users = User::where('id','>',46)->get();
 
         foreach($users as $user){
-            // echo $user->email_address . PHP_EOL;
+            echo $user->email_address . PHP_EOL;
             (new SendEmail($user->email_address))->send();
+            sleep(1);
         }
 
 
