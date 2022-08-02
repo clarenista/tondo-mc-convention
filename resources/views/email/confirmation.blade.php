@@ -3,6 +3,6 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 </head>
 <body>
-    THANK YOU
+    <img src="https://tondomcobgyn2022.com/images/email-confirmation.jpg">
 </body>
 </html>
