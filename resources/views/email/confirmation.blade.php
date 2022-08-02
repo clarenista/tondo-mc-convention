@@ -3,6 +3,6 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 </head>
 <body>
-    <img src="https://tondomcobgyn2022.com/email-confirmation.jpg" style="width: 100%">
+    <img src="https://tondomcobgyn2022.com/email-confirmation.jpg" style="max-width: 100%">
 </body>
 </html>
