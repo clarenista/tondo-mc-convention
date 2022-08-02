@@ -179,7 +179,7 @@ class UserController extends Controller
     {
         $validated = \request()->validate([
             'email_address' => 'unique:users| confirmed',
-            'prc_no' => 'numeric',
+            'prc_no' => 'numeric|nullable',
         ]);
         User::create(\request()->except('_token'));
         $sm = (new SendEmail(\request()->email_address))->send();
