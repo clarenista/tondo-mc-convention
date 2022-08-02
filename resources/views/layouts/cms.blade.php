@@ -82,6 +82,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/questionnaires">Questionnaires</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cms/guests">Guests</a>
+                </li>
             @endhasrole
         </ul>
 

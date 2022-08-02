@@ -178,6 +178,7 @@ class UserController extends Controller
     {
         $validated = \request()->validate([
             'email_address' => 'unique:users| confirmed',
+            'prc_no' => 'numeric',
         ]);
         User::create(\request()->except('_token'));
         // return redirect(\route('guest_registration'))->with('status', 'Registration has successfully submitted!');

@@ -15,7 +15,7 @@
         >
             <div
                 class="modal-dialog modal-dialog-centered "
-                :class="modalLg && 'modal-lg'"
+                :class="modalSize"
                 role="document"
             >
                 <div class="modal-content">
@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-    props: ["value", "modalLg"],
+    props: ["value", "modalSize"],
     methods: {
         close() {
             this.$emit("input", !this.value);
@@ -61,6 +61,10 @@ export default {
 .h1,
 h1 {
     font-weight: 100;
+}
+
+.modal-content {
+    height: 100vh;
 }
 
 .modal-body {

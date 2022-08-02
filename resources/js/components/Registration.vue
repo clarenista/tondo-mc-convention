@@ -5,14 +5,28 @@
             role="alert"
             v-if="successRegistration"
         >
-            Registered successfully.
+            <div class="row">
+                <div
+                    class="col-md-2 col-sm-2 col-xs-12 d-flex justify-content-center align-items-center"
+                >
+                    <i
+                        class="fa fa-check-circle-o fa-5x"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+                <div class="col-md col-sm-10 col-xs-12 text-justify-sm">
+                    <p class="display-4">
+                        Success!
+                    </p>
+                    <p>Your account has been successfully created.</p>
+                </div>
+            </div>
         </div>
         <div class="alert alert-danger" role="alert" v-if="errors[0]">
-            <ul>
-                <li v-for="(item, index) in errors[0]" :key="index">
-                    {{ item }}
-                </li>
-            </ul>
+            <p class="display-5">
+                Registration failed!
+            </p>
+            <p>Please correct all errors below.</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-12">
@@ -61,9 +75,38 @@
                                         <input
                                             type="text"
                                             class="form-control"
-                                            placeholder="PRC ID (if applicatble)"
+                                            :class="
+                                                errors[0] &&
+                                                    errors[0].some(
+                                                        e => e[0] === 'prc_no'
+                                                    ) &&
+                                                    'is-invalid'
+                                            "
+                                            placeholder="PRC ID (if applicable)"
                                             v-model="prc_id"
                                         />
+
+                                        <div
+                                            class="invalid-feedback"
+                                            v-if="
+                                                errors[0] &&
+                                                    errors[0].some(
+                                                        e => e[0] === 'prc_no'
+                                                    )
+                                            "
+                                        >
+                                            <ul>
+                                                <li
+                                                    v-for="(item,
+                                                    index) in errors[0].find(
+                                                        e => e[0] === 'prc_no'
+                                                    )[1]"
+                                                    :key="index"
+                                                >
+                                                    {{ item }}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
@@ -85,10 +128,44 @@
                                             <input
                                                 type="email"
                                                 class="form-control"
+                                                :class="
+                                                    errors[0] &&
+                                                        errors[0].some(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        ) &&
+                                                        'is-invalid'
+                                                "
                                                 placeholder="Email address *"
                                                 v-model="text_email"
                                                 required
                                             />
+                                            <div
+                                                class="invalid-feedback"
+                                                v-if="
+                                                    errors[0] &&
+                                                        errors[0].some(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        )
+                                                "
+                                            >
+                                                <ul>
+                                                    <li
+                                                        v-for="(item,
+                                                        index) in errors[0].find(
+                                                            e =>
+                                                                e[0] ===
+                                                                'email_address'
+                                                        )[1]"
+                                                        :key="index"
+                                                    >
+                                                        {{ item }}
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -138,21 +215,29 @@
                                             <option value="Fellow-in-training">
                                                 Fellow-in-training</option
                                             >
-                                            <option value="Resident">
-                                                Resident</option
+                                            <option
+                                                value="Resident-in-Training"
+                                            >
+                                                Resident-in-Training</option
                                             >
                                             <option
-                                                value="	Clerk/Medical Intern"
+                                                value="Medical Clerk/Medical Intern"
                                             >
-                                                Clerk/Medical Intern</option
+                                                Medical Clerk/Medical
+                                                Intern</option
+                                            >
+                                            <option value="Nurse">
+                                                Nurse</option
                                             >
                                             <option
-                                                value="Nurse/Healthcare Practitioner"
+                                                value="Allied Health Care Worker"
                                             >
-                                                Nurse/Healthcare
-                                                Practitioner</option
+                                                Allied Health Care
+                                                Worker</option
                                             >
-                                            <option value="Other">Other</option>
+                                            <option value="Others"
+                                                >Others</option
+                                            >
                                         </select>
                                     </div>
                                 </div>
@@ -179,29 +264,13 @@
                                                     will be processed by the
                                                     account owner and host in
                                                     accordance to the Data
-                                                    Privacy Act of 2012 (RA
-                                                    10173)</small
-                                                >
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input
-                                                class="form-check-input"
-                                                type="checkbox"
-                                                v-model="disclaimer_checkbox"
-                                                id="disclaimer2"
-                                                value="disclaimer2"
-                                            />
-                                            <label
-                                                class="form-check-label"
-                                                for="disclaimer2"
-                                            >
-                                                <small
-                                                    >I allow to share my name to
-                                                    the industry partners for
-                                                    attendance purposes.</small
+                                                    Privacy Act of 2012
+                                                    <a
+                                                        class="ra_link"
+                                                        href="https://www.privacy.gov.ph/data-privacy-act/"
+                                                        target="_new"
+                                                        >(RA 10173)</a
+                                                    ></small
                                                 >
                                             </label>
                                         </div>
@@ -256,6 +325,20 @@ export default {
     watch: {},
 
     methods: {
+        clearInputs() {
+            this.text_fname = "";
+            this.text_mname = "";
+            this.text_lname = "";
+            this.prc_id = "";
+            this.hospital_affiliation = "";
+            this.text_email = "";
+            this.text_cemail = "";
+            this.text_name_on_cert = "";
+            this.select_position = "";
+            this.disclaimer_checkbox = [];
+
+            this.errors = [];
+        },
         handleCancelClicked() {
             this.$emit("handleCancelClicked");
         },
@@ -271,7 +354,7 @@ export default {
             fd.append("first_name", this.text_fname);
             fd.append("middle_name", this.text_mname);
             fd.append("last_name", this.text_lname);
-            fd.append("prc_id", this.prc_id);
+            fd.append("prc_no", this.prc_id);
             fd.append("hospital_affiliation", this.hospital_affiliation);
             fd.append("email_address", this.text_email);
             fd.append("email_address_confirmation", this.text_cemail);
@@ -281,6 +364,7 @@ export default {
                 let { data } = await axios.post(url, fd);
                 if (data === "success") {
                     this.successRegistration = true;
+                    this.clearInputs();
                     setTimeout(
                         () => this.$emit("handleSuccessRegistration", true),
                         2000
@@ -288,7 +372,15 @@ export default {
                     this.submitting = false;
                 }
             } catch (err) {
-                this.errors.push(err.response.data.errors.email_address);
+                const errs = err.response.data.errors;
+                // console.log();
+                // const email_errors = err.response.data.errors.map(
+                //     e => e.email_address
+                // );
+                // const prc_no_errors = err.response.data.errors.map(
+                //     e => e.prc_no
+                // );
+                this.errors.push(Object.entries(errs));
                 this.submitting = false;
                 // alert(response.statusText);
             }
@@ -297,4 +389,17 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.ra_link {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (max-width: 375px) {
+    .text-justify-sm {
+        text-align: center;
+    }
+}
+</style>

@@ -13,7 +13,7 @@
         </Transition>
         <div class="content" v-if="!isLoginSuccess">
             <div class="event_info">
-                <div class="card mt-3" style="width: 60%;">
+                <div class="card mt-3">
                     <div class="text-center text-light small mt-3">
                         <p>
                             <img
@@ -45,16 +45,23 @@
                             04:00 PM - 07:00 PM
                         </p>
 
+                        <!-- disable login button for now -->
                         <a
+                            href="#"
+                            class="btn btn_pink btn-block mt-5"
+                            @click="handleRegisterClicked()"
+                            >REGISTER</a
+                        >
+                        <!-- <a
                             href="#"
                             class="btn btn_pink btn-block mt-5"
                             @click="showLogin()"
                             >LOGIN</a
-                        >
+                        > -->
 
-                        <p class="text-center">
+                        <!-- <p class="text-center">
                             <span class="lead"
-                                >not yer registered?
+                                >NOT YET REGISTERED?
                                 <a
                                     href="#"
                                     class="btn"
@@ -62,26 +69,104 @@
                                     >CLICK HERE</a
                                 ></span
                             >
-                        </p>
+                        </p> -->
                     </div>
 
                     <div class="border_bot">
                         &nbsp;
                     </div>
 
-                    <div class="mt-3">
+                    <div>
                         <div class="event_info_footer">
                             <h1 class="lead text-center text-light">
-                                <a href="#" class="btn">PROGRAM</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(1)"
+                                    >PROGRAM</a
+                                >
                             </h1>
+
                             <h1 class="lead float-left">
-                                <a href="#" class="btn">SPEAKERS</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(2)"
+                                    >SPEAKERS</a
+                                >
                             </h1>
                             <h1 class="lead float-right">
-                                <a href="#" class="btn">CONTACT US</a>
+                                <a
+                                    href="#"
+                                    class="btn"
+                                    @click="handleChangeEventInfoModal(3)"
+                                    >CONTACT US</a
+                                >
                             </h1>
                         </div>
                     </div>
+
+                    <h1 class="text-center text-light">
+                        <a
+                            style="padding: 4px 7px; background: #ff00ff; border-radius: 50%; color: #fff;"
+                            href="https://tmc.doh.gov.ph/"
+                            class="btn "
+                            target="_new"
+                            ><i class="fa fa-globe fa-lg" aria-hidden="true">
+                            </i>
+                        </a>
+                        <a
+                            style="padding: 4px 9px; background: #ff00ff; border-radius: 50%; color: #fff"
+                            href="https://www.facebook.com/tondomed"
+                            class="btn "
+                            target="_new"
+                            ><i
+                                class="fa fa-facebook-square"
+                                aria-hidden="true"
+                            ></i>
+                        </a>
+                    </h1>
+
+                    <!-- event info-->
+                    <Transition>
+                        <div v-if="eventInfo">
+                            <Modal :value="eventInfo" :modalSize="'modal-xl'">
+                                <template v-slot:title>
+                                    <h3
+                                        class="display-4 mt-3 text-dark"
+                                        style="font-size: 2em; text-align: center;"
+                                    >
+                                        {{ eventInfo.name }}
+                                    </h3>
+                                    <br />
+                                </template>
+                                <br />
+                                <template v-slot:body>
+                                    <div
+                                        class="embed-responsive embed-responsive-16by9"
+                                        style="height: 100%;"
+                                    >
+                                        <iframe
+                                            class="embed-responsive-item"
+                                            :src="
+                                                `https://docs.google.com/viewerng/viewer?url=${eventInfo.path}&embedded=true`
+                                            "
+                                            allowfullscreen
+                                        ></iframe>
+                                    </div>
+                                </template>
+                                <template v-slot:footer>
+                                    <button
+                                        class="btn btn-primary btn-lg"
+                                        type="button"
+                                        @click="eventInfo = ''"
+                                    >
+                                        Done
+                                    </button>
+                                </template>
+                            </Modal>
+                        </div>
+                    </Transition>
                 </div>
             </div>
         </div>
@@ -134,7 +219,7 @@
 
         <Transition>
             <div>
-                <Modal :value="showRegistrationModal" :modalLg="true">
+                <Modal :value="showRegistrationModal" :modalSize="'modal-lg'">
                     <template v-slot:title>
                         <img
                             style="width: 10vw;"
@@ -287,6 +372,15 @@
                 </div>
             </div>
         </div>
+
+        <marquee
+            class="text-uppercase marqee"
+            direction="left"
+            v-if="!eventInfo"
+        >
+            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE
+            STARTING AUG. 04, 2022 (THURSDAY)</marquee
+        >
     </div>
 </template>
 
@@ -311,6 +405,24 @@ export default {
     },
     data() {
         return {
+            eventInfo: null,
+            eventInfos: [
+                {
+                    id: 1,
+                    name: "Program",
+                    path: window.location.origin + "/documents/tmc-program.pdf"
+                },
+                {
+                    id: 2,
+                    name: "Speakers",
+                    path: window.location.origin + "/documents/tmc-speakers.pdf"
+                },
+                {
+                    id: 3,
+                    name: "Contact us",
+                    path: window.location.origin + "/documents/tmc-contact.pdf"
+                }
+            ],
             showRegistrationModal: false,
             show: true,
             loginMessage: null,
@@ -339,6 +451,10 @@ export default {
     watch: {},
 
     methods: {
+        handleChangeEventInfoModal(infoId) {
+            const info = this.eventInfos.find(e => e.id === infoId);
+            this.eventInfo = info;
+        },
         handleCancelClicked() {
             this.showRegistrationModal = !this.showRegistrationModal;
         },
@@ -425,6 +541,22 @@ export default {
 </script>
 
 <style scoped>
+.hover {
+    --s: 0.2em; /* the thickness of the line */
+    --c: #ff00ff; /* the color */
+
+    color: #0000;
+    padding-bottom: var(--s);
+    background: linear-gradient(90deg, var(--c) 50%, #000 0)
+            calc(100% - var(--_p, 0%)) / 200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) var(--s) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+}
+.hover:hover {
+    --_p: 100%;
+}
 .v-enter-active,
 .v-leave-active {
     transition: opacity 1s ease;
@@ -621,10 +753,11 @@ div.full {
 
 /* new styles */
 .event_info .card {
-    /* background: linear-gradient(#45007C, #8801a3) !important; */
-    background: linear-gradient(#45007c, #45007c) !important;
-    opacity: 0.7;
+    background: linear-gradient(#45007c, #8801a3) !important;
+    /* background: linear-gradient(#45007c, #45007c) !important; */
+    /* opacity: 0.9; */
     border-radius: 0;
+    width: 450px;
 }
 
 .event_info .card-title {
@@ -867,5 +1000,158 @@ div.full {
     .data_use_clause .check_agree {
         font-size: 9px !important;
     }
+}
+
+/* new media */
+@media screen and (min-width: 280px) and (max-width: 415px) {
+    .event_info .card-title {
+        font-size: 0.5rem;
+    }
+
+    .event_info .card-body h1 {
+        font-size: 0.88rem;
+        line-height: 1.1;
+    }
+
+    .event_date_box {
+        text-align: center;
+        border: 1px solid #fff;
+        /* padding: 2.1999999999999993em; */
+        font-size: 0.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .btn_pink {
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    .lead {
+        font-size: 0.55rem;
+    }
+
+    .lead a {
+        font-size: 0.55rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+
+    .event_info .card {
+        width: 220px;
+    }
+}
+
+@media screen and (min-height: 599px) and (max-height: 720px) {
+    .event_info .card {
+        width: 320px;
+    }
+
+    .event_info .card-title {
+        font-size: 0.5rem;
+    }
+
+    .event_info .card-body h1 {
+        font-size: 0.88rem;
+        line-height: 1.1;
+    }
+
+    .event_date_box {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .btn_pink {
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    .lead {
+        font-size: 0.55rem;
+    }
+
+    .lead a {
+        font-size: 0.55rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+}
+
+@media (max-width: 320px) {
+    .event_info .card {
+        width: 220px;
+    }
+}
+
+@media screen and (min-width: 980px) and (max-width: 1281px) {
+    .event_info .card {
+        width: 300px;
+    }
+
+    .event_info .card-title {
+        font-size: 1.2rem;
+    }
+
+    .event_info .card-body h1 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .event_date_box {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0 3rem;
+    }
+
+    .btn_pink {
+        font-size: 1.3rem;
+        margin-top: 3rem !important;
+    }
+
+    .lead {
+        font-size: 0.95rem;
+    }
+
+    .lead a {
+        font-size: 0.95rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
+    }
+
+    .video-container video {
+        height: 85%;
+    }
+}
+
+/* @media screen and (min-width: 851px){
+    .video-container video{
+        height: 85% !important;
+    }
+} */
+.marqee {
+    background-color: rgb(255 255 255 / 40%);
+    /* color: #212529;  */
+    color: blue;
+    font-size: 1.2rem;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
 }
 </style>

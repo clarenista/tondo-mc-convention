@@ -8,6 +8,7 @@ use App\Http\Controllers\Cms\ContactController;
 use App\Http\Controllers\Cms\EventController as CmsEventController;
 use App\Http\Controllers\Cms\EventManagementController;
 use App\Http\Controllers\Cms\ExternalLinkController;
+use App\Http\Controllers\Cms\GuestController;
 use App\Http\Controllers\Cms\ProgramController;
 use App\Http\Controllers\Cms\QuestionController;
 use App\Http\Controllers\Cms\QuestionnaireController;
@@ -39,7 +40,7 @@ Route::name('cms.')->group(function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::get('sync-users', [UserController::class, 'syncUsers'])->name('syncUsers');
-        Route::resource('guests', UserController::class);
+        Route::resource('guests', GuestController::class);
         Route::resource('booths', BoothController::class);
         Route::resource('standees', StandeeController::class);
         Route::resource('questionnaires', QuestionnaireController::class);

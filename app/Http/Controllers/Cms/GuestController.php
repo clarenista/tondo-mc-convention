@@ -15,7 +15,9 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+
+        $guests = User::whereNull('classification')->where('id','>',2)->get();
+        return view('guests.index', \compact('guests'));
     }
 
     /**
