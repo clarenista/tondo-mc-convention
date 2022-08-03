@@ -432,7 +432,8 @@ export default {
             }
         }
         for(let i in this.booths){
-          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : "custom-hotspot brochures"
+            console.log('this.booths', this.booths.map(b => b.name))
+          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : this.booths[i].name === 'Speakers' ? 'custom-hotspot speakers' : this.booths[i].name === 'Program (Lobby)' ? 'custom-hotspot program' : 'custom-hotspot standee'
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
@@ -780,10 +781,17 @@ div >>> .pnlm-lbar {
     opacity: 0 !important;
 }
 div >>> .custom-hotspot {
-    height: 32px;
-    width: 32px;
+    height: 43px;
+    width: 43px;
     animation: pulse 2s infinite;
     border-radius: 50%;
+}
+
+@media only screen and (max-width: 425px) {
+    div >>> .custom-hotspot {
+        height: 36px;
+        width: 36px;
+    }
 }
 div >>> .vote {
     background-image: url("/images/icons/vote.png");
@@ -791,27 +799,27 @@ div >>> .vote {
 }
 
 div >>> .meeting_hall {
-    background-image: url("/images/icons/meeting-hall-icon-min.png");
+    background-image: url("/images/iconsv2/meeting_hall_icon.png");
     background-size: cover;
 }
 div >>> .zoom {
-    background-image: url("/images/icons/zoom.png");
+    background-image: url("/images/iconsv2/zoom.png");
     background-size: cover;
 }
 div >>> .exhibit_hall {
-    background-image: url("/images/icons/exhibit-hall-icon-min.png");
+    background-image: url("/images/iconsv2/exhibit_hall_icon.png");
     background-size: cover;
 }
 div >>> .booth {
-    background-image: url("/images/multires/ICONS/ENTER.png");
+    background-image: url("/images/iconsv2/booth_icon.png");
     background-size: cover;
 }
 div >>> .arrow_left {
-    background-image: url("/images/multires/ICONS/ARROW.png");
+    background-image: url("/images/iconsv2/left_arrow.png");
     background-size: cover;
 }
 div >>> .arrow_right {
-    background-image: url("/images/multires/ICONS/ARROW_RIGHT.png");
+    background-image: url("/images/iconsv2/right_arrow.png");
     background-size: cover;
 }
 div >>> .arrow_up {
@@ -823,7 +831,7 @@ div >>> .arrow_down {
     background-size: cover;
 }
 div >>> .enter {
-    background-image: url("/images/multires/ICONS/ENTER.png");
+    background-image: url("/images/iconsv2/booth_icon.png");
     background-size: cover;
 }
 div >>> .hall_a {
@@ -852,7 +860,19 @@ div >>> .right_arrow {
 }
 
 div >>> .brochures {
-    background-image: url("/images/icons/brochure.png");
+    background-image: url("/images/iconsv2/brochure.png");
+    background-size: cover;
+}
+div >>> .program {
+    background-image: url("/images/iconsv2/program.png");
+    background-size: cover;
+}
+div >>> .speakers {
+    background-image: url("/images/iconsv2/speakers.png");
+    background-size: cover;
+}
+div >>> .standee {
+    background-image: url("/images/iconsv2/standee.png");
     background-size: cover;
 }
 @-webkit-keyframes pulse {

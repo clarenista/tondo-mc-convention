@@ -55,8 +55,8 @@ export default new Vuex.Store({
                 type: "scene",
                 pitch: 2.42,
                 yaw: 22.07,
-                cssClass: "custom-hotspot arrow_right",
-                sceneId: "meeting_hall", 
+                cssClass: "custom-hotspot meeting_hall",
+                sceneId: "meeting_hall",
                 text: "Go to Meeting Hall"
             },
             // {
@@ -73,7 +73,7 @@ export default new Vuex.Store({
                 type: "scene",
                 pitch: 2.42,
                 yaw: -22.43,
-                cssClass: "custom-hotspot arrow_left",
+                cssClass: "custom-hotspot exhibit_hall",
                 sceneId: "hall_a",
                 text: "Go to Exhibit Hall"
             },

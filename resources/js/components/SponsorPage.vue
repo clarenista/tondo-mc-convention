@@ -30,10 +30,11 @@
                                         class="fa fa-info-circle text-info"
                                         aria-hidden="true"
                                     ></i>
-                                    You are about to leave the virtual convention site, you will be
-                                    redirected to:
+                                    You are about to leave the virtual
+                                    convention site, you will be redirected to:
                                 </h3>
-                                <a class="lead"
+                                <a
+                                    class="lead"
                                     :href="selectedHotspot.assets[0].url"
                                     target="_blank"
                                 >
@@ -278,6 +279,65 @@
                         </div>
                     </template>
                     <!-- QUIZ  -->
+
+                    <!-- STANDEE  -->
+                    <template v-else-if="selectedHotspot.name == 'standee'">
+                        <div
+                            class="col-6 p-1"
+                            v-for="(item, assetIndex) in selectedHotspot.assets"
+                            :key="assetIndex"
+                            @click="handleSelectAssetIndex(assetIndex)"
+                        >
+                            <!-- <div class="card" style="cursor:pointer;">
+                    <div class="card-img-overlay text-white"><small>{{item.name}}</small></div>
+                    <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
+                  </div> -->
+
+                            <div
+                                class="card text-center"
+                                style="cursor:pointer;"
+                                @click.prevent="
+                                    sendVisitedAssets(
+                                        item,
+                                        selectedHotspot.name
+                                    )
+                                "
+                            >
+                                <!-- <img :src="item.url" width="100%" alt="" srcset=""> -->
+                                <div class="card-body bg-dark">
+                                    <!-- use to have a clickable image on the card -->
+
+                                    <div
+                                        style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;"
+                                    >
+                                        <img
+                                            v-if="item.thumbnail_url != null"
+                                            :src="item.thumbnail_url"
+                                            width="100%"
+                                            alt=""
+                                            srcset=""
+                                        />
+                                        <img
+                                            v-else
+                                            :src="item.url"
+                                            width="100%"
+                                            alt=""
+                                            srcset=""
+                                        />
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div
+                                        class="lead text-dark"
+                                        style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;"
+                                    >
+                                        {{ item.name }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <!-- STANDEE  -->
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
@@ -850,33 +910,40 @@ div.full {
     height: 100%;
 }
 div >>> .custom-hotspot {
-    height: 32px;
-    width: 32px;
+    height: 43px;
+    width: 43px;
     animation: pulse 2s infinite;
     border-radius: 50%;
 }
+
+@media only screen and (max-width: 425px) {
+    div >>> .custom-hotspot {
+        height: 36px;
+        width: 36px;
+    }
+}
 div >>> .brochures {
-    background-image: url("/images/icons/brochure.png");
+    background-image: url("/images/iconsv2/brochure.png");
     background-size: cover;
 }
 div >>> .videos {
-    background-image: url("/images/icons/video.png");
+    background-image: url("/images/iconsv2/video.png");
     background-size: cover;
 }
 div >>> .contact-us {
-    background-image: url("/images/icons/contact.png");
+    background-image: url("/images/iconsv2/contact.png");
     background-size: cover;
 }
 div >>> .external-link {
-    background-image: url("/images/icons/link.png");
+    background-image: url("/images/iconsv2/link.png");
     background-size: cover;
 }
 div >>> .gallery {
-    background-image: url("/images/icons/gallery.png");
+    background-image: url("/images/iconsv2/gallery.png");
     background-size: cover;
 }
 div >>> .quiz {
-    background-image: url("/images/icons/quiz.png");
+    background-image: url("/images/iconsv2/quiz.png");
     background-size: cover;
 }
 div >>> .wheels {
