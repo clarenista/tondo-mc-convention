@@ -371,7 +371,7 @@ class BoothSeeder extends Seeder
             //     //     ]
             //     // ],
 
-                
+
 
             //     // // SPONSOR_R3
             //     // ['L3',  0.24, -119.20, 'silver', "L3.png", "L3.png",
@@ -466,7 +466,7 @@ class BoothSeeder extends Seeder
     private function seedBooth($user, $booth, $location)
     {
 
-        $aws_booth_endpoint = "https://psp-s3bucket.s3-ap-southeast-1.amazonaws.com/Booth/";
+        $aws_booth_endpoint = "https://s3-ap-southeast-1.amazonaws.com/tmc-s3bucket/Booth/";
         try {
             (new BoothController)->store(new Request([
                 'user_id' => $user->id,
