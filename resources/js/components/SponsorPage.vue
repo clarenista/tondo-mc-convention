@@ -144,7 +144,7 @@
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                         <div class="col-12 p-1">
                             <div v-if="selectedHotspot.quiz_taken != ''">
-                                <legend class="text-center text-primary mb-3">
+                                <legend class="text-center text-light mb-3">
                                     <i
                                         class="fa fa-trophy"
                                         aria-hidden="true"
@@ -153,7 +153,7 @@
                                     {{ selectedHotspot.questions.length }}
                                 </legend>
                                 <div>
-                                    <h3 class="text-center end_message">
+                                    <h3 class="text-center text-light end_message">
                                         {{
                                             selectedHotspot.questionnaire
                                                 .ending_message
@@ -162,12 +162,12 @@
                                 </div>
 
                                 <ol>
-                                    <li
+                                    <li class=" text-light"
                                         v-for="(question,
                                         questionIndex) in selectedHotspot.questions"
                                         :key="questionIndex"
                                     >
-                                        <p>{{ question.question }}</p>
+                                        <p class=" text-light">{{ question.question }}</p>
                                         <p
                                             v-if="question.answers[0]"
                                             :class="
@@ -198,7 +198,7 @@
 
                             <div v-else>
                                 <div>
-                                    <h3 class="instruction">
+                                    <h3 class="instruction text-light">
                                         {{
                                             selectedHotspot.questionnaire
                                                 .instruction
@@ -207,7 +207,7 @@
                                 </div>
 
                                 <div
-                                    class="col-12 p-1"
+                                    class="col-12 p-1 text-light"
                                     v-if="page == assetIndex"
                                     v-for="(item,
                                     assetIndex) in selectedHotspot.questions"
