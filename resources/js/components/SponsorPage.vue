@@ -2,7 +2,7 @@
     <div class="background full">
         <div v-if="selectedHotspot">
             <CoolLightBox
-                v-if="selectedHotspot.assets[0].name === 'standee'"
+                v-if="selectedHotspot.assets[0].category === 'standee'"
                 :items="selectedHotspot.assets"
                 :index="indexSelected"
                 @close="indexSelected = null"
@@ -13,7 +13,7 @@
             :value="value"
             v-if="
                 selectedHotspot != null &&
-                    selectedHotspot.assets[0].name !== 'standee'
+                    selectedHotspot.assets[0].category !== 'standee'
             "
         >
             <template v-slot:title>
@@ -656,7 +656,7 @@ export default {
             }
             this.sendBoothGuestEvent(this.booth_details, hotspot);
 
-            if (hotspot.assets[0].name === "standee") {
+            if (hotspot.assets[0].category === "standee") {
                 setTimeout(() => {
                     this.indexSelected = 0;
                 }, 100);
