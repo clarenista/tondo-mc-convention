@@ -29,38 +29,32 @@
             <tbody>
                 <tr style="width: 1024px">
                     <td>
-                        <img src="https://tondomcobgyn2022.com/email-reminder-header.png" style="width: 100%;">
+                        <img src="https://tondomcobgyn2022.com/email-reminder-template.png" style="width: 100%;">
                     </td>
                 </tr>
                 <tr style="width: 1024px">
                     <td
-                        style="height: 4%;text-align: center;background: #d4e3d9;color: #17652c;font-size: 16px;font-weight: bold;padding: 2rem;">
-                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSTGRADUATE COURSE" WILL BEGIN IN 1 WEEK ON:
-                        <br>
-                        <br>
-                        DATE TIME: AUG 11, 2022 4:00 PM SINGAPORE
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        THIS IS ALSO TO ANNOUNCE THAT TODAY IS THE FIRST DAY THAT YOU CAN ACCESS THE VIRTUAL BOOTHS.
-                        <br>
-                        <br>
-                        LINK: <a href="https://tondomcobgyn2022.com/login">https://tondomcobgyn2022.com</a>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        YOU MAY ALSO VISIT:
-                        <br>
-                        <br><a href="http://tmc.doh.gov.ph/">http://tmc.doh.gov.ph/</a>
-                        <br>
-                        <br><a href="https://www.facebook.com/tondomed">https://www.facebook.com/tondomed</a>
-                    </td>
-                </tr>
-                <tr style="width: 1024px">
-                    <td>
-                        <img src="https://tondomcobgyn2022.com/email-reminder-footer.png" style="width: 100%;">
+                        style="height: 4%;text-align: center;background: #d4e3d9;color: #17652c;font-size: 14px;font-weight: bold;">
+                        <div style="margin-top:-255px;">
+                            THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSTGRADUATE COURSE" WILL BEGIN IN 1 WEEK
+                            ON:
+                            <br>
+                            <br>
+                            DATE TIME: AUG 11, 2022 4:00 PM SINGAPORE
+                            <br>
+                            <br>
+                            <br>
+                            THIS IS ALSO TO ANNOUNCE THAT TODAY IS THE FIRST DAY THAT YOU CAN ACCESS THE VIRTUAL BOOTHS.
+                            <br>
+                            <br>
+                            LINK: <a href="https://tondomcobgyn2022.com/login">https://tondomcobgyn2022.com</a>
+                            <br>
+                            <br>
+                            <br>
+                            YOU MAY ALSO VISIT:
+                            <br><a href="http://tmc.doh.gov.ph/">http://tmc.doh.gov.ph/</a>
+                            <br><a href="https://www.facebook.com/tondomed">https://www.facebook.com/tondomed</a>
+                        </div>
                     </td>
                 </tr>
             </tbody>
