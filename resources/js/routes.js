@@ -76,7 +76,7 @@ export const routes = [
         path: "/evaluation",
         component: Evaluation,
         meta: {
-            requiresAuth: true
+            // requiresAuth: true
         }
     },
     {
