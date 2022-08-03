@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function login(Request $request)
     {
         // $credentials = $request->only('email', 'password');
-        $user = User::with('booth')->where('email_address', $request->email_address)->where('approved_at', '!=', null)->first();
+        $user = User::with('booth')->where('email_address', $request->email_address)->first();
         if ($user) {
             if (!$user->api_token) {
                 $user->update(['api_token' => hash('sha256', Str::random(80))]);
