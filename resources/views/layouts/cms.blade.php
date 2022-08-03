@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @production
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @endproduction
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/css/app.css">
@@ -18,26 +19,27 @@
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
     <title>@yield('title')</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-success bg-success sticky-top">
-    <a class="navbar-brand text-white" href="{{ url('/cms') }}">Booth Maintenance</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <a class="navbar-brand text-white" href="{{ url('/cms') }}">Booth Maintenance</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            @hasrole('sponsor')
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @hasrole('sponsor')
                 @php
-                    $skip = ['quiz', 'video', 'videos', 'external-link','contact-us'];
-                    if(\request()->showVideo){
-                        $skip = ['quiz', 'external-link','contact-us'];
-                    }
+                $skip = ['quiz', 'video', 'videos', 'external-link','contact-us'];
+                if(\request()->showVideo){
+                $skip = ['quiz', 'external-link','contact-us'];
+                }
                 @endphp
                 @foreach (Auth::user()->booth->hotspots->whereNotIn('name', $skip) as $hotspot)
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->caption }}</a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('cms.sponsor.assets.index', ['hotspot_id' => $hotspot->id]) }}">{{ $hotspot->caption ? $hotspot->caption : $hotspot->name }}</a>
+                </li>
                 @endforeach
 
                 <li class="nav-item">
@@ -64,9 +66,9 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.sponsor.chat.index',1) }}">Chat Visitors</a>
                 </li>
-            @endhasrole
+                @endhasrole
 
-            @hasrole('admin')
+                @hasrole('admin')
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('cms.event-management.index')}}">Event Management</a>
                 </li>
@@ -85,34 +87,41 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/cms/guests">Guests</a>
                 </li>
-            @endhasrole
-        </ul>
+                @endhasrole
+            </ul>
 
-        <ul class="navbar-nav my-2 my-lg-0">
-            <li class="nav-item">
-                @if(Auth::check())
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item">
+                    @if(Auth::check())
                     <a class="btn btn-danger text-white" href="/cms/logout" role="button">Logout</a>
-                @else
+                    @else
                     <a class="btn btn-primary text-white" href="/cms/login" role="button">Login</a>
-                @endif
-            </li>
-        </ul>
+                    @endif
+                </li>
+            </ul>
 
-        <!-- <form class="form-inline my-2 my-lg-0">
+            <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-    </div>
+        </div>
     </nav>
 
     <div class="container mt-5">
         @yield('content')
     </div>
 
-    <script>$.ajaxSetup({headers:{'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')}});</script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @yield('js')
 
 
 
 </body>
+
 </html>
