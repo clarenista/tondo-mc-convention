@@ -130,7 +130,11 @@
                     <!-- event info-->
                     <Transition>
                         <div v-if="eventInfo">
-                            <Modal :value="eventInfo" :modalSize="'modal-xl'">
+                            <Modal
+                                :value="eventInfo"
+                                :modalSize="'modal-xl'"
+                                :vh="true"
+                            >
                                 <template v-slot:title>
                                     <h3
                                         class="display-4 mt-3 text-dark"
@@ -372,15 +376,6 @@
                 </div>
             </div>
         </div>
-
-        <marquee
-            class="text-uppercase marqee"
-            direction="left"
-            v-if="!eventInfo"
-        >
-            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE
-            STARTING AUG. 04, 2022 (THURSDAY) at 08:00 A.M.</marquee
-        >
     </div>
 </template>
 
