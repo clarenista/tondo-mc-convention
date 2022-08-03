@@ -5,9 +5,9 @@
 </head>
 
 <body>
-    <div style="width: 100%; ">
+    <div style="width: 1024px; ">
         <center>
-            <div style="max-width: 1024px;">
+            <div style="width: 1024px;">
                 <table
                     style="width: 1024px; height: 598px;background: url('https://tondomcobgyn2022.com/email-reminder-1-week.png');background-repeat: no-repeat;max-height: 598px;">
                     <tr>
