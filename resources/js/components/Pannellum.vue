@@ -352,10 +352,10 @@ export default {
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
-                'minPitch' :-45,
-                'maxPitch' :45,
-                'minYaw': -90,
-                'maxYaw':90,
+                'minPitch' :-20,
+                'maxPitch' :20,
+                'minYaw': -55,
+                'maxYaw':55,
               },
             //   "pool_area": {
             //     "type": "multires",
