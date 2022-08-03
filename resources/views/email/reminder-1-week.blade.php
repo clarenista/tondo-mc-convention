@@ -10,8 +10,7 @@
 
 <body style="width: 100%">
     <center>
-        <table border="0" width="1024px" height="598px"
-            style="background: url('https://tondomcobgyn2022.com/email-reminder-1-week.png');background-repeat: no-repeat;">
+        <table border="0" width="1024px" height="598px">
             <thead>
                 <th style="width: 1024px">
                 </th>
