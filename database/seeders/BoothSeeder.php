@@ -19,7 +19,7 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // from right to left - facing the booths -> orange
-                ['DKT', -2.13, -62.90, 'gold', "DKT.png", "DKT.png",
+                ['BSV', -2.13, -62.90, 'gold', "BSV.png", "BSV.png",
                     [
                         ['External Link', '-9.82','-26.94','https://abbott.com'],
                         ['Contact Us','-3.97','-27.03',''],
@@ -31,7 +31,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // green
-                ['ALJERON MEDICAL', -1.31, -126.56, 'gold', "ALJERON_MEDICAL.png", "ALJERON_MEDICAL.png",
+                ['DKT', -1.31, -126.56, 'gold', "DKT.png", "DKT.png",
                     [
                         ['External Link', '-9.70','-29.23','https://siemens.com'],
                         ['Contact Us', '-4.17','-24.10',''],
@@ -53,7 +53,7 @@ class BoothSeeder extends Seeder
                     ]
                 ],
                 //  pink
-                ['BSV', -0.28, 59.73, 'gold', "BSV.png", "BSV.png",
+                ['ALJERON', -0.28, 59.73, 'gold', "ALJERON.png", "ALJERON.png",
                     [
                         ['External Link', '-10.82','-33.90','https://mmjbiosystems.com'],
                         ['Contact Us', '-4.69','-30.38',''],
