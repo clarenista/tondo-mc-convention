@@ -67,96 +67,97 @@ class BoothSeeder extends Seeder
 
             'Hall A' => [
                 // left facing lobby/ hall a exit
-                ['MEDTEK', -1.73, -48.56, 'silver', "MEDTEK.png", "MEDTEK.png",
+                ['MEDEV', -1.42, -63.18, 'bronze', "MEDEV.png", "MEDEV.png",
                     [
-                        ['External Link','-14','-17.13','https://medtek.com.ph'],
-                        ['Contact Us','-5','-12',''],
-                        ['Quiz','-5','-22',''],
-                        ['Brochures','2','-4',''],
-                        ['Videos','1','14',''],
-                        ['Gallery','2','-14',''],
+                        ['External Link', '0','0','https://abbott.com'],
+                        ['Contact Us','0','0',''],
+                        ['Quiz', '0','0',''],
+                        ['Brochures', '0','0',''],
+                        ['Videos', '0','0',''],
+                        ['Gallery', '0','0','']
                     ]
                 ],
                 // SPONSOR_R2
-                ['LifelineDiagnostics', -2.35, -78.09, 'silver', "LifelineDiagnostics.png", "LifelineDiagnostics.png",
+                ['Hi-Precision', -1.62, -117.94, 'bronze', "Hi-Precision.png", "Hi-Precision.png",
                     [
-                        ['External Link','-14.88', '-24.08','https://lifelinediag.com'],
-                        ['Contact Us','-4.69', '-22.21',''],
-                        ['Quiz','-4.69', '-32.44',''],
-                        ['Brochures','1.31', '2.06',''],
-                        ['Videos','1.33', '33.19',''],
-                        ['Gallery','1.31', '-7.91',''],
+                        ['External Link', '0','0','https://abbott.com'],
+                        ['Contact Us','0','0',''],
+                        ['Quiz', '0','0',''],
+                        ['Brochures', '0','0',''],
+                        ['Videos', '0','0',''],
+                        ['Gallery', '0','0','']
                     ]
                 ],
 
                 // SPONSOR_R3
-                ['AGAPPE', -1.81, -115.98, 'silver', "AGAPPE.png", "AGAPPE.png",
+                ['NPK', -2.34, -179.85, 'silver', "NPK.png", "NPK.png",
                     [
-                        ['External Link', '-14.09','-16.98', 'https://agappe.com'],
-                        ['Contact Us', '-5.01','-15.86',''],
-                        ['Quiz', '-5.01','-23.12',''],
-                        ['Brochures', '2.30','-5.31',''],
-                        ['Videos', '1.00','11.84',''],
-                        ['Gallery', '2.30','-13.13',''],
+                        ['External Link', '-14.64','-19.15','https://npkmedical.ph'],
+                        ['Contact Us','-8.62','-10.57',''],
+                        ['Quiz', '-7.73','-26.06',''],
+                        ['Brochures', '-2.19','14.83',''],
+                        ['Videos', '-2.20','-14.82',''],
+                        ['Gallery', '-1.36','-1.40','']
                     ]
                 ],
 
 
                 // LEFT SPONSOR_L4
-                ['Ortho Clinical Diagnostics', -1.89, -150.59, 'silver', "Ortho.png", "Ortho.png",
+                ['Multicare', -0.85, 117.22, 'bronze', "Multicare.png", "Multicare.png",
                     [
-                        ['External Link', '-9.24', '-18.72','https://orthoclinicaldiagnostics.com'],
-                        ['Contact Us', '-3.34', '-13.67',''],
-                        ['Quiz', '-3.34', '-21.41',''],
-                        ['Brochures', '1.59', '3.76',''],
-                        ['Videos', '1.17', '26.57',''],
-                        ['Gallery', '1.59', '-5.74',''],
+                        ['External Link', '-15.28','-13.80','https://journeytomotherhoodandbeyond.info'],
+                        ['Contact Us','-9.23','-6.75',''],
+                        ['Quiz', '-8.81','-17.10',''],
+                        ['Brochures', '-1.18','-1.59',''],
+                        ['Videos', '-2.41','11.19',''],
+                        ['Gallery', '-1.16','-11.11','']
                     ]
                 ],
                 // SPONSOR_L5
-                ['Abbott', -2.53, 148.75, 'silver', "Abbott.png", "Abbott.png",
+                ['Toyo Adtec', -0.32, 63.65, 'bronze', "Toyo_Adtec.png", "Toyo_Adtec.png",
                     [
-                        ['External Link', '-9.48','-16.65','https://abbott.com'],
-                        ['Contact Us', '-3.33','-14.54',''],
-                        ['Quiz','-3.33', '-22.45',''],
-                        ['Brochures', '1.38','2.77',''],
-                        ['Videos', '1.12','25.19',''],
-                        ['Gallery', '1.38','-6.16',''],
+                        ['External Link', '-15.11','-13.88','https://tahealthcaregroup.com'],
+                        ['Contact Us','-9.32','-6.84',''],
+                        ['Quiz', '-8.35','-17.68',''],
+                        ['Brochures', '-2.81','-2.86',''],
+                        ['Videos', '-2.14','10.50',''],
+                        ['Gallery', '-2.81','-13.54','']
                     ]
                 ],
+
                 // SPONSOR_L6
-                ['I.T. EASY SOFTWARE SOLUTIONS INC.', -1.56, 118.42, 'silver', "it_easy.png", "it_easy.png",
-                    [
-                        ['External Link', '-14.17','-13.87','https://easy.com.ph'],
-                        ['Contact Us', '-4.80','-12.18',''],
-                        ['Quiz','-4.80', '-20.86',''],
-                        ['Brochures', '2.37','-5.24',''],
-                        ['Videos', '1.00','13.74',''],
-                        ['Gallery', '2.25','-12.52',''],
-                    ]
-                ],
-                // SPONSOR_L7
-                ['MUREX', -0.93, 79.06, 'silver', "MUREX.png", "MUREX.png",
-                    [
-                        ['External Link', '-15.07','-24.02','https://murexdiagnostics.com'],
-                        ['Contact Us', '-5.09','-17.95',''],
-                        ['Quiz','-5.09', '-29.08',''],
-                        ['Brochures', '1.59','4.82',''],
-                        ['Videos', '1.46','36.26',''],
-                        ['Gallery', '1.59','-6.23',''],
-                    ]
-                ],
-                // SPONSOR_L8
-                ['RHUMBA INC.', -0.97, 49.44, 'silver', "RHUMBA.png", "RHUMBA.png",
-                    [
-                        ['External Link', '-13.98','-15.73','https://rhumba-inc.com'],
-                        ['Contact Us', '-5.08','-13.00',''],
-                        ['Quiz','-5.08', '-22.45',''],
-                        ['Brochures', '1.66','-4.96',''],
-                        ['Videos', '1.073','13.20',''],
-                        ['Gallery', '1.66','-14.07',''],
-                    ]
-                ],
+                // ['I.T. EASY SOFTWARE SOLUTIONS INC.', -1.56, 118.42, 'silver', "it_easy.png", "it_easy.png",
+                //     [
+                //         ['External Link', '-14.17','-13.87','https://easy.com.ph'],
+                //         ['Contact Us', '-4.80','-12.18',''],
+                //         ['Quiz','-4.80', '-20.86',''],
+                //         ['Brochures', '2.37','-5.24',''],
+                //         ['Videos', '1.00','13.74',''],
+                //         ['Gallery', '2.25','-12.52',''],
+                //     ]
+                // ],
+                // // SPONSOR_L7
+                // ['MUREX', -0.93, 79.06, 'silver', "MUREX.png", "MUREX.png",
+                //     [
+                //         ['External Link', '-15.07','-24.02','https://murexdiagnostics.com'],
+                //         ['Contact Us', '-5.09','-17.95',''],
+                //         ['Quiz','-5.09', '-29.08',''],
+                //         ['Brochures', '1.59','4.82',''],
+                //         ['Videos', '1.46','36.26',''],
+                //         ['Gallery', '1.59','-6.23',''],
+                //     ]
+                // ],
+                // // SPONSOR_L8
+                // ['RHUMBA INC.', -0.97, 49.44, 'silver', "RHUMBA.png", "RHUMBA.png",
+                //     [
+                //         ['External Link', '-13.98','-15.73','https://rhumba-inc.com'],
+                //         ['Contact Us', '-5.08','-13.00',''],
+                //         ['Quiz','-5.08', '-22.45',''],
+                //         ['Brochures', '1.66','-4.96',''],
+                //         ['Videos', '1.073','13.20',''],
+                //         ['Gallery', '1.66','-14.07',''],
+                //     ]
+                // ],
             ],
 
             // 'Hall B' => [
