@@ -21,7 +21,7 @@ class BoothSeeder extends Seeder
                 // from right to left - facing the booths -> orange
                 ['ALJERON Medical', -2.13, -62.90, 'gold', "ALJERON.png", "ALJERON.png",
                     [
-                        ['External Link', '-12.03','-27.98','https://abbott.com'],
+                        ['External Link', '-12.03','-27.98','https://aljeronmedical.com'],
                         ['Contact Us','-7.11','-24.67',''],
                         ['Quiz', '-7.11','-31.91',''],
                         ['Brochures', '-11.95','22.34',''],
@@ -33,7 +33,7 @@ class BoothSeeder extends Seeder
                 // green
                 ['CORDBRIDGE', -1.31, -126.56, 'gold', "CORDBRIDGE.png", "CORDBRIDGE.png",
                     [
-                        ['External Link', '-11.43','-27.89','https://abbott.com'],
+                        ['External Link', '-11.43','-27.89','https://sample.website.com'],
                         ['Contact Us','-6.81','-25.10',''],
                         ['Quiz', '-6.81','-31.09',''],
                         ['Brochures', '-11.57','22.43',''],
@@ -44,7 +44,7 @@ class BoothSeeder extends Seeder
                 // blue
                 ['DKT', 0.54, 126.37, 'gold', "DKT.png", "DKT.png",
                     [
-                        ['External Link', '-12.09','-26.59','https://abbott.com'],
+                        ['External Link', '-12.09','-26.59','https://trust.ph'],
                         ['Contact Us','-6.84','-24.59',''],
                         ['Quiz', '-6.84','-30.78',''],
                         ['Brochures', '-11.57','22.43',''],
@@ -55,7 +55,7 @@ class BoothSeeder extends Seeder
                 //  pink
                 ['BSV', -0.28, 59.73, 'gold', "BSV.png", "BSV.png",
                     [
-                        ['External Link', '-11.99','-26.68','https://abbott.com'],
+                        ['External Link', '-11.99','-26.68','https://bsvbioscience.ph'],
                         ['Contact Us','-6.80','-25.18',''],
                         ['Quiz', '-6.80','-30.78',''],
                         ['Brochures', '-11.57','22.51',''],
@@ -69,23 +69,23 @@ class BoothSeeder extends Seeder
                 // left facing lobby/ hall a exit
                 ['MEDEV', -1.42, -63.18, 'bronze', "MEDEV.png", "MEDEV.png",
                     [
-                        ['External Link', '0','0','https://abbott.com'],
-                        ['Contact Us','0','0',''],
-                        ['Quiz', '0','0',''],
-                        ['Brochures', '0','0',''],
-                        ['Videos', '0','0',''],
-                        ['Gallery', '0','0','']
+                        ['External Link', '-15.38','-14.14','https://medev.com.ph'],
+                        ['Contact Us','-9.36','-6.93',''],
+                        ['Quiz', '-8.38','-18.01',''],
+                        ['Brochures', '-1.68','-3.50',''],
+                        ['Videos', '-2.19','10.67',''],
+                        ['Gallery', '-1.68','-12.85','']
                     ]
                 ],
                 // SPONSOR_R2
                 ['Hi-Precision', -1.62, -117.94, 'bronze', "Hi-Precision.png", "Hi-Precision.png",
                     [
-                        ['External Link', '0','0','https://abbott.com'],
-                        ['Contact Us','0','0',''],
-                        ['Quiz', '0','0',''],
-                        ['Brochures', '0','0',''],
-                        ['Videos', '0','0',''],
-                        ['Gallery', '0','0','']
+                        ['External Link', '-15.62','-13.63','https://hi-precision.com.ph'],
+                        ['Contact Us','-9.58','-6.93',''],
+                        ['Quiz', '-8.52','-17.68',''],
+                        ['Brochures', '-3.00','-2.77',''],
+                        ['Videos', '-1.87','10.58',''],
+                        ['Gallery', '-3.00','-13.71','']
                     ]
                 ],
 
