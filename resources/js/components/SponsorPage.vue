@@ -1,6 +1,21 @@
 <template lang="">
     <div class="background full">
-        <Modal :value="value" v-if="selectedHotspot != null">
+        <div v-if="selectedHotspot">
+            <CoolLightBox
+                v-if="selectedHotspot.assets[0].name === 'standee'"
+                :items="selectedHotspot.assets"
+                :index="indexSelected"
+                @close="indexSelected = null"
+            >
+            </CoolLightBox>
+        </div>
+        <Modal
+            :value="value"
+            v-if="
+                selectedHotspot != null &&
+                    selectedHotspot.assets[0].name !== 'standee'
+            "
+        >
             <template v-slot:title>
                 <CoolLightBox
                     :items="selectedHotspot.assets"
@@ -279,65 +294,6 @@
                         </div>
                     </template>
                     <!-- QUIZ  -->
-
-                    <!-- STANDEE  -->
-                    <template v-else-if="selectedHotspot.name == 'standee'">
-                        <div
-                            class="col-6 p-1"
-                            v-for="(item, assetIndex) in selectedHotspot.assets"
-                            :key="assetIndex"
-                            @click="handleSelectAssetIndex(assetIndex)"
-                        >
-                            <!-- <div class="card" style="cursor:pointer;">
-                    <div class="card-img-overlay text-white"><small>{{item.name}}</small></div>
-                    <img :src="item.url" class="img-fluid" width="100%" alt="" srcset="">
-                  </div> -->
-
-                            <div
-                                class="card text-center"
-                                style="cursor:pointer;"
-                                @click.prevent="
-                                    sendVisitedAssets(
-                                        item,
-                                        selectedHotspot.name
-                                    )
-                                "
-                            >
-                                <!-- <img :src="item.url" width="100%" alt="" srcset=""> -->
-                                <div class="card-body bg-dark">
-                                    <!-- use to have a clickable image on the card -->
-
-                                    <div
-                                        style="width: 100%;overflow: hidden;height: 8rem;display: inline-flex; vertical-align: middle;"
-                                    >
-                                        <img
-                                            v-if="item.thumbnail_url != null"
-                                            :src="item.thumbnail_url"
-                                            width="100%"
-                                            alt=""
-                                            srcset=""
-                                        />
-                                        <img
-                                            v-else
-                                            :src="item.url"
-                                            width="100%"
-                                            alt=""
-                                            srcset=""
-                                        />
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div
-                                        class="lead text-dark"
-                                        style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;"
-                                    >
-                                        {{ item.name }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                    <!-- STANDEE  -->
 
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
@@ -626,11 +582,15 @@ export default {
             //   {name:'videos', pitch: 5, yaw: 5, cssClass: 'custom-hotspot videos', id: 'video'},
             //   {name:'external-links', pitch: 10, yaw: 10, cssClass: 'custom-hotspot external-links', id: 'external-links'},
             // ]
+
             for (let i in hs) {
+                const classCss =
+                    hs[i].assets[0].type === "Booth" ? hs[i].name : "standee";
+
                 hs[i].name = hs[i].name;
                 hs[i].pitch = hs[i].x;
                 hs[i].yaw = hs[i].y;
-                hs[i].cssClass = "custom-hotspot " + hs[i].name;
+                hs[i].cssClass = "custom-hotspot " + classCss;
                 hs[i].clickHandlerFunc = () => {
                     this.handleSelectHotspot(hs[i]);
                     // this.showModal = true
@@ -695,6 +655,14 @@ export default {
                 this.$store.getters.audio.pause();
             }
             this.sendBoothGuestEvent(this.booth_details, hotspot);
+
+            if (hotspot.assets[0].name === "standee") {
+                setTimeout(() => {
+                    this.indexSelected = 0;
+                }, 100);
+            } else {
+                this.indexSelected = null;
+            }
         },
         handleCloseModal() {
             if (this.selectedHotspot.name == "videos") {
@@ -921,6 +889,10 @@ div >>> .custom-hotspot {
         height: 36px;
         width: 36px;
     }
+}
+div >>> .standee {
+    background-image: url("/images/iconsv2/standee.png");
+    background-size: cover;
 }
 div >>> .brochures {
     background-image: url("/images/iconsv2/brochure.png");
