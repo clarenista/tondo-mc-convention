@@ -18,7 +18,7 @@
                 :class="modalSize"
                 role="document"
             >
-                <div class="modal-content">
+                <div class="modal-content" :style="vh && 'height: 100vh'">
                     <div class="modal-title container text-uppercase">
                         <div class="align-middle">
                             <slot name="title"></slot>
@@ -39,7 +39,7 @@
 </template>
 <script>
 export default {
-    props: ["value", "modalSize"],
+    props: ["value", "modalSize", "vh"],
     methods: {
         close() {
             this.$emit("input", !this.value);
@@ -61,10 +61,6 @@ export default {
 .h1,
 h1 {
     font-weight: 100;
-}
-
-.modal-content {
-    height: 100vh;
 }
 
 .modal-body {
