@@ -19,11 +19,7 @@
 
         <Modal :value="camera" v-if="camera">
             <template v-slot:title>
-                <img
-                    src="/images/71st_logo.png"
-                    alt=""
-                    class="center_logo"
-                />
+                <img src="/images/71st_logo.png" alt="" class="center_logo" />
                 <br />
             </template>
             <br />
@@ -275,6 +271,7 @@ export default {
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
+                'mouseZoom': false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
                 // "hotSpotDebug": true,
 
@@ -283,6 +280,7 @@ export default {
 
             "scenes": {
               "lobby": {
+
                 "type": "equirectangular",
                 "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
@@ -348,15 +346,16 @@ export default {
 
               },
               "meeting_hall": {
+
                 "type": "equirectangular",
                 "panorama": "/images/multires/Meeting_Hall.jpg",
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
+                'minPitch' :-45,
+                'maxPitch' :45,
+                'minYaw': -90,
+                'maxYaw':90,
               },
             //   "pool_area": {
             //     "type": "multires",
