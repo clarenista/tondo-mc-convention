@@ -19,48 +19,48 @@ class BoothSeeder extends Seeder
         $locations = [
             'Lobby' => [
                 // from right to left - facing the booths -> orange
-                ['BSV', -2.13, -62.90, 'gold', "BSV.png", "BSV.png",
+                ['ALJERON Medical', -2.13, -62.90, 'gold', "ALJERON.png", "ALJERON.png",
                     [
-                        ['External Link', '-9.82','-26.94','https://abbott.com'],
-                        ['Contact Us','-3.97','-27.03',''],
-                        ['Quiz', '-3.94','-32.52',''],
-                        ['Brochures', '-8.63','31.98',''],
-                        ['Videos', '2.67','19.49',''],
-                        ['Gallery', '-1.47','-15.63','']
+                        ['External Link', '-12.03','-27.98','https://abbott.com'],
+                        ['Contact Us','-7.11','-24.67',''],
+                        ['Quiz', '-7.11','-31.91',''],
+                        ['Brochures', '-11.95','22.34',''],
+                        ['Videos', '-1.69','0.92',''],
+                        ['Gallery', '-1.33','-16.02','']
                     ]
                 ],
 
                 // green
-                ['DKT', -1.31, -126.56, 'gold', "DKT.png", "DKT.png",
+                ['CORDBRIDGE', -1.31, -126.56, 'gold', "CORDBRIDGE.png", "CORDBRIDGE.png",
                     [
-                        ['External Link', '-9.70','-29.23','https://siemens.com'],
-                        ['Contact Us', '-4.17','-24.10',''],
-                        ['Quiz', '-3.60','-34.12',''],
-                        ['Brochures', '-9.40','29.48',''],
-                        ['Videos', '2.69','18.13',''],
-                        ['Gallery', '-1.67','-16.34',''],
+                        ['External Link', '-11.43','-27.89','https://abbott.com'],
+                        ['Contact Us','-6.81','-25.10',''],
+                        ['Quiz', '-6.81','-31.09',''],
+                        ['Brochures', '-11.57','22.43',''],
+                        ['Videos', '-1.69','0.82',''],
+                        ['Gallery', '-2.81','-16.02','']
                     ]
                 ],
                 // blue
-                ['CORDBRIDGE', -1.42, 119.25, 'gold', "CORDBRIDGE.png", "CORDBRIDGE.png",
+                ['DKT', 0.54, 126.37, 'gold', "DKT.png", "DKT.png",
                     [
-                        ['External Link', '-12.02','-26.50','https://roche.com'],
-                        ['Contact Us', '-4.79','-28.31',''],
-                        ['Quiz', '-4.46','-34.86',''],
-                        ['Brochures', '-9.11','38.71',''],
-                        ['Videos', '2.72','22.35',''],
-                        ['Gallery', '-1.78','-15.12',''],
+                        ['External Link', '-12.09','-26.59','https://abbott.com'],
+                        ['Contact Us','-6.84','-24.59',''],
+                        ['Quiz', '-6.84','-30.78',''],
+                        ['Brochures', '-11.57','22.43',''],
+                        ['Videos', '-1.69','0.92',''],
+                        ['Gallery', '-4.59','-15.73','']
                     ]
                 ],
                 //  pink
-                ['ALJERON', -0.28, 59.73, 'gold', "ALJERON.png", "ALJERON.png",
+                ['BSV', -0.28, 59.73, 'gold', "BSV.png", "BSV.png",
                     [
-                        ['External Link', '-10.82','-33.90','https://mmjbiosystems.com'],
-                        ['Contact Us', '-4.69','-30.38',''],
-                        ['Quiz', '-4.40','-35.95',''],
-                        ['Brochures', '-10.32','36.45',''],
-                        ['Videos', '2.95','20.84',''],
-                        ['Gallery', '-1.04','-16.44',''],
+                        ['External Link', '-11.99','-26.68','https://abbott.com'],
+                        ['Contact Us','-6.80','-25.18',''],
+                        ['Quiz', '-6.80','-30.78',''],
+                        ['Brochures', '-11.57','22.51',''],
+                        ['Videos', '-1.69','0.92',''],
+                        ['Gallery', '-2.63','-14.68','']
                     ]
                 ],
             ],

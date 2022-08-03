@@ -927,7 +927,7 @@ div >>> .brochures {
     background-size: cover;
 }
 div >>> .videos {
-    background-image: url("/images/iconsv2/video.png");
+    background-image: url("/images/iconsv2/videos.png");
     background-size: cover;
 }
 div >>> .contact-us {
