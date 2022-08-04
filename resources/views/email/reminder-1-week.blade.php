@@ -20,7 +20,7 @@
 <body style="width: 100%">
     <center>
         <table border="0" width="538px" style="
-        border-collapse: collapse;
+        border-collapse: collapse;background: #762290;
     ">
             <thead>
                 <th style="width: 538px">
@@ -34,33 +34,23 @@
                 </tr>
                 <tr style="width: 538px">
                     <td
-                        style="height: 4%;text-align: center;background: #d4e3d9;color: #17652c;font-size: 16px;font-weight: bold;padding: 2rem;">
+                        style="height: 4%;text-align: center;background: #762290;color: #ffffff;font-size: 16px;padding: 2rem;">
                         THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSTGRADUATE COURSE" WILL BEGIN IN 1 WEEK ON:
                         <br>
                         <br>
+                        <span style="font-weight: bold;">
                         DATE TIME: AUG 11, 2022 4:00 PM SINGAPORE
-                        <br>
-                        <br>
+                        </span>
                         <br>
                         <br>
                         THIS IS ALSO TO ANNOUNCE THAT TODAY IS THE FIRST DAY THAT YOU CAN ACCESS THE VIRTUAL BOOTHS.
                         <br>
-                        <br>
-                        LINK: <a href="https://tondomcobgyn2022.com/login">https://tondomcobgyn2022.com</a>
-                        <br>
-                        <br>
+                        LINK: <a href="https://tondomcobgyn2022.com/login" style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
                         <br>
                         <br>
                         YOU MAY ALSO VISIT:
-                        <br>
-                        <br><a href="http://tmc.doh.gov.ph/">http://tmc.doh.gov.ph/</a>
-                        <br>
-                        <br><a href="https://www.facebook.com/tondomed">https://www.facebook.com/tondomed</a>
-                    </td>
-                </tr>
-                <tr style="width: 538px">
-                    <td>
-                        <img src="https://tondomcobgyn2022.com/email-reminder-footer.png" style="width: 100%;">
+                        <br><a href="http://tmc.doh.gov.ph/" style="color: #48ff00; text-decoration: none;">http://tmc.doh.gov.ph/</a>
+                        <br><a href="https://www.facebook.com/tondomed" style="color: #48ff00; text-decoration: none;">https://www.facebook.com/tondomed</a>
                     </td>
                 </tr>
             </tbody>
