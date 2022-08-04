@@ -53,13 +53,13 @@
                                     >
                                 </a>
                             </div>
-                            <div class="col-12 mt-3">
+                            <!-- <div class="col-12 mt-3">
                                 <small class="text-light"
                                     >Click the
                                     <u class="text-primary">link</u> if you wish
                                     to continue.</small
                                 >
-                            </div>
+                            </div> -->
                         </div>
                     </template>
                     <!-- External link -->
