@@ -39,7 +39,7 @@
                                         aria-hidden="true"
                                     ></i>
                                     You are about to leave the virtual
-                                    convention site, you will be redirected to:
+                                    2nd Postgrad course site, you will be redirected to:
                                 </h3>
                                 <a
                                     class="lead"
