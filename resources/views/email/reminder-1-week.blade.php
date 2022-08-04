@@ -19,20 +19,20 @@
 
 <body style="width: 100%">
     <center>
-        <table border="0" width="1024px" style="
+        <table border="0" width="538px" style="
         border-collapse: collapse;
     ">
             <thead>
-                <th style="width: 1024px">
+                <th style="width: 538px">
                 </th>
             </thead>
             <tbody>
-                <tr style="width: 1024px">
+                <tr style="width: 538px">
                     <td>
-                        <img src="https://tondomcobgyn2022.com/email-reminder-header.png" style="width: 100%;">
+                        <img src="https://tondomcobgyn2022.com/email-reminder-header-1.png" style="width: 100%;">
                     </td>
                 </tr>
-                <tr style="width: 1024px">
+                <tr style="width: 538px">
                     <td
                         style="height: 4%;text-align: center;background: #d4e3d9;color: #17652c;font-size: 16px;font-weight: bold;padding: 2rem;">
                         THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSTGRADUATE COURSE" WILL BEGIN IN 1 WEEK ON:
@@ -58,7 +58,7 @@
                         <br><a href="https://www.facebook.com/tondomed">https://www.facebook.com/tondomed</a>
                     </td>
                 </tr>
-                <tr style="width: 1024px">
+                <tr style="width: 538px">
                     <td>
                         <img src="https://tondomcobgyn2022.com/email-reminder-footer.png" style="width: 100%;">
                     </td>
