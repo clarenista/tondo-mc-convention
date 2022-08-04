@@ -77,6 +77,7 @@
                 <button class="btn btn-success" type="button" v-else>
                     Submit
                 </button>
+                <pre>{{ radio_answers }}</pre>
             </div>
         </div>
         <!--
