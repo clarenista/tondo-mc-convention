@@ -2,7 +2,7 @@
     <div class="background full">
         <div v-if="selectedHotspot">
             <CoolLightBox
-                v-if="selectedHotspot.assets[0].category === 'standee'"
+                v-if="selectedHotspot.assets[0].category.includes('standee')"
                 :items="selectedHotspot.assets"
                 :index="indexSelected"
                 @close="indexSelected = null"
@@ -13,7 +13,7 @@
             :value="value"
             v-if="
                 selectedHotspot != null &&
-                    selectedHotspot.assets[0].category !== 'standee'
+                    !selectedHotspot.assets[0].category.includes('standee')
             "
         >
             <template v-slot:title>
@@ -575,6 +575,10 @@ export default {
             const image = data.background;
             let hs = data.hotspots;
             hs = Object.values(hs);
+            console.log(
+                "hs",
+                hs.map(h => h.name)
+            );
             // console.log(hs)
             // const image = "/images/multires/A-Silver.png";
             // const hs = [
@@ -585,7 +589,8 @@ export default {
 
             for (let i in hs) {
                 const classCss =
-                    hs[i].assets[0].type === "Booth" ? hs[i].name : "standee";
+                    hs[i].assets.length > 0 &&
+                    (hs[i].assets[0].type === "Booth" ? hs[i].name : "standee");
 
                 hs[i].name = hs[i].name;
                 hs[i].pitch = hs[i].x;
@@ -656,7 +661,7 @@ export default {
             }
             this.sendBoothGuestEvent(this.booth_details, hotspot);
 
-            if (hotspot.assets[0].category === "standee") {
+            if (hotspot.assets[0].category.includes("standee")) {
                 setTimeout(() => {
                     this.indexSelected = 0;
                 }, 100);
