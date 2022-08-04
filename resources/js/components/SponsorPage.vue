@@ -2,7 +2,6 @@
     <div class="background full">
         <div v-if="selectedHotspot">
             <CoolLightBox
-                v-if="selectedHotspot.assets[0].category.includes('standee')"
                 :items="selectedHotspot.assets"
                 :index="indexSelected"
                 @close="indexSelected = null"
@@ -17,12 +16,6 @@
             "
         >
             <template v-slot:title>
-                <CoolLightBox
-                    :items="selectedHotspot.assets"
-                    :index="indexSelected"
-                    @close="indexSelected = null"
-                >
-                </CoolLightBox>
                 <h1 class="lgbt" v-if="selectedHotspot.name == 'contact-us'">
                     Send us a Message
                 </h1>
@@ -46,7 +39,7 @@
                                         aria-hidden="true"
                                     ></i>
                                     You are about to leave the virtual
-                                    convention site, you will be redirected to:
+                                    2nd Postgrad course site, you will be redirected to:
                                 </h3>
                                 <a
                                     class="lead"
@@ -60,13 +53,13 @@
                                     >
                                 </a>
                             </div>
-                            <div class="col-12 mt-3">
+                            <!-- <div class="col-12 mt-3">
                                 <small class="text-light"
                                     >Click the
                                     <u class="text-primary">link</u> if you wish
                                     to continue.</small
                                 >
-                            </div>
+                            </div> -->
                         </div>
                     </template>
                     <!-- External link -->
@@ -168,7 +161,9 @@
                                     {{ selectedHotspot.questions.length }}
                                 </legend>
                                 <div>
-                                    <h3 class="text-center text-light end_message">
+                                    <h3
+                                        class="text-center text-light end_message"
+                                    >
                                         {{
                                             selectedHotspot.questionnaire
                                                 .ending_message
@@ -177,12 +172,15 @@
                                 </div>
 
                                 <ol>
-                                    <li class=" text-light"
+                                    <li
+                                        class=" text-light"
                                         v-for="(question,
                                         questionIndex) in selectedHotspot.questions"
                                         :key="questionIndex"
                                     >
-                                        <p class=" text-light">{{ question.question }}</p>
+                                        <p class=" text-light">
+                                            {{ question.question }}
+                                        </p>
                                         <p
                                             v-if="question.answers[0]"
                                             :class="
@@ -590,7 +588,9 @@ export default {
             for (let i in hs) {
                 const classCss =
                     hs[i].assets.length > 0 &&
-                    (hs[i].assets[0].type === "Booth" ? hs[i].name : "standee");
+                    (hs[i].assets[0].category.includes("standee")
+                        ? "standee"
+                        : hs[i].name);
 
                 hs[i].name = hs[i].name;
                 hs[i].pitch = hs[i].x;
@@ -749,6 +749,7 @@ export default {
         },
 
         handleSelectAssetIndex(assetIndex) {
+            console.log(assetIndex);
             // this.value = false
             this.indexSelected = assetIndex;
         },
