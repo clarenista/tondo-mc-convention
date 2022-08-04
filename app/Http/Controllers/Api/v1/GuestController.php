@@ -14,32 +14,12 @@ class GuestController extends Controller
     public function boothTracker()
     {
 
+        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->with('categorizable')->whereHas('categorizable')->get();
 
         $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereUserId(request()->user()->id)->whereLabel('visit')->where('created_at', '>', '2021-04-23 02:33:00')->get();
 
         $return = [];
-        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->with('categorizable')->whereHas('categorizable', function($q){
-            $q->whereType('gold');
-        })->get();
 
-        foreach ($booths as $booth) {
-            $return[$booth->id] = [
-                'name' => $booth->description,
-                'visited' => boolval($boothTracks->where('user_event_category_id', $booth->id)->count()),
-            ];
-        }
-        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->with('categorizable')->whereHas('categorizable', function($q){
-            $q->whereType('silver');
-        })->get();
-        foreach ($booths as $booth) {
-            $return[$booth->id] = [
-                'name' => $booth->description,
-                'visited' => boolval($boothTracks->where('user_event_category_id', $booth->id)->count()),
-            ];
-        }
-        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->with('categorizable')->whereHas('categorizable', function($q){
-            $q->whereType('bronze');
-        })->get();
         foreach ($booths as $booth) {
             $return[$booth->id] = [
                 'name' => $booth->description,
