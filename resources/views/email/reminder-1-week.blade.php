@@ -46,11 +46,6 @@
                         THIS IS ALSO TO ANNOUNCE THAT TODAY IS THE FIRST DAY THAT YOU CAN ACCESS THE VIRTUAL BOOTHS.
                         <br>
                         LINK: <a href="https://tondomcobgyn2022.com/login" style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
-                        <br>
-                        <br>
-                        YOU MAY ALSO VISIT:
-                        <br><a href="http://tmc.doh.gov.ph/" style="color: #48ff00; text-decoration: none;">http://tmc.doh.gov.ph/</a>
-                        <br><a href="https://www.facebook.com/tondomed" style="color: #48ff00; text-decoration: none;">https://www.facebook.com/tondomed</a>
                     </td>
                 </tr>
             </tbody>

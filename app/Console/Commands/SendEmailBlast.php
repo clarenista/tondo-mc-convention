@@ -40,12 +40,14 @@ class SendEmailBlast extends Command
     public function handle()
     {
 
-        $users = User::where('id', '>', 160)->get();
+        // $users = User::where('id', '>', 47)->get();
+        $users = User::where('id', '>', 47)->get();
 
         foreach ($users as $user) {
             echo $user->email_address . PHP_EOL;
             if (!$user->email_address) continue;
-            (new SendEmail($user->email_address))->send();
+            (new SendEmailBlast($user->email_address))->send();
+            // (new SendEmail($user->email_address))->send();
             sleep(1);
         }
 
