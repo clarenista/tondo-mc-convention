@@ -31,7 +31,7 @@ class BoothSeeder extends Seeder
                 ],
 
                 // green
-                ['CORDBRIDGE', -1.31, -126.56, 'gold', "CORDBRIDGE.png", "CORDBRIDGE.png",
+                ['CORBRIDGE', -1.31, -126.56, 'gold', "CORBRIDGE.png", "CORBRIDGE.png",
                     [
                         ['External Link', '-11.43','-27.89','https://sample.website.com'],
                         ['Contact Us','-6.81','-25.10',''],
