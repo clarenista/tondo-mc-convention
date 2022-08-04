@@ -449,10 +449,12 @@ class BoothSeeder extends Seeder
 
         foreach ($locations as $location => $booths) {
             foreach ($booths as $booth) {
+
+                $ln = $location == "Hall A" ? "Exhibit Hall" : $location;
                 $booth_name = "Booth {$booth[0]} ({$location})";
                 if (!User::whereName($booth_name)->exists()) {
                     $this->seedBooth(User::create([
-                        'name' => "{$booth[0]} Booth ({$location})",
+                        'name' => "{$booth[0]} Booth ({$ln})",
                         'first_name' => "{$booth[0]} Booth",
                         'last_name' => $location,
                         'email' => "sponsor_" . strtolower($booth[0]),
