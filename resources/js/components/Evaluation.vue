@@ -33,17 +33,13 @@
         <div class="card">
             <div class="card-body">
                 <div v-for="(item, index) in questionnaires" :key="index">
-                    <div v-if="current_step === index + 1">
+                    <div v-if="current_step === item.id">
                         <p class="card-text">
                             {{ item.question }}
                         </p>
-                        <div
-                            style="display: flex; flex-direction: row"
-                            class="mt-2"
-                        >
-                            <div v-if="item.subQuestion" class="mr-3">
-                                {{ item.subQuestion }}:
-                            </div>
+
+                        <!-- id#1 -->
+                        <div v-if="item.id === 1">
                             <div
                                 class="form-check form-check-inline"
                                 v-for="(item, index) in 4"
@@ -52,15 +48,371 @@
                                 <input
                                     class="form-check-input"
                                     type="radio"
-                                    name="exampleRadios"
+                                    :name="`exampleRadios1`"
                                     :id="item"
                                     :value="item"
-                                    v-model="radio_answers[current_step]"
+                                    v-model="radio_answers[1]"
                                 />
                                 <label class="form-check-label" :for="item">
                                     {{ item }}
                                 </label>
                             </div>
+                        </div>
+                        <!-- id#2 -->
+                        <div v-if="item.id === 2">
+                            <div
+                                class="form-check form-check-inline"
+                                v-for="(item, index) in 4"
+                                :key="index"
+                            >
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    :name="`exampleRadios2`"
+                                    :id="item"
+                                    :value="item"
+                                    v-model="radio_answers[2]"
+                                />
+                                <label class="form-check-label" :for="item">
+                                    {{ item }}
+                                </label>
+                            </div>
+                        </div>
+                        <!-- id#3 -->
+                        <div v-if="item.id === 3">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-2 col-sm-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-sm-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#4 -->
+                        <div v-if="item.id === 4">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#5 -->
+                        <div v-if="item.id === 5">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#6 -->
+                        <div v-if="item.id === 6">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#7 -->
+                        <div v-if="item.id === 7">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#8 -->
+                        <div v-if="item.id === 8">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#9 -->
+                        <div v-if="item.id === 9">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#10-->
+                        <div v-if="item.id === 10">
+                            <div
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
+                                :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
+                            >
+                                <div class="mr-3 col-md-5 col-xs-12">
+                                    {{ subQuestion.question }}:
+                                </div>
+                                <div class="col-md col-xs-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `exampleRadios${subQuestion.id}`
+                                            "
+                                            :id="subQuestion.id"
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="subQuestion.id"
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- id#11-->
+                        <div v-if="item.id === 11" class="form-group">
+                            <input
+                                class="form-control"
+                                type="text"
+                                v-model="radio_answers[34]"
+                            />
+                        </div>
+                        <!-- id#12-->
+                        <div v-if="item.id === 12" class="form-group">
+                            <input
+                                class="form-control"
+                                type="text"
+                                v-model="radio_answers[35]"
+                            />
                         </div>
                     </div>
                 </div>
@@ -94,203 +446,177 @@ export default {
                 {
                     id: 1,
                     question: "How satisfied were you with the event?",
-                    subQuestion: null
+                    subQuestions: null
                 },
                 {
                     id: 2,
                     question:
                         "How relevant and helpful do you think it was for your job?",
-                    subQuestion: null
+                    subQuestions: null
                 },
                 {
                     id: 3,
                     question: "How satisfied were you with the logistics?",
-                    subQuestion: "Registration"
+                    subQuestions: [
+                        { id: 3, question: "Registration" },
+                        { id: 4, question: "Virtual Platform" },
+                        { id: 5, question: "Topics" }
+                    ]
                 },
                 {
                     id: 4,
-                    question: "How satisfied were you with the logistics?",
-                    subQuestion: "Virtual Platform"
+                    question:
+                        "Walfrido W. Sumpaico, MD -  Breaking News: Newest predictors of preeclampsia",
+                    subQuestions: [
+                        { id: 6, question: "I learned a lot from the speaker" },
+                        {
+                            id: 7,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 8, question: "The content objectives were met" },
+                        {
+                            id: 9,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 5,
-                    question: "How satisfied were you with the logistics?",
-                    subQuestion: "Topics"
+                    question:
+                        "Catherine Joie Carelle R. Ong, MD -  Pre-term birth prevention",
+                    subQuestions: [
+                        {
+                            id: 10,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 11,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 12, question: "The content objectives were met" },
+                        {
+                            id: 13,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
+
                 {
                     id: 6,
                     question:
-                        "Walfrido W. Sumpaico, MD -  Breaking News: Newest predictors of preeclampsia",
-                    subQuestion: "I learned a lot from the speaker"
+                        "Katherine Angelo-Dela Cruz, MD - Updated CDC STI Guidelines 2021",
+                    subQuestions: [
+                        {
+                            id: 14,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 15,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 16, question: "The content objectives were met" },
+                        {
+                            id: 17,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 7,
                     question:
-                        "Walfrido W. Sumpaico, MD -  Breaking News: Newest predictors of preeclampsia",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
+                        "Allen Gideon R. Tan, MD - PCOS in the Adolescent",
+                    subQuestions: [
+                        {
+                            id: 18,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 19,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 20, question: "The content objectives were met" },
+                        {
+                            id: 21,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 8,
                     question:
-                        "Walfrido W. Sumpaico, MD -  Breaking News: Newest predictors of preeclampsia",
-                    subQuestion: "The content objectives were met"
+                        "Irene. M. Tagayuna, MD - New Cervical Cancer Screening Guidelines and Transitioning into HPV Test",
+                    subQuestions: [
+                        {
+                            id: 22,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 23,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 24, question: "The content objectives were met" },
+                        {
+                            id: 25,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 9,
                     question:
-                        "Walfrido W. Sumpaico, MD -  Breaking News: Newest predictors of preeclampsia",
-                    subQuestion: "The lecture is relevant to my practice"
+                        "Andrea C. Santiago, MD - Management of Pelvic Organ Prolapse: A Case-Based Approach",
+                    subQuestions: [
+                        {
+                            id: 26,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 27,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 28, question: "The content objectives were met" },
+                        {
+                            id: 29,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 10,
                     question:
-                        "Catherine Joie Carelle R. Ong, MD -  Pre-term birth prevention",
-                    subQuestion: "I learned a lot from the speaker"
+                        "Darlene Minette C. Zamora, MD - Accidental injuries in Children",
+                    subQuestions: [
+                        {
+                            id: 30,
+                            question: "I learned a lot from the speaker"
+                        },
+                        {
+                            id: 31,
+                            question:
+                                "The lecture was organized with excellent visual aids/presentation."
+                        },
+                        { id: 32, question: "The content objectives were met" },
+                        {
+                            id: 33,
+                            question: "The lecture is relevant to my practice"
+                        }
+                    ]
                 },
                 {
                     id: 11,
-                    question:
-                        "Catherine Joie Carelle R. Ong, MD -  Pre-term birth prevention",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
+                    question: "What is your overall feedback for the event?",
+                    subQuestions: null
                 },
                 {
                     id: 12,
-                    question:
-                        "Catherine Joie Carelle R. Ong, MD -  Pre-term birth prevention",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 13,
-                    question:
-                        "Catherine Joie Carelle R. Ong, MD -  Pre-term birth prevention",
-                    subQuestion: "The lecture is relevant to my practice"
-                },
-                {
-                    id: 14,
-                    question:
-                        "Katherine Angelo-Dela Cruz, MD - Updated CDC STI Guidelines 2021",
-                    subQuestion: "I learned a lot from the speaker"
-                },
-                {
-                    id: 15,
-                    question:
-                        "Katherine Angelo-Dela Cruz, MD - Updated CDC STI Guidelines 2021",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
-                },
-                {
-                    id: 16,
-                    question:
-                        "Katherine Angelo-Dela Cruz, MD - Updated CDC STI Guidelines 2021",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 17,
-                    question:
-                        "Katherine Angelo-Dela Cruz, MD - Updated CDC STI Guidelines 2021",
-                    subQuestion: "The lecture is relevant to my practice"
-                },
-                {
-                    id: 18,
-                    question:
-                        "Allen Gideon R. Tan, MD - PCOS in the Adolescent",
-                    subQuestion: "I learned a lot from the speaker"
-                },
-                {
-                    id: 19,
-                    question:
-                        "Allen Gideon R. Tan, MD - PCOS in the Adolescent",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
-                },
-                {
-                    id: 20,
-                    question:
-                        "Allen Gideon R. Tan, MD - PCOS in the Adolescent",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 21,
-                    question:
-                        "Allen Gideon R. Tan, MD - PCOS in the Adolescent",
-                    subQuestion: "The lecture is relevant to my practice"
-                },
-                {
-                    id: 22,
-                    question:
-                        "Irene. M. Tagayuna, MD - New Cervical Cancer Screening Guidelines and Transitioning into HPV Test",
-                    subQuestion: "I learned a lot from the speaker"
-                },
-                {
-                    id: 23,
-                    question:
-                        "Irene. M. Tagayuna, MD - New Cervical Cancer Screening Guidelines and Transitioning into HPV Test",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
-                },
-                {
-                    id: 24,
-                    question:
-                        "Irene. M. Tagayuna, MD - New Cervical Cancer Screening Guidelines and Transitioning into HPV Test",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 25,
-                    question:
-                        "Irene. M. Tagayuna, MD - New Cervical Cancer Screening Guidelines and Transitioning into HPV Test",
-                    subQuestion: "The lecture is relevant to my practice"
-                },
-                {
-                    id: 26,
-                    question:
-                        "Andrea C. Santiago, MD - Management of Pelvic Organ Prolapse: A Case-Based Approach",
-                    subQuestion: "I learned a lot from the speaker"
-                },
-                {
-                    id: 27,
-                    question:
-                        "Andrea C. Santiago, MD - Management of Pelvic Organ Prolapse: A Case-Based Approach",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
-                },
-                {
-                    id: 28,
-                    question:
-                        "Andrea C. Santiago, MD - Management of Pelvic Organ Prolapse: A Case-Based Approach",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 29,
-                    question:
-                        "Andrea C. Santiago, MD - Management of Pelvic Organ Prolapse: A Case-Based Approach",
-                    subQuestion: "The lecture is relevant to my practice"
-                },
-                {
-                    id: 30,
-                    question:
-                        "Darlene Minette C. Zamora, MD - Accidental injuries in Children",
-                    subQuestion: "I learned a lot from the speaker"
-                },
-                {
-                    id: 31,
-                    question:
-                        "Darlene Minette C. Zamora, MD - Accidental injuries in Children",
-                    subQuestion:
-                        "The lecture was organized with excellent visual aids/presentation."
-                },
-                {
-                    id: 32,
-                    question:
-                        "Darlene Minette C. Zamora, MD - Accidental injuries in Children",
-                    subQuestion: "The content objectives were met"
-                },
-                {
-                    id: 33,
-                    question:
-                        "Darlene Minette C. Zamora, MD - Accidental injuries in Children",
-                    subQuestion: "The lecture is relevant to my practice"
+                    question: "Name (to appear on the Certificate)",
+                    subQuestions: null
                 }
             ]
         };
