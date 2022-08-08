@@ -31,10 +31,10 @@ class GuestController extends Controller
         return $return;
     }
 
-    public function hasEvaluation(){
+    public function hasEvaluation()
+    {
 
         $user = request()->user();
-
         return [
             'sucess' => 'true',
             'done' => $user->answers,
