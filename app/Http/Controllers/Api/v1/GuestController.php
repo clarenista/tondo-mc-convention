@@ -21,7 +21,7 @@ class GuestController extends Controller
         $return = [];
 
         foreach ($booths as $booth) {
-            if ($booth->loation == "Hall D")  continue;
+            if ($booth->name == "wedev-evaluation")  continue;
             $return[$booth->id] = [
                 'name' => $booth->description,
                 'visited' => boolval($boothTracks->where('user_event_category_id', $booth->id)->count()),
