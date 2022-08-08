@@ -71,7 +71,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-15.38','-14.14','https://medev.com.ph'],
                         ['Contact Us','-9.36','-6.93',''],
-                        ['Quiz', '-8.38','-18.01',''],
+                        // ['Quiz', '-8.38','-18.01',''],
                         ['Brochures', '-1.68','-3.50',''],
                         ['Videos', '-2.19','10.67',''],
                         ['Gallery', '-1.68','-12.85','']
@@ -82,7 +82,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-15.62','-13.63','https://hi-precision.com.ph'],
                         ['Contact Us','-9.58','-6.93',''],
-                        ['Quiz', '-8.52','-17.68',''],
+                        // ['Quiz', '-8.52','-17.68',''],
                         ['Brochures', '-3.00','-2.77',''],
                         ['Videos', '-1.87','10.58',''],
                         ['Gallery', '-3.00','-13.71','']
@@ -94,7 +94,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-14.64','-19.15','https://npkmedical.ph'],
                         ['Contact Us','-8.62','-10.57',''],
-                        ['Quiz', '-7.73','-26.06',''],
+                        // ['Quiz', '-7.73','-26.06',''],
                         ['Brochures', '-2.19','14.83',''],
                         ['Videos', '-2.20','-14.82',''],
                         ['Gallery', '-1.36','-1.40','']
@@ -103,39 +103,40 @@ class BoothSeeder extends Seeder
 
 
                 // LEFT SPONSOR_L4
-                ['Multicare', -0.85, 117.22, 'bronze', "Multicare.png", "Multicare.png",
+                ['Multicare', -1.65, 124.73, 'bronze', "Multicare.png", "Multicare.png",
                     [
                         ['External Link', '-15.28','-13.80','https://journeytomotherhoodandbeyond.info'],
                         ['Contact Us','-9.23','-6.75',''],
-                        ['Quiz', '-8.81','-17.10',''],
+                        // ['Quiz', '-8.81','-17.10',''],
                         ['Brochures', '-1.18','-1.59',''],
                         ['Videos', '-2.41','11.19',''],
                         ['Gallery', '-1.16','-11.11','']
                     ]
                 ],
                 // SPONSOR_L5
-                ['Toyo Adtec', -0.32, 63.65, 'bronze', "Toyo_Adtec.png", "Toyo_Adtec.png",
+                ['Toyo Adtec', -0.72, 55.80, 'bronze', "Toyo_Adtec.png", "Toyo_Adtec.png",
                     [
                         ['External Link', '-15.11','-13.88','https://tahealthcaregroup.com'],
                         ['Contact Us','-9.32','-6.84',''],
-                        ['Quiz', '-8.35','-17.68',''],
+                        // ['Quiz', '-8.35','-17.68',''],
                         ['Brochures', '-2.81','-2.86',''],
                         ['Videos', '-2.14','10.50',''],
                         ['Gallery', '-2.81','-13.54','']
                     ]
                 ],
 
-                // SPONSOR_L6
-                // ['I.T. EASY SOFTWARE SOLUTIONS INC.', -1.56, 118.42, 'silver', "it_easy.png", "it_easy.png",
-                //     [
-                //         ['External Link', '-14.17','-13.87','https://easy.com.ph'],
-                //         ['Contact Us', '-4.80','-12.18',''],
-                //         ['Quiz','-4.80', '-20.86',''],
-                //         ['Brochures', '2.37','-5.24',''],
-                //         ['Videos', '1.00','13.74',''],
-                //         ['Gallery', '2.25','-12.52',''],
-                //     ]
-                // ],
+                //SPONSOR_L6
+                ['MedEthix', -1.11, 91.43, 'bronze', "MedEthix.png", "MedEthix.png",
+                    [
+                        ['External Link', '-15.11','-13.88','https://medethix.com.ph'],
+                        ['Contact Us','-9.32','-6.84',''],
+                        // ['Quiz', '-9.32','-17.68',''],
+                        ['Brochures', '-2.81','-2',''],
+                        ['Videos', '-2.14','10.50',''],
+                        ['Gallery', '-2.81','-13.54','']
+                    ]
+                ],
+
                 // // SPONSOR_L7
                 // ['MUREX', -0.93, 79.06, 'silver', "MUREX.png", "MUREX.png",
                 //     [

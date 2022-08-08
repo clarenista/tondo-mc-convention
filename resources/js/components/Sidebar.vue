@@ -15,16 +15,19 @@
         >
             <span>{{item.name}}</span> 
         </a>
-        
-        <div class="nav-item dropdown" :class="showDropdown ? 'show' : ''" v-else>
-            <a class="nav-link dropdown-toggle" @click="showDropdown = true" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <span></span>  {{item.name}}</a>
-            <div class="dropdown-menu" :class="showDropdown ? 'show' : ''" style="">
-                <a class="dropdown-item"  @click="handleNavigateTo(dropdown)" 
-                    href="#" v-for="(dropdown, index) in item.dropdowns" :key="index">
-                &nbsp;{{dropdown.name}}</a>
-            </div>
-        </div>
+        <a 
+            href="javascript:void(0)" 
+            title="Event Evaluation"
+        >
+            <span class="text-uppercase">Event Evaluation</span> 
+        </a>
+        <a 
+            href="javascript:void(0)" 
+            title="Download Certificate"
+        >
+            <span class="text-uppercase">Download Certificate</span> 
+        </a>
+
 
         <div class="left_bot">
             <!-- <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a> -->
@@ -56,6 +59,7 @@ export default {
                 {name: "LOBBY", sceneId: 'lobby', icon: 'fa-home', type:'nav-item', title: 'Lobby'},
                 {name: "MEETING HALL", sceneId: 'meeting_hall', icon: 'fa-users', type:'nav-item' , title: 'Meeting Hall'},
                 {name: "EXHIBIT HALL", sceneId: 'hall_a', icon: 'fa-map-marker', type:'nav-item' , title: 'Exhibit Hall'},
+                
                 // {name: "EXHIBIT HALL", sceneId: '', icon: 'fa-street-view', type:'dropdown',  
                 //     dropdowns:[
                 //         // {name: "Exhibit Hall", sceneId: 'hall', icon: 'fa-map-marker'},
@@ -266,7 +270,6 @@ a.dropdown-item {
     }
   }
 
-  @media screen and (max-width:1024px) and (-webkit-min-device-pixel-ratio:0){
     .sidenav a {
         font-size: .8rem;
     }
@@ -275,8 +278,7 @@ a.dropdown-item {
       width: 120px;
       height: auto;
     }
-
-  }
+  
   
 
 
