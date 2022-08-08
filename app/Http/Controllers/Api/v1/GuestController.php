@@ -31,6 +31,16 @@ class GuestController extends Controller
         return $return;
     }
 
+    public function hasEvaluation(){
+
+        $user = request()->user();
+
+        return [
+            'sucess' => 'true',
+            'done' => $user->answers,
+        ];
+    }
+
     private function checkRegistrants($email, $webinar)
     {
         $bearer = "Bearer ";
