@@ -41,41 +41,83 @@
                         <!-- id#1 -->
                         <div v-if="item.id === 1">
                             <div
-                                class="form-check form-check-inline"
-                                v-for="(item, index) in 4"
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
                                 :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
                             >
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    :name="`exampleRadios1`"
-                                    :id="item"
-                                    :value="item"
-                                    v-model="radio_answers[1]"
-                                />
-                                <label class="form-check-label" :for="item">
-                                    {{ item }}
-                                </label>
+                                <div class="col-md col-sm-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- id#2 -->
                         <div v-if="item.id === 2">
                             <div
-                                class="form-check form-check-inline"
-                                v-for="(item, index) in 4"
+                                v-for="(subQuestion,
+                                index) in item.subQuestions"
                                 :key="index"
+                                style="display: flex; flex-direction: row"
+                                class="mt-2"
                             >
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    :name="`exampleRadios2`"
-                                    :id="item"
-                                    :value="item"
-                                    v-model="radio_answers[2]"
-                                />
-                                <label class="form-check-label" :for="item">
-                                    {{ item }}
-                                </label>
+                                <div class="col-md col-sm-12">
+                                    <div
+                                        class="form-check form-check-inline "
+                                        v-for="(item, index) in 4"
+                                        :key="index"
+                                    >
+                                        <input
+                                            class="form-check-input"
+                                            type="radio"
+                                            :name="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                            :value="item"
+                                            v-model="
+                                                radio_answers[subQuestion.id]
+                                            "
+                                        />
+                                        <label
+                                            class="form-check-label"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
+                                        >
+                                            {{ item }}
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- id#3 -->
@@ -100,9 +142,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -110,7 +154,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -140,9 +186,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -150,7 +198,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -180,9 +230,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -190,7 +242,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -220,9 +274,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -230,7 +286,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -260,9 +318,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -270,7 +330,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -300,9 +362,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -310,7 +374,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -340,9 +406,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -350,7 +418,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -380,9 +450,11 @@
                                             class="form-check-input"
                                             type="radio"
                                             :name="
-                                                `exampleRadios${subQuestion.id}`
+                                                `radio-${subQuestion.id}${item}`
                                             "
-                                            :id="subQuestion.id"
+                                            :id="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                             :value="item"
                                             v-model="
                                                 radio_answers[subQuestion.id]
@@ -390,7 +462,9 @@
                                         />
                                         <label
                                             class="form-check-label"
-                                            :for="subQuestion.id"
+                                            :for="
+                                                `radio-${subQuestion.id}${item}`
+                                            "
                                         >
                                             {{ item }}
                                         </label>
@@ -403,7 +477,7 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                v-model="radio_answers[34]"
+                                v-model="radio_answers[item.subQuestions[0].id]"
                             />
                         </div>
                         <!-- id#12-->
@@ -411,7 +485,7 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                v-model="radio_answers[35]"
+                                v-model="radio_answers[item.subQuestions[0].id]"
                             />
                         </div>
                     </div>
@@ -419,10 +493,20 @@
             </div>
             <div class="card-footer">
                 <button
+                    class="btn btn-danger"
+                    type="button"
+                    @click="onClickBack"
+                    v-if="current_step < questionnaires.length"
+                    :disabled="current_step <= 1"
+                >
+                    Back
+                </button>
+                <button
                     class="btn btn-primary"
                     type="button"
                     @click="onClickNext"
                     v-if="current_step < questionnaires.length"
+                    :disabled="handleDisable"
                 >
                     Next
                 </button>
@@ -446,13 +530,13 @@ export default {
                 {
                     id: 1,
                     question: "How satisfied were you with the event?",
-                    subQuestions: null
+                    subQuestions: [{ id: 1, question: "" }]
                 },
                 {
                     id: 2,
                     question:
                         "How relevant and helpful do you think it was for your job?",
-                    subQuestions: null
+                    subQuestions: [{ id: 2, question: "" }]
                 },
                 {
                     id: 3,
@@ -611,12 +695,12 @@ export default {
                 {
                     id: 11,
                     question: "What is your overall feedback for the event?",
-                    subQuestions: null
+                    subQuestions: [{ id: 34, question: "" }]
                 },
                 {
                     id: 12,
                     question: "Name (to appear on the Certificate)",
-                    subQuestions: null
+                    subQuestions: [{ id: 35, question: "" }]
                 }
             ]
         };
@@ -640,6 +724,25 @@ export default {
             return (
                 Math.round(100 / this.questionnaires.length) * this.current_step
             );
+        },
+        handleDisable() {
+            let step = this.questionnaires.find(
+                q => q.id === this.current_step
+            );
+
+            // step.subQuestions.flatMap(q =>
+            //     console.log(this.radio_answers[q.id])
+            // );
+            // if (step.subQuestions.some(q => this.radio_answers[q.id]))
+            //     return false;
+            // else return true;
+            for (let i of step.subQuestions) {
+                if (this.radio_answers[i.id] === undefined) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     }
 };
