@@ -432,7 +432,6 @@ export default {
             }
         }
         for(let i in this.booths){
-            console.log('this.booths', this.booths.map(b => b.name))
           this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : this.booths[i].name === 'Speakers' ? 'custom-hotspot speakers' : this.booths[i].name === 'Program (Lobby)' ? 'custom-hotspot program' : 'custom-hotspot standee'
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
