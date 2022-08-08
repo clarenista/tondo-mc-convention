@@ -45,21 +45,21 @@
                             04:00 PM - 07:00 PM
                         </p>
 
-                        <!-- disable login button for now -->
+                        <!-- disable login button for now 
                         <a
                             href="#"
                             class="btn btn_pink btn-block mt-5"
                             @click="handleRegisterClicked()"
                             >REGISTER</a
-                        >
-                        <!-- <a
+                        >-->
+                        <a
                             href="#"
                             class="btn btn_pink btn-block mt-5"
                             @click="showLogin()"
                             >LOGIN</a
-                        > -->
+                        >
 
-                        <!-- <p class="text-center">
+                        <p class="text-center">
                             <span class="lead"
                                 >NOT YET REGISTERED?
                                 <a
@@ -69,7 +69,7 @@
                                     >CLICK HERE</a
                                 ></span
                             >
-                        </p> -->
+                        </p>
                     </div>
 
                     <div class="border_bot">
@@ -130,7 +130,11 @@
                     <!-- event info-->
                     <Transition>
                         <div v-if="eventInfo">
-                            <Modal :value="eventInfo" :modalSize="'modal-xl'">
+                            <Modal
+                                :value="eventInfo"
+                                :modalSize="'modal-xl'"
+                                :vh="true"
+                            >
                                 <template v-slot:title>
                                     <h3
                                         class="display-4 mt-3 text-dark"
@@ -372,15 +376,6 @@
                 </div>
             </div>
         </div>
-
-        <marquee
-            class="text-uppercase marqee"
-            direction="left"
-            v-if="!eventInfo"
-        >
-            PUBLIC ACCESS OF ALL FEATURES FOR REGISTERED USERS WILL BE AVAILABLE
-            STARTING AUG. 04, 2022 (THURSDAY)</marquee
-        >
     </div>
 </template>
 

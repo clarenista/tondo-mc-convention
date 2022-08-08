@@ -1,13 +1,21 @@
 <template lang="">
     <div class="background full">
-        <Modal :value="value" v-if="selectedHotspot != null">
+        <div v-if="selectedHotspot">
+            <CoolLightBox
+                :items="selectedHotspot.assets"
+                :index="indexSelected"
+                @close="indexSelected = null"
+            >
+            </CoolLightBox>
+        </div>
+        <Modal
+            :value="value"
+            v-if="
+                selectedHotspot != null &&
+                    !selectedHotspot.assets[0].category.includes('standee')
+            "
+        >
             <template v-slot:title>
-                <CoolLightBox
-                    :items="selectedHotspot.assets"
-                    :index="indexSelected"
-                    @close="indexSelected = null"
-                >
-                </CoolLightBox>
                 <h1 class="lgbt" v-if="selectedHotspot.name == 'contact-us'">
                     Send us a Message
                 </h1>
@@ -30,10 +38,11 @@
                                         class="fa fa-info-circle text-info"
                                         aria-hidden="true"
                                     ></i>
-                                    You are about to leave the virtual convention site, you will be
-                                    redirected to:
+                                    You are about to leave the virtual
+                                    2nd Postgrad course site, you will be redirected to:
                                 </h3>
-                                <a class="lead"
+                                <a
+                                    class="lead"
                                     :href="selectedHotspot.assets[0].url"
                                     target="_blank"
                                 >
@@ -44,13 +53,13 @@
                                     >
                                 </a>
                             </div>
-                            <div class="col-12 mt-3">
+                            <!-- <div class="col-12 mt-3">
                                 <small class="text-light"
                                     >Click the
                                     <u class="text-primary">link</u> if you wish
                                     to continue.</small
                                 >
-                            </div>
+                            </div> -->
                         </div>
                     </template>
                     <!-- External link -->
@@ -143,7 +152,7 @@
                     <template v-else-if="selectedHotspot.name == 'quiz'">
                         <div class="col-12 p-1">
                             <div v-if="selectedHotspot.quiz_taken != ''">
-                                <legend class="text-center text-primary mb-3">
+                                <legend class="text-center text-light mb-3">
                                     <i
                                         class="fa fa-trophy"
                                         aria-hidden="true"
@@ -152,7 +161,9 @@
                                     {{ selectedHotspot.questions.length }}
                                 </legend>
                                 <div>
-                                    <h3 class="text-center end_message">
+                                    <h3
+                                        class="text-center text-light end_message"
+                                    >
                                         {{
                                             selectedHotspot.questionnaire
                                                 .ending_message
@@ -162,11 +173,14 @@
 
                                 <ol>
                                     <li
+                                        class=" text-light"
                                         v-for="(question,
                                         questionIndex) in selectedHotspot.questions"
                                         :key="questionIndex"
                                     >
-                                        <p>{{ question.question }}</p>
+                                        <p class=" text-light">
+                                            {{ question.question }}
+                                        </p>
                                         <p
                                             v-if="question.answers[0]"
                                             :class="
@@ -197,7 +211,7 @@
 
                             <div v-else>
                                 <div>
-                                    <h3 class="instruction">
+                                    <h3 class="instruction text-light">
                                         {{
                                             selectedHotspot.questionnaire
                                                 .instruction
@@ -206,7 +220,7 @@
                                 </div>
 
                                 <div
-                                    class="col-12 p-1"
+                                    class="col-12 p-1 text-light"
                                     v-if="page == assetIndex"
                                     v-for="(item,
                                     assetIndex) in selectedHotspot.questions"
@@ -559,6 +573,10 @@ export default {
             const image = data.background;
             let hs = data.hotspots;
             hs = Object.values(hs);
+            console.log(
+                "hs",
+                hs.map(h => h.name)
+            );
             // console.log(hs)
             // const image = "/images/multires/A-Silver.png";
             // const hs = [
@@ -566,11 +584,18 @@ export default {
             //   {name:'videos', pitch: 5, yaw: 5, cssClass: 'custom-hotspot videos', id: 'video'},
             //   {name:'external-links', pitch: 10, yaw: 10, cssClass: 'custom-hotspot external-links', id: 'external-links'},
             // ]
+
             for (let i in hs) {
+                const classCss =
+                    hs[i].assets.length > 0 &&
+                    (hs[i].assets[0].category.includes("standee")
+                        ? "standee"
+                        : hs[i].name);
+
                 hs[i].name = hs[i].name;
                 hs[i].pitch = hs[i].x;
                 hs[i].yaw = hs[i].y;
-                hs[i].cssClass = "custom-hotspot " + hs[i].name;
+                hs[i].cssClass = "custom-hotspot " + classCss;
                 hs[i].clickHandlerFunc = () => {
                     this.handleSelectHotspot(hs[i]);
                     // this.showModal = true
@@ -635,6 +660,14 @@ export default {
                 this.$store.getters.audio.pause();
             }
             this.sendBoothGuestEvent(this.booth_details, hotspot);
+
+            if (hotspot.assets[0].category.includes("standee")) {
+                setTimeout(() => {
+                    this.indexSelected = 0;
+                }, 100);
+            } else {
+                this.indexSelected = null;
+            }
         },
         handleCloseModal() {
             if (this.selectedHotspot.name == "videos") {
@@ -716,6 +749,7 @@ export default {
         },
 
         handleSelectAssetIndex(assetIndex) {
+            console.log(assetIndex);
             // this.value = false
             this.indexSelected = assetIndex;
         },
@@ -850,33 +884,44 @@ div.full {
     height: 100%;
 }
 div >>> .custom-hotspot {
-    height: 32px;
-    width: 32px;
+    height: 43px;
+    width: 43px;
     animation: pulse 2s infinite;
     border-radius: 50%;
 }
+
+@media only screen and (max-width: 425px) {
+    div >>> .custom-hotspot {
+        height: 36px;
+        width: 36px;
+    }
+}
+div >>> .standee {
+    background-image: url("/images/iconsv2/standee.png");
+    background-size: cover;
+}
 div >>> .brochures {
-    background-image: url("/images/icons/brochure.png");
+    background-image: url("/images/iconsv2/brochure.png");
     background-size: cover;
 }
 div >>> .videos {
-    background-image: url("/images/icons/video.png");
+    background-image: url("/images/iconsv2/videos.png");
     background-size: cover;
 }
 div >>> .contact-us {
-    background-image: url("/images/icons/contact.png");
+    background-image: url("/images/iconsv2/contact.png");
     background-size: cover;
 }
 div >>> .external-link {
-    background-image: url("/images/icons/link.png");
+    background-image: url("/images/iconsv2/link.png");
     background-size: cover;
 }
 div >>> .gallery {
-    background-image: url("/images/icons/gallery.png");
+    background-image: url("/images/iconsv2/gallery.png");
     background-size: cover;
 }
 div >>> .quiz {
-    background-image: url("/images/icons/quiz.png");
+    background-image: url("/images/iconsv2/quiz.png");
     background-size: cover;
 }
 div >>> .wheels {

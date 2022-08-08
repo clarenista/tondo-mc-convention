@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Library\SendEmail;
+use App\Library\SendEmailBlast as LibrarySendEmailBlast;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -40,12 +41,14 @@ class SendEmailBlast extends Command
     public function handle()
     {
 
-        $users = User::where('id', '>', 160)->get();
+        // $users = User::where('id', '>', 47)->get();
+        $users = User::where('id', '>', 47)->get();
 
         foreach ($users as $user) {
             echo $user->email_address . PHP_EOL;
             if (!$user->email_address) continue;
-            (new SendEmail($user->email_address))->send();
+            (new LibrarySendEmailBlast($user->email_address))->send();
+            // (new SendEmail($user->email_address))->send();
             sleep(1);
         }
 

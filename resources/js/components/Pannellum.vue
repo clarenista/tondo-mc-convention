@@ -19,11 +19,7 @@
 
         <Modal :value="camera" v-if="camera">
             <template v-slot:title>
-                <img
-                    src="/images/71st_logo.png"
-                    alt=""
-                    class="center_logo"
-                />
+                <img src="/images/71st_logo.png" alt="" class="center_logo" />
                 <br />
             </template>
             <br />
@@ -275,6 +271,7 @@ export default {
                 "sceneFadeDuration": 500,
                 "autoLoad": true,
                 "showControls": false,
+                'mouseZoom': false,
                 // uncomment the code below to get the PITCH and YAW of hotspot - console
                 // "hotSpotDebug": true,
 
@@ -283,6 +280,7 @@ export default {
 
             "scenes": {
               "lobby": {
+
                 "type": "equirectangular",
                 "panorama": "/images/multires/lobby.jpg",
                   "hotSpots": [
@@ -348,15 +346,16 @@ export default {
 
               },
               "meeting_hall": {
+
                 "type": "equirectangular",
                 "panorama": "/images/multires/Meeting_Hall.jpg",
                 "hotSpots": [
                 ],
                 // 180 view | 360 view = 180 view x 2
-                // 'minPitch' :-45,
-                // 'maxPitch' :45,
-                // 'minYaw': -90,
-                // 'maxYaw':90,
+                'minPitch' :-20,
+                'maxPitch' :20,
+                'minYaw': -55,
+                'maxYaw':55,
               },
             //   "pool_area": {
             //     "type": "multires",
@@ -433,7 +432,7 @@ export default {
             }
         }
         for(let i in this.booths){
-          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : "custom-hotspot brochures"
+          this.booths[i].cssClass = this.booths[i].type !== 'standee' ? "custom-hotspot booth" : this.booths[i].name === 'Speakers' ? 'custom-hotspot speakers' : this.booths[i].name === 'Program (Lobby)' ? 'custom-hotspot program' : 'custom-hotspot standee'
           this.booths[i].text = this.booths[i].name
           this.booths[i].clickHandlerFunc =  () => {this.handleBoothClicked(this.booths[i])}
 
@@ -781,10 +780,17 @@ div >>> .pnlm-lbar {
     opacity: 0 !important;
 }
 div >>> .custom-hotspot {
-    height: 32px;
-    width: 32px;
+    height: 43px;
+    width: 43px;
     animation: pulse 2s infinite;
     border-radius: 50%;
+}
+
+@media only screen and (max-width: 425px) {
+    div >>> .custom-hotspot {
+        height: 36px;
+        width: 36px;
+    }
 }
 div >>> .vote {
     background-image: url("/images/icons/vote.png");
@@ -792,27 +798,27 @@ div >>> .vote {
 }
 
 div >>> .meeting_hall {
-    background-image: url("/images/icons/meeting-hall-icon-min.png");
+    background-image: url("/images/iconsv2/meeting_hall_icon.png");
     background-size: cover;
 }
 div >>> .zoom {
-    background-image: url("/images/icons/zoom.png");
+    background-image: url("/images/iconsv2/zoom.png");
     background-size: cover;
 }
 div >>> .exhibit_hall {
-    background-image: url("/images/icons/exhibit-hall-icon-min.png");
+    background-image: url("/images/iconsv2/exhibit_hall_icon.png");
     background-size: cover;
 }
 div >>> .booth {
-    background-image: url("/images/multires/ICONS/ENTER.png");
+    background-image: url("/images/iconsv2/booth_icon.png");
     background-size: cover;
 }
 div >>> .arrow_left {
-    background-image: url("/images/multires/ICONS/ARROW.png");
+    background-image: url("/images/iconsv2/left_arrow.png");
     background-size: cover;
 }
 div >>> .arrow_right {
-    background-image: url("/images/multires/ICONS/ARROW_RIGHT.png");
+    background-image: url("/images/iconsv2/right_arrow.png");
     background-size: cover;
 }
 div >>> .arrow_up {
@@ -824,7 +830,7 @@ div >>> .arrow_down {
     background-size: cover;
 }
 div >>> .enter {
-    background-image: url("/images/multires/ICONS/ENTER.png");
+    background-image: url("/images/iconsv2/booth_icon.png");
     background-size: cover;
 }
 div >>> .hall_a {
@@ -853,7 +859,19 @@ div >>> .right_arrow {
 }
 
 div >>> .brochures {
-    background-image: url("/images/icons/brochure.png");
+    background-image: url("/images/iconsv2/brochure.png");
+    background-size: cover;
+}
+div >>> .program {
+    background-image: url("/images/iconsv2/program.png");
+    background-size: cover;
+}
+div >>> .speakers {
+    background-image: url("/images/iconsv2/speakers.png");
+    background-size: cover;
+}
+div >>> .standee {
+    background-image: url("/images/iconsv2/standee.png");
     background-size: cover;
 }
 @-webkit-keyframes pulse {

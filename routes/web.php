@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('layouts.app');
 // });
 
+Route::view('/email-preview', 'email.reminder-1-week');
 Route::get('/api/v1/event', [EventController::class, 'get'])->middleware([]);
 
 Route::get('/meeting-hall', function () {

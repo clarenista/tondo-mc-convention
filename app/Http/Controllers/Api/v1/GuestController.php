@@ -14,13 +14,14 @@ class GuestController extends Controller
     public function boothTracker()
     {
 
-        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->get();
+        $booths = UserEventCategory::whereCategorizableType('App\Models\Booth')->with('categorizable')->whereHas('categorizable')->get();
 
         $boothTracks = UserEvent::whereIn('user_event_category_id', $booths->pluck('id'))->whereUserId(request()->user()->id)->whereLabel('visit')->where('created_at', '>', '2021-04-23 02:33:00')->get();
 
         $return = [];
 
         foreach ($booths as $booth) {
+            if ($booth->name == "wedev-evaluation")  continue;
             $return[$booth->id] = [
                 'name' => $booth->description,
                 'visited' => boolval($boothTracks->where('user_event_category_id', $booth->id)->count()),
@@ -28,6 +29,16 @@ class GuestController extends Controller
         }
 
         return $return;
+    }
+
+    public function hasEvaluation(){
+
+        $user = request()->user();
+
+        return [
+            'sucess' => 'true',
+            'done' => $user->answers,
+        ];
     }
 
     private function checkRegistrants($email, $webinar)
@@ -68,16 +79,17 @@ class GuestController extends Controller
         return $all->firstWhere('email', $email);
     }
 
-    public function zoomJoinRH(){
+    public function zoomJoinRH()
+    {
 
 
 
 
         $user = request()->user();
-        $webinar = Program::whereEnabled(1)->where('id',6)->first();
+        $webinar = Program::whereEnabled(1)->where('id', 6)->first();
 
         return 'https://myabbottmeetings.webex.com/myabbottmeetings/j.php?MTID=meb5878b4161919e4301b0dec72d96834';
-        return 'https://us02web.zoom.us/j/'.$webinar->unique_id.'?pwd='.$webinar->description;
+        return 'https://us02web.zoom.us/j/' . $webinar->unique_id . '?pwd=' . $webinar->description;
 
         // if (!$webinar) {
         //     return 0;
@@ -102,10 +114,11 @@ class GuestController extends Controller
         // return $reg->join_url;
     }
 
-    public function zoomJoinBM(){
+    public function zoomJoinBM()
+    {
         $user = request()->user();
-        $webinar = Program::whereEnabled(1)->where('id',5)->first();
-        if (!$webinar || !in_array($user->classification,['Diplomate','Fellow','Life Member']) ) {
+        $webinar = Program::whereEnabled(1)->where('id', 5)->first();
+        if (!$webinar || !in_array($user->classification, ['Diplomate', 'Fellow', 'Life Member'])) {
             return 0;
         }
         $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
@@ -155,9 +168,9 @@ class GuestController extends Controller
                     'registered' => true,
                 ]);
             }
-        }else{
+        } else {
 
-            return 'https://us02web.zoom.us/j/'.$webinar->unique_id.'?pwd='.$webinar->description;
+            return 'https://us02web.zoom.us/j/' . $webinar->unique_id . '?pwd=' . $webinar->description;
             return 'https://us02web.zoom.us/j/85670664486?pwd=9Ll1xvvO4XrXNpL_Q4TkJHCIE1ueqG.1';
         }
         return $reg->join_url;
