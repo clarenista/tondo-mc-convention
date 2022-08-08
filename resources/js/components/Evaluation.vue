@@ -510,10 +510,14 @@
                 >
                     Next
                 </button>
-                <button class="btn btn-success" type="button" v-else>
+                <button
+                    class="btn btn-success"
+                    type="button"
+                    v-else
+                    @click="handleSubmit"
+                >
                     Submit
                 </button>
-                <pre>{{ radio_answers }}</pre>
             </div>
         </div>
         <!--
@@ -706,6 +710,17 @@ export default {
         };
     },
     methods: {
+        async handleSubmit() {
+            const api = "api/v1/booths/44/questionnaire/answer/submit";
+            const fd = new FormData();
+            fd.append("answers", this.radio_answers);
+            try {
+                const { data } = await axios.post(api, fd);
+                console.log(data);
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+        },
         handleBackToLobby() {
             this.$router.push({ name: "home" });
         },
