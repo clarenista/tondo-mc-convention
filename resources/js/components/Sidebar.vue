@@ -114,8 +114,8 @@ export default {
     },
     methods:{
         handleCloseEvalModal(){
+            this.$store.dispatch("getEvalStatus");
             this.openEvalmodal = false
-            this.$store.commit("updateHasEvaluation", true);
         },
         downloadFile(filePath){
             var link=document.createElement('a');

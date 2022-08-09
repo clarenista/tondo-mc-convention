@@ -583,7 +583,7 @@
 export default {
     mounted() {
         // console.log(this.$store.getters.user.name_on_cert);
-        this.radio_answers[35] = this.$store.getters.user?.name_on_cert;
+
         this.init();
     },
     data() {
@@ -789,6 +789,17 @@ export default {
             }
         },
         async init() {
+            try {
+                let { data } = await axios.get(
+                    "/api/v1/user?api_token=" +
+                        localStorage.getItem("access_token")
+                );
+                // console.log(data);
+                this.radio_answers[35] = data.name_on_cert;
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+
             const api = `api/v1/guests/evaluation/status?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
