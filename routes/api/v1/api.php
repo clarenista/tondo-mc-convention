@@ -42,6 +42,7 @@ Route::get('/guests/zoom/join/bm', [GuestController::class, 'zoomJoinBM']);
 Route::get('/guests/booths/tracker', [GuestController::class, 'boothTracker']);
 Route::post('/guests/event/push', [GuestEventController::class, 'push']);
 Route::get('/guests/evaluation/status', [GuestController::class, 'hasEvaluation']);
+Route::get('/guests/certificate/', [GuestController::class, 'generateCertificate']);
 
 Route::get('/program', [ProgramController::class, 'get']);
 Route::get('/program/rh', [ProgramController::class, 'rh']);

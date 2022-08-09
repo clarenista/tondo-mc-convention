@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        hasEvaluation: null,
         isWelcomed: true,
         roles: [
             { value: "ADMIN", key: "admin" },
@@ -712,6 +713,10 @@ export default new Vuex.Store({
         // change(state, flavor) {
         //   state.flavor = flavor
         // }
+
+        updateHasEvaluation(state, hasEvaluation) {
+            state.hasEvaluation = hasEvaluation;
+        },
         updateIsNotAllowedMessage(state, isNotAllowedMessage) {
             state.isNotAllowedMessage = isNotAllowedMessage;
         },
@@ -769,7 +774,8 @@ export default new Vuex.Store({
         announcement: state => state.announcement,
         isNotAllowed: state => state.isNotAllowed,
         isNotAllowedMessage: state => state.isNotAllowedMessage,
-        audio: state => state.audio
+        audio: state => state.audio,
+        hasEvaluation: state => state.hasEvaluation
     },
     actions: {
         getBgm({ commit, state }) {
@@ -812,6 +818,18 @@ export default new Vuex.Store({
             }
 
             // commit("updateBgmStart", false);
+        },
+        async getEvalStatus({ commit, state }) {
+            const api = `api/v1/guests/evaluation/status?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                const { data } = await axios.get(api);
+                if (data.done.length > 0) commit("updateHasEvaluation", true);
+                else commit("updateHasEvaluation", false);
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
         }
     }
 });

@@ -141,7 +141,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-2 col-sm-12">
@@ -187,7 +186,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -233,7 +231,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -279,7 +276,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -325,7 +321,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -371,7 +366,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -417,7 +411,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -463,7 +456,6 @@
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
                                         :key="index"
-                                        style="display: flex; flex-direction: row"
                                         class="mt-2"
                                     >
                                         <div class="mr-3 col-md-5 col-xs-12">
@@ -778,7 +770,22 @@ export default {
     },
     methods: {
         handleDownload() {
-            alert("downloading");
+            const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                axios
+                    .get(
+                        api,
+                        { responseType: "blob" } // !!!
+                    )
+                    .then(response => {
+                        console.log(response);
+                        window.open(URL.createObjectURL(response.data));
+                    });
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
         },
         async init() {
             const api = `api/v1/guests/evaluation/status?api_token=${localStorage.getItem(
@@ -800,6 +807,7 @@ export default {
             fd.append("answers", JSON.stringify(this.radio_answers));
             try {
                 const { data } = await axios.post(api, fd);
+                this.$store.commit("updateHasEvaluation", true);
                 this.hasEvaluation = true;
             } catch ({ response }) {
                 alert(response.statusText);
