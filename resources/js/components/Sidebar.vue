@@ -15,6 +15,7 @@
         >
             <span>{{item.name}}</span> 
         </a>
+        <!--
         <a 
             href="javascript:void(0)" 
             title="Event Evaluation"
@@ -27,6 +28,7 @@
         >
             <span class="text-uppercase">Download Certificate</span> 
         </a>
+        -->
 
 
         <div class="left_bot">
