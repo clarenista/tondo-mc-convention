@@ -802,7 +802,7 @@ div >>> .meeting_hall {
     background-size: cover;
 }
 div >>> .zoom {
-    background-image: url("/images/iconsv2/zoom.png");
+    background-image: url("/images/iconsv2/zoom_meeting.png");
     background-size: cover;
 }
 div >>> .exhibit_hall {

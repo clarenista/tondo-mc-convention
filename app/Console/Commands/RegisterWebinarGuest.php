@@ -42,9 +42,9 @@ class RegisterWebinarGuest extends Command
     {
 
         $bearer = "Bearer ";
-        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6Ilc4am01TXdKUnEtS1Nrd2puTTZGY2ciLCJleHAiOjE2NTM5MjI4NzgsImlhdCI6MTY1MzMxODA3OH0.2URjxhV-RhSmnQaV4g3YXwYVYpyzp3lfg25Rr4X-H24";
-        $webinar_id = "81442450608";
-        $webinar_topic = "PSP 71st Annual Convention - Bussiness Meeting";
+        $bearer .= "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOm51bGwsImlzcyI6IlpzdS1nLXBDUUItUlBrdEZpMVdtdmciLCJleHAiOjE2NjA0MDYzNDAsImlhdCI6MTY1OTUxNjk4M30.AFAFqolHS1hNMHH9oh9k_rplBTEGB9bz2Jwxho1vIy0";
+        $webinar_id = "89772946604";
+        $webinar_topic = "Tondo Medical Center Postgrad";
 
         $panelists = [
             // 'coleman22@kshlerin.biz',
@@ -104,7 +104,7 @@ class RegisterWebinarGuest extends Command
             ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
                 $q->where('webinar_id', $webinar_id);
             })
-            ->whereIn('classification', ['Fellow','Diplomate','Life Member'])
+            ->whereNotIn('classification', ['sponsor'])
             ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [37])
             ->get();
