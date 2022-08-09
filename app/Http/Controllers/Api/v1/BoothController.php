@@ -100,6 +100,11 @@ class BoothController extends Controller
                 'sent_at' => $sent_at,
                 'questionnaire_id' => $question->questionnaire->id,
             ]);
+            if ($question_id == 35) {
+                request()->user()->update([
+                    'name_on_cert' => $answer,
+                ]);
+            }
         }
 
         $questions = $booth->questionnaire->questions()->with(['answers' => function ($q) {
