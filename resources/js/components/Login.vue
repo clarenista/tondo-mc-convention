@@ -282,7 +282,7 @@
                     </template>
                     <br /> -->
                     <template v-slot:body>
-                        <iframe width="100%" height="486" src="https://www.youtube.com/embed/SbKw4dRlCRw?autoplay=0&rel=0" 
+                        <iframe width="100%" height="486" :src="utube" 
                             title="Department of OB Gyn of Tondo Medical Center" frameborder="0" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                         </iframe>
@@ -292,7 +292,7 @@
                         <button
                                 class="btn btn-danger"
                                 type="button"
-                                @click="handleVideoClicked"
+                                @click="handleVideoClose"
                             >
                             Close
                         </button>
@@ -490,7 +490,8 @@ export default {
             videoSrc: "images/Venue1.mp4",
 
             welcomeMessage: "Welcome to our 2nd Postgraduate Course",
-            letsGoButtonClicked: false
+            letsGoButtonClicked: false,
+            utube: null,
         };
     },
     watch: {},
@@ -510,7 +511,12 @@ export default {
             this.showRegistrationModal = true;
         },
         handleVideoClicked() {
-            this.showVideoModal = !this.showVideoModal;
+            this.showVideoModal = true;
+            this.utube = "https://www.youtube.com/embed/SbKw4dRlCRw?autoplay=0&rel=0";
+        },
+        handleVideoClose() {
+            this.showVideoModal = false;
+            this.utube = '';
         },
         async init() {
             let { data } = await axios.get("/api/v1/event");
