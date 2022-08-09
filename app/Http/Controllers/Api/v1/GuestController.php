@@ -183,7 +183,8 @@ class GuestController extends Controller
         $bearer = "Bearer ";
         $bearer .= $webinar->description;
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
-        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar->unique_id}/registrants";
+        $registrants_api = "https://api.zoom.us/v2/webinars/{$webinar->unique_id}/registrants";
+
         $post = [
             'email' => $user->email_address,
             'first_name' => $user->first_name,
@@ -192,7 +193,7 @@ class GuestController extends Controller
             'custom_questions' => [
                 [
                     "title" => "MD Specialization",
-                    "value" => $user->position,
+                    "value" => $user->position ?? "N/A",
                 ],
                 [
                     "title" => "Consultant or Resident",
