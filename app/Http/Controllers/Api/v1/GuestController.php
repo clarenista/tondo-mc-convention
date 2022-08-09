@@ -31,7 +31,8 @@ class GuestController extends Controller
         return $return;
     }
 
-    public function hasEvaluation(){
+    public function hasEvaluation()
+    {
 
         $user = request()->user();
 
@@ -187,6 +188,18 @@ class GuestController extends Controller
             'email' => $user->email_address,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
+            'org' => $user->hospital_affiliation,
+            'custom_questions' => [
+                [
+                    "title" => "MD Specialization",
+                    "value" => $user->position,
+                ],
+                [
+                    "title" => "Consultant or Resident",
+                    "value" => "Resident"
+                ],
+            ]
+
         ];
 
         $response = $client->post($registrants_api, $post);
