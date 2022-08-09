@@ -780,7 +780,6 @@ export default {
                         { responseType: "blob" } // !!!
                     )
                     .then(response => {
-                        console.log(response);
                         window.open(URL.createObjectURL(response.data));
                     });
             } catch ({ response }) {

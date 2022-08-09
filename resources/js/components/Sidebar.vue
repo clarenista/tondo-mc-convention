@@ -14,7 +14,7 @@
                     </template>
                                 <br />
                                 <template v-slot:body>
-                    <a href="javascript:void(0)" class="closebtn float-right" @click="openEvalmodal = false"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <a href="javascript:void(0)" class="closebtn float-right" @click="handleCloseEvalModal"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     <div
                                         class="embed-responsive embed-responsive-16by9"
                                         style="height: 100%;"
@@ -111,6 +111,10 @@ export default {
         }
     },
     methods:{
+        handleCloseEvalModal(){
+            this.openEvalmodal = false
+            this.$store.commit("updateHasEvaluation", true);
+        },
         downloadFile(filePath){
             var link=document.createElement('a');
             link.href = filePath;
@@ -118,6 +122,8 @@ export default {
             link.click();
         },
         handleDownload() {
+            
+            
             if(!this.$store.getters.hasEvaluation) {
                 alert('You must complete the evaluation first.')
                 return
