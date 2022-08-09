@@ -125,6 +125,16 @@
                                 aria-hidden="true"
                             ></i>
                         </a>
+                        <a
+                            style="padding: 4px 9px; background: #ff00ff; border-radius: 50%; color: #fff"
+                            class="btn "
+                            @click="handleVideoClicked"
+                            ><i
+                                class="fa fa-youtube-play"
+                                aria-hidden="true"
+                            ></i>
+                            <!-- href="https://youtu.be/SbKw4dRlCRw" -->
+                        </a>
                     </h1>
 
                     <!-- event info-->
@@ -247,6 +257,45 @@
                             "
                             @handleCancelClicked="handleCancelClicked"
                         />
+                    </template>
+                </Modal>
+            </div>
+        </Transition>
+
+        <Transition>
+            <div>
+                <Modal :value="showVideoModal" :modalSize="'modal-lg'">
+                    <!-- <template v-slot:title>
+                        <img
+                            style="width: 10vw;"
+                            src="/images/71st_logo.png"
+                            alt=""
+                            class="center_logo mt-3 d-none d-md-block"
+                        />
+                        <h3
+                            class="display-4 mt-3 text-dark"
+                            style="font-size: 2em; text-align: center;"
+                        >
+                            Department of OB Gyn of Tondo Medical Center
+                        </h3>
+                        <br />
+                    </template>
+                    <br /> -->
+                    <template v-slot:body>
+                        <iframe width="100%" height="486" src="https://www.youtube.com/embed/SbKw4dRlCRw?autoplay=0&rel=0" 
+                            title="Department of OB Gyn of Tondo Medical Center" frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </template>
+
+                    <template v-slot:footer>
+                        <button
+                                class="btn btn-danger"
+                                type="button"
+                                @click="handleVideoClicked"
+                            >
+                            Close
+                        </button>
                     </template>
                 </Modal>
             </div>
@@ -419,6 +468,7 @@ export default {
                 }
             ],
             showRegistrationModal: false,
+            showVideoModal: false,
             show: true,
             loginMessage: null,
             text_email: "",
@@ -458,6 +508,9 @@ export default {
         },
         handleRegisterClicked() {
             this.showRegistrationModal = true;
+        },
+        handleVideoClicked() {
+            this.showVideoModal = !this.showVideoModal;
         },
         async init() {
             let { data } = await axios.get("/api/v1/event");
