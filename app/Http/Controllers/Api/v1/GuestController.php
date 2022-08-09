@@ -189,7 +189,7 @@ class GuestController extends Controller
             'email' => $user->email_address,
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
-            'org' => $user->hospital_affiliation,
+            'org' => $user->hospital_affiliation ?? "N/A",
             'custom_questions' => [
                 [
                     "title" => "MD Specialization",
@@ -202,7 +202,6 @@ class GuestController extends Controller
             ]
 
         ];
-
         $response = $client->post($registrants_api, $post);
         \Log::info($response->json());
         return $response->json();
