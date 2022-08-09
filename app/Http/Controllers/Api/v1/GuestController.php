@@ -179,12 +179,10 @@ class GuestController extends Controller
 
     private function registerToWebinar($webinar, $user)
     {
-
         $bearer = "Bearer ";
         $bearer .= $webinar->description;
         $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
         $registrants_api = "https://api.zoom.us/v2/webinars/{$webinar->unique_id}/registrants";
-
         $post = [
             'email' => $user->email_address,
             'first_name' => $user->first_name,
@@ -200,7 +198,6 @@ class GuestController extends Controller
                     "value" => "Resident"
                 ],
             ]
-
         ];
         $response = $client->post($registrants_api, $post);
         \Log::info($response->json());
