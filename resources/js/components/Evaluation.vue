@@ -582,6 +582,8 @@
 <script>
 export default {
     mounted() {
+        // console.log(this.$store.getters.user.name_on_cert);
+        this.radio_answers[35] = this.$store.getters.user.name_on_cert;
         this.init();
     },
     data() {
