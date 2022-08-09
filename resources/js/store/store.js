@@ -715,7 +715,6 @@ export default new Vuex.Store({
         // }
 
         updateHasEvaluation(state, hasEvaluation) {
-            alert("updateHasEvaluation");
             state.hasEvaluation = hasEvaluation;
         },
         updateIsNotAllowedMessage(state, isNotAllowedMessage) {
