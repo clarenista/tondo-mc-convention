@@ -178,32 +178,23 @@ class GuestController extends Controller
     public function zoomJoinMobile($webinar_id = "81037064653", $webinar_topic = "PSP70 - WEBINAR")
     {
         $user = request()->user();
-        $webinar = Program::whereEnabled(1)->where('id', '<', 5)->first();
-        if (!$webinar) {
-            return 0;
-        }
-        if ($webinar->id < 4) {
-            $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
-            if (!$reg) {
-                $registered = $this->checkRegistrants($user->email_address, $webinar);
-                if (!$registered) {
-                    // // DISABLE AUTO REGISTER
-                    // return "0";
-                    $registered = $this->registerToWebinar($webinar, $user);
-                    $registered['id'] = $registered['registrant_id'];
-                }
-                $reg = $user->webinars()->create([
-                    "registrant_id" => $registered['id'],
-                    "webinar_id" => $webinar->unique_id,
-                    "topic" => $webinar->title,
-                    "join_url" => $registered['join_url'],
-                    'registered' => true,
-                ]);
+        $webinar = Program::first();
+        $reg = $user->webinars()->where('webinar_id', $webinar->unique_id)->first();
+        if (!$reg) {
+            $registered = $this->checkRegistrants($user->email_address, $webinar);
+            if (!$registered) {
+                // // DISABLE AUTO REGISTER
+                // return "0";
+                $registered = $this->registerToWebinar($webinar, $user);
+                $registered['id'] = $registered['registrant_id'];
             }
-        } else {
-
-            return 'https://us02web.zoom.us/j/' . $webinar->unique_id . '?pwd=' . $webinar->description;
-            return 'https://us02web.zoom.us/j/85670664486?pwd=9Ll1xvvO4XrXNpL_Q4TkJHCIE1ueqG.1';
+            $reg = $user->webinars()->create([
+                "registrant_id" => $registered['id'],
+                "webinar_id" => $webinar->unique_id,
+                "topic" => $webinar->title,
+                "join_url" => $registered['join_url'],
+                'registered' => true,
+            ]);
         }
         return $reg->join_url;
     }
