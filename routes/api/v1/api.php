@@ -49,6 +49,10 @@ Route::get('/program/rh', [ProgramController::class, 'rh']);
 Route::get('/program/bm', [ProgramController::class, 'bm']);
 Route::get('/event', [EventController::class, 'get']);
 
+
+Route::get('/event/facebook-link', [EventController::class, 'getFacebookLink']);
+Route::get('/event/evaluation-form', [EventController::class, 'getEvaluationForm']);
+
 Route::get('/chat/rooms', [ChatController::class, 'rooms']);
 Route::get('/chat/rooms/{id}/messages', [ChatController::class, 'messages']);
 Route::post('/chat/get-room', [ChatController::class, 'getRoom']);
