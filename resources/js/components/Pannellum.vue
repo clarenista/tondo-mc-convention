@@ -295,15 +295,15 @@ export default {
                     },
 
                     // voting hot spot
-                    // {
-                    //     pitch: 0.50,
-                    //     yaw: 14.31,
-                    //     cssClass: "custom-hotspot vote",
-                    //     text: "Voting",
-                    //     clickHandlerFunc: () =>{
-                    //         this.handleVote()
-                    //     }
-                    // },
+                    {
+                        pitch: -2.45,
+                        yaw: -179.43,
+                        cssClass: "custom-hotspot exhibit_hall",
+                        text: "Evaluation and Certificates",
+                        clickHandlerFunc: () =>{
+                            this.handleEvalCert()
+                        }
+                    },
                   ],
 
 

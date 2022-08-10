@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title text-center mt-3">
+                        <h5 class="card-title text-center">
                             2<sup>nd</sup> POSTGRADUATE COURSE
                         </h5>
 
@@ -54,7 +54,7 @@
                         >-->
                         <a
                             href="#"
-                            class="btn btn_pink btn-block mt-5"
+                            class="btn btn_pink btn-block mt-3"
                             @click="showLogin()"
                             >LOGIN</a
                         >
@@ -71,10 +71,10 @@
                             >
                         </p>
 
-                        <p class="concerns mt-3 text-light">
+                        <p class="concerns mt-1 text-light">
                             Any concerns or inquiries, please text the following numbers:<br>
                             Dr. Aceveda at 09065103974 or <br>
-                            Tondo Medical center OBGYN at 09812464532.
+                            Tondo Medical Center OBGYN at 09812464532.
                         </p>
                     </div>
 
@@ -831,13 +831,13 @@ div.full {
     color: #ff00ff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 600;
     line-height: 1.5;
 }
 
 .event_info .card-body h1 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 300;
     line-height: 1.5;
 }
@@ -846,8 +846,8 @@ div.full {
     text-align: center;
     border: 1px solid #fff;
     padding: 0.2em;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 300;
     line-height: 1.2;
     margin: 0 6rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -858,7 +858,7 @@ div.full {
     text-align: center;
     border: 1px solid #fff;
     padding: 0.2em;
-    font-size: 1.2rem;
+    font-size: .85rem;
     font-weight: 300;
     line-height: 1.2;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
@@ -874,29 +874,29 @@ div.full {
     color: #fff;
     padding: 0.3em 0;
     border: 1px solid #770077;
-    font-size: 2.4rem;
+    font-size: 2rem;
     font-weight: 600;
     border-radius: 0.1em;
     background: #ff3bff;
 }
 .lead {
-    font-size: 1.32875rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
 }
 
 .lead a {
-    font-size: 1.32875rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #ff00ff;
 }
 
 .event_info_footer {
-    padding: 0 2.188rem 3rem;
+    padding: 0 1rem 1rem;
 }
 
 .event_info_footer a {
-    font-size: 1.32875rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #fff;
 }
@@ -1132,9 +1132,9 @@ div.full {
 }
 
 @media screen and (min-height: 599px) and (max-height: 720px) {
-    .event_info .card {
+    /* .event_info .card {
         width: 320px;
-    }
+    } */
 
     .event_info .card-title {
         font-size: 0.5rem;
@@ -1151,7 +1151,7 @@ div.full {
         font-size: 0.5rem;
         font-weight: 600;
         line-height: 1.2;
-        margin: 0;
+        margin: 0 6rem;
     }
     .concerns {
         text-align: center;
@@ -1179,52 +1179,53 @@ div.full {
     }
 }
 
+
 @media (max-width: 320px) {
-    .event_info .card {
+    /* .event_info .card {
         width: 220px;
-    }
+    } */
 }
 
 @media screen and (min-width: 980px) and (max-width: 1281px) {
-    .event_info .card {
+    /* .event_info .card {
         width: 300px;
-    }
+    } */
 
     .event_info .card-title {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .event_info .card-body h1 {
-        font-size: 1.2rem;
-        line-height: 1.3;
+        font-size: 1rem;
+        line-height: 1;
     }
 
     .event_date_box {
         text-align: center;
         border: 1px solid #fff;
-        font-size: 0.9rem;
-        font-weight: 600;
-        line-height: 1.2;
+        font-size: 0.7rem;
+        font-weight: 300;
+        line-height: 1;
         margin: 0 3rem;
     }
     .concerns {
         text-align: center;
         border: 1px solid #fff;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         font-weight: 300;
     }
 
     .btn_pink {
-        font-size: 1.3rem;
+        font-size: 1rem;
         margin-top: 3rem !important;
     }
 
     .lead {
-        font-size: 0.95rem;
+        font-size: 0.7rem;
     }
 
     .lead a {
-        font-size: 0.95rem;
+        font-size: 0.7rem;
         position: relative;
     }
 
@@ -1258,7 +1259,7 @@ div.full {
         text-align: center;
         border: 1px solid #fff;
         font-size: 0.5rem;
-        font-weight: 600;
+        font-weight: 300;
         line-height: 1.2;
         margin: 0;
     }
