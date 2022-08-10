@@ -1,5 +1,36 @@
 <template>
     <div class="background full">
+        <!-- event info-->
+        <Transition>
+            <div v-if="openEvalmodal">
+                <Modal
+                    :value="openEvalmodal"
+                    :modalSize="'modal-xl'"
+                    :vh="true"
+                >
+                    <template v-slot:title> </template>
+                    <br />
+                    <template v-slot:body>
+                        <a
+                            href="javascript:void(0)"
+                            class="closebtn float-right"
+                            @click="handleCloseEvalModal"
+                            ><i class="fa fa-times" aria-hidden="true"></i
+                        ></a>
+                        <div
+                            class="embed-responsive embed-responsive-16by9"
+                            style="height: 100%;"
+                        >
+                            <iframe
+                                class="embed-responsive-item"
+                                :src="`/evaluation`"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </template>
+                </Modal>
+            </div>
+        </Transition>
         <!-- BOOTH TRACKER -->
         <div class="booth_tracker">
             <h1>
@@ -154,6 +185,8 @@
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
             @handleLogout="handleLogout"
+            @handleOpenEvalModal="handleOpenEvalModal"
+            @handleDownload="handleDownload"
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
@@ -197,6 +230,11 @@ import PhotoboothModal from './PhotoboothModal'
 import MeetingHall from './MeetingHall/MeetingHall.js'
 
 export default {
+        computed: {
+        event(){
+            return this.$store.getters.event
+        }
+    },
   components:{
     Sidebar, Modal, PhotoboothModal
   },
@@ -204,6 +242,8 @@ export default {
 
     data() {
       return {
+                    openEvalmodal: false,
+            hasEvaluation: null,
           bgmStatus: localStorage.getItem('bgmStatus'),
         imageRendered: null,
         camera: false,
@@ -240,6 +280,8 @@ export default {
       }
     },
     mounted() {
+        this.$store.dispatch("getEvalStatus");
+             this.$store.dispatch("getEvent");
         // const zoomHotspot = document.querySelector('pnlm-tooltip').closest()
       this.init()
       window.addEventListener("resize", this.reSize);
@@ -250,6 +292,52 @@ export default {
     //   this.bgmStatus = localStorage.getItem('bgmStatus')
     },
     methods:{
+        handleOpenEvalModal(){
+            if(!this.event.evaluation_enable){
+                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                return
+            }
+            this.openEvalmodal = true
+        },
+        handleCloseEvalModal(){
+            this.$store.dispatch("getEvalStatus");
+
+            this.openEvalmodal = false
+        },
+        downloadFile(filePath){
+            var link=document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+            link.click();
+        },
+        handleDownload() {
+
+            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
+            if(!this.event.evaluation_enable){
+                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
+                return
+            }
+            if(!this.$store.getters.hasEvaluation) {
+                alert('You must complete the evaluation first.')
+                return
+            }
+            const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                axios
+                    .get(
+                        api,
+                        { responseType: "blob" } // !!!
+                    )
+                    .then(response => {
+
+                        this.downloadFile(URL.createObjectURL(response.data));
+                    });
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+        },
       async init(){
         let vm = this
         // auth:api
@@ -302,7 +390,7 @@ export default {
                         cssClass: "custom-hotspot exhibit_hall",
                         text: "Evaluation and Certificates",
                         clickHandlerFunc: () =>{
-                            this.handleEvalCert()
+                            this.handleOpenEvalModal()
                         }
                     },
                   ],

@@ -1,37 +1,6 @@
 <template >
 <div>
-                    <!-- event info-->
-                    <Transition>
-                        <div v-if="openEvalmodal">
-                            <Modal
-                                :value="openEvalmodal"
-                                :modalSize="'modal-xl'"
-                                :vh="true"
-                            >
-                            <template v-slot:title>
-                        
-                        
-                    </template>
-                                <br />
-                                <template v-slot:body>
-                    <a href="javascript:void(0)" class="closebtn float-right" @click="handleCloseEvalModal"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                    <div
-                                        class="embed-responsive embed-responsive-16by9"
-                                        style="height: 100%;"
-                                    >
-                                        <iframe
-                                            class="embed-responsive-item"
-                                            :src="
-                                                `/evaluation`
-                                            "
-                                            allowfullscreen
-                                        ></iframe>
-                                    </div>
-                                </template>
-                                
-                            </Modal>
-                        </div>
-                    </Transition>
+
 
     <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'">
         <div class="text-center mb-5"><img id="psp_logo" src="images/71st_logo.png" width="190px" alt="psp_logo" srcset=""></div>
@@ -98,8 +67,7 @@ export default {
     
     data() {
         return {
-            openEvalmodal: false,
-            hasEvaluation: null,
+            
             showDropdown: false,
             navItems: [
                 // {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item', title: 'Beach'},
@@ -119,51 +87,12 @@ export default {
         }
     },
     methods:{
+        handleDownload(){
+
+            this.$emit('handleDownload')
+        },
         handleOpenEvalModal(){
-            if(!this.event.evaluation_enable){
-                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
-                return
-            }
-            this.openEvalmodal = true
-        },
-        handleCloseEvalModal(){
-            this.$store.dispatch("getEvalStatus");
-            
-            this.openEvalmodal = false
-        },
-        downloadFile(filePath){
-            var link=document.createElement('a');
-            link.href = filePath;
-            link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
-            link.click();
-        },
-        handleDownload() {
-            
-            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
-            if(!this.event.evaluation_enable){
-                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
-                return
-            }
-            if(!this.$store.getters.hasEvaluation) {
-                alert('You must complete the evaluation first.')
-                return
-            }
-            const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
-                "access_token"
-            )}`;
-            try {
-                axios
-                    .get(
-                        api,
-                        { responseType: "blob" } // !!!
-                    )
-                    .then(response => {
-                            
-                        this.downloadFile(URL.createObjectURL(response.data));
-                    });
-            } catch ({ response }) {
-                alert(response.statusText);
-            }
+            this.$emit('handleOpenEvalModal')
         },
         openNav(){
             document.getElementById("mySidenav").style.width = "270px";
