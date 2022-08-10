@@ -847,6 +847,7 @@ export default {
     },
     methods: {
         handleDownload() {
+            this.$sendGuestEventNew("evaluation page", "download clicked");
             const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
@@ -887,6 +888,7 @@ export default {
             }
         },
         async handleSubmit() {
+            this.$sendGuestEventNew("evaluation page", "submit clicked");
             const api = `api/v1/booths/44/questionnaire/answer/submit?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
