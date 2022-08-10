@@ -11,7 +11,7 @@ class EventController extends Controller
     public function get()
     {
 
-        $event = Event::select('start_at')->first();
+        $event = Event::first();
         $event->start_at_ = strtotime($event->start_at) * 1000;
         $event->evaluation_enable = filter_var($event->subtitle, FILTER_VALIDATE_BOOLEAN);
         $event->facebook_url = $event->description;
