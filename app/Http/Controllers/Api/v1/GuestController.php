@@ -44,6 +44,7 @@ class GuestController extends Controller
 
     public function generateCertificate()
     {
+        return null;
         $hasEvaluation = self::hasEvaluation();
         // if (count($hasEvaluation['done']) <= 0) {
         //     return response()->json(['status' => 'failed', 'message' => 'No evaluation found.']);
