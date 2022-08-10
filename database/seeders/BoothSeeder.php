@@ -67,22 +67,34 @@ class BoothSeeder extends Seeder
 
             'Hall A' => [
                 // left facing lobby/ hall a exit
-                ['MEDEV', -1.42, -63.18, 'bronze', "MEDEV.png", "MEDEV.png",
+                ['MEDEV', -0.69, -55.27, 'bronze', "MEDEV.png", "MEDEV.png",
                     [
                         ['External Link', '-15.38','-14.14','https://medev.com.ph'],
                         ['Contact Us','-9.36','-6.93',''],
-                        // ['Quiz', '-8.38','-18.01',''],
+                        ['Quiz', '-8.38','-18.01',''],
                         ['Brochures', '-1.68','-3.50',''],
                         ['Videos', '-2.19','10.67',''],
                         ['Gallery', '-1.68','-12.85','']
                     ]
                 ],
+
+                ['NPK', -0.82, -89.71, 'silver', "NPK.png", "NPK.png",
+                    [
+                        ['External Link', '-14.64','-19.15','https://npkmedical.ph'],
+                        ['Contact Us','-8.62','-10.57',''],
+                        ['Quiz', '-7.73','-26.06',''],
+                        ['Brochures', '-2.19','14.83',''],
+                        ['Videos', '-2.20','-14.82',''],
+                        ['Gallery', '-1.36','-1.40','']
+                    ]
+                ],
+
                 // SPONSOR_R2
-                ['Hi-Precision', -1.62, -117.94, 'bronze', "Hi-Precision.png", "Hi-Precision.png",
+                ['Hi-Precision', -0.75, -126.16, 'bronze', "Hi-Precision.png", "Hi-Precision.png",
                     [
                         ['External Link', '-15.62','-13.63','https://hi-precision.com.ph'],
                         ['Contact Us','-9.58','-6.93',''],
-                        // ['Quiz', '-8.52','-17.68',''],
+                        ['Quiz', '-8.52','-17.68',''],
                         ['Brochures', '-3.00','-2.77',''],
                         ['Videos', '-1.87','10.58',''],
                         ['Gallery', '-3.00','-13.71','']
@@ -90,14 +102,14 @@ class BoothSeeder extends Seeder
                 ],
 
                 // SPONSOR_R3
-                ['NPK', -2.34, -179.85, 'silver', "NPK.png", "NPK.png",
+                ['Tondo Medical Center', -2.34, -179.85, 'gold', "tondoMC.png", "tondoMC.png",
                     [
-                        ['External Link', '-14.64','-19.15','https://npkmedical.ph'],
-                        ['Contact Us','-8.62','-10.57',''],
-                        // ['Quiz', '-7.73','-26.06',''],
-                        ['Brochures', '-2.19','14.83',''],
-                        ['Videos', '-2.20','-14.82',''],
-                        ['Gallery', '-1.36','-1.40','']
+                        ['External Link', '-10.84','-29.08','https://tmc.doh.gov.ph'],
+                        ['Contact Us','-6.99','-21.78',''],
+                        ['Quiz', '-6.12','-34.22',''],
+                        ['Brochures', '-11.77','22.33',''],
+                        ['Videos', '-1.81','0.99',''],
+                        ['Gallery', '-2.63','-16.00','']
                     ]
                 ],
 
@@ -107,7 +119,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-15.28','-13.80','https://journeytomotherhoodandbeyond.info'],
                         ['Contact Us','-9.23','-6.75',''],
-                        // ['Quiz', '-8.81','-17.10',''],
+                        ['Quiz', '-8.81','-17.10',''],
                         ['Brochures', '-1.18','-1.59',''],
                         ['Videos', '-2.41','11.19',''],
                         ['Gallery', '-1.16','-11.11','']
@@ -118,7 +130,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-15.11','-13.88','https://tahealthcaregroup.com'],
                         ['Contact Us','-9.32','-6.84',''],
-                        // ['Quiz', '-8.35','-17.68',''],
+                        ['Quiz', '-8.35','-17.68',''],
                         ['Brochures', '-2.81','-2.86',''],
                         ['Videos', '-2.14','10.50',''],
                         ['Gallery', '-2.81','-13.54','']
@@ -130,7 +142,7 @@ class BoothSeeder extends Seeder
                     [
                         ['External Link', '-15.11','-13.88','https://medethix.com.ph'],
                         ['Contact Us','-9.32','-6.84',''],
-                        // ['Quiz', '-9.32','-17.68',''],
+                        ['Quiz', '-9.32','-17.68',''],
                         ['Brochures', '-2.81','-2',''],
                         ['Videos', '-2.14','10.50',''],
                         ['Gallery', '-2.81','-13.54','']

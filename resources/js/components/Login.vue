@@ -70,6 +70,12 @@
                                 ></span
                             >
                         </p>
+
+                        <p class="concerns mt-3 text-light">
+                            Any concerns or inquiries, please text the following numbers:<br>
+                            Dr. Aceveda at 09065103974 or <br>
+                            Tondo Medical center OBGYN at 09812464532.
+                        </p>
                     </div>
 
                     <div class="border_bot">
@@ -848,6 +854,17 @@ div.full {
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+.concerns{
+    text-align: center;
+    border: 1px solid #fff;
+    padding: 0.2em;
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
 .border_bot {
     margin: 0 20px;
     border-bottom: 2px solid #ccc;
@@ -1083,6 +1100,13 @@ div.full {
         line-height: 1.2;
         margin: 0;
     }
+    .concerns{
+        text-align: center;
+        border: 1px solid #fff;
+        /* padding: 2.1999999999999993em; */
+        font-size: 0.5rem;
+        font-weight: 300;
+    }
 
     .btn_pink {
         font-size: 1rem;
@@ -1128,6 +1152,12 @@ div.full {
         font-weight: 600;
         line-height: 1.2;
         margin: 0;
+    }
+    .concerns {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.5rem;
+        font-weight: 300;
     }
 
     .btn_pink {
@@ -1177,6 +1207,12 @@ div.full {
         line-height: 1.2;
         margin: 0 3rem;
     }
+    .concerns {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.9rem;
+        font-weight: 300;
+    }
 
     .btn_pink {
         font-size: 1.3rem;
@@ -1198,6 +1234,51 @@ div.full {
 
     .video-container video {
         height: 85%;
+    }
+}
+
+@media screen and (max-width:1024px) and (-webkit-min-device-pixel-ratio:0){
+    .concerns {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.7rem;
+        font-weight: 300;
+    }
+
+    .event_info .card-title {
+        font-size: 0.8rem;
+    }
+
+    .event_info .card-body h1 {
+        font-size: 0.88rem;
+        line-height: 1.1;
+    }
+
+    .event_date_box {
+        text-align: center;
+        border: 1px solid #fff;
+        font-size: 0.5rem;
+        font-weight: 600;
+        line-height: 1.2;
+        margin: 0;
+    }
+
+    .btn_pink {
+        font-size: 1rem;
+        margin-top: 1rem !important;
+    }
+
+    .lead {
+        font-size: 0.55rem;
+    }
+
+    .lead a {
+        font-size: 0.55rem;
+        position: relative;
+    }
+
+    .event_info_footer {
+        padding: 0;
     }
 }
 
