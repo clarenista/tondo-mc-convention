@@ -104,7 +104,7 @@ class RegisterWebinarGuest extends Command
             ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
                 $q->where('webinar_id', $webinar_id);
             })
-            ->whereNotIn('classification', ['sponsor'])
+            // ->whereNotIn('classification', ['sponsor'])
             // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [35])
             ->get();
