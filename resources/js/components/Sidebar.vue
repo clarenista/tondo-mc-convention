@@ -50,7 +50,7 @@
         <a 
             href="javascript:void(0)" 
             title="Event Evaluation"
-            @click="openEvalmodal = true"
+            @click="handleOpenEvalModal"
         >
             <span class="text-uppercase">Event Evaluation</span> 
         </a>
@@ -69,24 +69,30 @@
             <!-- <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a> -->
 
             <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-                <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> </span> 
-                <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> </span> 
+                <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> Mute</span> 
+                <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> Play</span> 
             </a>
             <a href="javascript:void(0)" @click="handleLogout" title="Logout">
-                <span><i class="fa fa-sign-out text-warning small"></i></span> 
+                <span class="text-warning"><i class="fa fa-sign-out  small"></i> Logout</span> 
             </a>
         </div>
+        
     
     </div>
-
+    
     <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
 
     
 </div>
 </template>
 <script>
-    import Modal from "./Modal";
+import Modal from "./Modal";
 export default {
+    computed: {
+        event(){
+            return this.$store.getters.event
+        }
+    },
     components:{Modal},
     props: ['bgmStatus'],
     
@@ -113,8 +119,16 @@ export default {
         }
     },
     methods:{
+        handleOpenEvalModal(){
+            if(!this.event.evaluation_enable){
+                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                return
+            }
+            this.openEvalmodal = true
+        },
         handleCloseEvalModal(){
             this.$store.dispatch("getEvalStatus");
+            
             this.openEvalmodal = false
         },
         downloadFile(filePath){
@@ -125,7 +139,11 @@ export default {
         },
         handleDownload() {
             
-            
+            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
+            if(!this.event.evaluation_enable){
+                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
+                return
+            }
             if(!this.$store.getters.hasEvaluation) {
                 alert('You must complete the evaluation first.')
                 return
@@ -189,6 +207,7 @@ export default {
 
     mounted() {
              this.$store.dispatch("getEvalStatus");
+             this.$store.dispatch("getEvent");
         // console.log(this.showDropdown)
     },
 }
