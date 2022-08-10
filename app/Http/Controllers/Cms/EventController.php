@@ -17,6 +17,7 @@ class EventController extends Controller
             'start_at' => 'required',
             'end_at' => 'required',
             'title' => 'nullable',
+            'subtitle' => 'nullable',
             'description' => 'nullable',
         ]);
         $event = Event::first();

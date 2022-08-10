@@ -25,7 +25,7 @@ class ProgramController extends Controller
     public function bm()
     {
 
-        $event = Program::select('start_at', 'video_url', 'type', DB::raw('`group` as embedded'), 'enabled', 'title')->whereId(5)->first();
+        $event = Program::select('start_at', 'video_url', 'type', DB::raw('`group` as embedded'), 'enabled', 'title')->whereId(2)->first();
         $event->start_at_ = strtotime($event->start_at) * 1000;
 
         return $event;

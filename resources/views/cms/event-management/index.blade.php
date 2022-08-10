@@ -48,8 +48,9 @@
                         <input type="datetime-local" name="end_at" class="form-control" value="{{ old('end_at', Carbon\Carbon::parse($event->end_at)->format('Y-m-d\TH:i')) }}">
                     </div>
                 </div>
-                @include('cms.include.input-text', ['key' => 'title', 'label' => 'Title'])
-                @include('cms.include.input-text', ['key' => 'description', 'label' => 'description'])
+                @include('cms.include.input-text', ['key' => 'title', 'label' => 'TMC Facebook Link'])
+                @include('cms.include.input-text', ['key' => 'description', 'label' => 'TMC Facebook URL'])
+                @include('cms.include.input-text', ['key' => 'subtitle', 'label' => 'Evaluation Form'])
                 <div class="form-group">
                     <button class="btn btn-info btn-block">&#10004;UPDATE EVENT</button>
                 </div>
