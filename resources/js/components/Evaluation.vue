@@ -59,6 +59,9 @@
                                         class="mt-2"
                                     >
                                         <div class="col-md col-sm-12">
+                                            <span class="mr-4"
+                                                >Not satisfied</span
+                                            >
                                             <div
                                                 class="form-check form-check-inline "
                                                 v-for="(item, index) in 4"
@@ -89,6 +92,7 @@
                                                     {{ item }}
                                                 </label>
                                             </div>
+                                            <span>Very satisfied</span>
                                         </div>
                                     </div>
                                 </div>
@@ -102,6 +106,7 @@
                                         class="mt-2"
                                     >
                                         <div class="col-md col-sm-12">
+                                            <span class="mr-4">Not much</span>
                                             <div
                                                 class="form-check form-check-inline "
                                                 v-for="(item, index) in 4"
@@ -132,11 +137,13 @@
                                                     {{ item }}
                                                 </label>
                                             </div>
+                                            <span class="">Very much</span>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- id#3 -->
                                 <div v-if="item.id === 3">
+                                    <i>1 = Not satisfied 4 = Very satisfied</i>
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -182,6 +189,10 @@
                                 </div>
                                 <!-- id#4 -->
                                 <div v-if="item.id === 4">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -227,6 +238,10 @@
                                 </div>
                                 <!-- id#5 -->
                                 <div v-if="item.id === 5">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -272,6 +287,10 @@
                                 </div>
                                 <!-- id#6 -->
                                 <div v-if="item.id === 6">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -317,6 +336,10 @@
                                 </div>
                                 <!-- id#7 -->
                                 <div v-if="item.id === 7">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -362,6 +385,10 @@
                                 </div>
                                 <!-- id#8 -->
                                 <div v-if="item.id === 8">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -407,6 +434,10 @@
                                 </div>
                                 <!-- id#9 -->
                                 <div v-if="item.id === 9">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
@@ -452,6 +483,10 @@
                                 </div>
                                 <!-- id#10-->
                                 <div v-if="item.id === 10">
+                                    <i
+                                        >1 = Strongly Disagree, 2 = Disagree, 3
+                                        = Agree, 4 = Strongly Agree</i
+                                    >
                                     <div
                                         v-for="(subQuestion,
                                         index) in item.subQuestions"
