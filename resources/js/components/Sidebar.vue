@@ -69,11 +69,11 @@
             <!-- <a href="javascript:void(0" @click="handleVote" title="Go to vote"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </a> -->
 
             <a href="javascript:void(0)" @click="handleBgmPlayToggle" title="Play/Mute audio">
-                <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> </span> 
-                <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> </span> 
+                <span v-if="bgmStatus == 'true'"><i class="fa fa-volume-up small"></i> Mute</span> 
+                <span v-else><i class="fa fa-volume-off" aria-hidden="true"></i> Play</span> 
             </a>
             <a href="javascript:void(0)" @click="handleLogout" title="Logout">
-                <span><i class="fa fa-sign-out text-warning small"></i></span> 
+                <span class="text-warning"><i class="fa fa-sign-out  small"></i> Logout</span> 
             </a>
         </div>
         
