@@ -576,15 +576,6 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot zoom open-zoom-meeting"
             },
 
-            // this should be caption, remove hover to display text
-            {
-                scene: "meeting_hall",
-                pitch: 3.69,
-                yaw: -0.07,
-                type: "info",
-                text: "Webinar in progress"
-            },
-
             // FB link at meeting hall
             {
                 scene: "meeting_hall",
