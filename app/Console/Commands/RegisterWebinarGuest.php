@@ -100,12 +100,12 @@ class RegisterWebinarGuest extends Command
         $all = $all->merge($regs);
         $registrants = $all;
         $guests = User::withTrashed()
-            ->whereNotNull('email')
+            ->whereNotNull('email_address')
             ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
                 $q->where('webinar_id', $webinar_id);
             })
-            ->whereNotIn('classification', ['sponsor'])
-            ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
+            // ->whereNotIn('classification', ['sponsor'])
+            // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [37])
             ->get();
 
@@ -133,7 +133,23 @@ class RegisterWebinarGuest extends Command
                             'email' => $guest->email_address,
                             'first_name' => $guest->first_name,
                             'last_name' => $guest->last_name,
+                            'org' => $guest->hospital_affiliation ?? "N/A",
+                            'custom_questions' => [
+                                [
+                                    "title" => "MD Specialization",
+                                    "value" => $guest->position ?? "N/A",
+                                ],
+                                [
+                                    "title" => "Consultant or Resident",
+                                    "value" => "Resident"
+                                ],
+                            ]
                         ];
+                        // $post = [
+                        //     'email' => $guest->email_address,
+                        //     'first_name' => $guest->first_name,
+                        //     'last_name' => $guest->last_name,
+                        // ];
                         $response = $client->post($registrants_api, $post);
                         $response = $response->json();
                     }
