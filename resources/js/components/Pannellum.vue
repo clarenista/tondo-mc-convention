@@ -289,6 +289,7 @@ export default {
       this.loadTimer()
       this.handleLoadBoothTracker()
       document.getElementById('booth_visits').style.display = "none"
+
     //   this.bgmStatus = localStorage.getItem('bgmStatus')
     },
     methods:{
@@ -442,6 +443,7 @@ export default {
                 "type": "equirectangular",
                 "panorama": "/images/multires/Meeting_Hall.jpg",
                 "hotSpots": [
+
                 ],
                 // 180 view | 360 view = 180 view x 2
                 'minPitch' :-20,
@@ -556,6 +558,21 @@ export default {
           this.panorama_details.scenes.psp_monument.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'psp_monument']))
 
           this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+
+            // fb
+            const fbLink =  {
+                pitch: 0,
+                yaw: 0,
+                cssClass: "custom-hotspot fb_icon",
+                text: "TMC - Facebook",
+                clickHandlerFunc: () =>{
+                    this.$sendGuestEventNew('meeting hall hotspot', 'facebook')
+                    window.open(this.event.facebook_url, '_blank')
+
+                }
+            }
+          this.event.facebook_enable && this.panorama_details.scenes.meeting_hall.hotSpots.push(fbLink)
+
 
           this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
           this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
