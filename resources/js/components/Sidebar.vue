@@ -1,5 +1,37 @@
 <template >
 <div>
+                    <!-- event info-->
+                    <Transition>
+                        <div v-if="openEvalmodal">
+                            <Modal
+                                :value="openEvalmodal"
+                                :modalSize="'modal-xl'"
+                                :vh="true"
+                            >
+                            <template v-slot:title>
+                        
+                        
+                    </template>
+                                <br />
+                                <template v-slot:body>
+                    <a href="javascript:void(0)" class="closebtn float-right" @click="handleCloseEvalModal"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                    <div
+                                        class="embed-responsive embed-responsive-16by9"
+                                        style="height: 100%;"
+                                    >
+                                        <iframe
+                                            class="embed-responsive-item"
+                                            :src="
+                                                `/evaluation`
+                                            "
+                                            allowfullscreen
+                                        ></iframe>
+                                    </div>
+                                </template>
+                                
+                            </Modal>
+                        </div>
+                    </Transition>
 
     <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'">
         <div class="text-center mb-5"><img id="psp_logo" src="images/71st_logo.png" width="190px" alt="psp_logo" srcset=""></div>
@@ -15,19 +47,21 @@
         >
             <span>{{item.name}}</span> 
         </a>
-        <!--
         <a 
             href="javascript:void(0)" 
             title="Event Evaluation"
+            @click="openEvalmodal = true"
         >
             <span class="text-uppercase">Event Evaluation</span> 
         </a>
         <a 
             href="javascript:void(0)" 
             title="Download Certificate"
+            @click="handleDownload"
         >
             <span class="text-uppercase">Download Certificate</span> 
         </a>
+        <!--
         -->
 
 
@@ -51,10 +85,15 @@
 </div>
 </template>
 <script>
+    import Modal from "./Modal";
 export default {
+    components:{Modal},
     props: ['bgmStatus'],
+    
     data() {
         return {
+            openEvalmodal: false,
+            hasEvaluation: null,
             showDropdown: false,
             navItems: [
                 // {name: "Landing Page", sceneId: 'landing', icon: 'fa-map-o', type:'nav-item', title: 'Beach'},
@@ -74,6 +113,40 @@ export default {
         }
     },
     methods:{
+        handleCloseEvalModal(){
+            this.$store.dispatch("getEvalStatus");
+            this.openEvalmodal = false
+        },
+        downloadFile(filePath){
+            var link=document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+            link.click();
+        },
+        handleDownload() {
+            
+            
+            if(!this.$store.getters.hasEvaluation) {
+                alert('You must complete the evaluation first.')
+                return
+            }
+            const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                axios
+                    .get(
+                        api,
+                        { responseType: "blob" } // !!!
+                    )
+                    .then(response => {
+                            
+                        this.downloadFile(URL.createObjectURL(response.data));
+                    });
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+        },
         openNav(){
             document.getElementById("mySidenav").style.width = "270px";
             document.getElementById("openBtn").style.opacity = "0.1";
@@ -99,10 +172,23 @@ export default {
         handleVote(){
              // redirect to vote
             this.$router.push('/vote')
+        },
+        async init(){
+            const api = `api/v1/guests/evaluation/status?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                const { data } = await axios.get(api);
+                if (data.done.length > 0) this.hasEvaluation = true;
+                else this.hasEvaluation = false;
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
         }
     },
 
     mounted() {
+             this.$store.dispatch("getEvalStatus");
         // console.log(this.showDropdown)
     },
 }

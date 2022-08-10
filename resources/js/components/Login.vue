@@ -282,18 +282,24 @@
                     </template>
                     <br /> -->
                     <template v-slot:body>
-                        <iframe width="100%" height="486" :src="utube" 
-                            title="Department of OB Gyn of Tondo Medical Center" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        <iframe
+                            width="100%"
+                            height="486"
+                            :src="utube"
+                            title="Department of OB Gyn of Tondo Medical Center"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        >
                         </iframe>
                     </template>
 
                     <template v-slot:footer>
                         <button
-                                class="btn btn-danger"
-                                type="button"
-                                @click="handleVideoClose"
-                            >
+                            class="btn btn-danger"
+                            type="button"
+                            @click="handleVideoClose"
+                        >
                             Close
                         </button>
                     </template>
@@ -491,7 +497,7 @@ export default {
 
             welcomeMessage: "Welcome to our 2nd Postgraduate Course",
             letsGoButtonClicked: false,
-            utube: null,
+            utube: null
         };
     },
     watch: {},
@@ -512,11 +518,12 @@ export default {
         },
         handleVideoClicked() {
             this.showVideoModal = true;
-            this.utube = "https://www.youtube.com/embed/SbKw4dRlCRw?autoplay=0&rel=0";
+            this.utube =
+                "https://www.youtube.com/embed/SbKw4dRlCRw?autoplay=0&rel=0";
         },
         handleVideoClose() {
             this.showVideoModal = false;
-            this.utube = '';
+            this.utube = "";
         },
         async init() {
             let { data } = await axios.get("/api/v1/event");

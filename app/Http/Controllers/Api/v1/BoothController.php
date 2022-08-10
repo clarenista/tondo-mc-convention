@@ -89,7 +89,7 @@ class BoothController extends Controller
         request()->validate([
             'answers' => 'required'
         ]);
-
+        // dd(json_decode(request()->answers, true));
         foreach (json_decode(request()->answers) as $question_id => $answer) {
             $question = Question::find($question_id);
             QuestionAnswer::create([

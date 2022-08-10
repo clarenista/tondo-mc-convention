@@ -104,11 +104,17 @@ class RegisterWebinarGuest extends Command
             ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
                 $q->where('webinar_id', $webinar_id);
             })
+<<<<<<< .mine
             // ->whereNotIn('classification', ['sponsor'])
             // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [37])
+=======
+            // ->whereNotIn('classification', ['sponsor'])
+            // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
+            // ->whereIn('id', [35])
+>>>>>>> .theirs
             ->get();
-
+        // dd($guests->toArray());
         // dd($guests);
         echo join(', ', $guests->pluck('email_address')->toArray());
         echo PHP_EOL . $guests->count();
