@@ -874,6 +874,10 @@ div >>> .standee {
     background-image: url("/images/iconsv2/standee.png");
     background-size: cover;
 }
+div >>> .fb_icon {
+    background-image: url("/images/iconsv2/FB.png");
+    background-size: cover;
+}
 @-webkit-keyframes pulse {
     0% {
         -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);

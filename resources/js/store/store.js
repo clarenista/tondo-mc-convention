@@ -419,8 +419,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 7.49,
-                yaw: -15.54,
+                // pitch: 7.49,
+                // yaw: -15.54,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-residents-hour",
                 text: "Residents Hour"
@@ -428,8 +428,8 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 7.49,
-                yaw: 13.71,
+                // pitch: 7.49,
+                // yaw: 13.71,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-bussiness-meeting",
                 text: "Business Meeting"
@@ -570,11 +570,31 @@ export default new Vuex.Store({
 
             {
                 scene: "meeting_hall",
-                pitch: 6.76,
+                pitch: 6.69,
                 yaw: -0.07,
                 type: "scene",
                 cssClass: "custom-hotspot zoom open-zoom-meeting"
             },
+
+            // this should be caption, remove hover to display text
+            {
+                scene: "meeting_hall",
+                pitch: 3.69,
+                yaw: -0.07,
+                type: "info",
+                text: "Webinar in progress"
+            },
+
+            // FB link at meeting hall
+            {
+                scene: "meeting_hall",
+                pitch: 0,
+                yaw: 0,
+                type: "scene",
+                cssClass: "custom-hotspot fb_icon"
+            },
+
+
 
             {
                 scene: "exhibit_hall",
