@@ -587,8 +587,6 @@ export default new Vuex.Store({
                 cssClass: "custom-hotspot fb_icon"
             },
 
-
-
             {
                 scene: "exhibit_hall",
                 pitch: -3,
