@@ -101,18 +101,12 @@ class RegisterWebinarGuest extends Command
         $registrants = $all;
         $guests = User::withTrashed()
             ->whereNotNull('email_address')
-            ->whereDoesntHave('webinars', function ($q) use ($webinar_id){
+            ->whereDoesntHave('webinars', function ($q) use ($webinar_id) {
                 $q->where('webinar_id', $webinar_id);
             })
-<<<<<<< .mine
-            // ->whereNotIn('classification', ['sponsor'])
-            // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
-            // ->whereIn('id', [37])
-=======
             // ->whereNotIn('classification', ['sponsor'])
             // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
             // ->whereIn('id', [35])
->>>>>>> .theirs
             ->get();
         // dd($guests->toArray());
         // dd($guests);
@@ -166,7 +160,7 @@ class RegisterWebinarGuest extends Command
                         \Log::info($response);
                         continue;
                     }
-                    $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->where('webinar_id',$webinar_id)->first();
+                    $registered = UserWebinar::whereRegistrantId($response['registrant_id'])->where('webinar_id', $webinar_id)->first();
                     $data = [
                         'registrant_id' => $response['registrant_id'],
                         'webinar_id' => $response['id'],
