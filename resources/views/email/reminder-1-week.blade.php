@@ -35,7 +35,7 @@
                 <tr style="width: 538px">
                     <td
                         style="height: 4%;text-align: center;background: #762290;color: #ffffff;font-size: 16px;padding: 2rem;">
-                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSTGRADUATE COURSE" WILL BEGIN IN 1 WEEK ON:
+                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSGRADUATE COURSE" WILL BEGIN IN 1 DAY.
                         <br>
                         <br>
                         <span style="font-weight: bold;">
@@ -43,7 +43,7 @@
                         </span>
                         <br>
                         <br>
-                        THIS IS ALSO TO ANNOUNCE THAT TODAY IS THE FIRST DAY THAT YOU CAN ACCESS THE VIRTUAL BOOTHS.
+                        Registrants are invited to visit the virtual booths.
                         <br>
                         LINK: <a href="https://tondomcobgyn2022.com/login" style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
                     </td>
