@@ -13,6 +13,9 @@ class EventController extends Controller
 
         $event = Event::select('start_at')->first();
         $event->start_at_ = strtotime($event->start_at) * 1000;
+        $event->evaluation_enable = filter_var($event->subtitle, FILTER_VALIDATE_BOOLEAN);
+        $event->facebook_url = $event->description;
+        $event->facebook_enable = filter_var($event->title, FILTER_VALIDATE_BOOLEAN);
 
         return $event;
     }
