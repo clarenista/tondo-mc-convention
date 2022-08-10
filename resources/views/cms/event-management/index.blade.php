@@ -25,7 +25,7 @@
     <div class="row">
 
         <div class="col-sm col-lg">
-            <h3>PSP EVENT</h3>
+            <h3>TMC EVENT</h3>
             <form action="{{ route('cms.event.update') }}" method="post">
                 @csrf
                 {{ method_field('PUT') }}
@@ -158,7 +158,7 @@
     <div class="row">
 
         <div class="col-sm col-lg">
-            <h3>PSP ANNOUNCEMENT</h3>
+            <h3>TMC ANNOUNCEMENT</h3>
             <form action="{{ route('cms.event.broadcast') }}" method="post">
                 @csrf
                 {{ method_field('PUT') }}
