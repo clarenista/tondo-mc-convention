@@ -22,6 +22,12 @@ class EventController extends Controller
 
         $event = Event::first();
 
+        return [
+            'success' => true,
+            'data' => [
+                'evaluation_enable' => filter_var($event->subtitle, FILTER_VALIDATE_BOOLEAN),
+            ]
+        ];
         return response([
             'success' => true,
             'data' => [
