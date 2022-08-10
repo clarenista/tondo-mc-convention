@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        event: [],
         hasEvaluation: null,
         isWelcomed: true,
         roles: [
@@ -758,6 +759,9 @@ export default new Vuex.Store({
             state.audio = new Audio(src);
             state.audio.loop = true;
             state.bgmStart && state.audio.play();
+        },
+        updateEvent(state, event) {
+            state.event = event;
         }
     },
     getters: {
@@ -777,7 +781,8 @@ export default new Vuex.Store({
         isNotAllowed: state => state.isNotAllowed,
         isNotAllowedMessage: state => state.isNotAllowedMessage,
         audio: state => state.audio,
-        hasEvaluation: state => state.hasEvaluation
+        hasEvaluation: state => state.hasEvaluation,
+        event: state => state.event
     },
     actions: {
         getBgm({ commit, state }) {
@@ -829,6 +834,17 @@ export default new Vuex.Store({
                 const { data } = await axios.get(api);
                 if (data.done.length > 0) commit("updateHasEvaluation", true);
                 else commit("updateHasEvaluation", false);
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+        },
+        async getEvent({ commit, state }) {
+            const api = `api/v1/event?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                const { data } = await axios.get(api);
+                commit("updateEvent", data);
             } catch ({ response }) {
                 alert(response.statusText);
             }

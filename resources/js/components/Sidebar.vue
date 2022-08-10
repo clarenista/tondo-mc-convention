@@ -50,7 +50,7 @@
         <a 
             href="javascript:void(0)" 
             title="Event Evaluation"
-            @click="openEvalmodal = true"
+            @click="handleOpenEvalModal"
         >
             <span class="text-uppercase">Event Evaluation</span> 
         </a>
@@ -76,17 +76,23 @@
                 <span><i class="fa fa-sign-out text-warning small"></i></span> 
             </a>
         </div>
+        
     
     </div>
-
+    
     <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
 
     
 </div>
 </template>
 <script>
-    import Modal from "./Modal";
+import Modal from "./Modal";
 export default {
+    computed: {
+        event(){
+            return this.$store.getters.event
+        }
+    },
     components:{Modal},
     props: ['bgmStatus'],
     
@@ -113,8 +119,16 @@ export default {
         }
     },
     methods:{
+        handleOpenEvalModal(){
+            if(!this.event.evaluation_enable){
+                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                return
+            }
+            this.openEvalmodal = true
+        },
         handleCloseEvalModal(){
             this.$store.dispatch("getEvalStatus");
+            
             this.openEvalmodal = false
         },
         downloadFile(filePath){
@@ -125,7 +139,11 @@ export default {
         },
         handleDownload() {
             
-            
+            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
+            if(!this.event.evaluation_enable){
+                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
+                return
+            }
             if(!this.$store.getters.hasEvaluation) {
                 alert('You must complete the evaluation first.')
                 return
@@ -189,6 +207,7 @@ export default {
 
     mounted() {
              this.$store.dispatch("getEvalStatus");
+             this.$store.dispatch("getEvent");
         // console.log(this.showDropdown)
     },
 }

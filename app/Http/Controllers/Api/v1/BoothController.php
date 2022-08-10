@@ -82,7 +82,7 @@ class BoothController extends Controller
     public function storeQuestionnaireAnswerSubmit($booth_id)
     {
 
-        return null;
+        // return null;
         $booth = Booth::find($booth_id);
 
         $sent_at = date("Y-m-d H:i:s");
