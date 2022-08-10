@@ -18,7 +18,6 @@ class BoothController extends Controller
 
     public function show($booth_id)
     {
-
         $booth = Booth::whereId($booth_id)
             ->with(['assets', 'hotspots', 'hotspots.assets', 'questionnaire', 'wheel', 'user'])
             ->first();
@@ -82,6 +81,8 @@ class BoothController extends Controller
 
     public function storeQuestionnaireAnswerSubmit($booth_id)
     {
+
+        return null;
         $booth = Booth::find($booth_id);
 
         $sent_at = date("Y-m-d H:i:s");
