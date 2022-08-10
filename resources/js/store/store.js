@@ -579,13 +579,13 @@ export default new Vuex.Store({
             },
 
             // FB link at meeting hall
-            {
-                scene: "meeting_hall",
-                pitch: 0,
-                yaw: 0,
-                type: "scene",
-                cssClass: "custom-hotspot fb_icon"
-            },
+            // {
+            //     scene: "meeting_hall",
+            //     pitch: 0,
+            //     yaw: 0,
+            //     type: "scene",
+            //     cssClass: "custom-hotspot fb_icon"
+            // },
 
             {
                 scene: "exhibit_hall",
