@@ -574,7 +574,8 @@ export default new Vuex.Store({
                 pitch: 6.76,
                 yaw: -0.07,
                 type: "scene",
-                cssClass: "custom-hotspot zoom open-zoom-meeting"
+                cssClass: "custom-hotspot zoom open-zoom-meeting ",
+                text: "Join Webinar in progress"
             },
 
             {

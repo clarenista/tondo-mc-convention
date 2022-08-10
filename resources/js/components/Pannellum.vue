@@ -240,6 +240,7 @@ export default {
       }
     },
     mounted() {
+        // const zoomHotspot = document.querySelector('pnlm-tooltip').closest()
       this.init()
       window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
@@ -756,6 +757,9 @@ export default {
 }
 </script>
 <style scoped>
+div >>> .pnlm-tooltip span {
+    visibility: visible !important;
+}
 .pnlm-container {
     /* background: #f1f2f3; */
     background: #fff url(/images/71st_logo.png) no-repeat center !important;
