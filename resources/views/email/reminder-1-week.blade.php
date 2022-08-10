@@ -38,7 +38,7 @@
                         THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSGRADUATE COURSE" WILL BEGIN IN 1 DAY.
                         <br>
                         <br>
-                        <span style="font-weight: bold;">
+                        <span style="font-weight: bold;color: #ffffff;">
                         DATE TIME: AUG 11, 2022 4:00 PM SINGAPORE
                         </span>
                         <br>
