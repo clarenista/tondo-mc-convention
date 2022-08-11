@@ -1,5 +1,36 @@
 <template>
     <div class="background full">
+        <!-- event info-->
+        <Transition>
+            <div v-if="openEvalmodal">
+                <Modal
+                    :value="openEvalmodal"
+                    :modalSize="'modal-xl'"
+                    :vh="true"
+                >
+                    <template v-slot:title> </template>
+                    <br />
+                    <template v-slot:body>
+                        <a
+                            href="javascript:void(0)"
+                            class="closebtn float-right"
+                            @click="handleCloseEvalModal"
+                            ><i class="fa fa-times" aria-hidden="true"></i
+                        ></a>
+                        <div
+                            class="embed-responsive embed-responsive-16by9"
+                            style="height: 100%;"
+                        >
+                            <iframe
+                                class="embed-responsive-item"
+                                :src="`/evaluation`"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    </template>
+                </Modal>
+            </div>
+        </Transition>
         <!-- BOOTH TRACKER -->
         <div class="booth_tracker">
             <h1>
@@ -154,6 +185,8 @@
             @handleNavigateTo="handleNavigateTo"
             @handleBgmPlayToggle="handleBgmPlayToggle"
             @handleLogout="handleLogout"
+            @handleOpenEvalModal="handleOpenEvalModal"
+            @handleDownload="handleDownload"
             :bgmStatus="bgmStatus"
         ></Sidebar>
 
@@ -197,6 +230,11 @@ import PhotoboothModal from './PhotoboothModal'
 import MeetingHall from './MeetingHall/MeetingHall.js'
 
 export default {
+        computed: {
+        event(){
+            return this.$store.getters.event
+        }
+    },
   components:{
     Sidebar, Modal, PhotoboothModal
   },
@@ -204,6 +242,8 @@ export default {
 
     data() {
       return {
+                    openEvalmodal: false,
+            hasEvaluation: null,
           bgmStatus: localStorage.getItem('bgmStatus'),
         imageRendered: null,
         camera: false,
@@ -240,15 +280,68 @@ export default {
       }
     },
     mounted() {
+        this.$store.dispatch("getEvalStatus");
+             this.$store.dispatch("getEvent");
+        // const zoomHotspot = document.querySelector('pnlm-tooltip').closest()
       this.init()
       window.addEventListener("resize", this.reSize);
       //  setInterval(()=>{console.log(this.viewer.getScene())}, 1000)
       this.loadTimer()
       this.handleLoadBoothTracker()
       document.getElementById('booth_visits').style.display = "none"
+
     //   this.bgmStatus = localStorage.getItem('bgmStatus')
     },
     methods:{
+        handleOpenEvalModal(){
+            this.$sendGuestEventNew('side bar', 'evaluation form')
+            if(!this.event.evaluation_enable){
+                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                return
+            }
+            this.openEvalmodal = true
+        },
+        handleCloseEvalModal(){
+            this.$store.dispatch("getEvalStatus");
+
+            this.openEvalmodal = false
+        },
+        downloadFile(filePath){
+            var link=document.createElement('a');
+            link.href = filePath;
+            link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+            link.click();
+        },
+        handleDownload() {
+            this.$sendGuestEventNew('side bar', 'download certificate')
+            // this.$store.dispatch('sendGuestEvent', ('side bar', 'download certificate'))
+
+            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
+            if(!this.event.evaluation_enable){
+                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
+                return
+            }
+            if(!this.$store.getters.hasEvaluation) {
+                alert('You must complete the evaluation first.')
+                return
+            }
+            const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
+                "access_token"
+            )}`;
+            try {
+                axios
+                    .get(
+                        api,
+                        { responseType: "blob" } // !!!
+                    )
+                    .then(response => {
+
+                        this.downloadFile(URL.createObjectURL(response.data));
+                    });
+            } catch ({ response }) {
+                alert(response.statusText);
+            }
+        },
       async init(){
         let vm = this
         // auth:api
@@ -295,15 +388,15 @@ export default {
                     },
 
                     // voting hot spot
-                    // {
-                    //     pitch: 0.50,
-                    //     yaw: 14.31,
-                    //     cssClass: "custom-hotspot vote",
-                    //     text: "Voting",
-                    //     clickHandlerFunc: () =>{
-                    //         this.handleVote()
-                    //     }
-                    // },
+                    {
+                        pitch: -2.45,
+                        yaw: -179.43,
+                        cssClass: "custom-hotspot exhibit_hall",
+                        text: "Evaluation and Certificates",
+                        clickHandlerFunc: () =>{
+                            this.handleOpenEvalModal()
+                        }
+                    },
                   ],
 
 
@@ -350,6 +443,7 @@ export default {
                 "type": "equirectangular",
                 "panorama": "/images/multires/Meeting_Hall.jpg",
                 "hotSpots": [
+
                 ],
                 // 180 view | 360 view = 180 view x 2
                 'minPitch' :-20,
@@ -464,6 +558,21 @@ export default {
           this.panorama_details.scenes.psp_monument.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'psp_monument']))
 
           this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
+
+            // fb
+            const fbLink =  {
+                pitch: 0,
+                yaw: 0,
+                cssClass: "custom-hotspot fb_icon",
+                text: "TMC - Facebook",
+                clickHandlerFunc: () =>{
+                    this.$sendGuestEventNew('meeting hall hotspot', 'facebook')
+                    window.open(this.event.facebook_url, '_blank')
+
+                }
+            }
+          this.event.facebook_enable && this.panorama_details.scenes.meeting_hall.hotSpots.push(fbLink)
+
 
           this.panorama_details.scenes.hall_a.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'hall_a']))
           this.panorama_details.scenes.hall_a.hotSpots.push(...this.hall_a_booths)
@@ -756,6 +865,9 @@ export default {
 }
 </script>
 <style scoped>
+div >>> .pnlm-tooltip span {
+    visibility: visible !important;
+}
 .pnlm-container {
     /* background: #f1f2f3; */
     background: #fff url(/images/71st_logo.png) no-repeat center !important;
@@ -872,6 +984,10 @@ div >>> .speakers {
 }
 div >>> .standee {
     background-image: url("/images/iconsv2/standee.png");
+    background-size: cover;
+}
+div >>> .fb_icon {
+    background-image: url("/images/iconsv2/FB.png");
     background-size: cover;
 }
 @-webkit-keyframes pulse {

@@ -1,621 +1,661 @@
 <template>
-    <div class="container mt-3">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Event Feedback</h3>
-                <p class="font-weight-bold">
-                    Thank you for attending our 2nd Postgraduate Course. We hope
-                    you take time to answer the evaluation form.
-                </p>
-                <p class="font-weight-bold mt-3">
-                    We want to hear your feedback to help us improve. Please
-                    fill this quick survey and let us know your thoughts.
-                </p>
+    <div>
+        <div
+            class="container mt-3"
+            v-if="this.$store.getters.event.evaluation_enable"
+        >
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Event Feedback</h3>
+                    <p class="font-weight-bold">
+                        Thank you for attending our 2nd Postgraduate Course. We
+                        hope you take time to answer the evaluation form.
+                    </p>
+                    <p class="font-weight-bold mt-3">
+                        We want to hear your feedback to help us improve. Please
+                        fill this quick survey and let us know your thoughts.
+                    </p>
+                </div>
             </div>
-        </div>
-        <div v-show="hasEvaluation !== null">
-            <div v-if="!hasEvaluation">
-                <div class="progress mt-1">
-                    <div
-                        class="progress-bar progress-bar-striped progress-bar-animated"
-                        role="progressbar"
-                        :aria-valuenow="progress"
-                        aria-valuemin="0"
-                        aria-valuemax="100"
-                        :style="
-                            `width: ${
+            <div v-show="hasEvaluation !== null">
+                <div v-if="!hasEvaluation">
+                    <div class="progress mt-1">
+                        <div
+                            class="progress-bar progress-bar-striped progress-bar-animated"
+                            role="progressbar"
+                            :aria-valuenow="progress"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            :style="
+                                `width: ${
+                                    current_step === questionnaires.length
+                                        ? 100
+                                        : progress
+                                }%;`
+                            "
+                        >
+                            {{
                                 current_step === questionnaires.length
                                     ? 100
                                     : progress
-                            }%;`
-                        "
-                    >
-                        {{
-                            current_step === questionnaires.length
-                                ? 100
-                                : progress
-                        }}%
+                            }}%
+                        </div>
                     </div>
-                </div>
 
-                <div class="card">
-                    <div class="card-body">
-                        <div
-                            v-for="(item, index) in questionnaires"
-                            :key="index"
-                        >
-                            <div v-if="current_step === item.id">
-                                <p class="card-text">
-                                    {{ item.question }}
-                                </p>
+                    <div class="card">
+                        <div class="card-body">
+                            <div
+                                v-for="(item, index) in questionnaires"
+                                :key="index"
+                            >
+                                <div v-if="current_step === item.id">
+                                    <p class="card-text">
+                                        {{ item.question }}
+                                    </p>
 
-                                <!-- id#1 -->
-                                <div v-if="item.id === 1">
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        style="display: flex; flex-direction: row"
-                                        class="mt-2"
-                                    >
-                                        <div class="col-md col-sm-12">
-                                            <span class="mr-4"
-                                                >Not satisfied</span
-                                            >
-                                            <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
-                                            >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                    <!-- id#1 -->
+                                    <div v-if="item.id === 1">
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            style="display: flex; flex-direction: row"
+                                            class="mt-2"
+                                        >
+                                            <div class="col-md col-sm-12">
+                                                <span class="mr-4"
+                                                    >Not satisfied</span
                                                 >
-                                                    {{ item }}
-                                                </label>
-                                            </div>
-                                            <span>Very satisfied</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- id#2 -->
-                                <div v-if="item.id === 2">
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        style="display: flex; flex-direction: row"
-                                        class="mt-2"
-                                    >
-                                        <div class="col-md col-sm-12">
-                                            <span class="mr-4">Not much</span>
-                                            <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
-                                            >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
-                                            </div>
-                                            <span class="">Very much</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- id#3 -->
-                                <div v-if="item.id === 3">
-                                    <i>1 = Not satisfied 4 = Very satisfied</i>
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-2 col-sm-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-sm-12">
-                                            <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
-                                            >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
+                                                <span>Very satisfied</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#4 -->
-                                <div v-if="item.id === 4">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
-                                            <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
-                                            >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                    <!-- id#2 -->
+                                    <div v-if="item.id === 2">
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            style="display: flex; flex-direction: row"
+                                            class="mt-2"
+                                        >
+                                            <div class="col-md col-sm-12">
+                                                <span class="mr-4"
+                                                    >Not much</span
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
+                                                >
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
+                                                <span class="">Very much</span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#5 -->
-                                <div v-if="item.id === 5">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#3 -->
+                                    <div v-if="item.id === 3">
+                                        <i
+                                            >1 = Not satisfied 4 = Very
+                                            satisfied</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-2 col-sm-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-sm-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#6 -->
-                                <div v-if="item.id === 6">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#4 -->
+                                    <div v-if="item.id === 4">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-5 col-xs-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#7 -->
-                                <div v-if="item.id === 7">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#5 -->
+                                    <div v-if="item.id === 5">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-5 col-xs-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#8 -->
-                                <div v-if="item.id === 8">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#6 -->
+                                    <div v-if="item.id === 6">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-5 col-xs-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#9 -->
-                                <div v-if="item.id === 9">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#7 -->
+                                    <div v-if="item.id === 7">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-5 col-xs-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#10-->
-                                <div v-if="item.id === 10">
-                                    <i
-                                        >1 = Strongly Disagree, 2 = Disagree, 3
-                                        = Agree, 4 = Strongly Agree</i
-                                    >
-                                    <div
-                                        v-for="(subQuestion,
-                                        index) in item.subQuestions"
-                                        :key="index"
-                                        class="mt-2"
-                                    >
-                                        <div class="mr-3 col-md-5 col-xs-12">
-                                            {{ subQuestion.question }}:
-                                        </div>
-                                        <div class="col-md col-xs-12">
+                                    <!-- id#8 -->
+                                    <div v-if="item.id === 8">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
                                             <div
-                                                class="form-check form-check-inline "
-                                                v-for="(item, index) in 4"
-                                                :key="index"
+                                                class="mr-3 col-md-5 col-xs-12"
                                             >
-                                                <input
-                                                    class="form-check-input"
-                                                    type="radio"
-                                                    :name="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :id="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
-                                                    :value="item"
-                                                    v-model="
-                                                        radio_answers[
-                                                            subQuestion.id
-                                                        ]
-                                                    "
-                                                />
-                                                <label
-                                                    class="form-check-label"
-                                                    :for="
-                                                        `radio-${subQuestion.id}${item}`
-                                                    "
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
                                                 >
-                                                    {{ item }}
-                                                </label>
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- id#11-->
-                                <div v-if="item.id === 11" class="form-group">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        v-model="
-                                            radio_answers[
-                                                item.subQuestions[0].id
-                                            ]
-                                        "
-                                    />
-                                </div>
-                                <!-- id#12-->
-                                <div v-if="item.id === 12" class="form-group">
-                                    <input
-                                        class="form-control"
-                                        type="text"
-                                        v-model="
-                                            radio_answers[
-                                                item.subQuestions[0].id
-                                            ]
-                                        "
-                                    />
+                                    <!-- id#9 -->
+                                    <div v-if="item.id === 9">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
+                                            <div
+                                                class="mr-3 col-md-5 col-xs-12"
+                                            >
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
+                                                >
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- id#10-->
+                                    <div v-if="item.id === 10">
+                                        <i
+                                            >1 = Strongly Disagree, 2 =
+                                            Disagree, 3 = Agree, 4 = Strongly
+                                            Agree</i
+                                        >
+                                        <div
+                                            v-for="(subQuestion,
+                                            index) in item.subQuestions"
+                                            :key="index"
+                                            class="mt-2"
+                                        >
+                                            <div
+                                                class="mr-3 col-md-5 col-xs-12"
+                                            >
+                                                {{ subQuestion.question }}:
+                                            </div>
+                                            <div class="col-md col-xs-12">
+                                                <div
+                                                    class="form-check form-check-inline "
+                                                    v-for="(item, index) in 4"
+                                                    :key="index"
+                                                >
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="radio"
+                                                        :name="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :id="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                        :value="item"
+                                                        v-model="
+                                                            radio_answers[
+                                                                subQuestion.id
+                                                            ]
+                                                        "
+                                                    />
+                                                    <label
+                                                        class="form-check-label"
+                                                        :for="
+                                                            `radio-${subQuestion.id}${item}`
+                                                        "
+                                                    >
+                                                        {{ item }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- id#11-->
+                                    <div
+                                        v-if="item.id === 11"
+                                        class="form-group"
+                                    >
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            v-model="
+                                                radio_answers[
+                                                    item.subQuestions[0].id
+                                                ]
+                                            "
+                                        />
+                                    </div>
+                                    <!-- id#12-->
+                                    <div
+                                        v-if="item.id === 12"
+                                        class="form-group"
+                                    >
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            v-model="
+                                                radio_answers[
+                                                    item.subQuestions[0].id
+                                                ]
+                                            "
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-footer">
-                        <button
-                            class="btn btn-danger"
-                            type="button"
-                            @click="onClickBack"
-                            v-if="current_step < questionnaires.length"
-                            :disabled="current_step <= 1"
-                        >
-                            Back
-                        </button>
-                        <button
-                            class="btn btn-primary"
-                            type="button"
-                            @click="onClickNext"
-                            v-if="current_step < questionnaires.length"
-                            :disabled="handleDisable"
-                        >
-                            Next
-                        </button>
-                        <button
-                            class="btn btn-success"
-                            type="button"
-                            v-else
-                            @click="handleSubmit"
-                        >
-                            Submit
-                        </button>
+                        <div class="card-footer">
+                            <button
+                                class="btn btn-danger"
+                                type="button"
+                                @click="onClickBack"
+                                v-if="current_step < questionnaires.length"
+                                :disabled="current_step <= 1"
+                            >
+                                Back
+                            </button>
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                @click="onClickNext"
+                                v-if="current_step < questionnaires.length"
+                                :disabled="handleDisable"
+                            >
+                                Next
+                            </button>
+                            <button
+                                class="btn btn-success"
+                                type="button"
+                                v-else
+                                @click="handleSubmit"
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div v-else>
-                <div class="card">
-                    <div class="card-body text-success">
-                        <h5 class="card-title">
-                            Heads Up!
-                        </h5>
-                        <p class="card-text">
-                            You have already submitted your feedback. You can
-                            now also download your certificate by clicking the
-                            button below.
-                        </p>
-                        <hr />
-                        <button
-                            class="btn btn-primary"
-                            type="button"
-                            @click="handleDownload"
-                        >
-                            Download my certificate
-                        </button>
+                <div v-else>
+                    <div class="card">
+                        <div class="card-body text-success">
+                            <h5 class="card-title">
+                                Heads Up!
+                            </h5>
+                            <p class="card-text">
+                                You have already submitted your feedback. You
+                                can now also download your certificate by
+                                clicking the button below.
+                            </p>
+                            <hr />
+                            <button
+                                class="btn btn-primary"
+                                type="button"
+                                @click="handleDownload"
+                            >
+                                Download my certificate
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--
-        -->
     </div>
 </template>
 <script>
 export default {
+    created() {
+        this.$store.dispatch("getEvent");
+    },
     mounted() {
         // console.log(this.$store.getters.user.name_on_cert);
 
@@ -807,6 +847,7 @@ export default {
     },
     methods: {
         handleDownload() {
+            this.$sendGuestEventNew("evaluation page", "download clicked");
             const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
@@ -847,6 +888,7 @@ export default {
             }
         },
         async handleSubmit() {
+            this.$sendGuestEventNew("evaluation page", "submit clicked");
             const api = `api/v1/booths/44/questionnaire/answer/submit?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
@@ -874,6 +916,9 @@ export default {
         }
     },
     computed: {
+        event() {
+            return this.$store.getters.event;
+        },
         progress() {
             return (
                 Math.round(100 / this.questionnaires.length) * this.current_step
