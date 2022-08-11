@@ -296,7 +296,7 @@ export default {
         handleOpenEvalModal(){
             this.$sendGuestEventNew('side bar', 'evaluation form')
             if(!this.event.evaluation_enable){
-                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                alert('The evaluation form can be filled on August 12, 2022 (Friday) at 6:00PM.')
                 return
             }
             this.openEvalmodal = true
@@ -865,9 +865,6 @@ export default {
 }
 </script>
 <style scoped>
-div >>> .pnlm-tooltip span {
-    visibility: visible !important;
-}
 .pnlm-container {
     /* background: #f1f2f3; */
     background: #fff url(/images/71st_logo.png) no-repeat center !important;
