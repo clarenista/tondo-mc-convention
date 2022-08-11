@@ -105,6 +105,13 @@ class RegisterWebinarGuest extends Command
         $regs = collect($registrants);
         $all = $all->merge($regs);
         $registrants = $all;
+        $registrants_api = "https://api.zoom.us/v2//webinars/{$webinar_id}/registrants?page_size=300&page_number=6";
+        $client = Http::withHeaders(['Accept' => 'application/json', 'Authorization' => $bearer]);
+        $response = $client->get($registrants_api);
+        $registrants = $response->json()['registrants'];
+        $regs = collect($registrants);
+        $all = $all->merge($regs);
+        $registrants = $all;
         $guests = User::withTrashed()
             ->whereNotNull('email_address')
             ->whereDoesntHave('webinars', function ($q) use ($webinar_id) {
