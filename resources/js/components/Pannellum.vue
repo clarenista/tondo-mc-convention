@@ -867,9 +867,6 @@ export default {
 }
 </script>
 <style scoped>
-div >>> .pnlm-tooltip span {
-    visibility: visible !important;
-}
 .pnlm-container {
     /* background: #f1f2f3; */
     background: #fff url(/images/71st_logo.png) no-repeat center !important;
