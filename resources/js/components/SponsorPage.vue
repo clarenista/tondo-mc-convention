@@ -38,8 +38,9 @@
                                         class="fa fa-info-circle text-info"
                                         aria-hidden="true"
                                     ></i>
-                                    You are about to leave the virtual
-                                    2nd Postgrad course site, you will be redirected to:
+                                    You are about to leave the virtual 2nd
+                                    Postgrad course site, you will be redirected
+                                    to:
                                 </h3>
                                 <a
                                     class="lead"
@@ -521,6 +522,11 @@
 import Modal from "./Modal";
 import Chat from "./Chat";
 export default {
+    mounted() {
+        console.log("mounted");
+        window.addEventListener("resize", this.reSize);
+        this.reSize();
+    },
     computed: {
         user() {
             return this.$store.getters.user;
@@ -538,10 +544,6 @@ export default {
         this.init();
     },
     methods: {
-        mounted() {
-            window.addEventListener("resize", this.reSize);
-            this.reSize;
-        },
         async init() {
             const wrapper = document.querySelector(".hotspots--wrapper");
             let { data } = await axios.get(
@@ -573,10 +575,6 @@ export default {
             const image = data.background;
             let hs = data.hotspots;
             hs = Object.values(hs);
-            console.log(
-                "hs",
-                hs.map(h => h.name)
-            );
             // console.log(hs)
             // const image = "/images/multires/A-Silver.png";
             // const hs = [
@@ -809,10 +807,9 @@ export default {
             // Get screen size (inner/outerWidth, inner/outerHeight)
             var height = window.innerHeight;
             var width = window.innerWidth;
-
             if (width < height) {
                 // portrait
-                this.viewer.setHfov(50);
+                this.viewer.setHfov(70);
             } else {
                 // landscape (or width=height)
                 this.viewer.setHfov(100);
@@ -892,8 +889,8 @@ div >>> .custom-hotspot {
 
 @media only screen and (max-width: 425px) {
     div >>> .custom-hotspot {
-        height: 36px;
-        width: 36px;
+        height: 28px;
+        width: 28px;
     }
 }
 div >>> .standee {

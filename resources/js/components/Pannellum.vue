@@ -65,7 +65,13 @@
         </Modal>
         <!-- Selfie -->
         <div class="selfie">
-            <h1>
+            <img 
+                src="images/iconsv2/camera.png"
+                width="90px" 
+                alt="" srcset=""
+                type="button"
+                @click="handleSelfie">
+            <!-- <h1>
                 <i
                     class="fa fa-camera text-dark"
                     type="button"
@@ -73,7 +79,7 @@
                     title="Take selfie here"
                     aria-hidden="true"
                 ></i>
-            </h1>
+            </h1> -->
         </div>
 
         <div id="booth_visits" class="bg-light text-dark table-responsive">
@@ -561,12 +567,14 @@ export default {
 
           this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
+        //   console.log(this.panorama_details.scenes.meeting_hall.hotSpots.find(h => h.cssClass.includes('open-zoom-meeting')))
+
             // fb
             const fbLink =  {
                 pitch: 0,
                 yaw: 0,
                 cssClass: "custom-hotspot fb_icon",
-                text: "TMC - Facebook",
+                text: "TMC - Facebook live webinar",
                 clickHandlerFunc: () =>{
                     this.$sendGuestEventNew('meeting hall hotspot', 'facebook')
                     window.open(this.event.facebook_url, '_blank')
