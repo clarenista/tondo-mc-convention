@@ -2,10 +2,10 @@ export default {
     init(vue) {
 
         let zoomBtn = vue.$el.querySelector(".open-zoom-meeting");
-        zoomBtn.style.display = "none";
+        // zoomBtn.style.display = "none";
         this.isAllowed(vue).then((result) => {
             if (result) {
-                zoomBtn.style.display = "";
+                // zoomBtn.style.display = "";
                 zoomBtn.addEventListener("click", () => {
                     this.isAllowed(vue).then((result) => {
                         vue.$store.getters.audio.pause();
