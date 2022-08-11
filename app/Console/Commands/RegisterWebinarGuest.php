@@ -112,7 +112,7 @@ class RegisterWebinarGuest extends Command
             })
             // ->whereNotIn('classification', ['sponsor'])
             // ->whereNotIn('email_address',['paduamdpatho@yahoo.com'])
-            ->whereIn('id', [1309])
+            // ->whereIn('id', [1309])
             ->get();
         // dd($guests->toArray());
         // dd($guests);
