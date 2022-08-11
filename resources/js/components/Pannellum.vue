@@ -296,7 +296,7 @@ export default {
         handleOpenEvalModal(){
             this.$sendGuestEventNew('side bar', 'evaluation form')
             if(!this.event.evaluation_enable){
-                alert('The evaluation form can be filled on August 12, 2022 (Friday).')
+                alert('The evaluation form can be filled on 6:00 PM August 12, 2022 (Friday).')
                 return
             }
             this.openEvalmodal = true
@@ -315,10 +315,10 @@ export default {
         handleDownload() {
             // this.$store.dispatch('sendGuestEvent', ('side bar', 'download certificate'))
 
-            // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
+            // this.checkEventEnable('The certificate can be downloaded on 6:00 PM August 12, 2022 (Friday).')
             if(!this.event.evaluation_enable){
                 this.$sendGuestEventNew('side bar', 'download certificate (comeback again)')
-                alert('The certificate can be downloaded on August 12, 2022 (Friday).')
+                alert('The certificate can be downloaded on 6:00 PM August 12, 2022 (Friday).')
                 return
             }
             if(!this.$store.getters.hasEvaluation) {
