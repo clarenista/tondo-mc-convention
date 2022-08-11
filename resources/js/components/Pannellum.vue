@@ -564,7 +564,7 @@ export default {
                 pitch: 0,
                 yaw: 0,
                 cssClass: "custom-hotspot fb_icon",
-                text: "TMC - Facebook",
+                text: "TMC - Facebook live webinar",
                 clickHandlerFunc: () =>{
                     this.$sendGuestEventNew('meeting hall hotspot', 'facebook')
                     window.open(this.event.facebook_url, '_blank')
