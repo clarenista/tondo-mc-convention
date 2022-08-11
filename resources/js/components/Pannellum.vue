@@ -561,6 +561,8 @@ export default {
 
           this.panorama_details.scenes.meeting_hall.hotSpots.push(..._.filter(this.$store.getters.scene_hotSpots, ['scene', 'meeting_hall']))
 
+        //   console.log(this.panorama_details.scenes.meeting_hall.hotSpots.find(h => h.cssClass.includes('open-zoom-meeting')))
+
             // fb
             const fbLink =  {
                 pitch: 0,
