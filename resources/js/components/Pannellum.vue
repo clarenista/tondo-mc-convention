@@ -65,7 +65,13 @@
         </Modal>
         <!-- Selfie -->
         <div class="selfie">
-            <h1>
+            <img 
+                src="images/iconsv2/camera.png"
+                width="90px" 
+                alt="" srcset=""
+                type="button"
+                @click="handleSelfie">
+            <!-- <h1>
                 <i
                     class="fa fa-camera text-dark"
                     type="button"
@@ -73,7 +79,7 @@
                     title="Take selfie here"
                     aria-hidden="true"
                 ></i>
-            </h1>
+            </h1> -->
         </div>
 
         <div id="booth_visits" class="bg-light text-dark table-responsive">
