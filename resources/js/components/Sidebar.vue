@@ -2,9 +2,10 @@
 <div>
 
 
-    <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'">
-        <div class="text-center mb-5"><img id="psp_logo" src="images/71st_logo.png" width="190px" alt="psp_logo" srcset=""></div>
-        <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a>
+    <!-- <div id="mySidenav" class="sidenav" :style="showDropdown ? 'width:270px;' : 'width:0;'"> -->
+    <div id="mySidenav" class="sidenav">
+        <div class="text-center mb-5"><img id="psp_logo" src="images/71st_logo.png" width="160px" alt="psp_logo" srcset=""></div>
+        <!-- <a href="javascript:void(0)" class="closebtn" @click="closeNav"><i class="fa fa-times" aria-hidden="true"></i></a> -->
 
         <a 
             href="javascript:void(0)" 
@@ -49,7 +50,7 @@
     
     </div>
     
-    <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button>
+    <!-- <button id="openBtn" class="open-btn btn btn-dark shadow-lg rounded-0" @click="openNav">&#9776</button> -->
 
     
 </div>
@@ -94,15 +95,15 @@ export default {
         handleOpenEvalModal(){
             this.$emit('handleOpenEvalModal')
         },
-        openNav(){
-            document.getElementById("mySidenav").style.width = "270px";
-            document.getElementById("openBtn").style.opacity = "0.1";
-        },
-        closeNav(){
-            document.getElementById("mySidenav").style.width = "0";
-            document.getElementById("openBtn").style.opacity = "1";
-            this.showDropdown = false
-        },
+        // openNav(){
+        //     document.getElementById("mySidenav").style.width = "270px";
+        //     document.getElementById("openBtn").style.opacity = "0.1";
+        // },
+        // closeNav(){
+        //     document.getElementById("mySidenav").style.width = "0";
+        //     document.getElementById("openBtn").style.opacity = "1";
+        //     this.showDropdown = false
+        // },
 
         handleNavigateTo(item){
             this.$emit('handleNavigateTo', item.sceneId);
@@ -179,7 +180,7 @@ button.open-btn{
 .sidenav a {
   padding: 5px 10px;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #f1f1f1;
   display: block;
   transition: 0.3s;
@@ -242,10 +243,42 @@ a.dropdown-item {
     width: 270px;
 }
 
+/* iphone */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .sidenav {
+        width: 150px;
+    }
+
+    .sidenav a {
+        font-size: .65rem;
+    }
+  
+    #psp_logo {
+      width: 80px;
+      height: auto;
+    }
+}
+
+/* galaxy fold */
+@media(max-width: 320px){ 
+    .sidenav {
+        width: 100px;
+    }
+
+   .sidenav a {
+        font-size: .45rem;
+    }
+  
+    #psp_logo {
+      width: 60px;
+      height: auto;
+    }
+}
+
 
 
  /* greater than 319 buy less then 768 */
-  @media screen and (min-width: 320px) and (max-width: 768px) {
+  /* @media screen and (min-width: 320px) and (max-width: 768px) {
     .sidenav a {
         font-size: 1rem;
     }
@@ -256,10 +289,10 @@ a.dropdown-item {
     }
 
     
-  }
+  } */
   
   /* greater than 766 buy less then 850 */
-  @media screen and (min-width: 767px) and (max-width: 820px) {
+  /* @media screen and (min-width: 767px) and (max-width: 820px) {
     .sidenav a {
         font-size: 2rem;
     }
@@ -268,10 +301,10 @@ a.dropdown-item {
       width: 220px;
       height: auto;
     }
-  }
+  } */
   
   /* greater than 990*/
-  @media screen and (min-width: 990) {
+  /* @media screen and (min-width: 990) {
     .sidenav {
         width: 320px !important;
     }
@@ -284,10 +317,10 @@ a.dropdown-item {
     .sidenav a {
         font-size: 1rem;
     }
-  }
+  } */
 
     /* 280  375 360 */
-  @media screen and (min-width: 281px) and (max-width: 390px) {
+  /* @media screen and (min-width: 281px) and (max-width: 390px) {
     .sidenav {
         width: 270px;
     }
@@ -314,7 +347,7 @@ a.dropdown-item {
       width: 120px;
       height: auto;
     }
-  
+   */
   
 
 
