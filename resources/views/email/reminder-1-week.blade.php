@@ -35,7 +35,7 @@
                 <tr style="width: 538px">
                     <td
                         style="height: 4%;text-align: center;background: #762290;color: #ffffff;font-size: 16px;padding: 2rem;">
-                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSGRADUATE COURSE" WILL BEGIN IN 1 DAY.
+                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSGRADUATE COURSE" WILL BEGIN TODAY.
                         <br>
                         <br>
                         <span style="font-weight: bold;color: #ffffff;">
