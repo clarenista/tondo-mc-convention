@@ -296,7 +296,7 @@ export default {
         handleOpenEvalModal(){
             this.$sendGuestEventNew('side bar', 'evaluation form')
             if(!this.event.evaluation_enable){
-                alert('The evaluation form can be filled on 6:00 PM August 12, 2022 (Friday).')
+                alert('The evaluation form can be filled out on 6:00 PM August 12, 2022 (Friday).')
                 return
             }
             this.openEvalmodal = true
