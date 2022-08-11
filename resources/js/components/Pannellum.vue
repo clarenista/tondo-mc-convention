@@ -313,18 +313,20 @@ export default {
             link.click();
         },
         handleDownload() {
-            this.$sendGuestEventNew('side bar', 'download certificate')
             // this.$store.dispatch('sendGuestEvent', ('side bar', 'download certificate'))
 
             // this.checkEventEnable('The certificate can be downloaded on August 12, 2022 (Friday).')
             if(!this.event.evaluation_enable){
+                this.$sendGuestEventNew('side bar', 'download certificate (comeback again)')
                 alert('The certificate can be downloaded on August 12, 2022 (Friday).')
                 return
             }
             if(!this.$store.getters.hasEvaluation) {
+                this.$sendGuestEventNew('side bar', 'download certificate (evaluate first)')
                 alert('You must complete the evaluation first.')
                 return
             }
+            this.$sendGuestEventNew('side bar', 'download certificate')
             const api = `api/v1/guests/certificate?api_token=${localStorage.getItem(
                 "access_token"
             )}`;
