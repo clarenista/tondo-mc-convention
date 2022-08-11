@@ -19,9 +19,7 @@
 
 <body style="width: 100%">
     <center>
-        <table border="0" width="538px" style="
-        border-collapse: collapse;background: #762290;
-    ">
+        <table border="0" width="538px" style="border-collapse: collapse;background: #762290;">
             <thead>
                 <th style="width: 538px">
                 </th>
@@ -35,11 +33,12 @@
                 <tr style="width: 538px">
                     <td
                         style="height: 4%;text-align: center;background: #762290;color: #ffffff;font-size: 16px;padding: 2rem;">
-                        This is a reminder that the postgraduate course of Tondo Medical Center- Department of OBGYN will begin today.
+                        This is a reminder that the day 2 postgraduate course of Tondo Medical Center - Department of
+                        OBGYN will begin today.
                         <br>
                         <br>
                         <span style="font-weight: bold;color: #ffffff;">
-                        DATE TIME: AUG 11, 2022 4:00 PM SINGAPORE
+                            DATE TIME: AUG 12, 2022 4:00 PM SINGAPORE
                         </span>
                         <br>
                         <br>
@@ -49,7 +48,15 @@
                         Virtual exhibits are open. Everyone is invited to visit the booths.
                         <br>
                         <br>
-                        LINK: <a href="https://tondomcobgyn2022.com/login" style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
+                        LINK: <a href="https://tondomcobgyn2022.com/login"
+                            style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
+
+                        <br>
+                        <br>
+                        Recommended Browser: Google Chrome
+                        <br>
+                        <br>
+                        WEBINAR LINK: <a href="{{ @$link }}" style="color: #0088ff;">CLICK HERE</a>
                     </td>
                 </tr>
             </tbody>

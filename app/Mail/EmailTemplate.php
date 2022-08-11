@@ -18,11 +18,12 @@ class EmailTemplate extends Mailable
      *
      * @return void
      */
-    public function __construct($blade = 'email.reminder-1-week', $subject = 'Tailoring The Optimal Management of Ob-Gyn Conditions')
+    public function __construct($link = "#", $blade = 'email.reminder-1-week', $subject = 'Tailoring The Optimal Management of Ob-Gyn Conditions')
     {
         //
         $this->blade = $blade;
         $this->subject = $subject;
+        $this->link = $link;
     }
 
     /**
@@ -34,6 +35,6 @@ class EmailTemplate extends Mailable
     {
 
         return $this->subject($this->subject)
-            ->view($this->blade);
+            ->view($this->blade, ['link' => $this->link]);
     }
 }

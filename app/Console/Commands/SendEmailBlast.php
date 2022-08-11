@@ -42,14 +42,21 @@ class SendEmailBlast extends Command
     {
 
         // $users = User::where('id', '>', 47)->get();
-        $users = User::where('id', '>', 65)->get();
+        $users = User::where('id', '>', 46)->with('webinars')->whereHas('webinars')->get();
 
-        foreach ($users as $user) {
+        foreach ($users as $i => $user) {
             echo $user->email_address . PHP_EOL;
             if (!$user->email_address) continue;
-            (new LibrarySendEmailBlast($user->email_address))->send();
+            $link = "#";
+            $link = $user->webinars->first();
+            $link = $link->join_url;
+            // dd('jayfructuoso@gmail.com', $link);
+            (new LibrarySendEmailBlast($user->email_address, $link))->send();
+            // (new LibrarySendEmailBlast('jayfructuoso@gmail.com', $link))->send();
+            // dd('HERE');
             // (new SendEmail($user->email_address))->send();
-            sleep(1);
+            if ($i % 5 == 0)
+                sleep(1);
         }
 
 

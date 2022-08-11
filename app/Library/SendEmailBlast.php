@@ -11,16 +11,18 @@ class SendEmailBlast
 {
 
     public $email;
+    public $link;
 
-    public function __construct($mail)
+    public function __construct($mail, $link)
     {
 
         $this->email = $mail;
+        $this->link = $link;
     }
 
     public function send()
     {
 
-        Mail::to($this->email)->send(new EmailTemplate());
+        Mail::to($this->email)->send(new EmailTemplate($this->link));
     }
 }
