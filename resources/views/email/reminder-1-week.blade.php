@@ -35,7 +35,7 @@
                 <tr style="width: 538px">
                     <td
                         style="height: 4%;text-align: center;background: #762290;color: #ffffff;font-size: 16px;padding: 2rem;">
-                        THIS IS A REMINDER THAT "TONDO MEDICAL CENTER'S POSGRADUATE COURSE" WILL BEGIN TODAY.
+                        This is a reminder that the postgraduate course of Tondo Medical Center- Department of OBGYN will begin today.
                         <br>
                         <br>
                         <span style="font-weight: bold;color: #ffffff;">
@@ -43,7 +43,11 @@
                         </span>
                         <br>
                         <br>
-                        Registrants are invited to visit the virtual booths.
+                        Participants can log in as early as 3:30pm.
+                        <br>
+                        <br>
+                        Virtual exhibits are open. Everyone is invited to visit the booths.
+                        <br>
                         <br>
                         LINK: <a href="https://tondomcobgyn2022.com/login" style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
                     </td>
