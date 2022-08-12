@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Program;
+use App\Models\User;
 use App\Models\UserEvent;
 use App\Models\UserEventCategory;
 use Illuminate\Support\Facades\Http;
@@ -72,6 +73,39 @@ class GuestController extends Controller
         $pdf->MultiCell(0, 30, $name, 0, 'C');
         return response($pdf->Output())
             ->header('Content-Type', 'application/pdf');
+    }
+
+
+
+    public function createCertificate(User $user)
+    {
+        // return null;
+        // $hasEvaluation = self::hasEvaluation();
+        // if (count($hasEvaluation['done']) <= 0) {
+        //     return response()->json(['status' => 'failed', 'message' => 'No evaluation found.']);
+        // }
+        // define('FPDF_FONTPATH', app_path() . '/Http/Fonts/');
+        // $user =  \request()->user();
+        $pdf = new Fpdi('l', 'pt', 'Letter');
+
+        $pdf->setSourceFile(storage_path('cert-of-appreciation.pdf'));
+        // Import the first page from the PDF and add to dynamic PDF
+        $tpl = $pdf->importPage(1);
+        // Bahnschrift
+        $pdf->AddFont('Bahnschrift', '', 'bahnschrift.php');
+
+        $pdf->AddPage();
+        $pdf->useTemplate($tpl);
+        $pdf->SetTextColor(54, 54, 54);
+        // $pdf->SetLineWidth(0);
+
+        $pdf->SetAutoPageBreak(false, 0);
+        $pdf->SetFont('Bahnschrift', '', 27);
+
+        $name = utf8_decode($user->name_on_cert);
+        $pdf->SetXY(20, 295);
+        $pdf->MultiCell(0, 30, $name, 0, 'C');
+        $pdf->Output(storage_path("certificates/{$user->id}-certificate.pdf"), "F");
     }
 
     private function checkRegistrants($email, $webinar)
