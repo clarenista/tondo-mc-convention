@@ -45,23 +45,24 @@ class SendCertificate extends Command
 
         // CREATE CERTIFICATES
 
-        define('FPDF_FONTPATH', app_path() . '/Http/Fonts/');
-        $us = User::where('id', '>', 46)->get();
-        $gc = new GuestController;
-        foreach ($us as $i => $u) {
-            echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
-            $gc->createCertificate($u);
-        }
+        // define('FPDF_FONTPATH', app_path() . '/Http/Fonts/');
+        // $us = User::where('id', '>', 46)->get();
+        // $gc = new GuestController;
+        // foreach ($us as $i => $u) {
+        //     echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
+        //     $gc->createCertificate($u);
+        // }
 
         // // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/37-certificate.pdf")));
         // // dd('here');
-        // $us = User::whereHas('answers')->whereNull('mobile_number')->whereNotNull('email_address')->whereNotIn('id', [143, 150])->get();
-        // foreach ($us as $u) {
-        //     if (!$u->email_address) continue;
-        //     echo $u->first_name . PHP_EOL;
-        //     Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
-        //     // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
-        // }
+        $us = User::whereHas('answers')->whereNull('mobile_number')->whereNotNull('email_address')->whereNotIn('id', [143, 150])->get();
+        // dd($us->count());
+        foreach ($us as $u) {
+            if (!$u->email_address) continue;
+            echo $u->first_name . PHP_EOL;
+            Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
+            // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
+        }
 
         return 0;
     }
