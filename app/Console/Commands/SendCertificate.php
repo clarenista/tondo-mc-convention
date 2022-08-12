@@ -49,7 +49,7 @@ class SendCertificate extends Command
         $us = User::where('id', '>', 46)->get();
         $gc = new GuestController;
         foreach ($us as $i => $u) {
-            echo $i . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
+            echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
             $gc->createCertificate($u);
         }
 
