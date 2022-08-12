@@ -57,10 +57,10 @@ class SendCertificate extends Command
         // // dd('here');
         $us = User::whereHas('answers')->whereNull('mobile_number')->whereNotNull('email_address')->whereNotIn('id', [143, 150])->get();
         // dd($us->count());
-        foreach ($us as $u) {
+        foreach ($us as $i => $u) {
             if (!$u->email_address) continue;
-            echo $u->first_name . PHP_EOL;
-            Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
+            echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
+            // Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
             // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
         }
 
