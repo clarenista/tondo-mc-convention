@@ -297,7 +297,7 @@
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                         <div
-                            class="col-6 p-1"
+                            class="col-4 p-1"
                             v-for="(item, assetIndex) in selectedHotspot.assets"
                             :key="assetIndex"
                             @click="handleSelectAssetIndex(assetIndex)"
@@ -416,7 +416,7 @@
                     <!-- BROCHURES -->
                     <template v-else-if="selectedHotspot.name == 'brochures'">
                         <div
-                            class="col-6 p-1"
+                            class="col-4 p-1"
                             v-for="(item, assetIndex) in selectedHotspot.assets"
                             :key="assetIndex"
                             @click="handleSelectAssetIndex(assetIndex)"
