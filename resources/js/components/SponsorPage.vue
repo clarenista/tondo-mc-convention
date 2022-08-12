@@ -557,6 +557,7 @@ export default {
             const viewQuery = this.$route.query.view;
             Object.entries(data.hotspots).find(h => {
                 if (h[0] === viewQuery) {
+                    this.handleSelectHotspot(h[1]);
                     this.selectedHotspot = h[1];
                     this.value = true;
                 }
