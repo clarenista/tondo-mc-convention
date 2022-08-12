@@ -60,7 +60,7 @@ class SendCertificate extends Command
         foreach ($us as $i => $u) {
             if (!$u->email_address) continue;
             echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
-            // Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
+            Mail::to($u->email_address)->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
             // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/{$u->id}-certificate.pdf")));
         }
 
