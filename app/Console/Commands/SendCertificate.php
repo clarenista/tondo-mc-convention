@@ -46,9 +46,10 @@ class SendCertificate extends Command
         // CREATE CERTIFICATES
 
         define('FPDF_FONTPATH', app_path() . '/Http/Fonts/');
-        $us = User::where('id','>',46)->get();
+        $us = User::where('id', '>', 46)->get();
         $gc = new GuestController;
-        foreach($us as $u){
+        foreach ($us as $i => $u) {
+            echo $i . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
             $gc->createCertificate($u);
         }
 
