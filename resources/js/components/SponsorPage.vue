@@ -554,6 +554,13 @@ export default {
             );
 
             this.booth_details = data;
+            const viewQuery = this.$route.query.view;
+            Object.entries(data.hotspots).find(h => {
+                if (h[0] === viewQuery) {
+                    this.selectedHotspot = h[1];
+                    this.value = true;
+                }
+            });
             switch (data.panorama_location) {
                 case "hall_a":
                     this.$store.commit("updateAudioSource", "/bgm/hall_a.mp3");
@@ -747,7 +754,7 @@ export default {
         },
 
         handleSelectAssetIndex(assetIndex) {
-            console.log(assetIndex);
+            // console.log(assetIndex);
             // this.value = false
             this.indexSelected = assetIndex;
         },
