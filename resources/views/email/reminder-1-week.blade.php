@@ -50,13 +50,13 @@
                         <br>
                         LINK: <a href="https://tondomcobgyn2022.com/login"
                             style="color: #48ff00; text-decoration: none;">https://tondomcobgyn2022.com</a>
-
                         <br>
                         <br>
                         Recommended Browser: Google Chrome
                         <br>
                         <br>
-                        WEBINAR LINK: <a href="{{ @$link }}" style="color: #0088ff;">CLICK HERE</a>
+                        We recommend that you log in through the website. But in case, you have trouble logging in, you can use the direct zoom link below. Thank you.<br>
+                        <br>WEBINAR LINK: <a href="{{ @$link }}" style="color: #0088ff;">CLICK HERE</a>
                     </td>
                 </tr>
             </tbody>
