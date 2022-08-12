@@ -861,7 +861,7 @@ export default {
     background: #f1f2f3;
 }
 div >>> .modal-dialog {
-    max-width: 720px;
+    max-width: 850px;
 }
 div >>> .pnlm-load-box {
     background: url(/images/loader.gif) no-repeat !important;
