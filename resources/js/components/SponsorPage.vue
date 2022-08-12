@@ -297,7 +297,7 @@
                     <!-- GALLERY  -->
                     <template v-else-if="selectedHotspot.name == 'gallery'">
                         <div
-                            class="col-4 p-1"
+                            class="col-6 p-1"
                             v-for="(item, assetIndex) in selectedHotspot.assets"
                             :key="assetIndex"
                             @click="handleSelectAssetIndex(assetIndex)"
@@ -356,7 +356,7 @@
                     <!-- VIDEO -->
                     <template v-else-if="selectedHotspot.name == 'videos'">
                         <div
-                            class="col-4 p-1"
+                            class="col-6 p-1"
                             v-for="(item, assetIndex) in selectedHotspot.assets"
                             :key="assetIndex"
                             @click="handleSelectAssetIndex(assetIndex)"
@@ -416,7 +416,7 @@
                     <!-- BROCHURES -->
                     <template v-else-if="selectedHotspot.name == 'brochures'">
                         <div
-                            class="col-4 p-1"
+                            class="col-6 p-1"
                             v-for="(item, assetIndex) in selectedHotspot.assets"
                             :key="assetIndex"
                             @click="handleSelectAssetIndex(assetIndex)"
@@ -859,9 +859,6 @@ export default {
 <style scoped>
 .pnlm-container {
     background: #f1f2f3;
-}
-div >>> .modal-dialog  {
-    max-width: 720px !important;
 }
 div >>> .pnlm-load-box {
     background: url(/images/loader.gif) no-repeat !important;
