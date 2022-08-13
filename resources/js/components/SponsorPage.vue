@@ -461,7 +461,7 @@
                                 <div class="card-footer">
                                     <div
                                         class="lead text-dark"
-                                        style="align-items: center;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;font-size: 1rem;"
+                                        style="align-items: center;font-size: 1rem;"
                                     >
                                         {{ item.name }}
                                     </div>

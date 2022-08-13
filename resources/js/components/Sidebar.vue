@@ -42,7 +42,7 @@
                 title="Download Certificate"
                 @click="handleGoToTmcBooth"
             >
-                <span class="text-uppercase">TMC Booth</span>
+                <span class="text-uppercase">POST GRADUATE LECTURES</span>
             </a>
             <!--
         -->

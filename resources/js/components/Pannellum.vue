@@ -65,12 +65,14 @@
         </Modal>
         <!-- Selfie -->
         <div class="selfie">
-            <img 
+            <img
                 src="images/iconsv2/camera.png"
-                width="90px" 
-                alt="" srcset=""
+                width="90px"
+                alt=""
+                srcset=""
                 type="button"
-                @click="handleSelfie">
+                @click="handleSelfie"
+            />
             <!-- <h1>
                 <i
                     class="fa fa-camera text-dark"
@@ -659,7 +661,7 @@ export default {
             this.$store.commit('updateAudioSource', '/bgm/pool.mp3')
             break;
           case 'meeting_hall':
-            this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
+            this.$store.commit('updateAudioSource', null)
             break;
           case 'secondf_meeting_hall':
             this.$store.commit('updateAudioSource', '/bgm/meeting_hall.mp3')
