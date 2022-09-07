@@ -88,7 +88,7 @@ class GuestController extends Controller
         // $user =  \request()->user();
         $pdf = new Fpdi('l', 'pt', 'Letter');
 
-        $pdf->setSourceFile(storage_path('cert-of-appreciation.pdf'));
+        $pdf->setSourceFile(storage_path('cpd-certification.pdf'));
         // Import the first page from the PDF and add to dynamic PDF
         $tpl = $pdf->importPage(1);
         // Bahnschrift
@@ -105,7 +105,7 @@ class GuestController extends Controller
         $name = utf8_decode($user->name_on_cert);
         $pdf->SetXY(20, 295);
         $pdf->MultiCell(0, 30, $name, 0, 'C');
-        $pdf->Output(storage_path("certificates/{$user->id}-certificate.pdf"), "F");
+        $pdf->Output(storage_path("certificates/{$user->id}-certificate-cpd.pdf"), "F");
     }
 
     private function checkRegistrants($email, $webinar)
