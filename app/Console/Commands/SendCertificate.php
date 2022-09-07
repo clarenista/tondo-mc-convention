@@ -54,7 +54,7 @@ class SendCertificate extends Command
         // }
         // dd('here');
 
-        Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/37-certificate-cpd.pdf")));
+        Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/377-certificate-cpd.pdf")));
         // // dd('here');
         // $us = User::where('id', '>', 46)->whereHas('answers')->whereNull('mobile_number')->whereNotNull('email_address')->whereNotIn('id', [143, 150])->get();
         // // dd($us->count());
