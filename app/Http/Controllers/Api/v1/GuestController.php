@@ -92,7 +92,7 @@ class GuestController extends Controller
         // Import the first page from the PDF and add to dynamic PDF
         $tpl = $pdf->importPage(1);
         // Bahnschrift
-        $pdf->AddFont('Bahnschrift', '', 'bahnschrift.php');
+        // $pdf->AddFont('Bahnschrift', '', 'bahnschrift.php');
 
         $pdf->AddPage();
         $pdf->useTemplate($tpl);
@@ -100,7 +100,7 @@ class GuestController extends Controller
         // $pdf->SetLineWidth(0);
 
         $pdf->SetAutoPageBreak(false, 0);
-        $pdf->SetFont('Bahnschrift', '', 27);
+        $pdf->SetFont('Helvetica', '', 27);
 
         $name = utf8_decode($user->name_on_cert);
         $pdf->SetXY(20, 295);
