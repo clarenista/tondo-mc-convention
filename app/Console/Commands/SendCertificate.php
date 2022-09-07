@@ -52,9 +52,9 @@ class SendCertificate extends Command
             echo $i+1 . "/" . $us->count() . " - " . $u->email_address . PHP_EOL;
             $gc->createCertificate($u);
         }
-        dd('here');
+        // dd('here');
 
-        // // Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/37-certificate.pdf")));
+        Mail::to('jayfructuoso@gmail.com')->send(new EmailCertificate(storage_path("certificates/37-certificate.pdf")));
         // // dd('here');
         // $us = User::where('id', '>', 46)->whereHas('answers')->whereNull('mobile_number')->whereNotNull('email_address')->whereNotIn('id', [143, 150])->get();
         // // dd($us->count());
